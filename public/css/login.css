@@ -1,0 +1,48 @@
+body{
+  background-color: #77BFA0;
+}
+
+.divForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.divRegister{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 700px;
+}
+
+
+
+#userInput{
+  height: 35px;
+  width: 250px;
+}
+
+#buttonLogin{
+  background-color: #7dcaa9;
+  height: 35px;
+  width: 250px;
+}
+
+
+.formLogin{
+      display: inline-block;
+      height: 500px;
+      width: 350px;
+      background-color: #20c997;
+}
+
+.formRegister{
+  height: 700px;
+  display: inline-block;
+  width: 350px;
+  background-color: #20c997;
+}
