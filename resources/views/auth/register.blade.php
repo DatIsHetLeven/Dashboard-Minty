@@ -21,7 +21,7 @@
           
             <input type="text" id="userInput" name="Plaats" placeholder='Plaats' required><br><br>
           
-            <button id="buttonLogin" type="submit"  value="Registreren">{{ __('Register') }}</button><br><br>              
+            <button id="buttonLogin" type="submit"  name="buttonregister" value="Registreren">{{ __('Register') }}</button><br><br>              
     </form>
 </div>
 

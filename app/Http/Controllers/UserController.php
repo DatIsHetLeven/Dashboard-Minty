@@ -32,4 +32,25 @@ class UserController extends Controller
             }
         }
     }
+
+    //Create user
+    public function createUser()
+    {
+        if(isset($_POST['buttonregister']))
+        {
+            $email = $_POST['email'];
+            $naam = $_POST['userName'];
+            $telefoonnummer = $_POST['Telefoonnummer'];
+            $bedrijfsnaam = $_POST['Bedijfsnaam'];
+            $btwNummer = $_POST['BTW-Nummer'];
+            $adres = $_POST['Adres + Huisnummer'];
+            $postcode = $_POST['Postcode'];
+            $plaats = $_POST['Plaats'];
+
+            DB::insert('insert into users(email, naam, password, telefoonnummer, bedrijfsnaam, btwNummer, adres, postcode, plaats)
+                    values($email, $naam, $telefoonnummer, $bedrijfsnaam, $btwNummer, $adres, $postcode, $plaats)');
+
+            
+        }
+    }
 }
