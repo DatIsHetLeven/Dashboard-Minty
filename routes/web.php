@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,22 +12,28 @@ use Illuminate\Http\Response;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('Accounts', function () {
-    return view('accounts');
+Route::get('test', function () {
+    return view('logintest');
 });
 
-Route::get('home', function () {
+
+
+Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('register', function () {
-    return view('register');
+Route::get('dashboard', function () {
+    return view('dashboard/dashboard');
 });
 
-Route::get('dbconn', function () {
-    return view('dbconn');
+Route::get('dashboardOld', function () {
+    return view('dashboard/dashboardOldMyDesign');
 });
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::POST('logincheck', [App\Http\Controllers\UserController::class, 'getUser'])->name('login_check');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
