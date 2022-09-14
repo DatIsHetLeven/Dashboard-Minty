@@ -15,7 +15,7 @@ class UserController extends Controller
         if(isset($_POST['loginButton']))
         {
             $username = $_POST['userName'];
-            $password = $_POST['password'];
+            $password = password_verify($_POST['password'], PASSWORD_DEFAULT);
 
             $CheckUserLogin = DB::table('user')
                         ->where('naam', '=', $username)
@@ -54,7 +54,7 @@ class UserController extends Controller
             $newUser->save();
         }
     }
-    //Gnereer automatisch wachtwoord
+    //Gnereer automatisch wachtwoord (Hash)
     public function randomPassword() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = array(); 
@@ -63,7 +63,9 @@ class UserController extends Controller
             $n = rand(0, $alphaLength);
             $pass[] = $alphabet[$n];
         }
-        return implode($pass);
+        $password = (implode($pass));
+        echo $password;
+        return password_hash($password, PASSWORD_DEFAULT);
     }
     
 
