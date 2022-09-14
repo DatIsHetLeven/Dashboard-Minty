@@ -47,7 +47,7 @@
             <div class="rechts">
                 <input type="text" id="userInput" name="BTW-Nummer" placeholder='BTW-Nummer' required><br><br>
           
-                <input type="text" id="userInput" name="Adres + Huisnummer" placeholder='Adres + Huisnummer' required><br><br>
+                <input type="text" id="userInput" name="Adres" placeholder='Adres+Huisnummer' required><br><br>
           
                 <input type="text" id="userInput" name="Postcode" placeholder='Postcode' required><br><br>
           

@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::create('user', function (Blueprint $table) {
+            $table->increments('userId');
+            $table->varchar('email');
+            $table->varchar('naam');
+            $table->varchar('password');
+            $table->int('telefoonnummer');
+            $table->varchar('bedrijfsnaam');
+            $table->varchar('btwNummer');
+            $table->varchar('adres');
+            $table->varchar('postcode');
+            $table->varchar('plaats');
         });
     }
 

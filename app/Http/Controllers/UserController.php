@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 // use routes\web;
-use app\Models\User;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -40,21 +40,24 @@ class UserController extends Controller
     {
         if(isset($_POST['buttonregister']))
         {
-            echo "test";
-            exit();
-            // $email = $_POST['email'];
-            // $naam = $_POST['userName'];
-            // $telefoonnummer = $_POST['Telefoonnummer'];
-            // $bedrijfsnaam = $_POST['Bedijfsnaam'];
-            // $btwNummer = $_POST['BTW-Nummer'];
-            // $adres = $_POST['Adres + Huisnummer'];
-            // $postcode = $_POST['Postcode'];
-            // $plaats = $_POST['Plaats'];
+            $newUser = new User();
+            $newUser->email = $_POST['email'];
+            $newUser->naam = $_POST['userName'];
+            
+            // $newUser->password = $_POST['password'];
+            $newUser->password = $_POST['Bedijfsnaam'];
+            $newUser->telefoonnummer = $_POST['Telefoonnummer'];
+            $newUser->bedrijfsnaam = $_POST['Bedijfsnaam'];
+            $newUser->btwNummer = $_POST['BTW-Nummer'];
+            $newUser->adres = $_POST['BTW-Nummer'];
+            $newUser->postcode = $_POST['Postcode'];
+            $newUser->plaats = $_POST['Plaats'];
 
-            // $password = "password";
+            $newUser->save();
 
-            // DB::insert('insert into user(email, naam, password, telefoonnummer, bedrijfsnaam, btwNummer, adres, postcode, plaats)
-            //         values($email, $naam, $telefoonnummer, $password, $bedrijfsnaam, $btwNummer, $adres, $postcode, $plaats)');
+
+            // DB::insert("insert into user(email, naam, password, telefoonnummer, bedrijfsnaam, btwNummer, adres, postcode, plaats)
+            //         values($email, $naam, $password, $telefoonnummer, $bedrijfsnaam, $btwNummer, $adres, $postcode, $plaats)");
 
             
         }
