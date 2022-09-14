@@ -6,22 +6,22 @@
 
 <div class="formlogin">
 
-  <form>
+  <form method="POST" action="{{ route('login_check') }}">
+  @csrf
+    <!-- E-mail invoeren -->
     <label>E-mail adres</label>
-    <p><input type="text" name="username" class="form_login">
-
-      
-
+    <p><input type="text" name="userName" class="form_login" required autocomplete="email">
+    <!-- Wachtwoord invoeren -->
     <label>Wachtwoord </label> <a id="resetpass" class="link" href="{{ route('reset') }}">Wachtwoord vergeten?</a>
 
-    <p><input type="password" name="password" class="form_login">
-
-    <input type="submit" class="buttonlogin" value="Aanmelden">
+    <p><input type="password" name="password" class="form_login" required autocomplete="password">
+    <!-- Button aanmelden -->
+    <input type="submit" name="loginButton" class="buttonlogin" value="Aanmelden">
 
     <br/>
     <br/>
     <center>
-      <a class="link" href="#popup1">Account aanmaken</a>
+      <a class="link" href="#registreren1">Account aanmaken</a>
     </center>
   </form>
 
@@ -29,8 +29,8 @@
 
 
 <!-- Registreren popup box! -->
-<div id="popup1" class="overlay">
-	<div class="popup">
+<div id="registreren1" class="overlay">
+	<div class="registreren">
 		<a class="close" href="#">&times;</a>
         <form method="POST" action="{{ route('create_user_check') }}" class="formRegister">
         @csrf
@@ -40,7 +40,7 @@
           
                 <input type="text" id="userInput" name="userName" placeholder='Naam' required autocomplete="email"><br><br>
           
-                <input type="tel" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer' required><br><br>
+                <input type="number" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer (alleen getallen)' required><br><br>
           
                 <input type="text" id="userInput" name="Bedijfsnaam" placeholder='Bedijfsnaam' required><br><br>
             </div>

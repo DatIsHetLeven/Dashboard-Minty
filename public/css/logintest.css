@@ -76,7 +76,7 @@ body {
 
   }
 
-/* De popup voor het registreren  */
+/* De registreren voor het registreren  */
 
   
   h1 {
@@ -124,7 +124,7 @@ body {
     opacity: 1;
   }
   
-  .popup {
+  .registreren {
     margin: 70px auto;
     padding-top: 5px;
     background: #fff;
@@ -134,12 +134,12 @@ body {
     /* transition: all 5s ease-in-out; */
   }
   
-  .popup h2 {
+  .registreren h2 {
     margin-top: 0;
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
   }
-  .popup .close {
+  .registreren .close {
     position: absolute;
     top: 20px;
     right: 30px;
@@ -149,10 +149,10 @@ body {
     text-decoration: none;
     color: #333;
   }
-  .popup .close:hover {
+  .registreren .close:hover {
     color: #c30505;
   }
-  .popup .content {
+  .registreren .content {
     max-height: 40%;
     overflow: auto;
   }
@@ -161,7 +161,7 @@ body {
     .box{
       width: 70%;
     }
-    .popup{
+    .registreren{
       width: 70%;
     }
   }
