@@ -5,38 +5,18 @@
     top: 50px;
 }
 
-.modules{
-    display: inline-block;
-    border-radius: 5px; 
-    width: 300px;
-    height: 220px; 
-    margin-top: 15%;
-    background-color: beige;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-#actieveModules{
-    margin-left: 25%;
-}
-
-#dynamicText{
-
-    margin-left: 5%;
-}
-
-
-
 .box1, .box2{
-    width: 300px;
+    width: 400px;
     height: 300px;
-    display: inline-block;
+    display: inline-table;
     margin-right: 100px;
     border-radius: 20px;
     margin-bottom: 25px;
     padding-left: 10px;
 
-    background:#aaa; 
-    color:#fff; 
+    background-color: #ffffff;
+    color:black; 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 
@@ -45,7 +25,7 @@
   .boxes { 
      margin:0 auto;
      margin-left: 25%; 
-     margin-top: 15%;  
+     margin-top: 15%;   
   } 
   
   

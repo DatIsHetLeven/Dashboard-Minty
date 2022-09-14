@@ -3,7 +3,7 @@
 
                 <!-- <div class="card-header">{{ __('Login') }}</div> -->
                 <link href="{{ asset('css/login.css') }}" rel="stylesheet"> 
-
+                 
             <form class="formLogin" method="POST" action="{{ route('login_check') }}">
             @csrf
                 <h3>bol.com koppeling</h3>

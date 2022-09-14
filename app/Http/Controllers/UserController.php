@@ -12,6 +12,8 @@ class UserController extends Controller
     //Haal inlog gebruiker op
     public function getUser()
     {
+        echo "test";
+        exit();
         if(isset($_POST['loginButton']))
         {
             $username = $_POST['userName'];
@@ -38,17 +40,21 @@ class UserController extends Controller
     {
         if(isset($_POST['buttonregister']))
         {
-            $email = $_POST['email'];
-            $naam = $_POST['userName'];
-            $telefoonnummer = $_POST['Telefoonnummer'];
-            $bedrijfsnaam = $_POST['Bedijfsnaam'];
-            $btwNummer = $_POST['BTW-Nummer'];
-            $adres = $_POST['Adres + Huisnummer'];
-            $postcode = $_POST['Postcode'];
-            $plaats = $_POST['Plaats'];
+            echo "test";
+            exit();
+            // $email = $_POST['email'];
+            // $naam = $_POST['userName'];
+            // $telefoonnummer = $_POST['Telefoonnummer'];
+            // $bedrijfsnaam = $_POST['Bedijfsnaam'];
+            // $btwNummer = $_POST['BTW-Nummer'];
+            // $adres = $_POST['Adres + Huisnummer'];
+            // $postcode = $_POST['Postcode'];
+            // $plaats = $_POST['Plaats'];
 
-            DB::insert('insert into users(email, naam, password, telefoonnummer, bedrijfsnaam, btwNummer, adres, postcode, plaats)
-                    values($email, $naam, $telefoonnummer, $bedrijfsnaam, $btwNummer, $adres, $postcode, $plaats)');
+            // $password = "password";
+
+            // DB::insert('insert into user(email, naam, password, telefoonnummer, bedrijfsnaam, btwNummer, adres, postcode, plaats)
+            //         values($email, $naam, $telefoonnummer, $password, $bedrijfsnaam, $btwNummer, $adres, $postcode, $plaats)');
 
             
         }

@@ -16,7 +16,13 @@ Route::get('test', function () {
     return view('logintest');
 });
 
+Route::get('reset', function () {
+    return view('auth/passwords/resettest');
+})->name('reset');
 
+Route::get('login', function () {
+    return view('login');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,6 +37,8 @@ Route::get('dashboardOld', function () {
 });
 
 Route::POST('logincheck', [App\Http\Controllers\UserController::class, 'getUser'])->name('login_check');
+
+Route::POST('cretateUser', [App\Http\Controllers\UserController::class, 'createUser'])->name('create_user_check');
 
 Auth::routes();
 

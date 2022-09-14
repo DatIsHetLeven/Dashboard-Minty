@@ -3,7 +3,8 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet"> 
 
 <div class="divRegister">
-    <form method="POST" action="{{ route('register') }}" class="formRegister">
+    <form method="POST" action="{{ route('create_user_check') }}" class="formRegister">
+    
           <h3>bol.com koppeling</h3>
             <input type="text" id="userInput" name="email" placeholder='Email' required autocomplete="email"><br><br>
           

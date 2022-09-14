@@ -1,6 +1,7 @@
 
 <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
@@ -32,34 +33,17 @@
         <p><span class="welkomBol">Welkom bij de Bol Koppeling</span></p>
     </div>
 
-<!-- <div class="contentHomePage">
-    <div class="modules" id="actieveModules">
-        <h4>Actieve modules</h4>
-        Om deze koppeling te kunnen gebruiken moeten een aantal dingen geïnstalleerd moeten worden.
-            Laten we samen door deze stappen lopen!
-    </div>
-
-    <div class="modules" id="dynamicText">
-        <h4>Hulp nodig bij het instellen</h4>
-        Om deze koppeling te kunnen gebruiken moeten een aantal dingen geïnstalleerd moeten worden.
-            Laten we samen door deze stappen lopen!
-    </div> -->
-</div>
-
-
-
-
-        <div class="boxes">
-            <div class="box1">
-              <h4>Actieve module(s)</h4>
-
-            </div> 
-            <div class="box2">
-              <h4>Hulp nodig bij het instellen?</h4>
-
-            </div> 
+    <div class="boxes">
+        <div class="box1">
+            <h4>Actieve module(s)</h4>
         </div>
-<!-- <div id="wrap">
-    <div id="left">I am div 1</div>
-    <div id="right">I am div 2</div>
-</div> -->
+
+        <div class="box2">
+            <h4>Hulp nodig bij het instellen?</h4>
+            Om deze koppeling te kunnen gebruiken moeten een aantal dingen geinstalleerd en ingesteld worden
+            Laten we samen door deze stappen lopen!
+            
+            <input type="submit" class="btnZelfStudie" value="Zelf studie">
+            <input type="submit" class="btnSupport" value="Support">
+        </div> 
+    </div>

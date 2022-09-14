@@ -12,8 +12,9 @@
 
       
 
-    <label>Wachtwoord </label> <a id="resetpass" class="link" href="/">Wachtwoord vergeten?</a>
-    <p><input type="text" name="password" class="form_login">
+    <label>Wachtwoord </label> <a id="resetpass" class="link" href="{{ route('reset') }}">Wachtwoord vergeten?</a>
+
+    <p><input type="password" name="password" class="form_login">
 
     <input type="submit" class="buttonlogin" value="Aanmelden">
 
@@ -31,7 +32,8 @@
 <div id="popup1" class="overlay">
 	<div class="popup">
 		<a class="close" href="#">&times;</a>
-        <form method="POST" action="{{ route('register') }}" class="formRegister">
+        <form method="POST" action="{{ route('create_user_check') }}" class="formRegister">
+        @csrf
          <div class="userinput">
             <div class="links">
                 <input type="text" id="userInput" name="email" placeholder='Email' required autocomplete="email"><br><br>
@@ -52,7 +54,7 @@
                 <input type="text" id="userInput" name="Plaats" placeholder='Plaats' required><br><br>
             </div>
          </div>   
-         <button id="buttonLogin" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>           
+         <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>           
         </form>
 
 	</div>
