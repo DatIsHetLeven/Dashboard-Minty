@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
+use App\Providers\RouteServiceProvider;
+use App\Providers\FortifyServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use App\Actions\Fortify;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +23,10 @@ Route::get('test', function () {
 
 Route::get('reset', function () {
     return view('auth/passwords/resettest');
+})->name('reset');
+
+Route::get('password', function () {
+    return view('auth/passwords/password');
 })->name('reset');
 
 Route::get('login', function () {
@@ -40,8 +49,20 @@ Route::POST('logincheck', [App\Http\Controllers\UserController::class, 'getUser'
 
 Route::POST('cretateUser', [App\Http\Controllers\UserController::class, 'createUser'])->name('create_user_check');
 
+Route::POST('createPassword', [App\Http\Controllers\UserController::class, 'createPassword'])->name('set_password');
+
+// Fortify::resetPassWorDView(function($request){
+//     return view('auth.reset-password', ['request'=>$request]);
+// });
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('sendmail', [App\Http\Controllers\MailController::class, 'sendPassword']);
+
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
 
 

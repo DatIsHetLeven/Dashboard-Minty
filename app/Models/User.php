@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $table = 'user';
+    protected $primaryKey = 'userId';
     public $timestamps = false;
     protected $fillable = [
         'email',
@@ -29,6 +30,7 @@ class User extends Authenticatable
         'adres',
         'postcode',
         'plaats',
+        'token',
     ];
 
 
