@@ -1,5 +1,6 @@
 
 <link href="{{ asset('css/logintest.css') }}" rel="stylesheet"> 
+<meta name="viewport" content="width=device-width, initial-scale=0.8">
 <br><br></br></br>
 <h3><span id="minty"> MINTY</span> MEDIA<h3>
 <h5><span id="dashboard">DASHBOARD</span></h5>
@@ -12,7 +13,7 @@
     <label>E-mail adres</label>
     <p><input type="text" name="userName" class="form_login" required autocomplete="email">
     <!-- Wachtwoord invoeren -->
-    <label>Wachtwoord </label> <a id="resetpass" class="link" href="{{ route('reset') }}">Wachtwoord vergeten?</a>
+    <label>Wachtwoord </label> <a id="resetpass" class="link" href="{{ route('resetpassword') }}">Wachtwoord vergeten?</a>
 
     <p><input type="password" name="password" class="form_login" required autocomplete="password">
     <!-- Button aanmelden -->

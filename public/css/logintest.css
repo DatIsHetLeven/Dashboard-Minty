@@ -157,14 +157,7 @@ body {
     overflow: auto;
   }
   
-  @media screen and (max-width: 700px){
-    .box{
-      width: 70%;
-    }
-    .registreren{
-      width: 70%;
-    }
-  }
+
   body{padding:0;margin:0;}
 
   .userinput{
@@ -192,4 +185,46 @@ body {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     margin-left: 330px;
+  }
+
+  @media screen and (max-width: 700px){
+    .box{
+      width: 70%;
+    }
+    .registreren{
+      width: 70%;
+    }
+
+    .userinput{
+      display: block;
+      padding: 22%; 
+      width: 80%; 
+    }
+
+    #buttonLogin{
+      background-color: #ff6600;
+      color: #ffffff;
+      border-radius: 25px;
+      height: 35px;
+      width: 250px;
+      margin: 0;
+      position: absolute;
+      bottom: 2%;
+
+      margin-left: 40px;
+    }
+
+    .box{
+      width: 70%;
+    }
+    .registreren{
+      width: 80%;
+    }
+    .userInput{
+      padding: 5%;
+      left: 10px;
+      display: block;
+    }
+
+
   }

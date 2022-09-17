@@ -57,7 +57,8 @@ class UserController extends Controller
                 $getUser = User::where('token',  $resetToken)
                 ->first();
                 //Update user
-                $getUser->password=$password;
+                $hashPassword = password_hash($password2, PASSWORD_DEFAULT);
+                $getUser->password=$hashPassword;
                 $getUser->token = NULL;
                 $getUser->save();
                 echo "gelukt";

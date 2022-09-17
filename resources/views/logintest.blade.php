@@ -12,7 +12,7 @@
     <label>E-mail adres</label>
     <p><input type="text" name="userName" class="form_login" required autocomplete="email">
     <!-- Wachtwoord invoeren -->
-    <label>Wachtwoord </label> <a id="resetpass" class="link" href="{{ route('reset') }}">Wachtwoord vergeten?</a>
+    <label>Wachtwoord </label> <a id="resetpass" class="link" href="{{ route('resetpassword') }}">Wachtwoord vergeten?</a>
 
     <p><input type="password" name="password" class="form_login" required autocomplete="password">
     <!-- Button aanmelden -->
