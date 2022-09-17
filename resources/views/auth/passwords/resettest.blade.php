@@ -1,5 +1,6 @@
 
 <link href="{{ asset('css/logintest.css') }}" rel="stylesheet"> 
+<meta name="viewport" content="width=device-width, initial-scale=0.8">
 <br><br></br></br>
 <h3><span id="minty"> MINTY</span> MEDIA<h3>
 <h5><span id="dashboard">DASHBOARD</span></h5>

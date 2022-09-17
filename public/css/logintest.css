@@ -129,7 +129,7 @@ body {
     padding-top: 5px;
     background: #fff;
     border-radius: 5px;
-    width: 50%;
+    width: 700px;
     position: relative;
     /* transition: all 5s ease-in-out; */
   }
@@ -218,7 +218,7 @@ body {
       width: 70%;
     }
     .registreren{
-      width: 80%;
+      width: 350px;
     }
     .userInput{
       padding: 5%;
@@ -228,3 +228,5 @@ body {
 
 
   }
+
+  
