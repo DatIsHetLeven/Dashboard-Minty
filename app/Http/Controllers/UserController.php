@@ -81,6 +81,7 @@ class UserController extends Controller
     //Create user
     public function createUser()
     {
+        // Maak gebruik van 
         if(isset($_POST['buttonregister']))
         {
             $newUser = new User();

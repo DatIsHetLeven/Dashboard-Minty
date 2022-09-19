@@ -2,6 +2,8 @@
 <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
+<meta name="viewport" content="width=device-width, initial-scale=0.5">
+
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
