@@ -18,25 +18,30 @@ class UserController extends Controller
     {
         if(isset($_POST['loginButton']))
         {
-
-
             $username = $_POST['userName'];
-            $password = password_verify($_POST['password'], PASSWORD_DEFAULT);
 
-            $CheckUserLogin = DB::table('user')
-                        ->Where('email', '=', $username)
-                        ->Where('password', '=', $password)
+            $CheckUserLogin = User::Where('email', '=', $username)
                         ->first();
 
-            if(!empty ($CheckUserLogin))
+            if(!empty($CheckUserLogin))
             {
-                //Gelukt
-                // return redirect('/dashboard');
-                print_r($CheckUserLogin);
+
+                $password = password_verify($_POST['password'], $CheckUserLogin->password);
+
+                if($password == TRUE)
+                {
+                    return redirect('/dashboard');
+                }
+                else
+                {
+                    echo "Wachtwoord klopt niet!";  
+                }
+
+
             }
             else{
-                // return redirect('/test  ');
-                print_r($CheckUserLogin);
+                return redirect('/test  ');
+
             }
         }
     }
