@@ -11,13 +11,19 @@
   @csrf
     <!-- E-mail invoeren -->
     <label>E-mail adres</label>
-    <p><input type="text" name="userName" class="form_login" required autocomplete="email">
+    <p><input type="email" name="userName" class="form_login" required autocomplete="email">
     <!-- Wachtwoord invoeren -->
     <label>Wachtwoord </label> <a id="resetpass" class="link" href="{{ route('resetpassword') }}">Wachtwoord vergeten?</a>
 
     <p><input type="password" name="password" class="form_login" required autocomplete="password">
     <!-- Button aanmelden -->
     <input type="submit" name="loginButton" class="buttonlogin" value="Aanmelden">
+
+    @if(\Session::has('error'))
+      <p class="error">
+        {{\Session::get('error')}}
+      </p>
+    @endif
 
     <br/>
     <br/>

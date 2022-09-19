@@ -10,7 +10,7 @@
   <form method="POST" action="{{ route('reset_password') }}">
   @csrf
     <label>E-mail adres</label>
-    <p><input type="text" name="username" class="form_login">
+    <p><input type="email" name="username" class="form_login">
 
     <br><br><br>
 

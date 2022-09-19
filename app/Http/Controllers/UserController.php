@@ -18,6 +18,8 @@ class UserController extends Controller
     {
         if(isset($_POST['loginButton']))
         {
+            $error = '';
+
             $username = $_POST['userName'];
 
             $CheckUserLogin = User::Where('email', '=', $username)
@@ -34,13 +36,14 @@ class UserController extends Controller
                 }
                 else
                 {
-                    echo "Wachtwoord klopt niet!";  
+                    $error = "Wachtwoord klopt niet!";
+                    return redirect()->route('login')->with(['error'=> $error]);
                 }
 
             }
             else{
-                return redirect('/test  ');
-
+                $error = "Geberuiker niet gevonden";
+                return redirect()->route('login')->with(['error'=> $error]);
             }
         }
     }

@@ -6,7 +6,7 @@
     <form method="POST" action="{{ route('create_user_check') }}" class="formRegister">
     
           <h3>bol.com koppeling</h3>
-            <input type="text" id="userInput" name="email" placeholder='Email' required autocomplete="email"><br><br>
+            <input type="email" id="userInput" name="email" placeholder='Email' required autocomplete="email"><br><br>
           
             <input type="text" id="userInput" name="userName" placeholder='Naam' required autocomplete="email"><br><br>
           
