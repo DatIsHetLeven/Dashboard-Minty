@@ -2,75 +2,7 @@
 .WelkomBanner{
     position:absolute;
     left: 25%;
-    top: 50px;  .box1, .box2, .box3{
-        width: 300px;
-        height: 300px;
-        display: inline-block;
-        margin-right: 100px;
-        border-radius: 20px;
-        margin-bottom: 25px;
-        padding-left: 10px;
-    }
-    
-    .box1, .box3 {
-        background: #00FFFF;
-    }
-    
-    .box2 {
-        background: #FF00FF;
-    }
-    /* Andere blokken */
-    body {
-        background: #333;
-      }
-      
-      .boxes { 
-         margin:0 auto;
-         margin-left: 320px;   
-      } 
-      
-      .box { 
-         display:block; 
-         width:25%;
-         color:#fff; 
-         float: left;
-         padding: 10px;
-         box-sizing: border-box;
-         margin-bottom: 10px;
-      } 
-      
-      .one { 
-        background:#2E4866;  
-      } 
-      
-      .two {  
-         background:#aaa; 
-         color:#fff; 
-      } 
-      
-      .three { 
-        background:#ddd; 
-        color: #333; 
-      } 
-      
-      .four { 
-        background:#dc002e; 
-      }
-      
-      
-      /* 768px */ 
-      @media only screen and (max-width:48em) { 
-         .boxes {  
-            display:table; 
-            width:100%;
-         } 
-         .box { 
-            width:90%;
-            margin: 0 auto;
-            margin-right: 10px;
-            float: none;
-         } 
-      }
+    top: 50px;
 }
 
 .box1, .box2{
