@@ -7,6 +7,8 @@ use App\Providers\FortifyServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use App\Actions\Fortify;
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +19,12 @@ use App\Actions\Fortify;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// onnnidige rout weghalen
 Route::get('test', function () {
     return view('logintest');
 });
@@ -29,13 +37,11 @@ Route::get('password', function () {
     return view('auth/passwords/password');
 })->name('reset');
 
+// zet dit in een function van een controller inplaats van een annonieme/nameless functie te gebruiken  - minty pawel
 Route::get('login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('dashboard', function () {
     return view('dashboard/dashboard');
@@ -49,9 +55,10 @@ Route::POST('logincheck', [App\Http\Controllers\UserController::class, 'getUser'
 
 Route::POST('cretateUser', [App\Http\Controllers\UserController::class, 'createUser'])->name('create_user_check');
 
+// gebruikt kortere class path - minty pawel
 Route::POST('createPassword', [App\Http\Controllers\UserController::class, 'createPassword'])->name('set_password');
 
-Route::POST('resetPass', [App\Http\Controllers\UserController::class, 'resetPass'])->name('reset_password');
+Route::POST('resetPass', [UserController::class, 'resetPass'])->name('reset_password');
 
 // Fortify::resetPassWorDView(function($request){
 //     return view('auth.reset-password', ['request'=>$request]);

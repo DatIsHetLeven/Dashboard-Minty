@@ -16,38 +16,27 @@ class UserController extends Controller
     //Haal inlog gebruiker op
     public function getUser()
     {
-        if(isset($_POST['loginButton']))
+        if(!isset($_POST['loginButton'])) return redirect()->route('login')->with(['error'=> "login error"]);
+        
+        $error = '';
+        $username = $_POST['userName'];
+        $CheckUserLogin = User::Where('email', '=', $username)->first();
+
+        if(empty($CheckUserLogin)) return redirect()->route('login')->with(['error'=> "Geberuiker niet gevonden"]);
+
+        $password = password_verify($_POST['password'], $CheckUserLogin->password);
+
+        if($password === TRUE)
         {
-            $error = '';
-
-            $username = $_POST['userName'];
-
-            $CheckUserLogin = User::Where('email', '=', $username)
-                        ->first();
-
-            if(!empty($CheckUserLogin))
-            {
-
-                $password = password_verify($_POST['password'], $CheckUserLogin->password);
-
-                if($password == TRUE)
-                {
-                    return redirect('/dashboard');
-                }
-                else
-                {
-                    $error = "Wachtwoord klopt niet!";
-                    return redirect()->route('login')->with(['error'=> $error]);
-                }
-
-            }
-            else{
-                $error = "Geberuiker niet gevonden";
-                return redirect()->route('login')->with(['error'=> $error]);
-            }
+            return redirect('/dashboard');
+        }
+        else
+        {
+            $error = "Wachtwoord klopt niet!";
+            return redirect()->route('login')->with(['error'=> $error]);
         }
     }
-
+//Request gebruiken + returns
     public function createPassword(Request $request)
     {
         if(isset($_POST['passwordButton']))
@@ -67,7 +56,7 @@ class UserController extends Controller
                 $getUser->token = NULL;
                 $getUser->save();
                 echo "gelukt";
-                
+
             }
             else
             {
@@ -81,7 +70,7 @@ class UserController extends Controller
     //Create user
     public function createUser()
     {
-        // Maak gebruik van 
+        // Maak gebruik van Illuminate\Http\Request implaats van de $_POST varaible - minty pawel
         if(isset($_POST['buttonregister']))
         {
             $newUser = new User();
@@ -98,9 +87,7 @@ class UserController extends Controller
             $newUser->plaats = $_POST['Plaats'];
 
             $passwordToken = $this->createToken();
-
             $newUser->token=$passwordToken;
-
             $mailSender = new MailController();
             $mailSender->sendPassword($passwordToken);
 
@@ -108,17 +95,16 @@ class UserController extends Controller
         }
     }
     //Gnereer automatisch wachtwoord (Hash)
-
+// Er be staat een laravel functie foor -Minty Pawel :)   https://laravel.com/docs/9.x/helpers#method-str-random
     public function createToken() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-        $pass = array(); 
+        $pass = []; 
         $alphaLength = strlen($alphabet) - 1;
         for ($i = 0; $i < 30; $i++) {
             $n = rand(0, $alphaLength);
             $pass[] = $alphabet[$n];
         }
-        $password = (implode($pass));
-        echo $password;
+        $password = implode($pass);
         return password_hash($password, PASSWORD_DEFAULT);
     }
 
