@@ -18,27 +18,25 @@ class UserController extends Controller
     {
         if(isset($_POST['loginButton']))
         {
-            $this->createToken(30);
-
-            exit();
 
 
             $username = $_POST['userName'];
             $password = password_verify($_POST['password'], PASSWORD_DEFAULT);
 
             $CheckUserLogin = DB::table('user')
-                        ->where('naam', '=', $username)
-                        ->orWhere('email', '=', $username)
-                        ->where('password', '=', $password)
+                        ->Where('email', '=', $username)
+                        ->Where('password', '=', $password)
                         ->first();
 
             if(!empty ($CheckUserLogin))
             {
                 //Gelukt
-                return redirect('/dashboard');
+                // return redirect('/dashboard');
+                print_r($CheckUserLogin);
             }
             else{
-                return redirect('/test  ');
+                // return redirect('/test  ');
+                print_r($CheckUserLogin);
             }
         }
     }
@@ -103,7 +101,6 @@ class UserController extends Controller
     }
     //Gnereer automatisch wachtwoord (Hash)
 
-
     public function createToken() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = array(); 
@@ -115,6 +112,39 @@ class UserController extends Controller
         $password = (implode($pass));
         echo $password;
         return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+
+    //Stuur mail met rest wachtwoord
+    public function resetPass(){
+
+        if(isset($_POST['resetpassword']))
+        {
+            $email = $_POST['username'];
+
+            $getUser = User::where('email', '=', $email)
+                ->first();
+
+
+            if(!empty($getUser))
+            {
+                echo "bestaat wel";
+
+                $passwordToken = $this->createToken();
+
+                $mailSender = new MailController();
+                $mailSender->resetPassword($passwordToken);
+
+                $getUser->token = $passwordToken;
+                $getUser->save();
+            }
+            else
+            {
+                echo "E-mail bestaat niet"; 
+            }
+        }
+
+
     }
     
 

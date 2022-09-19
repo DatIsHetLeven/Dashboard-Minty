@@ -22,7 +22,6 @@ class ResetPass extends Mailable
         $this->token = $passtoken;
     }
 
-
     /**
      * Build the message.
      *
@@ -30,6 +29,6 @@ class ResetPass extends Mailable
      */
     public function build()
     {
-        return $this->view('/auth/mail/password', ['token' => $this->token]);
+        return $this->view('/auth/mail/ResetPassword', ['token' => $this->token]);
     }
 }

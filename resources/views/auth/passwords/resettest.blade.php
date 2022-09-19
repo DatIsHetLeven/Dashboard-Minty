@@ -7,13 +7,14 @@
 
 <div class="formlogin">
 
-  <form>
+  <form method="POST" action="{{ route('reset_password') }}">
+  @csrf
     <label>E-mail adres</label>
     <p><input type="text" name="username" class="form_login">
 
     <br><br><br>
 
-    <input type="submit" class="buttonlogin" naam="resetpassword" value="Stuur nieuw wachtwoord">
+    <input type="submit" class="buttonlogin" name="resetpassword" value="Stuur nieuw wachtwoord">
 
   </form>
 

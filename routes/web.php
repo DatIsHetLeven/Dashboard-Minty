@@ -51,6 +51,8 @@ Route::POST('cretateUser', [App\Http\Controllers\UserController::class, 'createU
 
 Route::POST('createPassword', [App\Http\Controllers\UserController::class, 'createPassword'])->name('set_password');
 
+Route::POST('resetPass', [App\Http\Controllers\UserController::class, 'resetPass'])->name('reset_password');
+
 // Fortify::resetPassWorDView(function($request){
 //     return view('auth.reset-password', ['request'=>$request]);
 // });

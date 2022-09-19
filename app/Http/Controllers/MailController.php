@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SignUp;
 use App\Mail\password;
+use App\Mail\ResetPass;
 
 class MailController extends Controller
 {
@@ -15,4 +16,13 @@ class MailController extends Controller
 
         return view('welcome');
     }
+
+
+    public function resetPassword($token)
+    {
+        Mail::to('test@hotmail.com')->send(new ResetPass($token));
+
+        return view('welcome');
+    }
+
 }
