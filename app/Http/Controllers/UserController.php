@@ -37,7 +37,6 @@ class UserController extends Controller
                     echo "Wachtwoord klopt niet!";  
                 }
 
-
             }
             else{
                 return redirect('/test  ');
