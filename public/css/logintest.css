@@ -225,8 +225,14 @@ body {
       left: 10px;
       display: block;
     }
+  }
 
-
+  .error{
+    color: red;
+    font-size: small;
+    float: right;
+    display: flex;
+    top: -40px;
   }
 
   

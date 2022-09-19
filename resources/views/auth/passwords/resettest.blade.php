@@ -9,6 +9,12 @@
 
   <form method="POST" action="{{ route('reset_password') }}">
   @csrf
+  @if(\Session::has('error'))
+      <p class="error">
+        {{\Session::get('error')}}
+      </p>
+    @endif
+  @csrf
     <label>E-mail adres</label>
     <p><input type="email" name="username" class="form_login">
 

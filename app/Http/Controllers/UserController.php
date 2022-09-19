@@ -127,6 +127,8 @@ class UserController extends Controller
 
         if(isset($_POST['resetpassword']))
         {
+            $error = '';
+
             $email = $_POST['username'];
 
             $getUser = User::where('email', '=', $email)
@@ -135,8 +137,6 @@ class UserController extends Controller
 
             if(!empty($getUser))
             {
-                echo "bestaat wel";
-
                 $passwordToken = $this->createToken();
 
                 $mailSender = new MailController();
@@ -147,7 +147,8 @@ class UserController extends Controller
             }
             else
             {
-                echo "E-mail bestaat niet"; 
+                $error = "Geberuiker niet gevonden";
+                return redirect()->route('resetpassword')->with(['error'=> $error]);
             }
         }
 
