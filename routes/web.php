@@ -1,13 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\UserController;
+
+
+// ongebruikte classes
 use App\Http\Controllers\MailController;
 use App\Providers\RouteServiceProvider;
 use App\Providers\FortifyServiceProvider;
-use Illuminate\Support\Facades\Auth;
 use App\Actions\Fortify;
 
-use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------

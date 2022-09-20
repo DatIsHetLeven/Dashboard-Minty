@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+
+use App\Models\User;
+
+
+//De classes hier onder worden niet gebruikt - minty pawel
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Password;
 use App\Providers\FortifyServiceProvider;
 use App\Actions\Fortify;
 use App\Http\Controllers\MailController;
 
-use App\Models\User;
 
 class UserController extends Controller
 {
@@ -17,7 +22,7 @@ class UserController extends Controller
     public function getUser()
     {
         if(!isset($_POST['loginButton'])) return redirect()->route('login')->with(['error'=> "login error"]);
-        
+
         $error = '';
         $username = $_POST['userName'];
         $CheckUserLogin = User::Where('email', '=', $username)->first();
@@ -36,7 +41,7 @@ class UserController extends Controller
             return redirect()->route('login')->with(['error'=> $error]);
         }
     }
-//Request gebruiken + returns
+//Request gebruiken + returns - minty pawel
     public function createPassword(Request $request)
     {
         if(isset($_POST['passwordButton']))
@@ -64,7 +69,7 @@ class UserController extends Controller
             }
         }
 
-        
+
     }
 
     //Create user
@@ -76,13 +81,14 @@ class UserController extends Controller
             $newUser = new User();
             $newUser->email = $_POST['email'];
             $newUser->naam = $_POST['userName'];
-            
+
             $newUser->password = $this->createToken();
             $newUser->telefoonnummer = $_POST['Telefoonnummer'];
             $newUser->bedrijfsnaam = $_POST['Bedijfsnaam'];
             $newUser->btwNummer = $_POST['BTW-Nummer'];
             $newUser->adres = $_POST['BTW-Nummer'];
             $newUser->postcode = $_POST['Postcode'];
+//            dubbele code  - minty pawel
             $newUser->plaats = $_POST['Plaats'];
             $newUser->plaats = $_POST['Plaats'];
 
@@ -98,7 +104,7 @@ class UserController extends Controller
 // Er be staat een laravel functie foor -Minty Pawel :)   https://laravel.com/docs/9.x/helpers#method-str-random
     public function createToken() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-        $pass = []; 
+        $pass = [];
         $alphaLength = strlen($alphabet) - 1;
         for ($i = 0; $i < 30; $i++) {
             $n = rand(0, $alphaLength);
@@ -141,7 +147,7 @@ class UserController extends Controller
 
 
     }
-    
 
-    
+
+
 }

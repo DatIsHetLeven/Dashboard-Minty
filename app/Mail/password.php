@@ -6,8 +6,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+//Ongebruikte class - minty pawel
 use App\Http\Controllers\MailController;
 
+//Dubblele class naam - minty pawel
 class ResetPass extends Mailable
 {
     use Queueable, SerializesModels;

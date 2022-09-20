@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+//ongebruikte classes en  class die niet goed worden opgehaald
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
@@ -56,6 +57,6 @@ class LoginController extends Controller
     //     return require_once('views/login.blade.php');
     // }
 
-    
+
 
 }
