@@ -50,22 +50,23 @@ class UserController extends Controller
             $password2 = $_POST['password2'];
             $resetToken = $_POST['resetToken'];
 
+            //Check of gebruiker nog een token heeft -> wachtwoord wijzigen
+            $getUser = User::where('token',  $resetToken)->first();
+            if(empty($getUser)){
+                return back()->with(['error'=> "Link niet meer geldig, vraag een nieuw wachtwoord aan"]);
+            }
+            
             if($password == $password2)
             {
-                //Krijg de juiste gebruiker
-                $getUser = User::where('token',  $resetToken)
-                ->first();
                 //Update user
                 $hashPassword = password_hash($password2, PASSWORD_DEFAULT);
                 $getUser->password=$hashPassword;
                 $getUser->token = NULL;
                 $getUser->save();
-                echo "gelukt";
+                return back()->with(['succes'=> "Wachtwoord succesvol veranderd"]);
 
-            }
-            else
-            {
-                echo "oops";
+            }else{
+                return back()->with(['error'=> "Wachtwoorden komen niet overeen"]);
             }
         }
 

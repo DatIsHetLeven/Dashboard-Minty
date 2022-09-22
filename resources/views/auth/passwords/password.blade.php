@@ -9,6 +9,16 @@
   <form method="POST" action="{{ route('set_password') }}">   
     <!-- ANDERE ROUTE?!?!?! -->
   @csrf
+  @if(\Session::has('error'))
+    <p class="error">
+      {{\Session::get('error')}}
+    </p>
+  @endif
+  @if(\Session::has('succes'))
+    <p class="succes">
+      {{\Session::get('succes')}}
+    </p>
+  @endif
     <!-- E-mail invoeren -->
     <label>Wachtwoord</label>
     <p><input type="password" name="password" class="form_login" required autocomplete="email">
