@@ -13,10 +13,15 @@
       <p class="error">
         {{\Session::get('error')}}
       </p>
-    @endif
-  @csrf
+  @endif
+  @if(\Session::has('succes'))
+      <p class="succes">
+        {{\Session::get('succes')}}
+      </p>
+  @endif
+
     <label>E-mail adres</label>
-    <p><input type="email" name="username" class="form_login">
+    <p><input type="email" name="username" class="form_login" required autocomplete="email">
 
     <br><br><br>
 

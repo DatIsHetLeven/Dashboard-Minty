@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckUser;
 
 // ongebruikte classes
 use App\Http\Controllers\MailController;
@@ -27,7 +28,7 @@ use App\Actions\Fortify;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 // onnnidige rout weghalen
 Route::get('test', function () {
@@ -47,10 +48,9 @@ Route::get('login', function () {
     return view('login');
 })->name('login');
 
-
 Route::get('dashboard', function () {
     return view('dashboard/dashboard');
-});
+})->name('dashboard')->middleware('check.user');
 
 Route::get('dashboardOld', function () {
     return view('dashboard/dashboardOldMyDesign');

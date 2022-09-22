@@ -33,7 +33,10 @@ class UserController extends Controller
 
         if($password === TRUE)
         {
+            $cookie_name = "user";
+            setcookie($cookie_name, $CheckUserLogin, time() + (86400 * 30));
             return redirect('/dashboard');
+
         }
         else
         {
@@ -66,7 +69,7 @@ class UserController extends Controller
                 return back()->with(['succes'=> "Wachtwoord succesvol veranderd"]);
 
             }else{
-                return back()->with(['error'=> "Wachtwoorden komen niet overeen"]);
+                return back()->with(['error'=> "Wachtwoord komt niet overeen"]);
             }
         }
 
@@ -138,6 +141,7 @@ class UserController extends Controller
 
                 $getUser->token = $passwordToken;
                 $getUser->save();
+                return back()->with(['succes'=> 'E-mail is verzonden']);
             }
             else
             {
