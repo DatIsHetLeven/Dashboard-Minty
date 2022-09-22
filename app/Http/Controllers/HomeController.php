@@ -34,7 +34,7 @@ class HomeController extends Controller
     function checkLogin(Request $request)
     {
 //        niet juiste maniier van de laravel validate - minty pawel
-        $this->valildate($request, [
+        $this->validate($request, [
         'userName'      => 'required',
         'password'      => 'required'
         ]);

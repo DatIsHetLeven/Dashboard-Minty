@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Http\Controllers\MailController;
 
 //Dubblele class naam - minty pawel
-class ResetPass extends Mailable
+class password extends Mailable
 {
     use Queueable, SerializesModels;
 

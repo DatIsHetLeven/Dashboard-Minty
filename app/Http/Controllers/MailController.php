@@ -12,18 +12,18 @@ use App\Mail\ResetPass;
 
 class MailController extends Controller
 {
-    public function sendPassword($token)
+    public function sendPassword($token, $email)
     {
 //        De Class password  gaat hier noiet werken - minty pawel
-        Mail::to('muratcelem1@hotmail.com')->send(new password($token));
+        Mail::to($email)->send(new password($token));
 
         return view('welcome');
     }
 
 
-    public function resetPassword($token)
+    public function resetPassword($token, $email)
     {
-        Mail::to('test@hotmail.com')->send(new ResetPass($token));
+        Mail::to($email)->send(new ResetPass($token));
 
         return view('welcome');
     }

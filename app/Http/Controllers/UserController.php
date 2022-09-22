@@ -95,7 +95,7 @@ class UserController extends Controller
             $passwordToken = $this->createToken();
             $newUser->token=$passwordToken;
             $mailSender = new MailController();
-            $mailSender->sendPassword($passwordToken);
+            $mailSender->sendPassword($passwordToken, $newUser->email);
 
             $newUser->save();
         }
@@ -133,7 +133,7 @@ class UserController extends Controller
                 $passwordToken = $this->createToken();
 
                 $mailSender = new MailController();
-                $mailSender->resetPassword($passwordToken);
+                $mailSender->resetPassword($passwordToken, $email);
 
                 $getUser->token = $passwordToken;
                 $getUser->save();
