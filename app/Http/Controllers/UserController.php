@@ -85,10 +85,20 @@ class UserController extends Controller
     public function createUser()
     {
         // Maak gebruik van Illuminate\Http\Request implaats van de $_POST varaible - minty pawel
+
         if(isset($_POST['buttonregister']))
         {
             $newUser = new User();
             $newUser->email = $_POST['email'];
+
+            $getUser = User::where('email', '=', $newUser->email)
+            ->first();
+
+            if(!empty($getUser))
+            {
+                return back()->with(['error'=> "Email al in gebruik"]);
+            }
+
             $newUser->naam = $_POST['userName'];
 
             $newUser->password = $this->createToken();
