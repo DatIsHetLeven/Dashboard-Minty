@@ -7,16 +7,6 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-<?php
-
-    if(isset($_COOKIE['user'])){
-        echo "ingelogddddddddddddddddddddddddddddd";
-    }else{
-        echo "neeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
-    }
-
-?>
-
 <div class="leftColor">
     <div class="container">
         <div class="row">
@@ -42,8 +32,10 @@
 
 
 
+
+
     <div class="WelkomBanner">
-        <h2>Goede middag, Owen!</h2>
+        <h2>Goede middag <?php echo $userByCookie ->naam;?> !</h2>
         <p><span class="welkomBol">Welkom bij de Bol Koppeling</span></p>
     </div>
 
@@ -51,17 +43,7 @@
         <div class="box1">
             <h4>Actieve module(s)</h4>
 
-            <?php 
-    $user = Auth::User();
-
-    if(!empty($_COOKIE["user"])){
-        echo $_COOKIE['user'];
-        echo "ingelogd";
-    }
-    else{
-        echo "nee";
-    }
-?>
+            <!-- <?php echo $userByCookie   ?> -->
         </div>
 
         <div class="box2">

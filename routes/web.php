@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\CheckUser;
 
 // ongebruikte classes
@@ -44,13 +45,15 @@ Route::get('password', function () {
 })->name('reset');
 
 // zet dit in een function van een controller inplaats van een annonieme/nameless functie te gebruiken  - minty pawel
-Route::get('login', function () {
-    return view('login');
-})->name('login');
+// Route::get('login', function () {
+//     return view('login');
+// })->name('login');
 
-Route::get('dashboard', function () {
-    return view('dashboard/dashboard');
-})->name('dashboard')->middleware('check.user');
+Route::GET('dashboard', [UserController::class, 'renderDashboard'])->name('dashboard')->middleware('check.user');
+
+// Route::get('dashboard', function () {
+//     return view('dashboard/dashboard');
+// })->name('dashboard')->middleware('check.user');
 
 Route::get('dashboardOld', function () {
     return view('dashboard/dashboardOldMyDesign');
@@ -71,7 +74,7 @@ Route::POST('resetPass', [UserController::class, 'resetPass'])->name('reset_pass
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Route::get('sendmail', [App\Http\Controllers\MailController::class, 'sendPassword']);
 

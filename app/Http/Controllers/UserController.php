@@ -33,9 +33,14 @@ class UserController extends Controller
 
         if($password === TRUE)
         {
+            //CMaak cookie token + opslaan in db
+            $cookieToken = $this->createToken();
+            $CheckUserLogin->cookie_token = $cookieToken;
+            $CheckUserLogin->save();
+
             $cookie_name = "user";
-            setcookie($cookie_name, $CheckUserLogin, time() + (86400 * 30));
-            return redirect('/dashboard');
+            setcookie($cookie_name, $cookieToken, time() + (86400 * 30));
+            return redirect()->route('dashboard');
 
         }
         else
@@ -149,8 +154,31 @@ class UserController extends Controller
                 return redirect()->route('resetpassword')->with(['error'=> $error]);
             }
         }
+    }
+
+    //Haal gebruiker op dmv cookie token (bij het inloggen)
+    /**
+    * This function return the current loggedin user
+     * @return User|null
+     */
+    public static function getByCookie(){
+        
+        $cookieToken = ((isset($_COOKIE['user']) )) ? $_COOKIE['user'] : '';
+        if (empty($cookieToken)) return null;
+        $getUser = User::where('cookie_token', '=', $cookieToken )->first();
+
+        if(empty($getUser)) return null;
+        return $getUser;
+        
+    }
 
 
+    public function renderDashboard () {
+        $userbytoken = UserController::getByCookie();
+        return view('dashboard/dashboard', ['userByCookie' => $userbytoken]);
+
+        // return view('dashboard/dashboard')->with(['error'=> "Geberuiker niet gevonden"]);
+        // return redirect()->route('dashboard')->with(['test123'=> $userbytoken]);
     }
 
 

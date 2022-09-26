@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\UserController;
 
 use Illuminate\Http\Request;
 
@@ -29,6 +30,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+
+    public function renderDashboard () {
+        $user = UserController::getByCookie();
+        return view('dashboard/dashboard', ['test123' => $user]);
+    }
+
 
 //    niet gebruikte functie - minty pawel
     function checkLogin(Request $request)

@@ -17,7 +17,7 @@ class CheckUser
     public function handle(Request $request, Closure $next)
     {
         if(!isset($_COOKIE['user'])){
-            return redirect()->route('login');
+            return redirect()->route('welcome');
         }
         // if (! $request->expectsJson()) {
         //     return route('login');

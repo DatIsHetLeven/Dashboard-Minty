@@ -14,8 +14,8 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        echo "test";
-        exit();
+        // echo "testt";
+        // exit();
         // if(!isset($_COOKIE['user'])){
         //     return route('login');
         // }

@@ -31,6 +31,7 @@ class User extends Authenticatable
         'postcode',
         'plaats',
         'token',
+        'cookie_token',
     ];
 
 

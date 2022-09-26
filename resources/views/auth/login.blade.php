@@ -10,10 +10,10 @@
   <form method="POST" action="{{ route('login_check') }}">
   @csrf
   @if(\Session::has('error'))
-      <p class="error">
-        {{\Session::get('error')}}
-      </p>
-    @endif
+    <p class="error">
+      {{\Session::get('error')}}
+    </p>
+  @endif
     <!-- E-mail invoeren -->
     <label>E-mail adres</label>
     <p><input type="email" name="userName" class="form_login" required autocomplete="email">
