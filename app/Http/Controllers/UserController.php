@@ -27,7 +27,7 @@ class UserController extends Controller
         $username = $_POST['userName'];
         $CheckUserLogin = User::Where('email', '=', $username)->first();
 
-        if(empty($CheckUserLogin)) return redirect()->route('login')->with(['error'=> "Geberuiker niet gevonden"]);
+        if(empty($CheckUserLogin)) return back()->with(['error'=> "Geberuiker niet gevonden"]);
 
         $password = password_verify($_POST['password'], $CheckUserLogin->password);
 
@@ -46,7 +46,7 @@ class UserController extends Controller
         else
         {
             $error = "Wachtwoord klopt niet!";
-            return redirect()->route('login')->with(['error'=> $error]);
+            return back()->with(['error'=> $error]);
         }
     }
 //Request gebruiken + returns - minty pawel
@@ -107,6 +107,7 @@ class UserController extends Controller
             $mailSender->sendPassword($passwordToken, $newUser->email);
 
             $newUser->save();
+            return back()->with(['succes'=> "Account succesvol aangemaakt"]);
         }
     }
     //Gnereer automatisch wachtwoord (Hash)
@@ -151,16 +152,18 @@ class UserController extends Controller
             else
             {
                 $error = "Geberuiker niet gevonden";
-                return redirect()->route('resetpassword')->with(['error'=> $error]);
+                // return redirect()->route('resetpassword')->with(['error'=> $error]);
+                return redirect('auth/passwords/resettest')->with(['error'=> $error]);
             }
         }
     }
 
-    //Haal gebruiker op dmv cookie token (bij het inloggen)
     /**
     * This function return the current loggedin user
      * @return User|null
      */
+
+    //Haal gebruiker op dmv cookie token (bij het inloggen)
     public static function getByCookie(){
         
         $cookieToken = ((isset($_COOKIE['user']) )) ? $_COOKIE['user'] : '';
@@ -169,7 +172,6 @@ class UserController extends Controller
 
         if(empty($getUser)) return null;
         return $getUser;
-        
     }
 
 
@@ -181,6 +183,10 @@ class UserController extends Controller
         // return redirect()->route('dashboard')->with(['test123'=> $userbytoken]);
     }
 
+    public function resetPassword()
+    {
+        return view('auth/passwords/resettest');
+    } 
 
 
 }

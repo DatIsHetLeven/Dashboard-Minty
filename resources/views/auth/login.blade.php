@@ -14,6 +14,11 @@
       {{\Session::get('error')}}
     </p>
   @endif
+  @if(\Session::has('succes'))
+    <p class="succes">
+      {{\Session::get('succes ')}}
+    </p>
+  @endif
     <!-- E-mail invoeren -->
     <label>E-mail adres</label>
     <p><input type="email" name="userName" class="form_login" required autocomplete="email">
@@ -43,7 +48,7 @@
         @csrf
          <div class="userinput">
             <div class="links">
-                <input type="text" id="userInput" name="email" placeholder='Email' required autocomplete="email"><br><br>
+                <input type="email" id="userInput" name="email" placeholder='Email' required autocomplete="email"><br><br>
           
                 <input type="text" id="userInput" name="userName" placeholder='Naam' required autocomplete="email"><br><br>
           

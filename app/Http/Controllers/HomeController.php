@@ -1,7 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Http\Controllers\UserController;
+
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -11,16 +12,6 @@ use Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -69,4 +60,9 @@ class HomeController extends Controller
     {
         return view('succeslogin');
     }
+
+    public function resetPassword()
+    {
+        return view('auth/passwords/resettest');
+    } 
 }

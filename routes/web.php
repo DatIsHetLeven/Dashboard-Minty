@@ -32,17 +32,21 @@ Route::get('/', function () {
 })->name('welcome');
 
 // onnnidige rout weghalen
-Route::get('test', function () {
-    return view('logintest');
-});
+// Route::get('test', function () {
+//     return view('logintest');
+// });
 
-Route::get('reset', function () {
-    return view('auth/passwords/resettest');
-})->name('resetpassword');
+// Route::get('reset', function () {
+//     return view('auth/passwords/resettest');
+// })->name('resetpassword');
 
-Route::get('password', function () {
-    return view('auth/passwords/password');
-})->name('reset');
+// Route::get('reset', [UserController::class, 'resetPassword'])->name('resetpassword');
+Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword');
+
+
+// Route::get('password', function () {
+//     return view('auth/passwords/password');
+// })->name('reset');
 
 // zet dit in een function van een controller inplaats van een annonieme/nameless functie te gebruiken  - minty pawel
 // Route::get('login', function () {
