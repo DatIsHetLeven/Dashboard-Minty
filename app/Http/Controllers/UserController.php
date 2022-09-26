@@ -168,11 +168,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-    * This function return the current loggedin user
-     * @return User|null
-     */
-
     //Haal gebruiker op dmv cookie token (bij het inloggen)
     public static function getByCookie(){
         
@@ -184,24 +179,25 @@ class UserController extends Controller
         return $getUser;
     }
 
+    //Haal alle gebruikers op uit
+    public function getAllUsers(){
+        $allUsers = User::all();
 
-    public function renderDashboard () {
-        $userbytoken = UserController::getByCookie();
-        return view('dashboard/dashboard', ['userByCookie' => $userbytoken]);
+        return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
 
-        // return view('dashboard/dashboard')->with(['error'=> "Geberuiker niet gevonden"]);
-        // return redirect()->route('dashboard')->with(['test123'=> $userbytoken]);
     }
 
-    public function renderPersonalDetails () {
-        $userbytoken = UserController::getByCookie();
-        return view('dashboard/persoonsgegevens', ['userByCookie' => $userbytoken]);
-    }
-
-    public function resetPassword()
-    {
-        return view('auth/passwords/resettest');
-    } 
 
 
+
+
+
+
+
+
+
+        /**
+    * This function return the current loggedin user
+     * @return User|null
+     */
 }

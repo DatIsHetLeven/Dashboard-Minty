@@ -21,3 +21,12 @@ input{
     width: 200px;
     height: 25px;
 }
+
+.alleGebruikersForm{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}

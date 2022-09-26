@@ -22,43 +22,14 @@ class HomeController extends Controller
         return view('home');
     }
 
-
     public function renderDashboard () {
-        $user = UserController::getByCookie();
-        return view('dashboard/dashboard', ['test123' => $user]);
+        $userbytoken = UserController::getByCookie();
+        return view('dashboard/dashboard', ['userByCookie' => $userbytoken]);
     }
 
-
-//    niet gebruikte functie - minty pawel
-    function checkLogin(Request $request)
-    {
-//        niet juiste maniier van de laravel validate - minty pawel
-        $this->validate($request, [
-        'userName'      => 'required',
-        'password'      => 'required'
-        ]);
-
-        $user_data = array(
-            'userName'  =>  $request->get('userName'),
-            'password'  =>  $request->get('password'),
-        );
-
-//        De  auth class wordt niet geimportteerd
-//        authenticatie moet gedaan worden in de router
-        if(Auth::attempts($user_data))
-        {
-            return redirect('main/successlogin');
-        }
-        else
-        {
-            return bacl()->with('error', 'Gegevens onjuist');
-        }
-
-    }
-
-    function succeslogin()
-    {
-        return view('succeslogin');
+    public function renderPersonalDetails () {
+        $userbytoken = UserController::getByCookie();
+        return view('dashboard/persoonsgegevens', ['userByCookie' => $userbytoken]);
     }
 
     public function resetPassword()

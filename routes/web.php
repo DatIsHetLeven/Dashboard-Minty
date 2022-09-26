@@ -31,60 +31,38 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-// onnnidige rout weghalen
-// Route::get('test', function () {
-//     return view('logintest');
-// });
-
-// Route::get('reset', function () {
-//     return view('auth/passwords/resettest');
-// })->name('resetpassword');
-
-// Route::get('reset', [UserController::class, 'resetPassword'])->name('resetpassword');
 Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword');
 
-Route::get('persoonsgegevens', [UserController::class, 'renderPersonalDetails'])->name('persoonsgegevens');
+Route::get('persoonsgegevens', [HomeController::class, 'renderPersonalDetails'])->name('persoonsgegevens');
 
-// Route::get('password', function () {
-//     return view('auth/passwords/password');
-// })->name('reset');
+Route::GET('dashboard', [HomeController::class, 'renderDashboard'])->name('dashboard')->middleware('check.user');
 
-// zet dit in een function van een controller inplaats van een annonieme/nameless functie te gebruiken  - minty pawel
-// Route::get('login', function () {
-//     return view('login');
-// })->name('login');
-
-Route::GET('dashboard', [UserController::class, 'renderDashboard'])->name('dashboard')->middleware('check.user');
-
-// Route::get('dashboard', function () {
-//     return view('dashboard/dashboard');
-// })->name('dashboard')->middleware('check.user');
+Route::get('gebruikers', [UserController::class, 'getAllUsers'])->name('allegebruikers');
 
 Route::get('dashboardOld', function () {
     return view('dashboard/dashboardOldMyDesign');
 });
 
-Route::POST('logincheck', [App\Http\Controllers\UserController::class, 'getUser'])->name('login_check');
+Route::POST('logincheck', [UserController::class, 'getUser'])->name('login_check');
 
-Route::POST('cretateUser', [App\Http\Controllers\UserController::class, 'createUser'])->name('create_user_check');
+Route::POST('cretateUser', [UserController::class, 'createUser'])->name('create_user_check');
 
 // gebruikt kortere class path - minty pawel
-Route::POST('createPassword', [App\Http\Controllers\UserController::class, 'createPassword'])->name('set_password');
+Route::POST('createPassword', [UserController::class, 'createPassword'])->name('set_password');
 
 Route::POST('resetPass', [UserController::class, 'resetPass'])->name('reset_password');
-
-// Fortify::resetPassWorDView(function($request){
-//     return view('auth.reset-password', ['request'=>$request]);
-// });
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-// Route::get('sendmail', [App\Http\Controllers\MailController::class, 'sendPassword']);
 
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->middleware('guest')->name('password.request');
+// Route::get('dashboard', function () {
+//     return view('dashboard/dashboard');
+// })->name('dashboard')->middleware('check.user');
+
+// Route::get('reset', function () {
+//     return view('auth/passwords/resettest');
+// })->name('resetpassword');
 
 

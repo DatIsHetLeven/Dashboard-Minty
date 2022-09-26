@@ -25,6 +25,9 @@
                 <a><ion-icon size="large" name="file-tray-full-outline"></ion-icon></a>
             </li>
             <li>
+                <a href="{{ route('allegebruikers') }}"><ion-icon size="Large" name="logo-playstation"></ion-icon></a>
+            </li>
+            <li>
                 <a class="instellinglogo"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
             </li>
             </ul>
