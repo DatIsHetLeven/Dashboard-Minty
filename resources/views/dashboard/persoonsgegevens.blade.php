@@ -1,6 +1,9 @@
 
 <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+<link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet">
+
+
 
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
@@ -13,6 +16,7 @@
             <ul class="nav justify-content-center">
             <span id="MINTY">MINTY</span>
             <li>
+
                 <a href="{{ route('dashboard') }}"><ion-icon size="large" name="home-outline"></ion-icon></a>
             </li>
             <li>
@@ -22,34 +26,27 @@
                 <a href="{{ route('persoonsgegevens') }}"><ion-icon size="large" name="people-outline"></ion-icon></a>
             </li>
             <li>
-                <a><ion-icon size="large" name="file-tray-full-outline"></ion-icon></a>
+                <a><ion-icon size="large"name="file-tray-full-outline"></ion-icon></a>
             </li>
             <li>
-                <a class="instellinglogo"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
+                <a href="google.com"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
             </li>
             </ul>
         </div>
     </div>
 </div>
-
-    <div class="WelkomBanner">
-        <h2>Goede middag <?php echo $userByCookie ->naam;?> !</h2>
-        <p><span class="welkomBol">Welkom bij de Bol Koppeling</span></p>
-    </div>
-
-    <div class="boxes">
-        <div class="box1">
-            <h4>Actieve module(s)</h4>
-['userByCookie' => $userbytoken]
-            <!-- <?php echo $userByCookie   ?> -->
-        </div>
-
-        <div class="box2">
-            <h4>Hulp nodig bij het instellen?</h4>
-            Om deze koppeling te kunnen gebruiken moeten een aantal dingen geinstalleerd en ingesteld worden
-            Laten we samen door deze stappen lopen!
+<h3>Persoonsgegevens</h3>
+            <?php echo $userByCookie->naam   ?> 
             
-            <input type="submit" class="btnZelfStudie" value="Zelf studie">
-            <input type="submit" class="btnSupport" value="Support">
-        </div> 
-    </div>
+<div class="content">
+    Naam<input type='text' placeholder=<?php echo $userByCookie->naam ?>></input>
+    Email<input type='text' placeholder=<?php echo $userByCookie->email ?>></input>
+    Telefoonnummer<input type='text' placeholder=<?php echo $userByCookie->telefoonnummer ?>></input>
+    Bedijfsnaam<input type='text' placeholder=<?php echo $userByCookie->bedrijfsnaam ?>></input>
+    Adres<input type='text' placeholder=<?php echo $userByCookie->adres ?>></input>
+    Postcode<input type='text' placeholder=<?php echo $userByCookie->postcode ?>></input>
+    Plaats<input type='text' placeholder=<?php echo $userByCookie->plaats ?>></input>
+</div>
+
+
+   

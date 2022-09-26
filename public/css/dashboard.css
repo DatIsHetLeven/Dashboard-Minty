@@ -27,6 +27,15 @@
      margin-left: 25%; 
      margin-top: 15%;   
   } 
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
+
+  ion-icon {
+    pointer-events: none;
+   }
   
 
   

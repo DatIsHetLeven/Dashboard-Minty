@@ -43,6 +43,7 @@ Route::get('/', function () {
 // Route::get('reset', [UserController::class, 'resetPassword'])->name('resetpassword');
 Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword');
 
+Route::get('persoonsgegevens', [UserController::class, 'renderPersonalDetails'])->name('persoonsgegevens');
 
 // Route::get('password', function () {
 //     return view('auth/passwords/password');

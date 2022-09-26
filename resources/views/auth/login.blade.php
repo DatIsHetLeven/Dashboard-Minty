@@ -14,9 +14,10 @@
       {{\Session::get('error')}}
     </p>
   @endif
+
   @if(\Session::has('succes'))
     <p class="succes">
-      {{\Session::get('succes ')}}
+      {{\Session::get('succes')}}
     </p>
   @endif
     <!-- E-mail invoeren -->
@@ -52,7 +53,7 @@
           
                 <input type="text" id="userInput" name="userName" placeholder='Naam' required autocomplete="email"><br><br>
           
-                <input type="number" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer (alleen getallen)' required><br><br>
+                <input type="text" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer (alleen getallen)' required><br><br>
           
                 <input type="text" id="userInput" name="Bedijfsnaam" placeholder='Bedijfsnaam' required><br><br>
             </div>

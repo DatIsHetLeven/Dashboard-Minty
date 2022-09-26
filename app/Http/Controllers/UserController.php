@@ -193,6 +193,11 @@ class UserController extends Controller
         // return redirect()->route('dashboard')->with(['test123'=> $userbytoken]);
     }
 
+    public function renderPersonalDetails () {
+        $userbytoken = UserController::getByCookie();
+        return view('dashboard/persoonsgegevens', ['userByCookie' => $userbytoken]);
+    }
+
     public function resetPassword()
     {
         return view('auth/passwords/resettest');
