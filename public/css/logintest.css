@@ -18,6 +18,10 @@ body {
     color: rgb(53, 216, 140);
   }
 
+  #media{
+    color: rgb(0, 0, 0);
+  }
+
   #dashboard{
     color: rgb(170, 167, 164);
   }
@@ -241,6 +245,10 @@ body {
     float: right;
     display: flex;
     top: -40px;
+  }
+
+  a{
+    text-decoration: none;
   }
 
   
