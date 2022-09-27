@@ -24,9 +24,15 @@ input{
 
 .alleGebruikersForm{
     position: absolute;
-    top: 30%;
-    left: 40%;
+    width: 60%;
+    margin-top: 400px;
+    left: 50%;
     -ms-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
+}
+
+.perGeberuiker{
+    padding: 3px;
+    background-color: red;
 }

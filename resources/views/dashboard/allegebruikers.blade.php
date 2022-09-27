@@ -36,9 +36,11 @@
 </div>
 <h3> Alle Gebruikers</h3>
 <div class="alleGebruikersForm">
+
     <?php
-    
     for ($x = 0; $x < count($allegebruikers); $x++) {
+        ?>
+        <div class="perGeberuiker"><?php
         echo $allegebruikers[$x]->naam, " ";
         echo $allegebruikers[$x]->email, " ";
         echo $allegebruikers[$x]->telefoonnummer, " ";
@@ -47,7 +49,8 @@
         echo $allegebruikers[$x]->adres, " ";
         echo $allegebruikers[$x]->postcode, " ";
         echo $allegebruikers[$x]->plaats, " ";
-
+        ?><a href="login"><button class="viewCustomerDetails">Bekijk</button></a></div>
+        <?php
         echo nl2br("\n"); echo nl2br("\n");
       }
 

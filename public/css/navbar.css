@@ -65,6 +65,8 @@
 
 
 #MINTY{
-  left: 120px;
+  position: relative;
+  left: -7px;
+  top: -20px;
   color: rgb(157, 240, 188);
 }
