@@ -1,6 +1,7 @@
 <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet">
+<link href="{{ asset('css/logintest.css') }}" rel="stylesheet"> 
 
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
@@ -36,8 +37,8 @@
 </div>
 <h3> Alle Gebruikers</h3>
 <div class="alleGebruikersForm">
-
     <?php
+    $count = 1;
     for ($x = 0; $x < count($allegebruikers); $x++) {
         ?>
         <div class="perGeberuiker"><?php
@@ -49,13 +50,26 @@
         echo $allegebruikers[$x]->adres, " ";
         echo $allegebruikers[$x]->postcode, " ";
         echo $allegebruikers[$x]->plaats, " ";
-        ?><a href="login"><button class="viewCustomerDetails">Bekijk</button></a></div>
+        
+        ?><a class="link" href="#registreren1"><button class="viewCustomerDetails" name="button" value=<?php $count?>>Bekijk</button></a></div>
         <?php
         echo nl2br("\n"); echo nl2br("\n");
       }
-
-
-
-
 ?>
+</div>
+
+
+
+<!-- Gebruikers info popup box! -->
+<div id="registreren1" class="overlay">
+	<div class="registreren">
+		<a class="close" href="#">&times;</a>
+        <form method="GET" class="formRegister">
+        @csrf
+         <div class="userinput">
+          Naam  :<br><br>
+          Email :<br><br>
+          Adres :         
+
+	</div>
 </div>

@@ -1,7 +1,7 @@
 .content{
     padding: 15px;
     position: absolute;
-    top: 35%;
+    top: 380px;
     left: 30%;
     -ms-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translate(-50%,-50%);
@@ -25,7 +25,7 @@ input{
 .alleGebruikersForm{
     position: absolute;
     width: 60%;
-    margin-top: 400px;
+    margin-top: 500px;
     left: 50%;
     -ms-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translate(-50%,-50%);
