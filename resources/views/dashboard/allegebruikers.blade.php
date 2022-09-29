@@ -44,72 +44,33 @@
 
 
 <div class="alleGebruikersForm" class="overlay">
-<table class="table-table" id="data-table">
+<table style="border-collapse:collapse;" class="table-table" id="data-table">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Sender</th>
-        <th>Received</th>
-        <th>Img src</th>
-        <th>Image</th>
-        <th>Commands</th>
-        <th>button</th>
+        <th>Gebruiker</th>
+        <th>Bedrijfsnaam</th>
+        <th>Email</th>
         <th>factuursturen</th>
+        <th>Geverififeerd</th>
+        <th>Geabonneerd</th>
+        <th>API actief</th>
       </tr>
     </thead>
     <tbody><?php
     $count = 0;
     for ($x = 0; $x < count($allegebruikers) - 1; $x++) {?>
-        <div class="perGeberuiker" value={{$count}}>
+      <div class="perGeberuiker" value={{$count}}>
         <tr>
-            <td><?php echo $allegebruikers[$x]->naam; ?></td>    
-            <td><?php echo $allegebruikers[$x]->email; ?></td>
-            <td><?php echo $allegebruikers[$x]->telefoonnummer; ?></td>
-            <td><?php echo $allegebruikers[$x]->bedrijfsnaam; ?></td>
-            <td><?php echo $allegebruikers[$x]->btwNummer; ?></td>
-            <td><?php echo $allegebruikers[$x]->adres; ?></td>
+            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->naam; ?></a></td>    
+            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->bedrijfsnaam; ?></td>
+            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->email; ?></td>
             <?php $count++;?>
-            <td><a class="link" onclick="togglePopup(<?= $count ?>)" href="#registreren1"[$count]><button class="viewCustomerDetails" name="button" value=<?php $count?>>Bekijk</button></a></td>
             <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>
-        </div>
+            <td>test</td>
+            <td>test</td>
+            <td>test</td>
         </tr>
-
-        <div class="popup" id="popup-<?= $count ?>">
-            <div class="overlay"></div>
-                <div class="content">
-                    <div class="close-btn" onclick="togglePopup(<?= $count ?>)">&times;</div>
-                        <h2>Gegevens</h2>
-                        <br>Naam : <?php echo $allegebruikers[$x]->naam;?>
-                        <br>email : <?php echo $allegebruikers[$x]->emaill;?>
-                    </div>
-                </div><?php
+      </div>
+        <?php
         }?></tbody>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Gebruikers info popup box! -->
-<!-- <div id="registreren1" class="overlay">
-	<div class="registreren">
-		<a class="close" href="#">&times;</a>
-        <form method="GET" class="formRegister">
-        @csrf
-         <div class="userinput">
-          Naam  :<br><br>
-          Email :<br><br>
-          Adres :         
-
-	</div>
-</div> -->

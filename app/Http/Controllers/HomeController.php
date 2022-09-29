@@ -36,4 +36,10 @@ class HomeController extends Controller
     {
         return view('auth/passwords/resettest');
     } 
+
+    public function seeCustomerDetail($userId)
+    {
+        $getUser = User::where('userId', '=', $userId)->first();;
+        return view('dashboard/gebruikerinfo')->with(['user'=> $getUser]);
+    }
 }

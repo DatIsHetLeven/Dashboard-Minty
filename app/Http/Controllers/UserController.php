@@ -193,7 +193,7 @@ class UserController extends Controller
     //Maak gebruiker aan in Factuursturen
     public function createUserFactuursturen($id){
  
-        $getUser = User::where('userId', '=', $id)->first();;
+        $getUser = User::where('userId', '=', $id)->first();
         $fsnlAPI = new fsnl_api_Controller;
 
         $fSApi = new fsnl_api_Controller();

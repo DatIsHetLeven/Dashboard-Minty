@@ -24,7 +24,7 @@ input{
 
 .alleGebruikersForm{
     position: absolute;
-    width: 60%;
+    width: 90%;
     margin-top: 150px;
     left: 50%;
     -ms-transform: translateX(-50%) translateY(-50%);
@@ -35,60 +35,56 @@ input{
 
 .table-table{
     position: absolute;
-    width: 60%;
+    width: 75%;
     margin-top: 100px;
     left: 50%;
     -ms-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-}
-
-.perGeberuiker{
-    padding: 3px;
-}
-
-.popup{
+    background-color: rgb(181, 178, 178);
     border-radius: 7px;
-    box-shadow: 5px 10px 5px #888888;
-
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.popup .content {
-  position:absolute;
-  top: 90px;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0);
-  background-color:rgb(137, 6, 6);
-  color: rgb(209, 209, 209);
-  width:500px;
-  height:250px;
-  text-align:left;
-  padding:2px;
-  font-family:"Open Sans",sans-serif;
-  border-radius: 5%;
-  border: 5px solid #ccc;
+td{
+    background-color: rgb(255, 255, 255);
+    margin: 5px;
+    border-collapse: collapse;
+    
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 3em 0;
+    padding: 0;
 }
 
-.popup .close-btn {
-  cursor:pointer;
-  position:absolute;
-  right:20px;
-  top:20px;
-  width:30px;
-  height:30px;
-  background:#222;
-  color:#fff;
-  font-size:25px;
-  font-weight:600;
-  line-height:30px;
-  text-align:center;
-  border-radius:50%;
+.klantgegevens{
+    width: 20%;
+    height: 550px;
+    margin-left: 70%;
+    margin-top: 30px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 3px #ccc;
+    
+    padding: 15px;
+    padding-top: 60px;
+    position: absolute;
+    border-radius: 2%;
 }
 
-.popup.active .content {
-  transition:all 300ms ease-in-out;
-  transform:translate(-50%,-50%) scale(1);
+.klantgegevens h3{
+    top: 0;
+    left: 0;
+    margin-left: 10px;
 }
+
+.klantgegevens input{
+    width: 100%;
+    height: 6%;
+    background-color: rgb(235, 238, 242);
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+}
+
 
 

@@ -61,6 +61,9 @@ Route::get('gebruikerinfo', function () {
     return view('dashboard/gebruikerinfo');
 })->name('gebruikerinfo');
 
+Route::get('seeCustomerDetail/{id}', [HomeController::class, 'seeCustomerDetail'])->name('seeCustomerDetail');
+
+
 Route::get('createUserFactuursturen/{id}', [UserController::class, 'createUserFactuursturen'])->name('createUserFactuursturen');
 
 

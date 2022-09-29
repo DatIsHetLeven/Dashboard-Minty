@@ -1,140 +1,61 @@
+<link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+<link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet">
 
 
-<section>
-  <h3>Bootgrid with Image and Button cells</h3>
-  
-  <table class="table table-bordered" id="data-table">
-    <thead>
-      <tr>
-        <th  data-type="numeric">ID</th>
-        <th >Sender</th>
-        <th >Received</th>
-        <th >Img src</th>
-        <th >Image</th>
-        <th >Commands</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>10238</td>
-        <td>eduardo@pingpong.com</td>
-        <td>14.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=F44336&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10243</td>
-        <td>eduardo@pingpong.com</td>
-        <td>19.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=9C27B0&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10248</td>
-        <td>eduardo@pingpong.com</td>
-        <td>24.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=2&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10253</td>
-        <td>eduardo@pingpong.com</td>
-        <td>29.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=E91E63&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10234</td>
-        <td>lila@google.com</td>
-        <td>10.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=3F51B5&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10239</td>
-        <td>lila@google.com</td>
-        <td>15.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=2196F3&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10244</td>
-        <td>lila@google.com</td>
-        <td>20.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=2196F3&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10249</td>
-        <td>lila@google.com</td>
-        <td>25.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=8BC34A&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10237</td>
-        <td>robert@bingo.com</td>
-        <td>13.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=FF9800&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10242</td>
-        <td>robert@bingo.com</td>
-        <td>18.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=FF5722&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10247</td>
-        <td>robert@bingo.com</td>
-        <td>23.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=795548&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10252</td>
-        <td>robert@bingo.com</td>
-        <td>28.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=9E9E9E&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10236</td>
-        <td>simon@yahoo.com</td>
-        <td>12.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=000000&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10241</td>
-        <td>simon@yahoo.com</td>
-        <td>17.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=607D8B&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10246</td>
-        <td>simon@yahoo.com</td>
-        <td>22.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=00BCD4&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10251</td>
-        <td>simon@yahoo.com</td>
-        <td>27.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=C51162&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10235</td>
-        <td>tim@microsoft.com</td>
-        <td>11.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=00BCD4&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10240</td>
-        <td>tim@microsoft.com</td>
-        <td>16.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=827717&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10245</td>
-        <td>tim@microsoft.com</td>
-        <td>21.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=212121&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-      <tr>
-        <td>10250</td>
-        <td>tim@microsoft.com</td>
-        <td>26.10.2013</td>
-        <td>https://placeholdit.imgix.net/~text?txtsize=23&bg=673AB7&txtclr=ffffff&w=50&h=50</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+<meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+<script src="{{ asset('js/popupgebruiker.js') }}"></script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<div class="leftColor">
+    <div class="container">
+        <div class="row">
+            <ul class="nav justify-content-center">
+            <span id="MINTY">MINTY</span>
+            <li>
+                <a href="{{ route('dashboard') }}"><ion-icon size="large" name="home-outline"></ion-icon></a>
+            </li>
+            <li>
+                <a><ion-icon size="large" name="apps-outline"></ion-icon><a>
+            </li>
+            <li>
+                <a href="{{ route('persoonsgegevens') }}"><ion-icon size="large" name="people-outline"></ion-icon></a>
+            </li>
+            <li>
+                <a><ion-icon size="large" name="file-tray-full-outline"></ion-icon></a>
+            </li>
+            <li>
+                <a href="{{ route('allegebruikers') }}"><ion-icon size="Large" name="logo-playstation"></ion-icon></a>
+            </li>
+            <li>
+                <a class="instellinglogo"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
+            </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+  <div class="klantgegevens">
+    <h3>Klant details</h3>
+    Naam<input type='text' placeholder=<?php echo $user->naam ?>></input>
+    Email<input type='text' placeholder=<?php echo $user->email ?>></input>
+    Telefoonnummer<input type='text' placeholder=<?php echo $user->telefoonnummer ?>></input>
+    Bedijfsnaam<input type='text' placeholder=<?php echo $user->bedrijfsnaam ?>></input>
+    Adres<input type='text' placeholder=<?php echo $user->adres ?>></input>
+    Postcode<input type='text' placeholder=<?php echo $user->postcode ?>></input>
+    Plaats<input type='text' placeholder=<?php echo $user->plaats ?>></input>
+  </div>
+
+ 
+
+
+
+
+
+
+
+
+<?php echo $user->naam;
