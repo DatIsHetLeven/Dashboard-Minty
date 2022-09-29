@@ -70,7 +70,7 @@
             <td><?php echo $allegebruikers[$x]->adres; ?></td>
             <?php $count++;?>
             <td><a class="link" onclick="togglePopup(<?= $count ?>)" href="#registreren1"[$count]><button class="viewCustomerDetails" name="button" value=<?php $count?>>Bekijk</button></a></td>
-            <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->email) }}" value=<?php $count?>>Add</a>
+            <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>
         </div>
         </tr>
 

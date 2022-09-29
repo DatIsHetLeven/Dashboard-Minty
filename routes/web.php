@@ -61,7 +61,7 @@ Route::get('gebruikerinfo', function () {
     return view('dashboard/gebruikerinfo');
 })->name('gebruikerinfo');
 
-Route::get('createUserFactuursturen/{email}', [UserController::class, 'createUserFactuursturen'])->name('createUserFactuursturen');
+Route::get('createUserFactuursturen/{id}', [UserController::class, 'createUserFactuursturen'])->name('createUserFactuursturen');
 
 
 
