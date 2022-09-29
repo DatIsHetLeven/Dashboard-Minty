@@ -86,5 +86,84 @@ td{
     border-radius: 8px;
 }
 
+.info{
+    position: absolute;
+    width: 50%;
+    height: 500px;
+    background-color: red;
+    margin-left: 15%;
+    margin-top: 30px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 3px #ccc;
+    border-radius: 2%;
+}
+.boldetails h3{
+    margin: 0;
+    left: 0;
+    left: 10px;
+}
+.boldetails{
+    
+    left: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 15px;
+    padding-top: 60px;
+    border-radius: 2%;
+}
+
+.inline{
+    width: 25%;
+    left: 80%;
+    display: inline-block;
+    margin-right: 0.5px;
+    background-color: rgb(255, 255, 255);
+    color: red;
+    border-radius: 0%;
+    cursor: pointer;
+    border: 2px solid red; 
+}
+
+#inloggenalsklant{
+    border: 2px solid rgb(100, 241, 85);
+    color: rgb(100, 241, 85);
+}
+
+.row1-inline{
+    width: 25%;
+    left: 80%;
+    display: inline-block;
+    margin-right: 0.5px;
+    width: 15%;
+    border-radius: 5px; 
+    text-decoration: none;
+    border-color: none;
+    border: 1px solid rgb(194, 193, 193);
+
+}
+
+#kopp-adres{
+    width: 60%;
+}
+
+#show{
+    cursor: pointer;
+    width: 7%;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    border: 2px solid rgb(194, 193, 193);
+    border-radius: 5px; 
+}
+
+#show::placeholder{
+    color: rgb(200, 200, 203) ;
+}
+
+.status h3{
+    margin: 0;
+    left: 0;
+    left: 10px;
+    top: 200px;
+}
 
 

@@ -49,11 +49,24 @@
     Plaats<input type='text' placeholder=<?php echo $user->plaats ?>></input>
   </div>
 
- 
+ <div class="info">
+  <div class="boldetails">
+    <h3>Bol details</h3>
+    <input placeholder="Koppeling:" class="row1-inline" readonly></input>
+    <input type="text" placeholder="qwertyuiopasdfghjklzxcvbnm" class="row1-inline" id="kopp-adres"></input>
+    <input type="text" placeholder="Show" class="row1-inline" id="show" readonly></input>
+
+    <input type="button" class="inline" value="Blokkeer API voor klant"></input>
+    <input type="button" class="inline" id="inloggenalsklant" value="Inloggen als deze klant"></input>
+    <input type="button" class="inline" value="Verwijder klant"></input>
+</div>
+
+<div class="Status">
+  <h3>Status</h3>
+</div>
 
 
-
-
+</div>
 
 
 
