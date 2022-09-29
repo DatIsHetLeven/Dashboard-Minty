@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Password;
 use App\Providers\FortifyServiceProvider;
 use App\Actions\Fortify;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\Connection\fsnl_api_Controller;
 
 
 class UserController extends Controller
@@ -111,10 +112,14 @@ class UserController extends Controller
             $newUser->plaats = $_POST['Plaats'];
             $newUser->plaats = $_POST['Plaats'];
 
+
+
             $passwordToken = $this->createToken();
             $newUser->token=$passwordToken;
             $mailSender = new MailController();
             $mailSender->sendPassword($passwordToken, $newUser->email);
+
+
 
             $newUser->save();
             return back()->with(['succes'=> "Account succesvol aangemaakt"]);
@@ -182,9 +187,54 @@ class UserController extends Controller
     //Haal alle gebruikers op uit
     public function getAllUsers(){
         $allUsers = User::all();
-
         return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
+    }
 
+    //Maak gebruiker aan in Factuursturen
+    public function createUserFactuursturen($email){
+ 
+        $getUser = User::where('email', '=', $email)->first();;
+        $fsnlAPI = new fsnl_api_Controller;
+
+        $fSApi = new fsnl_api_Controller();
+            $newClient = [];
+
+            $newClient = [
+                'contact' => $getUser->naam,
+                'showcontact' => true,
+                'company' => $getUser->bedrijfsnam,
+                'address' => $getUser->adres,
+                'zipcode' => $getUser->postcode,
+                'city' => $getUser->plaats,
+                // 'country' => 146,
+                'phone' => $getUser->telefoonnummer,
+                'mobile' => $getUser->telefoonnummer,
+                'email' => $getUser->email,
+                'bankcode' => 'NL91INGB0001234567',
+                'biccode' => 'INGBNL2A',
+                'taxnumber' => $getUser->btwNummer,
+                'tax_shifted' => false,
+                'sendmethod' => 'email',
+                'paymentmethod' => 'bank',
+                'top' => 3,
+                'stddiscount' => 5.30,
+                'mailintro' => 'Dear Johnny,',
+                'reference' => array(
+                  'line1' => 'Your ref: ABC123',
+                  'line2' => 'Our ref: XZX0029/2932/001',
+                  'line3' => 'Thank you for your order'
+                ),
+                'notes' => 'This client is always late with his payments',
+                'notes_on_invoice' => false,
+                'active' => true,
+                'default_doclang' => 'en',
+                'email_reminder' => 'reminder@mintymedia.nl',
+                'currency' => 'EUR',
+                'tax_type' => 'intax'
+            ];
+            $fSApi->CreateNewClient($newClient);
+
+        return view('dashboard/allegebruikers');
     }
 
 

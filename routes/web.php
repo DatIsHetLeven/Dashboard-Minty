@@ -57,6 +57,14 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
+Route::get('gebruikerinfo', function () {
+    return view('dashboard/gebruikerinfo');
+})->name('gebruikerinfo');
+
+Route::get('createUserFactuursturen/{email}', [UserController::class, 'createUserFactuursturen'])->name('createUserFactuursturen');
+
+
+
 // Route::get('dashboard', function () {
 //     return view('dashboard/dashboard');
 // })->name('dashboard')->middleware('check.user');

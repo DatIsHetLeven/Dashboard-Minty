@@ -9,24 +9,49 @@ use App\Models\Connection\fsnl_api;
 
 class fsnl_api_Controller extends Controller
 {
-    //
-    public function connect(){
-    $request = new fsnl_api('https://www.factuursturen.nl/api/v1/clients', 'GET');
-    $request->setUsername('testtt');
-    $request->setPassword('Hallo123!');
 
-    // build the post body we are going to submit
-    $request->buildPostBody(array(
-        'code' => 'Soundboard-50S',
-        'name' => 'Flash Soundboard 50 Samples',
-        'price' => 39.95,
-        'taxes' => 20
-    ));
-    
-    $request->execute();
-    $request->getResponseBody();
-    $request->getResponseInfo();
+    private string $baseUrl;
+    private fsnl_api $fSApi;
+
+    public function  __construct(){
+
+        $this->fSApi = new fsnl_api();
+        $this->baseUrl = 'https://www.factuursturen.nl/api/v1/';
+
+
+        
+        $this->fSApi->setUsername('mintyarthur');
+        $this->fSApi->setPassword('rS21906MiqgIFUSvQzayLHK7GLxRyqQPunFjzJNa');
     }
+
+    private function urlBuilder($path) {
+        return $this->baseUrl . $path;
+    }
+
+    public function CreateNewClient($clientData){
+        $this->fSApi->setUrl($this->urlBuilder('clients'));
+        $this->fSApi->setVerb("POST");
+        $this->fSApi->buildPostBody($clientData);
+
+        $this->fSApi->execute();
+
+        if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
+
+            dump('het is niet gelukt :)');
+            dd($this->fSApi);
+            return false;
+        }
+
+        dump('het is gelukt :)');
+        dd($this->fSApi);
+
+
+        return $request->getResponseBody();
+
+    }
+
+
+    
 
     
 

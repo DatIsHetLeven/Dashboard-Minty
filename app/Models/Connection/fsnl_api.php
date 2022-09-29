@@ -5,6 +5,7 @@ namespace App\Models\Connection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 /*   
  *   FactuurSturen.nl, FactuurSturen.be, DigiRechnung.de API connector
  *   
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  *   
  */
 
-class fsnl_api extends Model
+class fsnl_api
 {
 	protected $url;
 	protected $verb;
@@ -244,4 +245,3 @@ class fsnl_api extends Model
 		$this->verb = $verb;
 	} 
 }
-

@@ -5,6 +5,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
+<script src="{{ asset('js/popupgebruiker.js') }}"></script>
+
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
@@ -35,33 +37,71 @@
         </div>
     </div>
 </div>
+
+<!-- Alle gebruikers tonen -->
 <h3> Alle Gebruikers</h3>
-<div class="alleGebruikersForm">
-    <?php
-    $count = 1;
-    for ($x = 0; $x < count($allegebruikers); $x++) {
-        ?>
-        <div class="perGeberuiker"><?php
-        echo $allegebruikers[$x]->naam, " ";
-        echo $allegebruikers[$x]->email, " ";
-        echo $allegebruikers[$x]->telefoonnummer, " ";
-        echo $allegebruikers[$x]->bedrijfsnaam, " ";
-        echo $allegebruikers[$x]->btwNummer, " ";
-        echo $allegebruikers[$x]->adres, " ";
-        echo $allegebruikers[$x]->postcode, " ";
-        echo $allegebruikers[$x]->plaats, " ";
-        
-        ?><a class="link" href="#registreren1"><button class="viewCustomerDetails" name="button" value=<?php $count?>>Bekijk</button></a></div>
-        <?php
-        echo nl2br("\n"); echo nl2br("\n");
-      }
-?>
+
+
+
+<div class="alleGebruikersForm" class="overlay">
+<table class="table-table" id="data-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Sender</th>
+        <th>Received</th>
+        <th>Img src</th>
+        <th>Image</th>
+        <th>Commands</th>
+        <th>button</th>
+        <th>factuursturen</th>
+      </tr>
+    </thead>
+    <tbody><?php
+    $count = 0;
+    for ($x = 0; $x < count($allegebruikers) - 1; $x++) {?>
+        <div class="perGeberuiker" value={{$count}}>
+        <tr>
+            <td><?php echo $allegebruikers[$x]->naam; ?></td>    
+            <td><?php echo $allegebruikers[$x]->email; ?></td>
+            <td><?php echo $allegebruikers[$x]->telefoonnummer; ?></td>
+            <td><?php echo $allegebruikers[$x]->bedrijfsnaam; ?></td>
+            <td><?php echo $allegebruikers[$x]->btwNummer; ?></td>
+            <td><?php echo $allegebruikers[$x]->adres; ?></td>
+            <?php $count++;?>
+            <td><a class="link" onclick="togglePopup(<?= $count ?>)" href="#registreren1"[$count]><button class="viewCustomerDetails" name="button" value=<?php $count?>>Bekijk</button></a></td>
+            <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->email) }}" value=<?php $count?>>Add</a>
+        </div>
+        </tr>
+
+        <div class="popup" id="popup-<?= $count ?>">
+            <div class="overlay"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup(<?= $count ?>)">&times;</div>
+                        <h2>Gegevens</h2>
+                        <br>Naam : <?php echo $allegebruikers[$x]->naam;?>
+                        <br>email : <?php echo $allegebruikers[$x]->emaill;?>
+                    </div>
+                </div><?php
+        }?></tbody>
 </div>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Gebruikers info popup box! -->
-<div id="registreren1" class="overlay">
+<!-- <div id="registreren1" class="overlay">
 	<div class="registreren">
 		<a class="close" href="#">&times;</a>
         <form method="GET" class="formRegister">
@@ -72,4 +112,4 @@
           Adres :         
 
 	</div>
-</div>
+</div> -->
