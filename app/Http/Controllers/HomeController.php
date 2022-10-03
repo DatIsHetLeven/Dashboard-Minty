@@ -42,14 +42,16 @@ class HomeController extends Controller
     {
         // $getUser = User::where('userId', '=', $userId)->first();
         
-        $getUser = DB::table('user')
-            ->join('factuursturen', 'user.userId', '=', 'factuursturen.userId')
-            ->where('user.userId', '=', $userId)->first();
-
+        $getUser = DB::table('statusdetails')
+        ->join('user', 'statusdetails.userId', '=', 'user.userId')
+        ->where('statusdetails.userId', '=', $userId)
+        ->join('factuursturen', 'factuursturen.userId', '=', 'user.userId')
+        ->where('factuursturen.userId', '=', $userId)->first();
+        
         if(empty($getUser)){
             $getUser = User::where('userId', '=', $userId)->first();
         }
-        
+
         return view('dashboard/gebruikerinfo')->with(['user'=> $getUser]);
     }
 }

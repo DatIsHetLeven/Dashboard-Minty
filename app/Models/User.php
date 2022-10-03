@@ -35,6 +35,10 @@ class User extends Authenticatable
         'cookie_token',
     ];
 
+    public function getApiStatus() {
+        return true;
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

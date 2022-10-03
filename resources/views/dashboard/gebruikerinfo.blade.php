@@ -40,11 +40,6 @@
 
   <div class="klantgegevens">
     <h3>Klant details</h3>
-
-    if(empty($user->factuurId ))
-    {echo "n.v.t.";
-    }
-    else
    
     Naam<input type='text' placeholder=<?php echo $user->naam ?>></input>
     Email<input type='text' placeholder=<?php echo $user->email ?>></input>
@@ -71,7 +66,18 @@
 </div>
 
 <div class="Status">
-  <h3>Status</h3>
+  <h3>Status</h3><br>
+  <div id="links">
+    Omschrijving<br>  <input type="checkbox" checked onclick="return false;">
+    Geverififeerd<br> <input type="checkbox" <?php if($user->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;">
+    Geabonneerd<br>   <input type="checkbox" <?php if($user->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;">
+    API actief<br>    <input type="checkbox" <?php if($user->API == TRUE){?>checked<?php }?> onclick="return false;">
+    Wordpress ingesteld<br> <input type="checkbox" <?php if($user->wordpress == TRUE){?>checked<?php }?> onclick="return false;">
+    Koppeling server<br>    <input type="checkbox" <?php if(!empty($user->server)){echo $user->server;} else{echo "n.v.t";}?> onclick="return false;">
+    Koppeling geldig tm<br> <input type="checkbox" <?php if(!empty($user->geldig)){echo $user->geldig;} else{echo "n.v.t";}?> onclick="return false;">
+  </div>
+  
+
 </div>
 
 
