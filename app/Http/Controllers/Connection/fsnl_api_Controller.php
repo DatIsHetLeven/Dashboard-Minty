@@ -42,11 +42,9 @@ class fsnl_api_Controller extends Controller
             return false;
         }
 
-        dump('het is gelukt :)');
-        dd($this->fSApi);
 
-
-        return $request->getResponseBody();
+        return $this->fSApi->getResponseBody();
+        
 
     }
 

@@ -15,6 +15,7 @@ use App\Providers\FortifyServiceProvider;
 use App\Actions\Fortify;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\Connection\fsnl_api_Controller;
+use app\Models\factuursturen;
 
 
 class UserController extends Controller
@@ -232,9 +233,18 @@ class UserController extends Controller
                 'currency' => 'EUR',
                 'tax_type' => 'intax'
             ];
-            $fSApi->CreateNewClient($newClient);
+            $factuurid = $fSApi->CreateNewClient($newClient);
+            //Insert factuurid bij bijbehorende klantid.
+            if(!empty($factuurid)){
+                DB::insert('insert into factuursturen (userId, factuurId)
+                values (?,?)',[$getUser->userId, $factuurid]);
+            }
+            else{
+                dd("Er is een fout opgetreden!");
+            }
 
-        return view('dashboard/allegebruikers');
+
+            return back();
     }
 
 
