@@ -40,6 +40,7 @@
 
   <div class="klantgegevens">
     <h3>Klant details</h3>
+   
     Naam<input type='text' placeholder=<?php echo $user->naam ?>></input>
     Email<input type='text' placeholder=<?php echo $user->email ?>></input>
     Telefoonnummer<input type='text' placeholder=<?php echo $user->telefoonnummer ?>></input>
@@ -47,6 +48,7 @@
     Adres<input type='text' placeholder=<?php echo $user->adres ?>></input>
     Postcode<input type='text' placeholder=<?php echo $user->postcode ?>></input>
     Plaats<input type='text' placeholder=<?php echo $user->plaats ?>></input>
+    Factuursturen klant nr.<input type='text' placeholder=<?php echo $user->factuurId ?>></input>
   </div>
 
  <div class="info">

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\UserController;
 
 use App\Models\User;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -39,7 +40,12 @@ class HomeController extends Controller
 
     public function seeCustomerDetail($userId)
     {
-        $getUser = User::where('userId', '=', $userId)->first();;
+        // $getUser = User::where('userId', '=', $userId)->first();
+        $getUser = DB::table('user')
+            ->join('factuursturen', 'user.userId', '=', 'factuursturen.userId')
+            ->where('user.userId', '=', $userId)->first();
+            
+
         return view('dashboard/gebruikerinfo')->with(['user'=> $getUser]);
     }
 }
