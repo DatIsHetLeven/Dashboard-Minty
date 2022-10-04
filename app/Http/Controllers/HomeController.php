@@ -47,7 +47,12 @@ class HomeController extends Controller
         ->where('statusdetails.userId', '=', $userId)
         ->join('factuursturen', 'factuursturen.userId', '=', 'user.userId')
         ->where('factuursturen.userId', '=', $userId)->first();
-        
+
+        if(empty($getUser)){
+            $getUser = User::
+            join('factuursturen', 'factuursturen.userId', '=', 'user.userId')
+            ->where('factuursturen.userId', '=', $userId)->first();
+        }
         if(empty($getUser)){
             $getUser = User::where('userId', '=', $userId)->first();
         }
