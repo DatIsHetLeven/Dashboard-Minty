@@ -16,7 +16,6 @@ h3{
 
 input{
     margin-top: 17px;
-
     width: 200px;
     height: 25px;
 }
@@ -58,7 +57,7 @@ td{
 
 .klantgegevens{
     width: 20%;
-    height: 700px;
+    height: 600px;
     margin-left: 70%;
     margin-top: 30px;
     background-color: rgb(255, 255, 255);
@@ -86,7 +85,7 @@ td{
 }
 
 .info{
-    position: absolute;
+    position: relative;
     width: 50%;
     height: 500px;
     background-color: red;
@@ -165,10 +164,7 @@ td{
     top: 180px;
 }
 
-#test{
-    margin-left: 30%;
-    display: flex;
-}
+
 
 .createUser{
     margin-left: 90%;
@@ -253,6 +249,55 @@ td{
     border-radius: 5%;
   }
 
+.links {
+    margin-top: 5%;
 
+}
+  
+.links input{
+    display: flex;
+    margin-left: 20%;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
 
+.links input {
+    display: flex;
+    margin-left: 20%;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.info2{
+    margin-top: 50%;
+    position: relative;
+    width: 50%;
+    height: 200px;
+    background-color: red;
+    margin-left: 15%;
+    margin-top: 30px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 3px #ccc;
+    border-radius: 2%;
+}
+
+.inputGeldig{
+    width: 70%;
+}
+#btndagen{
+    width: 10%;
+}
+
+.factuurSectie{
+    margin-top: 50%;
+    position: relative;
+    width: 78%;
+    height: 200px;
+    background-color: red;
+    margin-left: 15%;
+    margin-top: 30px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 3px #ccc;
+    border-radius: 2%;
+}
 

@@ -103,9 +103,9 @@
             <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->email; ?></td>
             <?php $count++;?>
             <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
+            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
+            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
+            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
         </tr>
       </div>
         <?php

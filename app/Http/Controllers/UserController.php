@@ -186,8 +186,13 @@ class UserController extends Controller
 
     //Haal alle gebruikers op uit
     public function getAllUsers(){
-        $allUsers = User::all();
+        $allUsers= DB::table('user')
+        ->leftJoin('statusdetails', 'user.userId','=','statusdetails.userId')
+        ->get();
+        
         return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
+        // $allUsers = User::all();
+        // return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
     }
 
     //Maak gebruiker aan in Factuursturen

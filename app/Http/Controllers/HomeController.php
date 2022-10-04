@@ -56,7 +56,6 @@ class HomeController extends Controller
         if(empty($getUser)){
             $getUser = User::where('userId', '=', $userId)->first();
         }
-
         return view('dashboard/gebruikerinfo')->with(['user'=> $getUser]);
     }
 }
