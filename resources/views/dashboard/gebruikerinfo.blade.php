@@ -40,7 +40,7 @@
 
   <div class="klantgegevens">
     <h3>Klant details</h3>
-   
+    
     Naam<input type='text' placeholder=<?php echo $user->naam ?>></input>
     Email<input type='text' placeholder=<?php echo $user->email ?>></input>
     Telefoonnummer<input type='text' placeholder=<?php echo $user->telefoonnummer ?>></input>
@@ -62,14 +62,14 @@
 
     <input type="button" class="inline" value="Blokkeer API voor klant"></input>
     <input type="button" class="inline" id="inloggenalsklant" value="Inloggen als deze klant"></input>
-    <input type="button" class="inline" value="Verwijder klant"></input>
+    <a href="{{ route('deleteUser',$user->userId) }}"><input type="button" class="inline" value="Verwijder klant"></input></a>
 </div>
 
 <div class="Status">
   <h3>Status</h3><br>
-  <div id="links">
-    Omschrijving<br>  <input type="checkbox" checked onclick="return false;">
-    Geverififeerd<br> <input type="checkbox" <?php if($user->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;">
+  <div class="links">
+    Omschrijving<br>
+    Geverififeerd<br> <input type="checkbox" id="test"<?php if($user->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;">
     Geabonneerd<br>   <input type="checkbox" <?php if($user->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;">
     API actief<br>    <input type="checkbox" <?php if($user->API == TRUE){?>checked<?php }?> onclick="return false;">
     Wordpress ingesteld<br> <input type="checkbox" <?php if($user->wordpress == TRUE){?>checked<?php }?> onclick="return false;">

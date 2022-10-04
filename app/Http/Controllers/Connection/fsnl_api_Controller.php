@@ -27,7 +27,7 @@ class fsnl_api_Controller extends Controller
     private function urlBuilder($path) {
         return $this->baseUrl . $path;
     }
-
+    //Stuur gebruiker naar Factuurtsuren
     public function CreateNewClient($clientData){
         $this->fSApi->setUrl($this->urlBuilder('clients'));
         $this->fSApi->setVerb("POST");
@@ -42,16 +42,9 @@ class fsnl_api_Controller extends Controller
             return false;
         }
 
-
         return $this->fSApi->getResponseBody();
-        
-
     }
 
-
-    
-
-    
 
 
 

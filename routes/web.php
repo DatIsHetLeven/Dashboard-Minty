@@ -64,6 +64,8 @@ Route::get('gebruikerinfo', function () {
 Route::get('seeCustomerDetail/{id}', [HomeController::class, 'seeCustomerDetail'])->name('seeCustomerDetail');
 
 Route::get('createUserFactuursturen/{id}', [UserController::class, 'createUserFactuursturen'])->name('createUserFactuursturen');
+Route::get('deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+
 
 
 

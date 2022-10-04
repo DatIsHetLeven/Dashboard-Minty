@@ -166,4 +166,9 @@ td{
     top: 180px;
 }
 
+#test{
+    margin-left: 30%;
+    display: flex;
+}
+
 

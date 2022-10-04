@@ -87,7 +87,6 @@ class UserController extends Controller
     public function createUser()
     {
         // Maak gebruik van Illuminate\Http\Request implaats van de $_POST varaible - minty pawel
-
         if(isset($_POST['buttonregister']))
         {
             $newUser = new User();
@@ -245,6 +244,11 @@ class UserController extends Controller
 
 
             return back();
+    }
+    //Verwijder gebruiker
+    public function deleteUser($userId){
+        DB::table('user')->where('userId', '=', $userId)->delete();
+        return $this->getAllUsers();
     }
 
 
