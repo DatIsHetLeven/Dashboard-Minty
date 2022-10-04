@@ -1,14 +1,49 @@
 <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet">
-<link href="{{ asset('css/logintest.css') }}" rel="stylesheet"> 
 
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
 <script src="{{ asset('js/popupgebruiker.js') }}"></script>
-
+<script src="{{ asset('js/popupToevoegen.js') }}"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<div class="popUp" id="popUp-1">
+  <div class="overlay" onclick="show();"></div>
+  <div class="content">
+    <div class="close-btn" onclick="show();">&times;</div>
+<!-- Begin van de popup -> gebruiker toevoegen -->
+<form method="POST" action="{{ route('create_user_check') }}" class="formRegister">
+    @csrf
+    <div class="userinput">
+            <div class="links">
+                <input type="email" id="userInput" name="email" placeholder='Email' required autocomplete="email"><br><br>
+          
+                <input type="text" id="userInput" name="userName" placeholder='Naam' required autocomplete="email"><br><br>
+          
+                <input type="text" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer (alleen getallen)' required><br><br>
+          
+                <input type="text" id="userInput" name="Bedijfsnaam" placeholder='Bedijfsnaam' required><br><br>
+            </div>
+            <div class="rechts">
+                <input type="text" id="userInput" name="BTW-Nummer" placeholder='BTW-Nummer' required><br><br>
+          
+                <input type="text" id="userInput" name="Adres" placeholder='Adres+Huisnummer' required><br><br>
+          
+                <input type="text" id="userInput" name="Postcode" placeholder='Postcode' required><br><br>
+          
+                <input type="text" id="userInput" name="Plaats" placeholder='Plaats' required><br><br>
+
+                <input type="text" id="userInput" name="FactuurId" placeholder='FactuursturenId' required><br><br>
+                
+            </div>
+         </div> 
+         <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>  
+    </form>           
+  </div>
+</div>
+<!-- Einde Popup! -->
 
 <div class="leftColor">
     <div class="container">
@@ -44,7 +79,9 @@
 
 
 <div class="alleGebruikersForm" class="overlay">
-<table style="border-collapse:collapse;" class="table-table" id="data-table">
+
+  <button class="show" onclick="show();">Gebruiker toevoegen</button>
+  <table style="border-collapse:collapse;" class="table-table" id="data-table">
     <thead>
       <tr>
         <th>Gebruiker</th>
@@ -58,7 +95,7 @@
     </thead>
     <tbody><?php
     $count = 0;
-    for ($x = 0; $x < count($allegebruikers) - 1; $x++) {?>
+    for ($x = 0; $x < count($allegebruikers); $x++) {?>
       <div class="perGeberuiker" value={{$count}}>
         <tr>
             <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->naam; ?></a></td>    
@@ -74,3 +111,6 @@
         <?php
         }?></tbody>
 </div>
+
+
+
