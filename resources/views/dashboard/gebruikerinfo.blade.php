@@ -87,7 +87,8 @@ $datetime1 = strtotime($currentDateTime);
 $datetime2 = strtotime($user->geldig);
 if($datetime2 == false)$datetime2=$datetime1;
 $secs = $datetime2 - $datetime1;// == <seconds between the two times>
- $days = floor(($secs%2592000)/86400);?>
+ $days = floor(($secs%2592000)/86400);
+ if($days <0)$days=0;?>
 
 Koppeling is nog <?php echo $days?> dag(en) geldig.<br><br>
 Voer een numerieke waarde in om de vervaldatum van de koppeling te wijzigen.
