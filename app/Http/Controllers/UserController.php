@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 
 use App\Models\User;
+use App\Models\statusdetails;
 
 
 //De classes hier onder worden niet gebruikt - minty pawel
@@ -120,8 +121,19 @@ class UserController extends Controller
             $mailSender->sendPassword($passwordToken, $newUser->email);
 
 
-
             $newUser->save();
+
+            $newStatus = new statusdetails();
+            $newStatus->userId = $newUser->userId;
+            $newStatus->geverifieerd = 0;
+            $newStatus->geabonneerd = 0;
+            $newStatus->API = 0;
+            $newStatus->wordpress = 0;
+            $newStatus->server = "n.v.t.";
+            $newStatus->geldig = "2022-01-01";
+
+            $newStatus->save();
+    
             return back()->with(['succes'=> "Account succesvol aangemaakt"]);
         }
     }
@@ -189,7 +201,7 @@ class UserController extends Controller
         $allUsers= DB::table('user')
         ->leftJoin('statusdetails', 'user.userId','=','statusdetails.userId')
         ->get();
-        
+
         return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
         // $allUsers = User::all();
         // return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
