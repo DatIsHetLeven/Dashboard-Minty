@@ -45,6 +45,25 @@ class fsnl_api_Controller extends Controller
         return $this->fSApi->getResponseBody();
     }
 
+        //Haal gebruiker uit Fs op
+        public function getFactuursturenUser($fsId){
+            
+            $test = $this->fSApi->setUrl($this->urlBuilder("clients/$fsId"));
+            $this->fSApi->setVerb("GET");
+            
+            $this->fSApi->execute();
+    
+            if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
+    
+                dump('het is niet gelukt :)');
+                dd($this->fSApi);
+                return false;
+            }
+
+    
+            return $this->fSApi->getResponseBody();
+        }
+
 
 
 

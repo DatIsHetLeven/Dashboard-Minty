@@ -81,6 +81,7 @@
 <div class="alleGebruikersForm" class="overlay">
 
   <button class="show" onclick="show();">Gebruiker toevoegen</button>
+
   <table style="border-collapse:collapse;" class="table-table" id="data-table">
     <thead>
       <tr>
@@ -104,13 +105,27 @@
             <?php $count++;?>
             <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>
             <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
-            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
-            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
+            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
+            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->API == TRUE){?>checked<?php }?> onclick="return false;"></td>
         </tr>
       </div>
         <?php
         }?></tbody>
 </div>
+
+<div class="factuurGebruikerOphalen">
+
+  <form name="form" action="{{ route('getFactuursturenUser') }}" method="post">
+  @csrf
+    Klant ophalen uit Factuursturen dmv factuurid
+    <input type="text" name="factuurId" id='factuurId' value="test">
+
+    <button type="submit" name="btnFactuurId" id='factuurId' value="Ophalen">Ophalen</button>
+  </form>
+
+
+</div>
+
 
 
 

@@ -228,6 +228,7 @@ td{
     background-color: rgb(127, 232, 127);
 
   }
+
   p {
     font-weight: 400;
     user-select: none;
@@ -298,5 +299,14 @@ td{
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 3px #ccc;
     border-radius: 2%;
+}
+
+.factuurGebruikerOphalen{
+    width: 100px;
+    padding: 2%;
+    background-color: red;
+    margin-left: 90%;
+    position: absolute;
+    margin-top: 20%;
 }
 

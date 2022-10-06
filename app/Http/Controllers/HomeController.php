@@ -25,6 +25,7 @@ class HomeController extends Controller
 
     public function renderDashboard () {
         $userbytoken = UserController::getByCookie();
+        if(empty($userbytoken))return view('welcome');
         return view('dashboard/dashboard', ['userByCookie' => $userbytoken]);
     }
 

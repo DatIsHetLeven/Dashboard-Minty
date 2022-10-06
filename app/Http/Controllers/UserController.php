@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\statusdetails;
+use App\Models\factuursturen;
+
 
 
 //De classes hier onder worden niet gebruikt - minty pawel
@@ -16,7 +18,7 @@ use App\Providers\FortifyServiceProvider;
 use App\Actions\Fortify;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\Connection\fsnl_api_Controller;
-use app\Models\factuursturen;
+
 
 
 class UserController extends Controller
@@ -158,20 +160,15 @@ class UserController extends Controller
         if(isset($_POST['resetpassword']))
         {
             $error = '';
-
             $email = $_POST['username'];
-
             $getUser = User::where('email', '=', $email)
                 ->first();
-
 
             if(!empty($getUser))
             {
                 $passwordToken = $this->createToken();
-
                 $mailSender = new MailController();
                 $mailSender->resetPassword($passwordToken, $email);
-
                 $getUser->token = $passwordToken;
                 $getUser->save();
                 return back()->with(['succes'=> 'E-mail is verzonden']);
@@ -199,12 +196,58 @@ class UserController extends Controller
     //Haal alle gebruikers op uit
     public function getAllUsers(){
         $allUsers= DB::table('user')
-        ->leftJoin('statusdetails', 'user.userId','=','statusdetails.userId')
-        ->get();
-
+            ->leftJoin('statusdetails', 'user.userId','=','statusdetails.userId')
+            ->get();
         return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
-        // $allUsers = User::all();
-        // return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
+    }
+
+    //Haal gebruiker op uit FS -> dmv bestaande Factuurid
+    public function getFactuursturenUser(){
+        $fSApi = new fsnl_api_Controller();
+
+        if(isset($_POST['btnFactuurId']))
+        {
+            $UserId = $_POST['factuurId'];
+        }
+        $opgehaaldeGberuiker = $fSApi->getFactuursturenUser($UserId);
+        $fsClient = json_decode($opgehaaldeGberuiker);
+        $fsClient = $fsClient->client;
+
+        $this->insertUser($fsClient);
+
+        return back();
+    }
+
+    //Insert bestaande gebruiker uit FS.
+    public function insertUser($FsUser){
+        $newUser = new User();
+        $newUser->email = $FsUser->email;
+        $newUser->naam = $FsUser->contact;
+        $newUser->password = $this->createToken();
+        $newUser->telefoonnummer = $FsUser->phone;
+        $newUser->bedrijfsnaam = $FsUser->company;
+        $newUser->btwNummer = $FsUser->taxnumber;
+        //NOG AANPASSEN ADRES -> ADRESS GEEN TAX
+        $newUser->adres = $FsUser->taxnumber;
+        $newUser->postcode = $FsUser->zipcode;
+        $newUser->plaats = $FsUser->city;
+        $newUser->save();
+
+        $newStatus = new statusdetails();
+        $newStatus->userId = $newUser->userId;
+        $newStatus->geverifieerd = 0;
+        $newStatus->geabonneerd =0;
+        $newStatus->API=0;
+        $newStatus->wordpress=0;
+        $newStatus->server=0;
+        $newStatus->geldig="2022-01-01";
+        $newStatus->save();
+
+        $statusdetails = new factuursturen();
+        $statusdetails->userId = $newUser->userId;
+        $statusdetails->factuurId = $FsUser->clientnr;
+        $statusdetails->save();
+
     }
 
     //Maak gebruiker aan in Factuursturen

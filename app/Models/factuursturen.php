@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class factuursturen extends Model
+class factuursturen extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'factuursturen';
     protected $primaryKey = 'id';
@@ -18,5 +21,3 @@ class factuursturen extends Model
         'factuurId',
     ];
 }
-
-
