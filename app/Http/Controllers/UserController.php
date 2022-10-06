@@ -309,6 +309,7 @@ class UserController extends Controller
     public function deleteUser($userId){
         DB::table('user')->where('userId', '=', $userId)->delete();
         DB::table('statusdetails')->where('userId', '=', $userId)->delete();
+        DB::table('factuursturen')->where('userId', '=', $userId)->delete();
 
         return $this->getAllUsers();
     }
