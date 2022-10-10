@@ -59,9 +59,26 @@ class fsnl_api_Controller extends Controller
                 dd($this->fSApi);
                 return false;
             }
+            return $this->fSApi->getResponseBody();
+        }
 
+        //Haal alle producten op uit FS
+        public function getAllProducts(){
+
+            $this->fSApi->setUrl($this->urlBuilder('products'));
+            $this->fSApi->setVerb("GET");
+    
+            $this->fSApi->execute();
+    
+            if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
+    
+                dump('het is niet gelukt :)');
+                dd($this->fSApi);
+                return false;
+            }
     
             return $this->fSApi->getResponseBody();
+
         }
 
 

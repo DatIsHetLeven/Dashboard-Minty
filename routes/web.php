@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\CheckUser;
 
@@ -26,12 +27,6 @@ use App\Actions\Fortify;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('testttt', function () {
-    return view('bootstrTesttt');
-})->name('bootstrTesttt');
-
-
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -72,6 +67,13 @@ Route::get('createUserFactuursturen/{id}', [UserController::class, 'createUserFa
 Route::POST('getFactuursturenUser', [UserController::class, 'getFactuursturenUser'])->name('getFactuursturenUser');
 
 Route::get('deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+
+Route::get('instellingen', function () {
+    return view('dashboard/setting/setting');
+})->name('instellingen');
+
+Route::get('alleproducten', [ProductController::class, 'getAllProducts'])->name('alleproducten');
+
 
 
 

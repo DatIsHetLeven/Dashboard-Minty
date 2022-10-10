@@ -1,0 +1,15 @@
+.item1{
+    width: 15%;
+    height: 30%;
+    background-color: red;
+    margin-left: 20%;
+}
+
+.alleProducten{
+    width: 40%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
