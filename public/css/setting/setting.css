@@ -3,7 +3,10 @@
     height: 30%;
     background-color: red;
     margin-left: 20%;
+    border-radius: 7%;
+    text-align: center;
 }
+
 
 .alleProducten{
     width: 40%;
@@ -12,4 +15,12 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+}
+
+.createNewProduct button{
+    margin-left: 80%;
+    margin-top: 5%;
+    background-color: rgb(44, 244, 137);
+    border-radius: 7px;
+    text-decoration: none;
 }
