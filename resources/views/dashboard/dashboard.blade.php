@@ -8,7 +8,7 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <div class="leftColor">
-    <div class="container">
+    <div class="container1">
         <div class="row">
             <ul class="nav justify-content-center">
             <span id="MINTY">MINTY</span>

@@ -1,7 +1,7 @@
         <link href="{{ asset('css/dashboardOld.css') }}" rel="stylesheet">
 <div class="divRegister">
  <!-- Navigatie -->
- <div class="container">
+ <div class="container1">
           <div class="row">
               <ul class="nav justify-content-center">
                 <li class="nav-item">

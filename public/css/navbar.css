@@ -17,7 +17,7 @@
   background-color: rgb(185, 238, 205);
 }
 
-.container{
+.container1{
   position: fixed;
 
   margin-left: 50px;
@@ -32,7 +32,7 @@
   transition: 0.5s;
 }
 
-.container ul{
+.container1 ul{
   position: absolute;
   top:0;
   left: 0;
@@ -43,7 +43,7 @@
   font-size: large;
 }
 
-.container ul li {
+.container1 ul li {
   position: relative;
   display: block;
   width:100%;
@@ -52,13 +52,13 @@
   color: rgb(166, 162, 162);
 }
 
-.container ul li a{
+.container1 ul li a{
   text-decoration: none;
   margin-top: 30px;
 }
 
 
-.container ul li a:hover{
+.container1 ul li a:hover{
   background: #fff; 
 }
 
@@ -71,3 +71,7 @@
   color: rgb(157, 240, 188);
 }
 
+a, a:hover, a:focus, a:Active, a:link, a:visited, img{
+  text-decoration: none;
+
+}

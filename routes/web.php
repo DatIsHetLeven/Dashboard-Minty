@@ -27,6 +27,11 @@ use App\Actions\Fortify;
 |
 */
 
+Route::get('testttt', function () {
+    return view('bootstrTesttt');
+})->name('bootstrTesttt');
+
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');

@@ -1,5 +1,8 @@
 <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+
+<!-- bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
@@ -46,7 +49,7 @@
 <!-- Einde Popup! -->
 
 <div class="leftColor">
-    <div class="container">
+    <div class="container1">
         <div class="row">
             <ul class="nav justify-content-center">
             <span id="MINTY">MINTY</span>
@@ -66,7 +69,7 @@
                 <a href="{{ route('allegebruikers') }}"><ion-icon size="Large" name="logo-playstation"></ion-icon></a>
             </li>
             <li>
-                <a class="instellinglogo"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
+                <a><ion-icon size="large"  name="settings-outline"></ion-icon></a>
             </li>
             </ul>
         </div>
@@ -74,21 +77,20 @@
 </div>
 
 <div class="alleGebruikersForm" class="overlay">
-
   <button class="show" onclick="show();">Gebruiker toevoegen</button>
-
-  <table style="border-collapse:collapse;" class="table-table" id="data-table">
-    <thead>
-      <tr>
-        <th>Gebruiker</th>
-        <th>Bedrijfsnaam</th>
-        <th>Email</th>
-        <th>factuursturen</th>
-        <th>Geverififeerd</th>
-        <th>Geabonneerd</th>
-        <th>API actief</th>
-      </tr>
-    </thead>
+  <div class="table-pos">
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Gebruiker</th>
+                <th>Bedrijfsnaam</th>
+                <th>Email</th>
+                <th>Factuursturen</th>
+                <th>geverifieerd</th>
+                <th>Geabonneerd</th>
+                <th>API actief</th>
+            </tr>
+        </thead>
     <tbody><?php
     $count = 0;
     for ($x = 0; $x < count($allegebruikers); $x++) {?>
@@ -105,7 +107,8 @@
         </tr>
       </div>
         <?php
-        }?></tbody>
+        }?></tbody></table>
+</div>
 </div>
 
 <div class="factuurGebruikerOphalen">
@@ -118,7 +121,7 @@
     <button type="submit" name="btnFactuurId" id='factuurId' value="Ophalen">Ophalen</button>
   </form>
 
-
+      </div>
 </div>
 
 
