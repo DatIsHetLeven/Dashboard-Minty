@@ -73,11 +73,6 @@
     </div>
 </div>
 
-<!-- Alle gebruikers tonen -->
-<h3> Alle Gebruikers</h3>
-
-
-
 <div class="alleGebruikersForm" class="overlay">
 
   <button class="show" onclick="show();">Gebruiker toevoegen</button>

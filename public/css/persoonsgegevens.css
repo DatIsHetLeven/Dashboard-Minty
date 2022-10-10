@@ -20,7 +20,7 @@ input{
 }
 
 .alleGebruikersForm{
-    position: absolute;
+    position: fixed;
     width: 90%;
     margin-top: 150px;
     left: 50%;
@@ -33,7 +33,7 @@ input{
 .table-table{
     position: absolute;
     width: 75%;
-    margin-top: 100px;
+    margin-top: 10%;
     left: 50%;
     -ms-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translate(-50%,-50%);

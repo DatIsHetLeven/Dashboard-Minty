@@ -115,13 +115,10 @@ class UserController extends Controller
             $newUser->plaats = $_POST['Plaats'];
             $newUser->plaats = $_POST['Plaats'];
 
-
-
             $passwordToken = $this->createToken();
             $newUser->token=$passwordToken;
             $mailSender = new MailController();
             $mailSender->sendPassword($passwordToken, $newUser->email);
-
 
             $newUser->save();
 
