@@ -74,6 +74,10 @@ Route::get('instellingen', function () {
 
 Route::get('alleproducten', [ProductController::class, 'getAllProducts'])->name('alleproducten');
 
+Route::get('productinfo/{id}', [ProductController::class, 'getSingleProduct'])->name('productinfo');
+
+Route::POST('updatePoduct/{id}', [ProductController::class, 'updatePoduct'])->name('updatePoduct');
+
 
 
 

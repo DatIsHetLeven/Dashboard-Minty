@@ -78,7 +78,45 @@ class fsnl_api_Controller extends Controller
             }
     
             return $this->fSApi->getResponseBody();
+        }
 
+        //Haal alle producten op uit FS
+        public function getSingleProduct($productId){
+            $this->fSApi->setUrl($this->urlBuilder("products/$productId"));
+            $this->fSApi->setVerb("GET");
+    
+            $test = $this->fSApi->execute();
+    
+            if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
+    
+                dump('het is niet gelukt :)');
+                dd($this->fSApi);
+                return false;
+            }
+    
+            return $this->fSApi->getResponseBody();
+        }
+
+        //Haal alle producten op uit FS
+        public function updateSingleProduct($updatedProduct, $productId){
+           
+            $productId = $productId;
+
+            $this->fSApi->setUrl($this->urlBuilder("products/$productId"));
+            $this->fSApi->setVerb("PUT");
+            // $productJason = json_encode($updatedProduct);
+
+            $this->fSApi->buildPostBody($updatedProduct);
+            $this->fSApi->execute();
+    
+            if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
+    
+                dump('het is niet gelukt :)');
+                dd($this->fSApi);
+                return false;
+            }
+    
+            return $this->fSApi->getResponseBody();
         }
 
 

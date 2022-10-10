@@ -32,9 +32,6 @@
     </div>
 </div>
 
-
-
-
 <div class="alleProducten" class="overlay">
   <div class="table-pos">
     <table id="example" class="table table-striped" style="width:100%">
@@ -49,8 +46,8 @@
     for ($x = 0; $x < count($alleProducten); $x++) {?>
       <div class="perGeberuiker" value={{$count}}>
         <tr>
-            <td><a href="#"><?php echo $alleProducten[$x]->code; ?></a></td>    
-            <td><a href="#"><?php echo $alleProducten[$x]->name; ?></td>
+            <td><a href="{{ route('productinfo',$alleProducten[$x]->id) }}"><?php echo $alleProducten[$x]->code; ?></a></td>    
+            <td><a href="{{ route('productinfo',$alleProducten[$x]->id) }}"><?php echo $alleProducten[$x]->name; ?></td>
         </tr>
       </div>
         <?php
