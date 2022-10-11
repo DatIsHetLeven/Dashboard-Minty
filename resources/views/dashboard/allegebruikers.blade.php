@@ -48,33 +48,8 @@
 </div>
 <!-- Einde Popup! -->
 
-<div class="leftColor">
-    <div class="container1">
-        <div class="row">
-            <ul class="nav justify-content-center">
-            <span id="MINTY">MINTY</span>
-            <li>
-                <a href="{{ route('dashboard') }}"><ion-icon size="large" name="home-outline"></ion-icon></a>
-            </li>
-            <li>
-                <a><ion-icon size="large" name="apps-outline"></ion-icon><a>
-            </li>
-            <li>
-                <a href="{{ route('persoonsgegevens') }}"><ion-icon size="large" name="people-outline"></ion-icon></a>
-            </li>
-            <li>
-                <a><ion-icon size="large" name="file-tray-full-outline"></ion-icon></a>
-            </li>
-            <li>
-                <a href="{{ route('allegebruikers') }}"><ion-icon size="Large" name="logo-playstation"></ion-icon></a>
-            </li>
-            <li>
-                <a><ion-icon size="large"  name="settings-outline"></ion-icon></a>
-            </li>
-            </ul>
-        </div>
-    </div>
-</div>
+@extends('layouts.nav')
+@section('content')
 
 <div class="alleGebruikersForm" class="overlay">
   <button class="show" onclick="show();">Gebruiker toevoegen</button>
@@ -125,5 +100,5 @@
 </div>
 
 
-
+@endsection
 

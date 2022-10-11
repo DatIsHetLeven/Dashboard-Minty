@@ -1,29 +1,142 @@
-<link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
-<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-<link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<table id="example" class="table table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <th>Gebruiker</th>
-                <th>Bedrijfsnaam</th>
-                <th>Email</th>
-                <th>Factuursturen</th>
-                <th>geverifieerd</th>
-                <th>Geabonneerd</th>
-                <th>API actief</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011-04-25</td>
-                <td>$320,800</td>
-                <td>$320,800</td>
-            </tr>
-        </tbody>
-    </table>
+@extends('layouts.nav')
+@section('content')
+
+<div class="container-xl px-4 mt-4">
+
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        
+        <div class="col-xl-8">
+            <div class="card mb-4">
+                <div class="card-header">Bol details</div>
+                <div class="card-body">
+                    <form>
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Koppeling :</label>
+                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="qwertyuiopasdfghjklzxcvbnm">
+                        </div>
+                        
+                        <button class="btn btn-primary" type="button">Blokkeer Api voor klant</button>
+                        <button class="btn btn-primary" type="button">Inloggen als klant</button>
+                        <button class="btn btn-primary" type="button">Verwijder klant</button>
+                        <br><br><br>
+                        Geverififeerd<input type="checkbox" id="test"<?php if($user->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
+                        Geabonneerd<input type="checkbox" <?php if($user->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
+                        API actief<input type="checkbox" <?php if($user->API == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
+                        Wordpress ingesteld<input type="checkbox" <?php if($user->wordpress == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
+                        Koppeling server<input class="form-control" type="text" id="text" placeholder=<?php if(!empty($user->server)){echo $user->server;} else{echo "n.v.t";}?> onclick="return false;"><br><br>
+                        Koppeling geldig tm<input class="form-control" type="text" id="text" placeholder=<?php if(!empty($user->geldig)){echo $user->geldig;} else{echo "n.v.t";}?> onclick="return false;"><br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4">
+        <div class="card mb-4">
+                <div class="card-header">Klant details</div>
+                <div class="card-body">
+                    <form>    
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Naam</label>
+                            <input class="form-control" id="inputUsername" type="text" placeholder=<?php echo $user->naam ?>>
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName">Email</label>
+                                <input class="form-control" id="inputFirstName" type="text" placeholder=<?php echo $user->email ?>>
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">Telefoonnummer</label>
+                                <input class="form-control" id="inputLastName" type="text" placeholder=<?php echo $user->telefoonnummer ?>>
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputOrgName">Bedrijfsnaam</label>
+                                <input class="form-control" id="inputOrgName" type="text" placeholder=<?php echo $user->bedrijfsnaam ?>>
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLocation">Adres</label>
+                                <input class="form-control" id="inputLocation" type="text" placeholder=<?php echo $user->adres ?>>
+                            </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">Postcode</label>
+                            <input class="form-control" id="inputEmailAddress" type="email" placeholder=<?php echo $user->postcode ?>>
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Plaats</label>
+                                <input class="form-control" id="inputPhone" type="tel" placeholder=<?php echo $user->plaats ?>>
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputBirthday">Factuursturen klant nr.</label>
+                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder=<?php if(empty($user->factuurId )){echo "n.v.t.";}else{echo $user->factuurId;} ?>>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-13">
+            <div class="card mb-4">
+                <div class="card-header">Koppeling</div>
+                <div class="card-body">
+                    <form>
+                        <!-- Form -->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Koppeling :</label>
+                            <input class="form-control" id="inputUsername" type="text" placeholder="" value="">
+
+                            <!-- Bereken hoelang koppeling nog geldig is -->
+                            <?php 
+                                $currentDateTime = date('Y-m-d H:i:s');
+                                $datetime1 = strtotime($currentDateTime);
+                                $datetime2 = strtotime($user->geldig);
+                                if($datetime2 == false)$datetime2=$datetime1;
+                                $secs = $datetime2 - $datetime1;// == <seconds between the two times>
+                                $days = floor(($secs%2592000)/86400);
+                                if($days <0)$days=0;?>
+
+                            Koppeling is nog <?php echo $days?> dag(en) geldig.<br><br>
+                            Voer een numerieke waarde in om de vervaldatum van de koppeling te wijzigen.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xl-13">
+            <div class="card mb-4">
+                <div class="card-header">Facturing</div>
+                <div class="card-body">
+                    <form>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+@endsection

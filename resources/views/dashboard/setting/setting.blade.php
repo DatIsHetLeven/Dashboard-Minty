@@ -9,4 +9,7 @@
         <a href = "{{ route('alleproducten') }}"><input type="button" id="inputBtn" value="Bekijk producten"></a>
 </div>
 
+
+
+
 @endsection

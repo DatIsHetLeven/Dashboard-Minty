@@ -28,7 +28,7 @@
                 <a href="{{ route('allegebruikers') }}"><ion-icon size="Large" name="logo-playstation"></ion-icon></a>
             </li>
             <li>
-                <a class="instellinglogo"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
+                <a href="{{ route('instellingen') }}"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
             </li>
             </ul>
         </div>
