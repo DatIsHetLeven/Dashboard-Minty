@@ -7,8 +7,9 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-@extends('layouts.nav')
+@extends( ($userByCookie->rol === 3) ? 'layouts.nav' :  'layouts.navAdmin')
 @section('content')
+
 <div class="container-xl px-4 mt-4">
     <hr class="mt-0 mb-4">
     <div class="row">
@@ -32,6 +33,6 @@
 
 
 
-@endsection
+
 
    

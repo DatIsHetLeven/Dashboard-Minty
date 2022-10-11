@@ -1,14 +1,18 @@
 
-<link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
-<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
-<meta name="viewport" content="width=device-width, initial-scale=0.5">
+ 
 
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    @extends( ($userByCookie->rol === 3) ? 'layouts.nav' :  'layouts.navAdmin')
+    @section('content')
 
-@extends('layouts.nav')
-@section('content')
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
 
     <div class="WelkomBanner">
         <h2>Goede middag <?php echo $userByCookie ->naam;?> !</h2>
@@ -18,7 +22,7 @@
     <div class="boxes">
         <div class="box1">
             <h4>Actieve module(s)</h4>
-['userByCookie' => $userbytoken]
+            ['userByCookie' => $userbytoken]
             <!-- <?php echo $userByCookie   ?> -->
         </div>
 
@@ -32,4 +36,7 @@
         </div> 
     </div>
 
+
+
 @endsection
+

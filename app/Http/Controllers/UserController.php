@@ -114,6 +114,7 @@ class UserController extends Controller
 //            dubbele code  - minty pawel
             $newUser->plaats = $_POST['Plaats'];
             $newUser->plaats = $_POST['Plaats'];
+            $newUser->rol = 3;
 
             $passwordToken = $this->createToken();
             $newUser->token=$passwordToken;

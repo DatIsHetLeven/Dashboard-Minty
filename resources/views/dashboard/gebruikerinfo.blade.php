@@ -10,7 +10,7 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-@extends('layouts.nav')
+@extends('layouts.navAdmin')
 @section('content')
 
   <div class="klantgegevens">
@@ -24,7 +24,6 @@
     Postcode<input type='text' placeholder=<?php echo $user->postcode ?>></input>
     Plaats<input type='text' placeholder=<?php echo $user->plaats ?>></input>
     Factuursturen klant nr.<input type='text' placeholder=<?php if(empty($user->factuurId )){echo "n.v.t.";}else{echo $user->factuurId;} ?>></input>
-
     
   </div>
 

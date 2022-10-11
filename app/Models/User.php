@@ -33,6 +33,7 @@ class User extends Authenticatable
         'plaats',
         'token',
         'cookie_token',
+        'rol',
     ];
 
     public function getApiStatus() {

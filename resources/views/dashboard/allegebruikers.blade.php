@@ -48,7 +48,7 @@
 </div>
 <!-- Einde Popup! -->
 
-@extends('layouts.nav')
+@extends('layouts.navAdmin')
 @section('content')
 
 <div class="alleGebruikersForm" class="overlay">

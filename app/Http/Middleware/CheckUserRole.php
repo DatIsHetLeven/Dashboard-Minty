@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckUser 
+class CheckUserRole 
 {
     /**
      * Handle an incoming request.
@@ -14,13 +14,8 @@ class CheckUser
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
-    {
-        if(!isset($_COOKIE['user'])){
-            return redirect()->route('welcome');
-        }
-        
-        return $next($request);
+    // public function handle(Request $request, Closure $next)
+    // {
 
-    }
+    // }
 }

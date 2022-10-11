@@ -1,4 +1,4 @@
-@extends('layouts.nav')
+@extends('layouts.navAdmin')
 @section('content')
 
 <link href="{{ asset('css/setting/setting.css') }}" rel="stylesheet">
