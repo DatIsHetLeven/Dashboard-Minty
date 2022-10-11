@@ -130,7 +130,10 @@ class UserController extends Controller
             $newStatus->API = 0;
             $newStatus->wordpress = 0;
             $newStatus->server = "n.v.t.";
-            $newStatus->geldig = "2022-01-01";
+
+            $geldig14dagen = date('Y-m-d', strtotime(' +14 day'));
+
+            $newStatus->geldig = $geldig14dagen;
 
             $newStatus->save();
     

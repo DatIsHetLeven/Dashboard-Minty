@@ -50,6 +50,12 @@ class HomeController extends Controller
         ->where('factuursturen.userId', '=', $userId)->first();
 
         if(empty($getUser)){
+            $getUser = DB::table('statusdetails')
+            ->join('user', 'statusdetails.userId', '=', 'user.userId')
+            ->where('statusdetails.userId', '=', $userId)->first();
+        }
+        
+        if(empty($getUser)){
             $getUser = User::
             join('factuursturen', 'factuursturen.userId', '=', 'user.userId')
             ->where('factuursturen.userId', '=', $userId)->first();
