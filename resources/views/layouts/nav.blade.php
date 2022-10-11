@@ -19,13 +19,13 @@
                 <a><ion-icon size="large" name="apps-outline"></ion-icon><a>
             </li>
             <li>
-                <a href="{{ route('persoonsgegevens') }}"><ion-icon size="large" name="people-outline"></ion-icon></a>
+                <a href="{{ route('persoonsgegevens') }}"><ion-icon size="large" name="person-outline"></ion-icon></a>
             </li>
             <li>
                 <a><ion-icon size="large" name="file-tray-full-outline"></ion-icon></a>
             </li>
             <li>
-                <a href="{{ route('allegebruikers') }}"><ion-icon size="Large" name="logo-playstation"></ion-icon></a>
+                <a href="{{ route('allegebruikers') }}"><ion-icon size="large" name="people-outline"></ion-icon></a>
             </li>
             <li>
                 <a href="{{ route('instellingen') }}"><ion-icon size="large"  name="settings-outline"></ion-icon></a>

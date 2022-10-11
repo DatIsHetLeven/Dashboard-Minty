@@ -33,11 +33,11 @@ Route::get('/', function () {
 
 Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword');
 
-Route::get('persoonsgegevens', [HomeController::class, 'renderPersonalDetails'])->name('persoonsgegevens');
+Route::get('persoonsgegevens', [HomeController::class, 'renderPersonalDetails'])->name('persoonsgegevens')->middleware('check.user');;
 
 Route::GET('dashboard', [HomeController::class, 'renderDashboard'])->name('dashboard')->middleware('check.user');
 
-Route::get('gebruikers', [UserController::class, 'getAllUsers'])->name('allegebruikers');
+Route::get('gebruikers', [UserController::class, 'getAllUsers'])->name('allegebruikers')->middleware('check.user');;
 
 Route::get('dashboardOld', function () {
     return view('dashboard/dashboardOldMyDesign');
@@ -59,24 +59,24 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('gebruikerinfo', function () {
     return view('dashboard/gebruikerinfo');
-})->name('gebruikerinfo');
+})->name('gebruikerinfo')->middleware('check.user');;
 
-Route::get('seeCustomerDetail/{id}', [HomeController::class, 'seeCustomerDetail'])->name('seeCustomerDetail');
+Route::get('seeCustomerDetail/{id}', [HomeController::class, 'seeCustomerDetail'])->name('seeCustomerDetail')->middleware('check.user');
 
-Route::get('createUserFactuursturen/{id}', [UserController::class, 'createUserFactuursturen'])->name('createUserFactuursturen');
-Route::POST('getFactuursturenUser', [UserController::class, 'getFactuursturenUser'])->name('getFactuursturenUser');
+Route::get('createUserFactuursturen/{id}', [UserController::class, 'createUserFactuursturen'])->name('createUserFactuursturen')->middleware('check.user');
+Route::POST('getFactuursturenUser', [UserController::class, 'getFactuursturenUser'])->name('getFactuursturenUser')->middleware('check.user');
 
-Route::get('deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+Route::get('deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser')->middleware('check.user');
 
 Route::get('instellingen', function () {
     return view('dashboard/setting/setting');
 })->name('instellingen');
 
-Route::get('alleproducten', [ProductController::class, 'getAllProducts'])->name('alleproducten');
+Route::get('alleproducten', [ProductController::class, 'getAllProducts'])->name('alleproducten')->middleware('check.user');
 
-Route::get('productinfo/{id}', [ProductController::class, 'getSingleProduct'])->name('productinfo');
+Route::get('productinfo/{id}', [ProductController::class, 'getSingleProduct'])->name('productinfo')->middleware('check.user');
 
-Route::POST('updatePoduct/{id}', [ProductController::class, 'updatePoduct'])->name('updatePoduct');
+Route::POST('updatePoduct/{id}', [ProductController::class, 'updatePoduct'])->name('updatePoduct')->middleware('check.user');
 
 
 // Route::get('dashboard', function () {
