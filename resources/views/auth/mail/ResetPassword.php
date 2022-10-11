@@ -2,4 +2,4 @@ Beste [naam],
 
 Wachtwoord resetten :
 
-<a href="https://mintydashboard.myio.nl/password?urlode=<?php echo $token;?>">Wachtwoord</a>
+<a href="https://mintydashboard.myio.nl/passwordreset?urlode=<?php echo $token;?>">Wachtwoord</a>

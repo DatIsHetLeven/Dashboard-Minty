@@ -83,8 +83,10 @@ Route::POST('updatePoduct/{id}', [ProductController::class, 'updatePoduct'])->na
 //     return view('dashboard/dashboard');
 // })->name('dashboard')->middleware('check.user');
 
-// Route::get('reset', function () {
-//     return view('auth/passwords/resettest');
-// })->name('resetpassword');
+Route::get('passwordreset', function () {
+    return view('auth/passwords/password');
+})->name('passwordreset');
+
+
 
 

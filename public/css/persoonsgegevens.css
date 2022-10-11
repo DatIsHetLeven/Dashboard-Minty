@@ -315,4 +315,14 @@ a, a:hover, a:focus, a:active, a:link, a:visited{
     color: rgb(0, 0, 0);
 }
 
+#btnDeleteUser{
+    background-color: red;
+    border-color: red;
+    
+}
+
+#btnInloggenAlsKlant{
+    background-color: rgb(56, 225, 56);
+    border-color: rgb(56, 225, 56);
+}
 

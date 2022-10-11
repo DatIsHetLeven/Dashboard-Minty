@@ -1,3 +1,4 @@
+<link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet"> 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 @extends('layouts.nav')
@@ -19,9 +20,9 @@
                             <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="qwertyuiopasdfghjklzxcvbnm">
                         </div>
                         
-                        <button class="btn btn-primary" type="button">Blokkeer Api voor klant</button>
-                        <button class="btn btn-primary" type="button">Inloggen als klant</button>
-                        <button class="btn btn-primary" type="button">Verwijder klant</button>
+                        <button class="btn btn-primary" id="btnDeleteUser" type="button">Blokkeer Api voor klant</button>
+                        <button class="btn btn-primary" id="btnInloggenAlsKlant" type="button">Inloggen als klant</button>
+                        <a href="{{ route('deleteUser',$user->userId) }}"><button class="btn btn-primary" id="btnDeleteUser" type="button">Verwijder klant</button></a>
                         <br><br><br>
                         Geverififeerd<input type="checkbox" id="test"<?php if($user->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
                         Geabonneerd<input type="checkbox" <?php if($user->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;"><br><br>

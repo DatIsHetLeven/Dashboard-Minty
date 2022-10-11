@@ -52,7 +52,7 @@ class ProductController extends Controller
 
             $fSApi->updateSingleProduct($updatePoduct, $productId);
 
-            return back();
+            return redirect()->route('alleproducten')->with(['succes'=> "Succesvol aangepast"]);
 
         }
         

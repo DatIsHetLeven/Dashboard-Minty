@@ -14,7 +14,6 @@ class MailController extends Controller
 {
     public function sendPassword($token, $email)
     {
-//        De Class password  gaat hier noiet werken - minty pawel
         Mail::to($email)->send(new password($token));
 
         return view('welcome');

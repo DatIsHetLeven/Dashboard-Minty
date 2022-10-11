@@ -1,7 +1,4 @@
-
-<link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
-<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-<link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
 
@@ -12,19 +9,29 @@
 
 @extends('layouts.nav')
 @section('content')
+<div class="container-xl px-4 mt-4">
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card mb-4">
+                <div class="card-header">Persoonsgegevens</div>
+                <div class="card-body">
+                    <form>              
+                        Naam<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->naam ?>><br>
+                        Email<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->email ?>><br>
+                        Telefoonnummer<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->telefoonnummer ?>><br>
+                        Bedijfsnaam<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->bedrijfsnaam ?>><br>
+                        Adres<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->adres ?>><br>
+                        Postcode<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->postcode ?>><br>
+                        Plaats<input class="form-control" type="text" id="text" placeholder<?php echo $userByCookie->plaats ?>><br>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-<h3>Persoonsgegevens</h3>
-            <?php echo $userByCookie->naam   ?> 
-            
-<div class="content">
-    Naam<input type='text' placeholder=<?php echo $userByCookie->naam ?>></input>
-    Email<input type='text' placeholder=<?php echo $userByCookie->email ?>></input>
-    Telefoonnummer<input type='text' placeholder=<?php echo $userByCookie->telefoonnummer ?>></input>
-    Bedijfsnaam<input type='text' placeholder=<?php echo $userByCookie->bedrijfsnaam ?>></input>
-    Adres<input type='text' placeholder=<?php echo $userByCookie->adres ?>></input>
-    Postcode<input type='text' placeholder=<?php echo $userByCookie->postcode ?>></input>
-    Plaats<input type='text' placeholder=<?php echo $userByCookie->plaats ?>></input>
-</div>
+
+
+
 @endsection
 
    
