@@ -4,6 +4,7 @@
 
     @extends( ($userByCookie->rol === 3) ? 'layouts.nav' :  'layouts.navAdmin')
     @section('content')
+    
 
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
@@ -22,9 +23,30 @@
     <div class="boxes">
         <div class="box1">
             <h4>Actieve module(s)</h4>
+            <?php 
+            $geldig = $userByCookie->geldig;
+            $dayVandaag = date('Y-m-d');
+            
+            // Als koppeling niet meer geldig is
+            if($geldig < $dayVandaag){
+               ?> Uw proefperiode van 14 dagen zijn voorbij.<br>
+                  Wilt u gebruik blijven maken van de koppeling ?<br>
+                  <a href="#">Abonneer hier nu!</a><?php
+                }
+            // Als koppeling nog geldig is maar klant niet geverf is 
+            if($geldig > $dayVandaag){
+                if(!$userByCookie->geverifieerd === 1){
+                ?> Uw roefperiode loopt binnenkort af.<br>
+                   Wilt u gebruik blijven maken van de koppeling ?<br>
+                   <a href="#">Abonneer hier nu!</a><?php
+                 }}?>  
+
+            
+            
+            
             ['userByCookie' => $userbytoken]
-            <!-- <?php echo $userByCookie   ?> -->
-        </div>
+            
+            </div>
 
         <div class="box2">
             <h4>Hulp nodig bij het instellen?</h4>

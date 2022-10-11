@@ -26,12 +26,23 @@ class HomeController extends Controller
     public function renderDashboard () {
         $userbytoken = UserController::getByCookie();
         if(empty($userbytoken))return view('welcome');
-        return view('dashboard/dashboard', ['userByCookie' => $userbytoken]);
+
+        $getUser = DB::table('statusdetails')
+        ->join('user', 'statusdetails.userId', '=', 'user.userId')
+        ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
+        if(empty($getUser))return view('welcome');
+
+        return view('dashboard/dashboard', ['userByCookie' => $getUser]);
     }
 
     public function renderPersonalDetails () {
         $userbytoken = UserController::getByCookie();
-        return view('dashboard/persoonsgegevens', ['userByCookie' => $userbytoken]);
+
+        $getUser = DB::table('statusdetails')
+        ->join('user', 'statusdetails.userId', '=', 'user.userId')
+        ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
+
+        return view('dashboard/persoonsgegevens', ['userByCookie' => $getUser]);
     }
 
     public function resetPassword()
