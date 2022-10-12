@@ -84,6 +84,10 @@ class HomeController extends Controller
         ->where('cookie_token', '=', $cookie)
         ->update(['cookie_token' => NULL]);
 
+        $cookie_name = "user";
+        setcookie($cookie_name, "", time() - (86400 * 30));
+
         return redirect('login');
     }
+
 }
