@@ -16,13 +16,10 @@
                 <a href="{{ route('dashboard') }}"><ion-icon size="large" name="home-outline"></ion-icon></a>
             </li>
             <li>
-                <a><ion-icon size="large" name="apps-outline"></ion-icon><a>
-            </li>
-            <li>
                 <a href="{{ route('persoonsgegevens') }}"><ion-icon size="large" name="person-outline"></ion-icon></a>
             </li>
             <li>
-                <a><ion-icon size="large" name="file-tray-full-outline"></ion-icon></a>
+                <a href="#"><ion-icon size="large" name="build-outline"></ion-icon></a>
             </li>
             <li>
                 <a href="{{ route('allegebruikers') }}"><ion-icon size="large" name="people-outline"></ion-icon></a>

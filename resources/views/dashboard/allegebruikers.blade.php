@@ -19,30 +19,75 @@
 <!-- Begin van de popup -> gebruiker toevoegen -->
 <form method="POST" action="{{ route('create_user_check') }}" class="formRegister">
     @csrf
-    <div class="userinput">
-            <div class="links">
-                <input type="email" id="userInput" name="email" placeholder='Email' required autocomplete="email"><br><br>
-          
-                <input type="text" id="userInput" name="userName" placeholder='Naam' required autocomplete="email"><br><br>
-          
-                <input type="text" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer (alleen getallen)' required><br><br>
-          
-                <input type="text" id="userInput" name="Bedijfsnaam" placeholder='Bedijfsnaam' required><br><br>
+    <div class="col-xl-10">
+        <div class="card mb-7">
+                <div class="card-header">Niuewe gebruiker</div>
+                <div class="card-body">
+                    <form>    
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                        <!-- Form Group (organization name)-->
+                          <div class="col-md-6">
+                            <input class="form-control" id="inputOrgName" type="text" name="email" placeholder='Email' required autocomplete="email">
+                          </div>
+                          <!-- Form Group (location)-->
+                          <div class="col-md-6">
+                            <input class="form-control" id="inputLocation" type="text" name="userName" placeholder='Naam' required autocomplete="email">
+                          </div>
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <input class="form-control" id="inputFirstName" type="text" name="Telefoonnummer" placeholder='Telefoonnummer' required>
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <input class="form-control" id="inputLastName" type="text" name="Bedijfsnaam" placeholder='Bedijfsnaam' required>
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <input class="form-control" id="inputOrgName" type="text" name="BTW-Nummer" placeholder='BTW-Nummer' required>
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <input class="form-control" id="inputLocation" type="text" name="Adres" placeholder='Adres+Huisnummer' required>
+                            </div>
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <input class="form-control" id="inputPhone" type="text" name="Postcode" placeholder='Postcode' required>
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <input class="form-control" id="inputBirthday" type="text" name="Plaats" placeholder='Plaats' required>
+                            </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <input class="form-control" id="inputPhone" type="text" name="FactuurId" placeholder='FactuursturenId' required>
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                              <br><label for="color">functie:</label>
+                              <select name="userRole" id="color">
+	                              <option value="">--- Kies een functie ---</option>
+	                              <option value="Admin">Admin</option>
+	                              <option value="Proefaccount" selected>Klant(14 dagen proef)</option>
+                              </select>
+                            </div>
+                        </div>
+                        <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>  
+                    </form>
+                </div>
             </div>
-            <div class="rechts">
-                <input type="text" id="userInput" name="BTW-Nummer" placeholder='BTW-Nummer' required><br><br>
-          
-                <input type="text" id="userInput" name="Adres" placeholder='Adres+Huisnummer' required><br><br>
-          
-                <input type="text" id="userInput" name="Postcode" placeholder='Postcode' required><br><br>
-          
-                <input type="text" id="userInput" name="Plaats" placeholder='Plaats' required><br><br>
-
-                <input type="text" id="userInput" name="FactuurId" placeholder='FactuursturenId' required><br><br>
-                
-            </div>
-         </div> 
-         <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>  
+        </div>
     </form>           
   </div>
 </div>

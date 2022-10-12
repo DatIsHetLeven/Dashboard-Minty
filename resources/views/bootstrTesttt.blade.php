@@ -1,142 +1,314 @@
-<link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet"> 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap User Management Data Table</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+body {
+    color: #566787;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 13px;
+}
+.table-responsive {
+    margin: 30px 0;
+}
+.table-wrapper {
+    min-width: 1000px;
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title {
+    padding-bottom: 15px;
+    background: rgb(185, 238, 205);
+    color: #fff;
+    padding: 16px 30px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+}
+.table-title h2 {
+    margin: 5px 0 0;
+    font-size: 24px;
+}
+.table-title .btn {
+    color: #566787;
+    float: right;
+    font-size: 13px;
+    background: #fff;
+    border: none;
+    min-width: 50px;
+    border-radius: 2px;
+    border: none;
+    outline: none !important;
+    margin-left: 10px;
+}
+.table-title .btn:hover, .table-title .btn:focus {
+    color: #566787;
+    background: #f2f2f2;
+}
+.table-title .btn i {
+    float: left;
+    font-size: 21px;
+    margin-right: 5px;
+}
+.table-title .btn span {
+    float: left;
+    margin-top: 2px;
+}
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+table.table tr th:first-child {
+    width: 60px;
+}
+table.table tr th:last-child {
+    width: 100px;
+}
+table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fcfcfc;
+}
+table.table-striped.table-hover tbody tr:hover {
+    background: #f5f5f5;
+}
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}	
+table.table td:last-child i {
+    opacity: 0.9;
+    font-size: 22px;
+    margin: 0 5px;
+}
+table.table td a {
+    font-weight: bold;
+    color: #566787;
+    display: inline-block;
+    text-decoration: none;
+}
+table.table td a:hover {
+    color: #2196F3;
+}
+table.table td a.settings {
+    color: #2196F3;
+}
+table.table td a.delete {
+    color: #F44336;
+}
+table.table td i {
+    font-size: 19px;
+}
+table.table .avatar {
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.status {
+    font-size: 30px;
+    margin: 2px 2px 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 10px;
+}
+.text-success {
+    color: #10c469;
+}
+.text-info {
+    color: #62c9e8;
+}
+.text-warning {
+    color: #FFC107;
+}
+.text-danger {
+    color: #ff5b5b;
+}
+.pagination {
+    float: right;
+    margin: 0 0 5px;
+}
+.pagination li a {
+    border: none;
+    font-size: 13px;
+    min-width: 30px;
+    min-height: 30px;
+    color: #999;
+    margin: 0 2px;
+    line-height: 30px;
+    border-radius: 2px !important;
+    text-align: center;
+    padding: 0 6px;
+}
+.pagination li a:hover {
+    color: #666;
+}	
+.pagination li.active a, .pagination li.active a.page-link {
+    background: #03A9F4;
+}
+.pagination li.active a:hover {        
+    background: #0397d6;
+}
+.pagination li.disabled i {
+    color: #ccc;
+}
+.pagination li i {
+    font-size: 16px;
+    padding-top: 6px
+}
+.hint-text {
+    float: left;
+    margin-top: 10px;
+    font-size: 13px;
+}
+</style>
+<script>
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
-@extends('layouts.navAdmin')
-@section('content')
+<script src="{{ asset('js/popupToevoegen.js') }}"></script>
 
-<div class="container-xl px-4 mt-4">
+<link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet">
+</head>
+<body>
 
-    <hr class="mt-0 mb-4">
-    <div class="row">
-        
-        <div class="col-xl-8">
-            <div class="card mb-4">
-                <div class="card-header">Bol details</div>
-                <div class="card-body">
-                    <form>
-                        <!-- Form Group (username)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Koppeling :</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="qwertyuiopasdfghjklzxcvbnm">
-                        </div>
-                        <button class="btn btn-primary" id="btnDeleteUser" type="button">Blokkeer Api voor klant</button>
-                        <button class="btn btn-primary" id="btnInloggenAlsKlant" type="button">Inloggen als klant</button>
-                        <a href="{{ route('deleteUser',$user->userId) }}"><button class="btn btn-primary" id="btnDeleteUser" type="button">Verwijder klant</button></a>
-                        <br><br><br>
-                        Geverififeerd<input type="checkbox" id="test"<?php if($user->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
-                        Geabonneerd<input type="checkbox" <?php if($user->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
-                        API actief<input type="checkbox" <?php if($user->API == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
-                        Wordpress ingesteld<input type="checkbox" <?php if($user->wordpress == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
-                        Koppeling server<input class="form-control" type="text" id="text" placeholder=<?php if(!empty($user->server)){echo $user->server;} else{echo "n.v.t";}?> onclick="return false;"><br><br>
-                        Koppeling geldig tm<input class="form-control" type="text" id="text" placeholder=<?php if(!empty($user->geldig)){echo $user->geldig;} else{echo "n.v.t";}?> onclick="return false;"><br><br>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4">
-        <div class="card mb-4">
-                <div class="card-header">Klant details</div>
+<div class="popUp" id="popUp-1">
+  <div class="overlay" onclick="show();"></div>
+  <div class="content">
+    <div class="close-btn" onclick="show();">&times;</div>
+<!-- Begin van de popup -> gebruiker toevoegen -->
+<form method="POST" action="{{ route('create_user_check') }}" class="formRegister">
+    @csrf
+    <div class="col-xl-10">
+        <div class="card mb-7">
+                <div class="card-header">Niuewe gebruiker</div>
                 <div class="card-body">
                     <form>    
-                        <!-- Form Group (username)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Naam</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder=<?php echo $user->naam ?>>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                        <!-- Form Group (organization name)-->
+                          <div class="col-md-6">
+                            <input class="form-control" id="inputOrgName" type="text" name="email" placeholder='Email' required autocomplete="email">
+                          </div>
+                          <!-- Form Group (location)-->
+                          <div class="col-md-6">
+                            <input class="form-control" id="inputLocation" type="text" name="userName" placeholder='Naam' required autocomplete="email">
+                          </div>
                         </div>
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (first name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputFirstName">Email</label>
-                                <input class="form-control" id="inputFirstName" type="text" placeholder=<?php echo $user->email ?>>
+                                <input class="form-control" id="inputFirstName" type="text" name="Telefoonnummer" placeholder='Telefoonnummer' required>
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">Telefoonnummer</label>
-                                <input class="form-control" id="inputLastName" type="text" placeholder=<?php echo $user->telefoonnummer ?>>
+                                <input class="form-control" id="inputLastName" type="text" name="Bedijfsnaam" placeholder='Bedijfsnaam' required>
                             </div>
                         </div>
                         <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (organization name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Bedrijfsnaam</label>
-                                <input class="form-control" id="inputOrgName" type="text" placeholder=<?php echo $user->bedrijfsnaam ?>>
+                                <input class="form-control" id="inputOrgName" type="text" name="BTW-Nummer" placeholder='BTW-Nummer' required>
                             </div>
                             <!-- Form Group (location)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Adres</label>
-                                <input class="form-control" id="inputLocation" type="text" placeholder=<?php echo $user->adres ?>>
+                                <input class="form-control" id="inputLocation" type="text" name="Adres" placeholder='Adres+Huisnummer' required>
                             </div>
-                        </div>
-                        <!-- Form Group (email address)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Postcode</label>
-                            <input class="form-control" id="inputEmailAddress" type="email" placeholder=<?php echo $user->postcode ?>>
                         </div>
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (phone number)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Plaats</label>
-                                <input class="form-control" id="inputPhone" type="tel" placeholder=<?php echo $user->plaats ?>>
+                                <input class="form-control" id="inputPhone" type="text" name="Postcode" placeholder='Postcode' required>
                             </div>
                             <!-- Form Group (birthday)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Factuursturen klant nr.</label>
-                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder=<?php if(empty($user->factuurId )){echo "n.v.t.";}else{echo $user->factuurId;} ?>>
+                                <input class="form-control" id="inputBirthday" type="text" name="Plaats" placeholder='Plaats' required>
+                            </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <input class="form-control" id="inputPhone" type="text" name="FactuurId" placeholder='FactuursturenId' required>
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                              <br><label for="color">functie:</label>
+                              <select name="userRole" id="color">
+	                              <option value="">--- Kies een functie ---</option>
+	                              <option value="Admin">Admin</option>
+	                              <option value="Proefaccount" selected>Klant(14 dagen proef)</option>
+                              </select>
                             </div>
                         </div>
+                        <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>  
                     </form>
                 </div>
             </div>
         </div>
-
-        <div class="col-xl-13">
-            <div class="card mb-4">
-                <div class="card-header">Koppeling</div>
-                <div class="card-body">
-                    <form>
-                        <!-- Form -->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Koppeling :</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="" value="">
-
-                            <!-- Bereken hoelang koppeling nog geldig is -->
-                            <?php 
-                                $currentDateTime = date('Y-m-d H:i:s');
-                                $datetime1 = strtotime($currentDateTime);
-                                $datetime2 = strtotime($user->geldig);
-                                if($datetime2 == false)$datetime2=$datetime1;
-                                $secs = $datetime2 - $datetime1;// == <seconds between the two times>
-                                $days = floor(($secs%2592000)/86400);
-                                if($days <0)$days=0;?>
-
-                            Koppeling is nog <?php echo $days?> dag(en) geldig.<br><br>
-                            Voer een numerieke waarde in om de vervaldatum van de koppeling te wijzigen.
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-xl-13">
-            <div class="card mb-4">
-                <div class="card-header">Facturing</div>
-                <div class="card-body">
-                    <form>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-
-    </div>
+    </form>           
+  </div>
 </div>
-
-
-@endsection
+<!-- Einde Popup! -->
+@extends('layouts.navAdmin')
+@section('content')
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h2>Alle gebruikers</h2>
+                    </div>
+                    <div class="col-sm-7">
+                        <a href="#" class="btn btn-secondary" onclick="show()"><i class="material-icons">&#xE147;</i><span>Voeg gebruiker toe</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Gebruiker</th>
+                        <th>Bedrijfsnaam</th>						
+                        <th>Email</th>
+                        <th>Factuursturen</th>
+                        <th>Geverifieerd</th>
+                        <th>Geabonneerd</th>
+                        <th>API actief</th>
+                    </tr>
+                </thead><?php
+    $count = 0;
+    for ($x = 0; $x < count($allegebruikers); $x++) {?>
+      <div class="perGeberuiker" value={{$count}}>
+        <tr>
+            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->naam; ?></a></td>    
+            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->bedrijfsnaam; ?></td>
+            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->email; ?></td>
+            <?php $count++;?>
+            <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>
+            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
+            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
+            <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->API == TRUE){?>checked<?php }?> onclick="return false;"></td>
+        </tr>
+      </div>
+        <?php
+        }?></tbody></table>
+</div>
+</div>
+    </div>
+</div>     
+</body>
+</html>

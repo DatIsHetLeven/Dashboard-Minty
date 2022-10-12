@@ -88,6 +88,10 @@ Route::get('passwordreset', function () {
     return view('auth/passwords/password');
 })->name('passwordreset');
 
+Route::get('testpage', function () {
+    return view('testpage');
+})->name('testpage');
+
 
 
 

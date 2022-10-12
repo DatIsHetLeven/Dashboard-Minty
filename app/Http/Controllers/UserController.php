@@ -98,13 +98,10 @@ class UserController extends Controller
             $getUser = User::where('email', '=', $newUser->email)
             ->first();
 
-            if(!empty($getUser))
-            {
-                return back()->with(['error'=> "Email al in gebruik"]);
-            }
+            if(!empty($getUser))return back()->with(['error'=> "Email al in gebruik"]);
 
+            $userRole = $_POST['userRole'];
             $newUser->naam = $_POST['userName'];
-
             $newUser->password = $this->createToken();
             $newUser->telefoonnummer = $_POST['Telefoonnummer'];
             $newUser->bedrijfsnaam = $_POST['Bedijfsnaam'];
@@ -114,7 +111,8 @@ class UserController extends Controller
 //            dubbele code  - minty pawel
             $newUser->plaats = $_POST['Plaats'];
             $newUser->plaats = $_POST['Plaats'];
-            $newUser->rol = 3;
+            if($userRole ==='Proefaccount')$newUser->rol = 3;
+            if($userRole ==='Admin')$newUser->rol = 1;
 
             $passwordToken = $this->createToken();
             $newUser->token=$passwordToken;
@@ -199,7 +197,8 @@ class UserController extends Controller
         $allUsers= DB::table('user')
             ->leftJoin('statusdetails', 'user.userId','=','statusdetails.userId')
             ->get();
-        return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
+        //return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
+        return view('bootstrTesttt')->with(['allegebruikers'=> $allUsers]);
     }
 
     //Haal gebruiker op uit FS -> dmv bestaande Factuurid
