@@ -77,4 +77,13 @@ class HomeController extends Controller
         return view('bootstrTesttt')->with(['user'=> $getUser]);
         //return view('dashboard/gebruikerinfo')->with(['user'=> $getUser]);
     }
+
+    public function logout(){
+        $cookie = $_COOKIE;
+        DB::table('user')
+        ->where('cookie_token', '=', $cookie)
+        ->update(['cookie_token' => NULL]);
+
+        return redirect('login');
+    }
 }

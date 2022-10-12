@@ -26,6 +26,9 @@
             <li>
                 <a href="{{ route('instellingen') }}"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
             </li>
+            <li>
+                <a href="{{ route('logout') }}"><ion-icon size="Large" name="log-out-outline"></ion-icon></a>
+            </li>
             </ul>
         </div>
     </div>

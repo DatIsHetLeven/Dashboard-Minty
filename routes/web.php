@@ -78,6 +78,7 @@ Route::get('productinfo/{id}', [ProductController::class, 'getSingleProduct'])->
 
 Route::POST('updatePoduct/{id}', [ProductController::class, 'updatePoduct'])->name('updatePoduct')->middleware('check.user');
 
+Route::get('logout', [HomeController::class, 'logout'])->name('logout')->middleware('check.user');
 
 // Route::get('dashboard', function () {
 //     return view('dashboard/dashboard');
