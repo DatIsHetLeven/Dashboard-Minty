@@ -82,8 +82,6 @@ class UserController extends Controller
                 return back()->with(['error'=> "Wachtwoord komt niet overeen"]);
             }
         }
-
-
     }
 
     //Create user

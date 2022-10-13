@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Middleware\CheckUser;
 
 // ongebruikte classes
@@ -91,6 +92,13 @@ Route::get('passwordreset', function () {
 Route::get('testpage', function () {
     return view('testpage');
 })->name('testpage');
+
+Route::get('allemodules', function () {
+    return view('dashboard/module/allemodules');
+})->name('allemodules');
+
+
+Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules');
 
 
 

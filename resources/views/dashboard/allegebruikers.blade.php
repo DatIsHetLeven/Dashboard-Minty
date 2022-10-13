@@ -23,7 +23,7 @@
         <div class="card mb-7">
                 <div class="card-header">Niuewe gebruiker</div>
                 <div class="card-body">
-                    <form>    
+                    <form>
                         <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
                         <!-- Form Group (organization name)-->
@@ -83,12 +83,12 @@
                               </select>
                             </div>
                         </div>
-                        <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>  
+                        <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>
                     </form>
                 </div>
             </div>
         </div>
-    </form>           
+    </form>
   </div>
 </div>
 <!-- Einde Popup! -->
@@ -116,7 +116,7 @@
     for ($x = 0; $x < count($allegebruikers); $x++) {?>
       <div class="perGeberuiker" value={{$count}}>
         <tr>
-            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->naam; ?></a></td>    
+            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->naam; ?></a></td>
             <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->bedrijfsnaam; ?></td>
             <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->email; ?></td>
             <?php $count++;?>

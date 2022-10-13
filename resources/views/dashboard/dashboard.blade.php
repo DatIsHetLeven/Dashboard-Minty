@@ -1,7 +1,7 @@
 
     @extends( ($userByCookie->rol === 3) ? 'layouts.nav' :  'layouts.navAdmin')
     @section('content')
-    
+
 
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
@@ -16,7 +16,7 @@
     <div class="boxes">
         <div class="box1">
             <h4>Actieve module(s)</h4>
-            <?php 
+            <?php
             $geldig = $userByCookie->geldig;
             $dayVandaag = date('Y-m-d');
         //Laat deze melding alleen zien voor niet Admin!
@@ -27,7 +27,7 @@
                   Wilt u gebruik blijven maken van de koppeling ?<br>
                   <a href="#">Abonneer hier nu!</a><?php
                 }
-            // Als koppeling nog geldig is maar klant niet geverf is 
+            // Als koppeling nog geldig is maar klant niet geverf is
             if($geldig > $dayVandaag){
                 if(!$userByCookie->geverifieerd === 1){
                 ?> Uw roefperiode loopt binnenkort af.<br>
@@ -36,17 +36,17 @@
                  }}
         }?>
             ['userByCookie' => $userbytoken]
-            
+
             </div>
 
         <div class="box2">
             <h4>Hulp nodig bij het instellen?</h4>
             Om deze koppeling te kunnen gebruiken moeten een aantal dingen geinstalleerd en ingesteld worden
             Laten we samen door deze stappen lopen!
-            
+
             <input type="submit" class="btnZelfStudie" value="Zelf studie">
             <input type="submit" class="btnSupport" value="Support">
-        </div> 
+        </div>
     </div>
 
 

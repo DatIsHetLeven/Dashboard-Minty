@@ -68,4 +68,5 @@
     "non-feature-branches": [
         "update/*"
     ]
+    
 }

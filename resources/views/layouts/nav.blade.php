@@ -18,7 +18,7 @@
                 <a href="{{ route('persoonsgegevens') }}"><ion-icon size="large" name="person-outline"></ion-icon></a>
             </li>
             <li>
-                <a><ion-icon size="large" name="build-outline"></ion-icon></a>
+                <a href="{{ route('GetAllModules') }}"><ion-icon size="large" name="build-outline"></ion-icon></a>
             </li>
             <li>
                 <a href="{{ route('instellingen') }}"><ion-icon size="large"  name="settings-outline"></ion-icon></a>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Connection;
+namespace App\Http\Controllers\Connection\Fs_Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Connection\fsnl_api;
+use app\Models\Connection\Fs_API\fsnl_api;
 
 class fsnl_api_Controller extends Controller
 {
@@ -18,8 +18,6 @@ class fsnl_api_Controller extends Controller
         $this->fSApi = new fsnl_api();
         $this->baseUrl = 'https://www.factuursturen.nl/api/v1/';
 
-
-        
         $this->fSApi->setUsername('mintyarthur');
         $this->fSApi->setPassword('rS21906MiqgIFUSvQzayLHK7GLxRyqQPunFjzJNa');
     }
