@@ -100,6 +100,8 @@ Route::get('allemodules', function () {
 
 Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules');
 
+Route::get('CreateUser', [ModuleController::class, 'CreateUser'])->name('CreateUser');
+
 
 
 

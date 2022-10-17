@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\statusdetails;
 use App\Models\factuursturen;
+use App\Models\bolApi;
 
 
 
@@ -18,6 +19,7 @@ use App\Providers\FortifyServiceProvider;
 use App\Actions\Fortify;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\Connection\fsnl_api_Controller;
+use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 
 
 
@@ -68,7 +70,7 @@ class UserController extends Controller
             if(empty($getUser)){
                 return back()->with(['error'=> "Link niet meer geldig, vraag een nieuw wachtwoord aan"]);
             }
-            
+
             if($password == $password2)
             {
                 //Update user
@@ -98,7 +100,12 @@ class UserController extends Controller
 
             if(!empty($getUser))return back()->with(['error'=> "Email al in gebruik"]);
 
-            $userRole = $_POST['userRole'];
+            if(!empty($_POST['userRole'])){
+                $userRole = $_POST['userRole'];
+                if($userRole ==='Proefaccount')$newUser->rol = 3;
+                if($userRole ==='Admin')$newUser->rol = 1;
+            }else{$newUser->rol = 3;}
+
             $newUser->naam = $_POST['userName'];
             $newUser->password = $this->createToken();
             $newUser->telefoonnummer = $_POST['Telefoonnummer'];
@@ -109,8 +116,7 @@ class UserController extends Controller
 //            dubbele code  - minty pawel
             $newUser->plaats = $_POST['Plaats'];
             $newUser->plaats = $_POST['Plaats'];
-            if($userRole ==='Proefaccount')$newUser->rol = 3;
-            if($userRole ==='Admin')$newUser->rol = 1;
+
 
             $passwordToken = $this->createToken();
             $newUser->token=$passwordToken;
@@ -128,11 +134,25 @@ class UserController extends Controller
             $newStatus->server = "n.v.t.";
 
             $geldig14dagen = date('Y-m-d', strtotime(' +14 day'));
-
             $newStatus->geldig = $geldig14dagen;
-
             $newStatus->save();
-    
+
+            //Gebruiker aanmaken voor de BOL-koppeling
+
+            //UserId ophalen eigen db nieuwe User
+            $userId = User::where('email', '=', $newUser->email)->first();
+
+
+            //UserId aanmaken bol-koppeling van Arthur
+            $MintyBolApi = new MintyBolController();
+            $userIdBol = $MintyBolApi->CreateUserBolApi($newUser->email);
+
+            //Insert userId + boluserId in BolApi
+            $bolApi = new bolApi();
+            $bolApi->userId = $userId->userId;
+            $bolApi->bolUserId = $userIdBol;
+            $bolApi->save();
+
             return back()->with(['succes'=> "Account succesvol aangemaakt"]);
         }
     }
@@ -181,7 +201,7 @@ class UserController extends Controller
 
     //Haal gebruiker op dmv cookie token (bij het inloggen)
     public static function getByCookie(){
-        
+
         $cookieToken = ((isset($_COOKIE['user']) )) ? $_COOKIE['user'] : '';
         if (empty($cookieToken)) return null;
         $getUser = User::where('cookie_token', '=', $cookieToken )->first();
@@ -250,7 +270,7 @@ class UserController extends Controller
 
     //Maak gebruiker aan in Factuursturen
     public function createUserFactuursturen($id){
- 
+
         $getUser = User::where('userId', '=', $id)->first();
         $fsnlAPI = new fsnl_api_Controller;
 

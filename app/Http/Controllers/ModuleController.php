@@ -14,6 +14,7 @@ class ModuleController extends Controller
         return view('dashboard/module/allemodules', ['allUsers' => $alleModules]);
     }
 
+
 }
 
 

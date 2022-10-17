@@ -28,6 +28,22 @@ class MintyBolController extends Controller
         // dd($res->getBody()->getContents());
 
     }
+    //Create user
+    public  function  CreateUserBolApi($email){
+
+        $body = json_encode([
+            "email" => $email,
+            "verified" => 1
+        ]);
+
+        $this->headers['Content-Type'] = 'application/json';
+
+        $response = $this->guzzleClient->request('POST', 'accounts/user', ['headers' => $this->headers, 'body' => $body]);
+
+        $data = json_decode($response->getBody()->getContents());
+        //dd($data->userId);
+        return $data->userId;
+    }
 
     //Get all modules
     public function GetAllModules(){
