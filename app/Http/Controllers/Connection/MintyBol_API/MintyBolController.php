@@ -45,6 +45,23 @@ class MintyBolController extends Controller
         return $data->userId;
     }
 
+    //Create a new bol account
+    public  function  CreateBolAccount($userId, $clientId, $secret, $country, $label){
+
+        $body = json_encode([
+            "userId" => $userId,
+            "clientId" => $clientId,
+            "secret" => $secret,
+            "country" => $country,
+            "label" => $label,
+        ]);
+
+        $this->headers['Content-Type'] = 'application/json';
+
+        $response = $this->guzzleClient->request('POST', 'accounts/bol', ['headers' => $this->headers, 'body' => $body]);
+
+    }
+
     //Get all modules
     public function GetAllModules(){
 

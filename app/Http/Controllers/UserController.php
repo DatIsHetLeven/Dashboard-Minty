@@ -150,7 +150,7 @@ class UserController extends Controller
             //Insert userId + boluserId in BolApi
             $bolApi = new bolApi();
             $bolApi->userId = $userId->userId;
-            $bolApi->bolUserId = $userIdBol;
+            $bolApi->userIdApi = $userIdBol;
             $bolApi->save();
 
             return back()->with(['succes'=> "Account succesvol aangemaakt"]);
@@ -331,6 +331,30 @@ class UserController extends Controller
 
         return $this->getAllUsers();
     }
+
+    //Create bol user
+    public function createBolUser(Request $request, $userId){
+        $CheckUserLogin = bolApi::Where('userId', '=', $userId)->first();
+        $userIdApi = $CheckUserLogin->userIdApi;
+
+
+        if(isset($_POST['createBolUserBTN'])) {
+            $clientId = $_POST['clientId'];
+            $secret = $_POST['secret'];
+            $label = $_POST['land'];
+
+            if ($label == 'nl')$country = 'Netherlands';
+            if ($label == 'be')$country = 'Belgium';
+            if ($label == 'nl-be')$country = 'Netherlands & Belgium';
+        }
+
+
+        $MintyBolApi = new MintyBolController();
+        $newBolUser = $MintyBolApi->CreateBolAccount($userIdApi, $clientId, $secret, $country, $label );
+
+        return back();
+    }
+
 
 
 

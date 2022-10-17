@@ -25,7 +25,7 @@ class ProductController extends Controller
     public function getSingleProduct($productId){
         $fSApi = new fsnl_api_Controller();
         $singleProduct = $fSApi->getSingleProduct($productId);
-        
+
         $fsClient = json_decode($singleProduct);
         $fsClient = $fsClient->product;
 
@@ -40,9 +40,7 @@ class ProductController extends Controller
             $price = $_POST['price'];
             $taxes = $_POST['taxes'];
 
-
             $updatePoduct = [];
-
             $updatePoduct = [
                 'code' => $code,
                 'name' => $name,
@@ -51,25 +49,19 @@ class ProductController extends Controller
             ];
 
             $fSApi->updateSingleProduct($updatePoduct, $productId);
-
             return redirect()->route('alleproducten')->with(['succes'=> "Succesvol aangepast"]);
-
         }
-        
-
-
-
-
-
-
-
-
         $singleProduct = $fSApi->getSingleProduct($productId);
-        
+
         $fsClient = json_decode($singleProduct);
         $fsClient = $fsClient->product;
 
         return view('dashboard/setting/productinfo')->with(['productInfo'=> $fsClient]);
+    }
+
+    public function createBolAccount(){
+
+
     }
 
 
