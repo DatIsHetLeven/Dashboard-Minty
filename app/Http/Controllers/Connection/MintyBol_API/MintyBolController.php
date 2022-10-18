@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
 
-//De prachtige API van Arthur :o
+//Prachtige API van Arthur :o
 class MintyBolController extends Controller
 {
     private string $baseUrl;
@@ -24,22 +24,17 @@ class MintyBolController extends Controller
         $this->baseUrl = 'https://dev.bol.mintycloud.nl/api/v1/';
 
         $this->guzzleClient = new Client(['base_uri' => $this->baseUrl, 'verify' => false]);
-        // $res = $client->request('GET', 'accounts/user/15', ['headers' => $headers]);
-        // dd($res->getBody()->getContents());
-
     }
     //Create user
-    public  function  CreateUserBolApi($email){
-
+    public  function  CreateUserBolApi($email, $naam){
         $body = json_encode([
             "email" => $email,
-            "verified" => 1
+            "verified" => 1,
+            "name" => $naam
         ]);
 
         $this->headers['Content-Type'] = 'application/json';
-
         $response = $this->guzzleClient->request('POST', 'accounts/user', ['headers' => $this->headers, 'body' => $body]);
-
         $data = json_decode($response->getBody()->getContents());
         //dd($data->userId);
         return $data->userId;
@@ -48,35 +43,48 @@ class MintyBolController extends Controller
     //Create a new bol account
     public  function  CreateBolAccount($userId, $clientId, $secret, $country, $label){
 
-        $body = json_encode([
-            "userId" => $userId,
-            "clientId" => $clientId,
-            "secret" => $secret,
-            "country" => $country,
-            "label" => $label,
-        ]);
+        try {
+            $body = json_encode([
+                "userId" => $userId,
+                "clientId" => $clientId,
+                "secret" => $secret,
+                "country" => $country,
+                "label" => $label,
+            ]);
 
-        $this->headers['Content-Type'] = 'application/json';
+            $this->headers['Content-Type'] = 'application/json';
 
-        $response = $this->guzzleClient->request('POST', 'accounts/bol', ['headers' => $this->headers, 'body' => $body]);
-
+            $response = $this->guzzleClient->request('POST', 'accounts/bol', ['headers' => $this->headers, 'body' => $body]);
+        } catch (GuzzleException $e) {
+            dd("gegevens onjuist, probeer opnieuw!");
+        }
     }
 
     //Get all modules
     public function GetAllModules(){
-
-        // $res = $client->request('GET', 'accounts/user/15', ['headers' => $headers]);
-        // dd($res->getBody()->getContents());
         try {
             $response = $this->guzzleClient->request('GET', 'modules', ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
         }
 
-        $data = json_decode($response->getBody()->getContents());
+        return json_decode($response->getBody()->getContents());
+    }
+    //Get single module
+    public function GetSingleModule($moduleId){
+        $correctLink = str_replace(' ', '.', $moduleId);
 
+        $response = $this->guzzleClient->request('GET', 'modules?identifier='.$moduleId, ['headers' => $this->headers]);
 
-        return $data;
+        return json_decode($response->getBody()->getContents());
+    }
 
+    //Get all logs
+    public function GetLogs(){
+        try {
+            $response = $this->guzzleClient->request('GET', 'logs?page=31', ['headers' => $this->headers]);
+        } catch (GuzzleException $e) {
+        }
+        return json_decode($response->getBody()->getContents());
     }
 
 

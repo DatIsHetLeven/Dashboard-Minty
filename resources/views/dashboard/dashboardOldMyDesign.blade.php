@@ -31,12 +31,12 @@
               <h1>Box 1</h1>
                 <p>T1estTEst Test TEST TestTEst Test TEST TestTEst Test TEST</p>
                 <p>TestTEst Test TEST TestTEst Test TEST TestTEst Test TEST</p>
-            </div> 
+            </div>
             <div class="two box">
               <h1>Box 2</h1>
               <p>TestTEst Test TEST TestTEst Test TEST TestTEst Test TEST</p>
               <p>TestTEst Test TEST TestTEst Test TEST TestTEst Test TEST</p>
-            </div> 
+            </div>
             <div class="three box">
               <h1>Box 3</h1>
               <p>TestTEst Test TEST TestTEst Test TEST TestTEst Test TEST</p>
@@ -54,18 +54,16 @@
                     echo 'None';
                   }
 
-                  
 
 
 
-                  
                 ?>
-            </div>  
+            </div>
           </div>
           <strong>Database Connected: </strong>
 
 
-        
+
 
 
 

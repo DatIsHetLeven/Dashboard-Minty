@@ -1,4 +1,4 @@
- 
+
 .WelkomBanner{
     position:absolute;
     left: 25%;
@@ -15,18 +15,18 @@
     padding-left: 10px;
 
     background-color: #ffffff;
-    color:black; 
+    color:black;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 
 /* Andere blokken */
-  
-  .boxes { 
+
+  .boxes {
      margin:0 auto;
-     margin-left: 25%; 
-     margin-top: 15%;   
-  } 
+     margin-left: 25%;
+     margin-top: 15%;
+  }
 
   a{
     text-decoration: none;
@@ -36,9 +36,28 @@
   ion-icon {
     pointer-events: none;
    }
-  
 
-  
+.scroll-bg{
+
+    width: 1000px;
+    margin: 10% auto;
+}
+
+.scroll-div{
+    width: 1000px;
+
+    height: 500px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.scroll-object{
+    font-size: 15px;
+
+}
+
+
+
 
 
 

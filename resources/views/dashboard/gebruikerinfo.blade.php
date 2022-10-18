@@ -1,4 +1,4 @@
-<link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet"> 
+<link href="{{ asset('css/persoonsgegevens.css') }}" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 @extends('layouts.navAdmin')
@@ -8,7 +8,7 @@
 
     <hr class="mt-0 mb-4">
     <div class="row">
-        
+
         <div class="col-xl-8">
             <div class="card mb-4">
                 <div class="card-header">Bol details</div>
@@ -38,7 +38,7 @@
         <div class="card mb-4">
                 <div class="card-header">Klant details</div>
                 <div class="card-body">
-                    <form>    
+                    <form>
                         <!-- Form Group (username)-->
                         <div class="mb-3">
                             <label class="small mb-1" for="inputUsername">Naam</label>
@@ -104,7 +104,7 @@
                             <input class="form-control" id="inputUsername" type="text" placeholder="" value="">
 
                             <!-- Bereken hoelang koppeling nog geldig is -->
-                            <?php 
+                            <?php
                                 $currentDateTime = date('Y-m-d H:i:s');
                                 $datetime1 = strtotime($currentDateTime);
                                 $datetime2 = strtotime($user->geldig);

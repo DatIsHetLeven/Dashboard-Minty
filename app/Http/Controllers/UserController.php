@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Connection\Fs_Api\fsnl_api_Controller;
 use Illuminate\Http\Request;
 
 
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Password;
 use App\Providers\FortifyServiceProvider;
 use App\Actions\Fortify;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\Connection\fsnl_api_Controller;
+
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 
 
@@ -145,7 +146,7 @@ class UserController extends Controller
 
             //UserId aanmaken bol-koppeling van Arthur
             $MintyBolApi = new MintyBolController();
-            $userIdBol = $MintyBolApi->CreateUserBolApi($newUser->email);
+            $userIdBol = $MintyBolApi->CreateUserBolApi($newUser->email,$newUser->naam );
 
             //Insert userId + boluserId in BolApi
             $bolApi = new bolApi();
@@ -284,7 +285,7 @@ class UserController extends Controller
                 'address' => $getUser->adres,
                 'zipcode' => $getUser->postcode,
                 'city' => $getUser->plaats,
-                // 'country' => 146,
+                'country' => '146',
                 'phone' => $getUser->telefoonnummer,
                 'mobile' => $getUser->telefoonnummer,
                 'email' => $getUser->email,
@@ -293,22 +294,13 @@ class UserController extends Controller
                 'taxnumber' => $getUser->btwNummer,
                 'tax_shifted' => false,
                 'sendmethod' => 'email',
-                'paymentmethod' => 'bank',
-                'top' => 3,
-                'stddiscount' => 5.30,
-                'mailintro' => 'Dear Johnny,',
-                'reference' => array(
-                  'line1' => 'Your ref: ABC123',
-                  'line2' => 'Our ref: XZX0029/2932/001',
-                  'line3' => 'Thank you for your order'
-                ),
-                'notes' => 'This client is always late with his payments',
-                'notes_on_invoice' => false,
+                'paymentmethod' => 'autocollect',
+                'top' => 14,
                 'active' => true,
-                'default_doclang' => 'en',
-                'email_reminder' => 'reminder@mintymedia.nl',
+                'default_doclang' => 'nl',
+                'email_reminder' => $getUser->email,
                 'currency' => 'EUR',
-                'tax_type' => 'intax'
+                'tax_type' => 'extax'
             ];
             $factuurid = $fSApi->CreateNewClient($newClient);
             //Insert factuurid bij bijbehorende klantid.
@@ -354,16 +346,6 @@ class UserController extends Controller
 
         return back();
     }
-
-
-
-
-
-
-
-
-
-
 
         /**
     * This function return the current loggedin user

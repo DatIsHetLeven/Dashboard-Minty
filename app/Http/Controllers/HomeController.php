@@ -3,11 +3,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\UserController;
 
 use App\Models\User;
-use DB;
 
 use Illuminate\Http\Request;
 
 //Deze class wordt niet gebruikt - minty pawel
+use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;
 
@@ -48,12 +48,12 @@ class HomeController extends Controller
     public function resetPassword()
     {
         return view('auth/passwords/resettest');
-    } 
+    }
 
     public function seeCustomerDetail($userId)
     {
         // $getUser = User::where('userId', '=', $userId)->first();
-        
+
         $getUser = DB::table('statusdetails')
         ->join('user', 'statusdetails.userId', '=', 'user.userId')
         ->where('statusdetails.userId', '=', $userId)
@@ -65,7 +65,7 @@ class HomeController extends Controller
             ->join('user', 'statusdetails.userId', '=', 'user.userId')
             ->where('statusdetails.userId', '=', $userId)->first();
         }
-        
+
         if(empty($getUser)){
             $getUser = User::
             join('factuursturen', 'factuursturen.userId', '=', 'user.userId')

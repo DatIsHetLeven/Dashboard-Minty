@@ -27,7 +27,7 @@ input{
     margin-right: -50%;
     transform: translate(-50%, -50%);
 
-    
+
 }
 
 .table-table{
@@ -46,7 +46,7 @@ td{
     background-color: rgb(255, 255, 255);
     margin: 5px;
     border-collapse: collapse;
-    
+
     height: 1px;
     border: 0;
     border-top: 1px solid #ccc;
@@ -61,7 +61,7 @@ td{
     margin-top: 30px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 3px #ccc;
-    
+
     padding: 15px;
     padding-top: 60px;
     position: absolute;
@@ -100,7 +100,7 @@ td{
     left: 10px;
 }
 .boldetails{
-    
+
     left: 10px;
     background-color: rgb(255, 255, 255);
     padding: 15px;
@@ -117,7 +117,7 @@ td{
     color: red;
     border-radius: 0%;
     cursor: pointer;
-    border: 2px solid red; 
+    border: 2px solid red;
 }
 
 #inloggenalsklant{
@@ -131,7 +131,7 @@ td{
     display: inline-block;
     margin-right: 0.5px;
     width: 15%;
-    border-radius: 5px; 
+    border-radius: 5px;
     text-decoration: none;
     border-color: none;
     border: 1px solid rgb(194, 193, 193);
@@ -149,7 +149,7 @@ td{
     background-color: rgb(255, 255, 255);
     text-decoration: none;
     border: 2px solid rgb(194, 193, 193);
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
 #show::placeholder{
@@ -238,8 +238,8 @@ td{
   }
   .userinput{
     display: flex;
-    padding: 3%; 
-    width: 80%; 
+    padding: 3%;
+    width: 80%;
   }
 
   #userInput{
@@ -253,7 +253,7 @@ td{
     margin-top: 5%;
 
 }
-  
+
 .links input{
     display: flex;
     margin-left: 20%;
@@ -318,7 +318,7 @@ a, a:hover, a:focus, a:active, a:link, a:visited{
 #btnDeleteUser{
     background-color: red;
     border-color: red;
-    
+
 }
 
 #btnInloggenAlsKlant{

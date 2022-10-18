@@ -8,13 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ModuleController;
-use App\Http\Middleware\CheckUser;
 
-// ongebruikte classes
-use App\Http\Controllers\MailController;
-use App\Providers\RouteServiceProvider;
-use App\Providers\FortifyServiceProvider;
-use App\Actions\Fortify;
 
 
 
@@ -99,6 +93,9 @@ Route::get('allemodules', function () {
 
 
 Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules');
+Route::get('GetSingleModule/{moduleId}', [ModuleController::class, 'GetSingleModule'])->name('GetSingleModule');
+
+
 Route::post('createBolUser/{id}', [UserController::class, 'createBolUser'])->name('createBolUser');
 
 

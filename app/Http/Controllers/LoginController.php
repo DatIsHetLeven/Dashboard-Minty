@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 //ongebruikte classes en  class die niet goed worden opgehaald
 use Illuminate\Http\Request;
-use Validator;
-use Auth;
-use App\Models\LoginModel;
 
 class LoginController extends Controller
 {
