@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Connection\MintyBol_API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ModuleController;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -59,6 +60,46 @@ class MintyBolController extends Controller
             dd("gegevens onjuist, probeer opnieuw!");
         }
     }
+    //Controleren of modules al aangezet zijn (bij het laden van de pagina)
+    public function CheckModuleBolUser($bolUserId, $identifier){
+        $moduleBschikbaar = false;
+
+        try {
+            $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
+            $moduleBschikbaar = true;
+            return $moduleBschikbaar;
+        } catch (GuzzleException $e){
+
+            return $moduleBschikbaar;
+        }
+        return $moduleBschikbaar;
+    }
+
+    //Create standaard module per boluser
+    public function CreateModuleBolUser($bolUserId, $identifier){
+        $ModuleController = new ModuleController();
+
+        //Controleren of gebruiker al modules heeft.
+        $moduleUserList = 0;
+        //Als gebruiker de module al heeft.
+        try {
+            $response = $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
+            dd($response);
+        } catch (GuzzleException $e) {
+
+            dump('ERRORRRRRRR');
+
+            $body = json_encode([
+                "bolUserId" => $bolUserId,
+                "identifier" => $identifier,
+                "settings" => "{}",
+            ]);
+
+            $this->headers['Content-Type'] = 'application/json';
+            $response = $this->guzzleClient->request('POST', 'modules/User', ['headers' => $this->headers, 'body' => $body]);
+            dd($response->getBody());
+        }
+    }
 
     //Get all modules
     public function GetAllModules(){
@@ -71,8 +112,6 @@ class MintyBolController extends Controller
     }
     //Get single module
     public function GetSingleModule($moduleId){
-        $correctLink = str_replace(' ', '.', $moduleId);
-
         $response = $this->guzzleClient->request('GET', 'modules?identifier='.$moduleId, ['headers' => $this->headers]);
 
         return json_decode($response->getBody()->getContents());
@@ -85,6 +124,41 @@ class MintyBolController extends Controller
         } catch (GuzzleException $e) {
         }
         return json_decode($response->getBody()->getContents());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Create mandate
+    public function CreateMandate(){
+        $userIdAPI = 567;
+        try {
+            $response = $this->guzzleClient->request('GET', 'mandate/'.$userIdAPI, ['headers' => $this->headers]);
+        } catch (GuzzleException $e) {
+        }
+    }
+
+    //Check mandate status
+    public function CheckMandateStatus(){
+        $customerId = 4567;
+        try {
+            $response = $this->guzzleClient->request('GET', 'mandate/'.$customerId.'/status', ['headers' => $this->headers]);
+        } catch (GuzzleException $e) {
+        }
+
+        //If paid -> insert user in FS -> NIET VERGETEN -> BANKCODE + BICCODE MEEGEVEN
     }
 
 

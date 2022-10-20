@@ -84,10 +84,12 @@
                     <form>
 
                         <?php
+
                         $possibleSettingList = json_decode($singleModule->possibleSettings,true);
                         $phoneSetting = $possibleSettingList['phone'];
                         $emailSetting= $possibleSettingList['email'];
                         $statusSetting = $possibleSettingList['status'];?>
+
 
                         Phone setting :
                         <?php
@@ -141,6 +143,8 @@
                         }?>
                         <br>
                         <br><br>
+
+                        <button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">opslaan</button>
                     </form>
                 </div>
             </div>

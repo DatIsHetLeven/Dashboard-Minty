@@ -3,17 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
+use App\Http\Controllers\HomeController;
+use App\Models\bolApi;
+use Illuminate\Support\Facades\DB;
 
 
 class ModuleController extends Controller
 {
     public function GetAllModules(){
         $MintyBolApi = new MintyBolController();
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        //Get bolUserId (userid from arthurs api)
+        $bolUser = DB::table('bolApi')
+            ->where('userId', '=', $loggedUser->userId)->first();
+
         $alleModules = $MintyBolApi->GetAllModules();
 
         $logs = $this->GetLog();
 
-        return view('dashboard/module/allemodules', ['allUsers' => $alleModules, 'allLogs' => $logs]);
+
+        $CheckModuleArray = array();
+        for ($x = 0; $x < count($alleModules); $x++){
+            $boolModule = $MintyBolApi->CheckModuleBolUser($bolUser->userIdApi, $alleModules[$x]->identifier);
+            $CheckModuleArray[] = $boolModule;
+        }
+
+        return view('dashboard/module/allemodules', ['allUsers' => $alleModules, 'allLogs' => $logs, 'boolModule' =>$CheckModuleArray]);
     }
     public function GetLog(){
         $MintyBolApi = new MintyBolController();
@@ -22,16 +38,34 @@ class ModuleController extends Controller
         return $singleModule;
 
     }
-
-    public function GetSingleModule($id){
+    //Toon de correcte module
+    public function GetSingleModule($moduleNaam){
         $MintyBolApi = new MintyBolController();
-        $singleModule = $MintyBolApi->GetSingleModule($id);
+        $singleModule = $MintyBolApi->GetSingleModule($moduleNaam);
 
+        dump($moduleNaam);
+        dump($singleModule);
 
-        if ($id === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule]);
-        if ($id === 'bol.mintyconnect.product.wachtagent')return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule]);
-
+        if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule]);
+        if ($moduleNaam === 'bol.mintyconnect.product.wachtagent') {
+            dump('HIJ RETURNED DE VIEW');
+            return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule]);
+        }
         return view('dashboard/module/permodule', ['singleModule' => $singleModule]);
+    }
+    //Enable 1 module
+    public function EnableSingleModule($moduleNaam){
+
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        //Get bolUserId (userid from arthurs api)
+        $bolUser = DB::table('bolApi')
+            ->where('userId', '=', $loggedUser->userId)->first();
+
+        $MintyBolApi = new MintyBolController();
+        $MintyBolApi->CreateModuleBolUser($bolUser->userIdApi, $moduleNaam);
+
+        return redirect()->route('GetAllModules');
     }
 
     public function getWachtagentPlugin(){

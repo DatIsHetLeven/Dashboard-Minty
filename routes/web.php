@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword');
 
-Route::get('persoonsgegevens', [HomeController::class, 'renderPersonalDetails'])->name('persoonsgegevens')->middleware('check.user');;
+Route::get('persoonsgegevens', [HomeController::class, 'toonPersoonsgegevens'])->name('persoonsgegevens')->middleware('check.user');;
 
 Route::GET('dashboard', [HomeController::class, 'renderDashboard'])->name('dashboard')->middleware('check.user');
 
@@ -93,7 +93,10 @@ Route::get('allemodules', function () {
 
 
 Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules');
+
+
 Route::get('GetSingleModule/{moduleId}', [ModuleController::class, 'GetSingleModule'])->name('GetSingleModule');
+Route::get('EnableSingleModule/{moduleId}', [ModuleController::class, 'EnableSingleModule'])->name('EnableSingleModule');
 
 
 Route::post('createBolUser/{id}', [UserController::class, 'createBolUser'])->name('createBolUser');

@@ -41,8 +41,12 @@ class HomeController extends Controller
         $getUser = DB::table('statusdetails')
         ->join('user', 'statusdetails.userId', '=', 'user.userId')
         ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
+        return $getUser;
 
-        return view('dashboard/persoonsgegevens', ['userByCookie' => $getUser]);
+    }
+    public function toonPersoonsgegevens(){
+        $user = $this->renderPersonalDetails();
+        return view('dashboard/persoonsgegevens', ['userByCookie' => $user]);
     }
 
     public function resetPassword()

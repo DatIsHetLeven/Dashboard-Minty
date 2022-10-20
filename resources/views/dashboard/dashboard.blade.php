@@ -23,7 +23,7 @@
         if($userByCookie->rol !=1 ){
             // Als koppeling niet meer geldig is
             if($geldig < $dayVandaag){
-               ?> Uw proefperiode van 14 dagen zijn voorbij.<br>
+                ?> Uw proefperiode van 14 dagen zijn voorbij.<br>
                   Wilt u gebruik blijven maken van de koppeling ?<br>
                   <a href="#">Abonneer hier nu!</a><?php
                 }
