@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 use App\Http\Controllers\UserController;
 
+use App\Models\statusdetails;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -91,6 +93,38 @@ class HomeController extends Controller
         setcookie($cookie_name, "", time() - (86400 * 30));
 
         return redirect('login');
+    }
+
+    public function getUserBolId($userId){
+
+        $bolUser = DB::table('bolApi')
+            ->where('userId', '=', $userId)->first();
+
+        return $bolUser;
+
+    }
+
+    public function payments($id){
+        $bolContoller = new MintyBolController();
+
+        return $bolContoller->CheckMandateStatus($id);
+        //return view('dashboard/payment/payment');
+    }
+
+    public function payment(){
+        $dayVandaag = date('Y-m-d');
+        $geldigTot =  date('Y-m-d', strtotime("$dayVandaag + 31 day"));
+
+
+        $loggedUser = $this->renderPersonalDetails();
+
+        //dd($geldigTot);
+
+
+        $NewStatusDetails = statusdetails::where('userId', '=', $loggedUser->userId)->first();
+        $NewStatusDetails->geldig = $geldigTot;
+        $NewStatusDetails->save();
+        return view('dashboard/payment/payment');
     }
 
 }

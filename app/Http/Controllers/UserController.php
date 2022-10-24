@@ -311,8 +311,6 @@ class UserController extends Controller
             else{
                 dd("Er is een fout opgetreden!");
             }
-
-
             return back();
     }
     //Verwijder gebruiker
@@ -351,4 +349,53 @@ class UserController extends Controller
     * This function return the current loggedin user
      * @return User|null
      */
+
+
+    //Maak gebruiker aan in Factuursturen (na eerste betaling/ mandaat )
+    public function createUserFS($bankcode, $biccode, $mollieId){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+
+        $getUser = User::where('userId', '=', $loggedUser->userId)->first();
+        $fsnlAPI = new fsnl_api_Controller;
+
+        $fSApi = new fsnl_api_Controller();
+        $newClient = [];
+
+        $newClient = [
+            'contact' => $getUser->naam,
+            'showcontact' => true,
+            'company' => $getUser->bedrijfsnam,
+            'address' => $getUser->adres,
+            'zipcode' => $getUser->postcode,
+            'city' => $getUser->plaats,
+            'country' => '146',
+            'phone' => $getUser->telefoonnummer,
+            'mobile' => $getUser->telefoonnummer,
+            'email' => $getUser->email,
+            'bankcode' => $bankcode,
+            'biccode' => $biccode,
+            'mollie_cst' => $mollieId,
+            'taxnumber' => $getUser->btwNummer,
+            'tax_shifted' => false,
+            'sendmethod' => 'email',
+            'paymentmethod' => 'autocollect',
+            'top' => 14,
+            'active' => true,
+            'default_doclang' => 'nl',
+            'email_reminder' => $getUser->email,
+            'currency' => 'EUR',
+            'tax_type' => 'extax'
+        ];
+        $factuurid = $fSApi->CreateNewClient($newClient);
+        //Insert factuurid bij bijbehorende klantid.
+        if(!empty($factuurid)){
+            DB::insert('insert into factuursturen (userId, factuurId)
+                values (?,?)',[$getUser->userId, $factuurid]);
+        }
+        else{
+            dd("Er is een fout opgetreden!");
+        }
+        return back();
+    }
 }

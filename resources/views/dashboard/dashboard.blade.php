@@ -25,7 +25,9 @@
             if($geldig < $dayVandaag){
                 ?> Uw proefperiode van 14 dagen zijn voorbij.<br>
                   Wilt u gebruik blijven maken van de koppeling ?<br>
-                  <a href="#">Abonneer hier nu!</a><?php
+                  <a href="{{ route('CreateMandate') }}">Abonneer hier nu!
+                      <button type="submit">Abonneer nu!</button>
+                  </a><?php
                 }
             // Als koppeling nog geldig is maar klant niet geverf is
             if($geldig > $dayVandaag){
@@ -35,8 +37,6 @@
                    <a href="#">Abonneer hier nu!</a><?php
                  }}
         }?>
-            ['userByCookie' => $userbytoken]
-
             </div>
 
         <div class="box2">

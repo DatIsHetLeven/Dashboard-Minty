@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Connection\MintyBol_API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\UserController;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -14,6 +16,7 @@ class MintyBolController extends Controller
     private string $baseUrl;
     private $headers;
     private $guzzleClient;
+    private $mollieId;
 
     public function  __construct(){
 
@@ -72,7 +75,6 @@ class MintyBolController extends Controller
 
             return $moduleBschikbaar;
         }
-        return $moduleBschikbaar;
     }
 
     //Create standaard module per boluser
@@ -86,9 +88,6 @@ class MintyBolController extends Controller
             $response = $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
             dd($response);
         } catch (GuzzleException $e) {
-
-            dump('ERRORRRRRRR');
-
             $body = json_encode([
                 "bolUserId" => $bolUserId,
                 "identifier" => $identifier,
@@ -97,7 +96,6 @@ class MintyBolController extends Controller
 
             $this->headers['Content-Type'] = 'application/json';
             $response = $this->guzzleClient->request('POST', 'modules/User', ['headers' => $this->headers, 'body' => $body]);
-            dd($response->getBody());
         }
     }
 
@@ -110,6 +108,20 @@ class MintyBolController extends Controller
 
         return json_decode($response->getBody()->getContents());
     }
+    //Get single module
+    public function getSingleModuleUser(){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $bolUser = $homeController->getUserBolId($loggedUser->userId)->userIdApi;
+
+
+        $response = $this->guzzleClient->request('GET', 'modules/user/'.$bolUser, ['headers' => $this->headers]);
+        //dd($response->getBody()->getContents());
+        return json_decode($response->getBody()->getContents());
+    }
+
+
+
     //Get single module
     public function GetSingleModule($moduleId){
         $response = $this->guzzleClient->request('GET', 'modules?identifier='.$moduleId, ['headers' => $this->headers]);
@@ -126,6 +138,32 @@ class MintyBolController extends Controller
         return json_decode($response->getBody()->getContents());
     }
 
+    //Update Order Wachtagent Plugin
+    public function updateOrderWachtagent(){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
+
+        $phone = "";
+        $email = "";
+
+        if (isset($_POST['phoneSetting']))$phone = "123456789";
+        if (isset($_POST['emailSetting']))$email = "Mintymail@Media.nl";
+
+        $body = json_encode([
+            "bolUserId"=> $bolUser->userIdApi,
+            "identifier"=> "bol.mintyconnect.order.wachtagent",
+            "settings"=> [
+                "phone"=> $phone,
+                "email"=> $email,
+                "status"=> "default"
+        ]
+        ]);
+        //dd($body);
+        $this->headers['Content-Type'] = 'application/json';
+        $response = $this->guzzleClient->request('PUT', 'modules/user', ['headers' => $this->headers, 'body' => $body]);
+        return redirect( 'GetAllModules');
+    }
 
 
 
@@ -141,23 +179,44 @@ class MintyBolController extends Controller
 
 
 
-    //Create mandate
+
+
+    //Mandaat aanmaken
     public function CreateMandate(){
-        $userIdAPI = 567;
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
         try {
-            $response = $this->guzzleClient->request('GET', 'mandate/'.$userIdAPI, ['headers' => $this->headers]);
+            $response = $this->guzzleClient->request('GET', 'mandate/'.$bolUser->userIdApi, ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
+            dd("EROORRRR CREATE MANDATE!!!");
         }
+
+        $responseBody = array(json_decode(($response->getBody()->getContents())));
+        $this->mollieId = $responseBody[0]->customerId;
+
+        return redirect(($responseBody[0]->checkoutUrl));
     }
 
     //Check mandate status
-    public function CheckMandateStatus(){
-        $customerId = 4567;
+    public function CheckMandateStatus($customerIdMollie){
+
         try {
-            $response = $this->guzzleClient->request('GET', 'mandate/'.$customerId.'/status', ['headers' => $this->headers]);
+            $response = $this->guzzleClient->request('GET', 'mandate/'.$customerIdMollie.'/status', ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
+            dd("EROORR CHECK MANDATE STATUS!!!!");
         }
 
+        $mandateStatus = array(json_decode($response->getBody()->getContents()));
+        //Doorverwijzen juiste pagina na betaling
+        if($mandateStatus[0]->status === 'paid'){
+            $usercontroller = new UserController();
+            $usercontroller->createUserFS($mandateStatus[0]->bankcode, $mandateStatus[0]->biccode, $mandateStatus[0]->customerId );
+            return redirect('payment');
+        }
+
+
+        else return redirect('dashboard')->with(['error'=> "Er ging iets mis tijdens de betaling, probeer opnieuw!"]);
         //If paid -> insert user in FS -> NIET VERGETEN -> BANKCODE + BICCODE MEEGEVEN
     }
 

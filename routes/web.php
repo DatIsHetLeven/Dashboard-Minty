@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -100,6 +101,21 @@ Route::get('EnableSingleModule/{moduleId}', [ModuleController::class, 'EnableSin
 
 
 Route::post('createBolUser/{id}', [UserController::class, 'createBolUser'])->name('createBolUser');
+
+
+
+
+//test routes
+Route::get('CreateMandate', [MintyBolController::class, 'CreateMandate'])->name('CreateMandate');
+Route::get('payments/{id}', [HomeController::class, 'payments'])->name('payments');
+Route::get('payment', [HomeController::class, 'payment'])->name('payment');
+Route::post('updateOrderWachtagent', [MintyBolController::class, 'updateOrderWachtagent'])->name('updateOrderWachtagent');
+
+
+
+
+
+
 
 
 

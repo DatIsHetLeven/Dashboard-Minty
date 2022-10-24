@@ -79,72 +79,41 @@
 
         <div class="col-xl-12">
             <div class="card mb-6">
-                <div class="card-header"><?php echo $singleModule->name ?></div>
+                <div class="card-header"><?php echo $singleModule->identifier ?></div>
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('updateOrderWachtagent') }}" method="post">
+                        @csrf
 
                         <?php
-
-                        $possibleSettingList = json_decode($singleModule->possibleSettings,true);
+                        $possibleSettingList = json_decode($singleModule->settings,true);
                         $phoneSetting = $possibleSettingList['phone'];
                         $emailSetting= $possibleSettingList['email'];
                         $statusSetting = $possibleSettingList['status'];?>
 
-
                         Phone setting :
-                        <?php
-                        if(!empty($phoneSetting)){?>
-                        <label class="switch">
-                            <input type="checkbox" checked>
+                        <label class="switch" >
+                            <input type="checkbox" value="phone" name='phoneSetting' {{   (empty($phoneSetting)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
-                        <?php }
-                        else{?>
-                        <label class="switch">
-                            <input type="checkbox" >
-                            <span class="slider round"></span>
-                        </label><?php
-                                }?>
                         <br><br><br>
 
-
-                        Email setting :
-                        <?php
-                        if(!empty($emailSetting)){?>
+                        Email setting :)
                         <label class="switch">
-                            <input type="checkbox" checked>
+                            <input type="checkbox" value="email" name='emailSetting' {{   (empty($emailSetting)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
-                        <?php }
-                        else{?>
-                        <label class="switch">
-                            <input type="checkbox" >
-                            <span class="slider round"></span>
-                        </label>
-                            <?php
-                        }?>
                         <br><br><br>
-
 
                         Status :
-                        <?php
-                        if(!empty($statusSetting)){?>
                         <label class="switch">
-                            <input type="checkbox" checked>
+                            <input type="checkbox" value="status" name='statusSetting' {{   (empty($statusSetting)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
-                        <?php }
-                        else{?>
-                        <label class="switch">
-                            <input type="checkbox" >
-                            <span class="slider round"></span>
-                        </label>
-                            <?php
-                        }?>
+
                         <br>
                         <br><br>
-
                         <button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">opslaan</button>
+
                     </form>
                 </div>
             </div>

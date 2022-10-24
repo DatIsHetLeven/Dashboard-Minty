@@ -38,19 +38,18 @@ class ModuleController extends Controller
         return $singleModule;
 
     }
+
+
+
     //Toon de correcte module
     public function GetSingleModule($moduleNaam){
         $MintyBolApi = new MintyBolController();
-        $singleModule = $MintyBolApi->GetSingleModule($moduleNaam);
+        $singleModule = $MintyBolApi->getSingleModuleUser();
 
-        dump($moduleNaam);
-        dump($singleModule);
 
-        if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule]);
-        if ($moduleNaam === 'bol.mintyconnect.product.wachtagent') {
-            dump('HIJ RETURNED DE VIEW');
-            return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule]);
-        }
+        if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule[0]]);
+        if ($moduleNaam === 'bol.mintyconnect.product.wachtagent') return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule[1]]);
+
         return view('dashboard/module/permodule', ['singleModule' => $singleModule]);
     }
     //Enable 1 module
@@ -59,9 +58,11 @@ class ModuleController extends Controller
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
         //Get bolUserId (userid from arthurs api)
-        $bolUser = DB::table('bolApi')
-            ->where('userId', '=', $loggedUser->userId)->first();
 
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
+
+//        $bolUser = DB::table('bolApi')
+//            ->where('userId', '=', $loggedUser->userId)->first();
         $MintyBolApi = new MintyBolController();
         $MintyBolApi->CreateModuleBolUser($bolUser->userIdApi, $moduleNaam);
 

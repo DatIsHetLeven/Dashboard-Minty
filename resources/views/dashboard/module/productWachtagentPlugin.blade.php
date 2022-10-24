@@ -79,12 +79,12 @@
 
         <div class="col-xl-12">
             <div class="card mb-6">
-                <div class="card-header"><?php echo $singleModule->name ?></div>
+                <div class="card-header"><?php echo $singleModule->identifier ?></div>
                 <div class="card-body">
                     <form>
 
                         <?php
-                        $possibleSettingList = json_decode($singleModule->possibleSettings,true);
+                        $possibleSettingList = json_decode($singleModule->settings,true);
                         $stockSyncSetting = $possibleSettingList['stockSync'];
                         $priceSyncSetting= $possibleSettingList['priceSync'];
 

@@ -52,10 +52,6 @@
         </div>
 
 
-
-
-
-
         <style>
             .switch {
                 position: relative;
