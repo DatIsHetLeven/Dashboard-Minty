@@ -11,7 +11,8 @@
 <?php  for ($x = 0; $x < count($allUsers); $x++) {?>
         <div class="col-xl-4">
             <div class="card mb-4">
-                <a href="{{ route('GetSingleModule',$allUsers[$x]->identifier) }}"><div class="card-header"><?php echo $allUsers[$x]->name?></div></a>
+                <?php if($boolModule[$x] == true){?><a href="{{ route('GetSingleModule',$allUsers[$x]->identifier) }}"><div class="card-header"><?php echo $allUsers[$x]->name?></div></a><?php } ?>
+                <?php if($boolModule[$x] == false){?><a href="#"><div class="card-header"><?php echo $allUsers[$x]->name?></div></a><?php } ?>
                 <br>
                 <?php echo $allUsers[$x]->description ?>
                 <div class="card-body">

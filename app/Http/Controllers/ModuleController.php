@@ -43,13 +43,13 @@ class ModuleController extends Controller
 
     //Toon de correcte module
     public function GetSingleModule($moduleNaam){
+
         $MintyBolApi = new MintyBolController();
         $singleModule = $MintyBolApi->getSingleModuleUser();
 
 
         if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule[0]]);
         if ($moduleNaam === 'bol.mintyconnect.product.wachtagent') return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule[1]]);
-
         return view('dashboard/module/permodule', ['singleModule' => $singleModule]);
     }
     //Enable 1 module

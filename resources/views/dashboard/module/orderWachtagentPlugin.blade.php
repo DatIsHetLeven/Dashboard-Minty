@@ -69,7 +69,7 @@
 
     <div>
         <?php
-//        dd(count($allUsers));
+
         ?>
     </div>
     {{--toon alle modules--}}
@@ -86,9 +86,11 @@
 
                         <?php
                         $possibleSettingList = json_decode($singleModule->settings,true);
+                        //dd($possibleSettingList);
                         //dump($singleModule->settings);
                         //dd($possibleSettingList);
                         $phoneSetting = $possibleSettingList['phone'];
+
                         //dd($phoneSetting);
                         $emailSetting= $possibleSettingList['email'];
                         $statusSetting = $possibleSettingList['status'];?>
