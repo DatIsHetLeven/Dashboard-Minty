@@ -19,7 +19,9 @@
                         <input type="checkbox" <?php if ($boolModule[$x] === true){?>checked<?php  }?> >
                         <span class="slider round"></span>
                     </label>
-                    <a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}">Install</a>
+                        <?php if (!$boolModule[$x] === true){?>
+                    <a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}">Install</a><?php }
+                    else{?><a href="{{ route('DisableSingleModule',$allUsers[$x]->identifier) }}">Uninstall</a><?php } ?>
                 </div>
             </div>
         </div>

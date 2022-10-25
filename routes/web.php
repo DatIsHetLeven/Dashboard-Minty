@@ -98,6 +98,7 @@ Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('G
 
 Route::get('GetSingleModule/{moduleId}', [ModuleController::class, 'GetSingleModule'])->name('GetSingleModule')->middleware('check.user');
 Route::get('EnableSingleModule/{moduleId}', [ModuleController::class, 'EnableSingleModule'])->name('EnableSingleModule')->middleware('check.user');
+Route::get('DisableSingleModule/{moduleId}', [ModuleController::class, 'DisableSingleModule'])->name('DisableSingleModule')->middleware('check.user');
 
 
 Route::post('createBolUser/{id}', [UserController::class, 'createBolUser'])->name('createBolUser')->middleware('check.user');

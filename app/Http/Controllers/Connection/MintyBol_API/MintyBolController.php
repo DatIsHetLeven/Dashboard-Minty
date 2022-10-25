@@ -86,7 +86,6 @@ class MintyBolController extends Controller
         //Als gebruiker de module al heeft.
         try {
             $response = $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
-            dd($response);
         } catch (GuzzleException $e) {
             $body = json_encode([
                 "bolUserId" => $bolUserId,
@@ -98,6 +97,15 @@ class MintyBolController extends Controller
             $response = $this->guzzleClient->request('POST', 'modules/User', ['headers' => $this->headers, 'body' => $body]);
         }
     }
+
+    public function deleteModuleBolUser($bolUserId, $identifier){
+        try {
+            $response = $this->guzzleClient->request('DELETE', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
+        } catch (GuzzleException $e) {
+            dd("error delete module user");
+        }
+    }
+
 
     //Get all modules
     public function GetAllModules(){

@@ -68,6 +68,19 @@ class ModuleController extends Controller
 
         return redirect()->route('GetAllModules');
     }
+    //Disable 1 module
+    public function DisableSingleModule($moduleNaam){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
+
+        $MintyBolApi = new MintyBolController();
+        $MintyBolApi->deleteModuleBolUser($bolUser->userIdApi, $moduleNaam);
+
+        return redirect()->route('GetAllModules');
+    }
+
 
     public function getWachtagentPlugin(){
         $MintyBolApi = new MintyBolController();
