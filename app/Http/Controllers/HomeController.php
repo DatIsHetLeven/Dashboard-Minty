@@ -110,7 +110,10 @@ class HomeController extends Controller
 
         $NewStatusDetails = statusdetails::where('userId', '=', $loggedUser->userId)->first();
         $NewStatusDetails->geldig = $geldigTot;
+        $NewStatusDetails->geverifieerd = 1;
+        $NewStatusDetails->geabonneerd = 1;
         $NewStatusDetails->save();
+
         return view('dashboard/payment/payment');
     }
 
