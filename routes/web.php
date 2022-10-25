@@ -112,8 +112,7 @@ Route::get('payments/{id}', [HomeController::class, 'payments'])->name('payments
 Route::get('payment', [HomeController::class, 'payment'])->name('payment')->middleware('check.user');
 Route::post('updateOrderWachtagent', [MintyBolController::class, 'updateOrderWachtagent'])->name('updateOrderWachtagent')->middleware('check.user');
 Route::post('updateProductWachtagent', [MintyBolController::class, 'updateProductWachtagent'])->name('updateProductWachtagent')->middleware('check.user');
-
-
+Route::get('inloggenAlsKlant/{id}', [UserController::class, 'inloggenAlsKlant'])->name('inloggenAlsKlant')->middleware('check.user');
 
 
 

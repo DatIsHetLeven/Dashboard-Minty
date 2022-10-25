@@ -11,6 +11,7 @@ use App\Models\statusdetails;
 use App\Models\factuursturen;
 use App\Models\bolApi;
 
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 
 class UserController extends Controller
 {
+
     //Haal inlog gebruiker op
     public function getUser()
     {
@@ -390,5 +392,47 @@ class UserController extends Controller
             dd("Er is een fout opgetreden!");
         }
         return back();
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function inloggenAlsKlant($userIdKlantAccount){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $getUser = User::where('userId', '=', $loggedUser->userId)->first();
+
+        //Als je geen rechten hebt tot deze functie
+        if(!$getUser->rol == 1)return back();
+
+        $currentCookieToken = $getUser->cookie_token;
+        $cookie_name = "adminSessie";
+        setcookie($cookie_name, $currentCookieToken, time() + (86400 * 30),"/");
+
+        //Haal cookieToken op van klant.
+        $GegevensKlant = User::where('userId', '=', $userIdKlantAccount)->first();
+        $cookieTokenKlant = $GegevensKlant->cookie_token;
+
+
+
+        setcookie("user", FALSE, time() + (86400 * 30),"/");
+
+        $cookie_name = "user";
+        setcookie($cookie_name, $cookieTokenKlant, time() + (86400 * 30),"/");
+
+
+
+        return view('dashboard/dashboard', ['userByCookie' => $GegevensKlant]);
+    }
+
+    public function getCookie(Request $request){
+
     }
 }

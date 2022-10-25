@@ -20,7 +20,7 @@
                             <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="qwertyuiopasdfghjklzxcvbnm">
                         </div>
                         <button class="btn btn-primary" id="btnDeleteUser" type="button">Blokkeer Api voor klant</button>
-                        <button class="btn btn-primary" id="btnInloggenAlsKlant" type="button">Inloggen als klant</button>
+                        <a href="{{ route('inloggenAlsKlant',$user->userId) }}"><button class="btn btn-primary" id="btnInloggenAlsKlant" type="button">Inloggen als klant</button></a>
                         <a href="{{ route('deleteUser',$user->userId) }}"><button class="btn btn-primary" id="btnDeleteUser" type="button">Verwijder klant</button></a>
                         <br><br><br>
                         Geverififeerd<input type="checkbox" id="test"<?php if($user->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"><br><br>

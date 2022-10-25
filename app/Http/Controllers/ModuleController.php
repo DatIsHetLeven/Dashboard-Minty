@@ -15,10 +15,10 @@ class ModuleController extends Controller
         //Get bolUserId (userid from arthurs api)
         $bolUser = DB::table('bolApi')
             ->where('userId', '=', $loggedUser->userId)->first();
-
+        //dd($loggedUser);
         $alleModules = $MintyBolApi->GetAllModules();
         $logs = $this->GetLog();
-
+        //dd($bolUser);
         $CheckModuleArray = array();
         for ($x = 0; $x < count($alleModules); $x++){
             $boolModule = $MintyBolApi->CheckModuleBolUser($bolUser->userIdApi, $alleModules[$x]->identifier);

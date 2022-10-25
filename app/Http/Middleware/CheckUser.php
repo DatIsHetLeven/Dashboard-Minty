@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Http\Controllers\HomeController;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class CheckUser
 {
@@ -17,6 +18,10 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
+
+
+
+
         //Check if cookie sessie geldig is
         $homeController = new HomeController();
         if($homeController->checkCookieToken($_COOKIE['user']) === false) return redirect()->route('welcome');

@@ -6,6 +6,7 @@ use App\Models\statusdetails;
 use App\Models\User;
 
 
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;

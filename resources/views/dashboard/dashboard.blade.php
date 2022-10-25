@@ -12,7 +12,7 @@
         <h2>Goede middag <?php echo $userByCookie ->naam;?> !</h2>
         <p><span class="welkomBol">Welkom bij de Bol Koppeling</span></p>
     </div>
-
+<?php dump($userByCookie->naam)?>
     <div class="boxes">
         <div class="box1">
             <h4>Actieve module(s)</h4>
