@@ -19,17 +19,16 @@ class ModuleController extends Controller
             ->where('userId', '=', $loggedUser->userId)->first();
 
         $alleModules = $MintyBolApi->GetAllModules();
-
         $logs = $this->GetLog();
-
 
         $CheckModuleArray = array();
         for ($x = 0; $x < count($alleModules); $x++){
             $boolModule = $MintyBolApi->CheckModuleBolUser($bolUser->userIdApi, $alleModules[$x]->identifier);
             $CheckModuleArray[] = $boolModule;
         }
+        $user = $homeController->renderPersonalDetails();
 
-        return view('dashboard/module/allemodules', ['allUsers' => $alleModules, 'allLogs' => $logs, 'boolModule' =>$CheckModuleArray]);
+        return view('dashboard/module/allemodules', ['allUsers' => $alleModules, 'allLogs' => $logs, 'boolModule' =>$CheckModuleArray, 'userByCookie' => $user]);
     }
     public function GetLog(){
         $MintyBolApi = new MintyBolController();

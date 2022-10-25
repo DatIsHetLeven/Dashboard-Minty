@@ -58,8 +58,6 @@ class HomeController extends Controller
 
     public function seeCustomerDetail($userId)
     {
-        // $getUser = User::where('userId', '=', $userId)->first();
-
         $getUser = DB::table('statusdetails')
         ->join('user', 'statusdetails.userId', '=', 'user.userId')
         ->where('statusdetails.userId', '=', $userId)
@@ -96,30 +94,22 @@ class HomeController extends Controller
     }
 
     public function getUserBolId($userId){
-
         $bolUser = DB::table('bolApi')
             ->where('userId', '=', $userId)->first();
 
         return $bolUser;
-
     }
 
     public function payments($id){
         $bolContoller = new MintyBolController();
-
         return $bolContoller->CheckMandateStatus($id);
-        //return view('dashboard/payment/payment');
     }
 
     public function payment(){
         $dayVandaag = date('Y-m-d');
-        $geldigTot =  date('Y-m-d', strtotime("$dayVandaag + 31 day"));
-
+        $geldigTot =  date('Y-m-d', strtotime("$dayVandaag + 365 day"));
 
         $loggedUser = $this->renderPersonalDetails();
-
-        //dd($geldigTot);
-
 
         $NewStatusDetails = statusdetails::where('userId', '=', $loggedUser->userId)->first();
         $NewStatusDetails->geldig = $geldigTot;
@@ -127,15 +117,10 @@ class HomeController extends Controller
         return view('dashboard/payment/payment');
     }
 
-
-
-
     public function checkCookieToken($token){
         $getUser = User::
         where('cookie_token', '=', $token)->first();
-
         if (empty($getUser))return false;
-
         return true;
     }
 
