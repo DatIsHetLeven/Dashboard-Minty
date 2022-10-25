@@ -27,7 +27,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword');
+Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword')->middleware('check.user');
 
 Route::get('persoonsgegevens', [HomeController::class, 'toonPersoonsgegevens'])->name('persoonsgegevens')->middleware('check.user');;
 
@@ -36,21 +36,21 @@ Route::GET('dashboard', [HomeController::class, 'renderDashboard'])->name('dashb
 Route::get('gebruikers', [UserController::class, 'getAllUsers'])->name('allegebruikers')->middleware('check.user');;
 
 Route::get('dashboardOld', function () {
-    return view('dashboard/dashboardOldMyDesign');
+    return view('dashboard/dashboardOldMyDesign')->middleware('check.user');
 });
 
-Route::POST('logincheck', [UserController::class, 'getUser'])->name('login_check');
+Route::POST('logincheck', [UserController::class, 'getUser'])->name('login_check')->middleware('check.user');
 
-Route::POST('cretateUser', [UserController::class, 'createUser'])->name('create_user_check');
+Route::POST('cretateUser', [UserController::class, 'createUser'])->name('create_user_check')->middleware('check.user');
 
 // gebruikt kortere class path - minty pawel
-Route::POST('createPassword', [UserController::class, 'createPassword'])->name('set_password');
+Route::POST('createPassword', [UserController::class, 'createPassword'])->name('set_password')->middleware('check.user');
 
-Route::POST('resetPass', [UserController::class, 'resetPass'])->name('reset_password');
+Route::POST('resetPass', [UserController::class, 'resetPass'])->name('reset_password')->middleware('check.user');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('check.user');
 
 
 Route::get('gebruikerinfo', function () {
@@ -66,7 +66,7 @@ Route::get('deleteUser/{id}', [UserController::class, 'deleteUser'])->name('dele
 
 Route::get('instellingen', function () {
     return view('dashboard/setting/setting');
-})->name('instellingen');
+})->name('instellingen')->middleware('check.user');
 
 Route::get('alleproducten', [ProductController::class, 'getAllProducts'])->name('alleproducten')->middleware('check.user');
 
@@ -90,26 +90,26 @@ Route::get('testpage', function () {
 
 Route::get('allemodules', function () {
     return view('dashboard/module/allemodules');
-})->name('allemodules');
+})->name('allemodules')->middleware('check.user');
 
 
-Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules');
+Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules')->middleware('check.user');
 
 
-Route::get('GetSingleModule/{moduleId}', [ModuleController::class, 'GetSingleModule'])->name('GetSingleModule');
-Route::get('EnableSingleModule/{moduleId}', [ModuleController::class, 'EnableSingleModule'])->name('EnableSingleModule');
+Route::get('GetSingleModule/{moduleId}', [ModuleController::class, 'GetSingleModule'])->name('GetSingleModule')->middleware('check.user');
+Route::get('EnableSingleModule/{moduleId}', [ModuleController::class, 'EnableSingleModule'])->name('EnableSingleModule')->middleware('check.user');
 
 
-Route::post('createBolUser/{id}', [UserController::class, 'createBolUser'])->name('createBolUser');
+Route::post('createBolUser/{id}', [UserController::class, 'createBolUser'])->name('createBolUser')->middleware('check.user');
 
 
 
 
 //test routes
-Route::get('CreateMandate', [MintyBolController::class, 'CreateMandate'])->name('CreateMandate');
-Route::get('payments/{id}', [HomeController::class, 'payments'])->name('payments');
-Route::get('payment', [HomeController::class, 'payment'])->name('payment');
-Route::post('updateOrderWachtagent', [MintyBolController::class, 'updateOrderWachtagent'])->name('updateOrderWachtagent');
+Route::get('CreateMandate', [MintyBolController::class, 'CreateMandate'])->name('CreateMandate')->middleware('check.user');
+Route::get('payments/{id}', [HomeController::class, 'payments'])->name('payments')->middleware('check.user');
+Route::get('payment', [HomeController::class, 'payment'])->name('payment')->middleware('check.user');
+Route::post('updateOrderWachtagent', [MintyBolController::class, 'updateOrderWachtagent'])->name('updateOrderWachtagent')->middleware('check.user');
 
 
 

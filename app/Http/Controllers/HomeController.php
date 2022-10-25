@@ -127,4 +127,16 @@ class HomeController extends Controller
         return view('dashboard/payment/payment');
     }
 
+
+
+
+    public function checkCookieToken($token){
+        $getUser = User::
+        where('cookie_token', '=', $token)->first();
+
+        if (empty($getUser))return false;
+
+        return true;
+    }
+
 }

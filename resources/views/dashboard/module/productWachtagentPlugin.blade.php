@@ -85,6 +85,7 @@
 
                         <?php
                         $possibleSettingList = json_decode($singleModule->settings,true);
+                        dd($singleModule);
                         $stockSyncSetting = $possibleSettingList['stockSync'];
                         $priceSyncSetting= $possibleSettingList['priceSync'];
 

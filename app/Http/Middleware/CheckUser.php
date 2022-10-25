@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\HomeController;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckUser 
+class CheckUser
 {
     /**
      * Handle an incoming request.
@@ -16,11 +17,11 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!isset($_COOKIE['user'])){
-            return redirect()->route('welcome');
-        }
-        
-        return $next($request);
+        //dd("test");
 
+            //Check if cookie sessie geldig is
+        $homeController = new HomeController();
+        if($homeController->checkCookieToken($_COOKIE['user']) === false) return redirect()->route('welcome');
+        return $next($request);
     }
 }
