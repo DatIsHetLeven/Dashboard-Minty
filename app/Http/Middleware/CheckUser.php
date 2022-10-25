@@ -22,6 +22,7 @@ class CheckUser
             //Check if cookie sessie geldig is
         $homeController = new HomeController();
         if($homeController->checkCookieToken($_COOKIE['user']) === false) return redirect()->route('welcome');
+        //dd($_COOKIE['user']);
         return $next($request);
     }
 }

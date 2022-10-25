@@ -39,7 +39,7 @@ Route::get('dashboardOld', function () {
     return view('dashboard/dashboardOldMyDesign')->middleware('check.user');
 });
 
-Route::POST('logincheck', [UserController::class, 'getUser'])->name('login_check')->middleware('check.user');
+Route::POST('logincheck', [UserController::class, 'getUser'])->name('login_check');
 
 Route::POST('cretateUser', [UserController::class, 'createUser'])->name('create_user_check')->middleware('check.user');
 
