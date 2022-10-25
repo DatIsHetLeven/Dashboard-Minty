@@ -1,6 +1,5 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<h1>LOADED</h1>
 <style>
     .switch {
         position: relative;
@@ -81,50 +80,31 @@
             <div class="card mb-6">
                 <div class="card-header"><?php echo $singleModule->identifier ?></div>
                 <div class="card-body">
-                    <form>
-
+                    <form action="{{ route('updateProductWachtagent') }}" method="post">
+                        @csrf
                         <?php
                         $possibleSettingList = json_decode($singleModule->settings,true);
-                        dd($singleModule);
+                        //dd($singleModule);
                         $stockSyncSetting = $possibleSettingList['stockSync'];
                         $priceSyncSetting= $possibleSettingList['priceSync'];
 
                         ?>
                         StockSync setting :
-                        <?php
-                        if(!empty($stockSyncSetting)){?>
-                        <label class="switch">
-                            <input type="checkbox" checked>
+                        <label class="switch" >
+                            <input type="checkbox" value="stock" name='stockSetting' {{   (empty($stockSyncSetting)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
-                        <?php }
-                        else{?>
-                        <label class="switch">
-                            <input type="checkbox" >
-                            <span class="slider round"></span>
-                        </label><?php
-                                }?>
                         <br><br><br>
 
-
                         PriceSync setting :
-                        <?php
-                        if(!empty($priceSyncSetting)){?>
-                        <label class="switch">
-                            <input type="checkbox" checked>
+                        <label class="switch" >
+                            <input type="checkbox" value="price" name='priceSetting' {{   (empty($stockSyncSetting)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
-                        <?php }
-                        else{?>
-                        <label class="switch">
-                            <input type="checkbox" >
-                            <span class="slider round"></span>
-                        </label>
-                            <?php
-                        }?>
                         <br><br><br>
 
                         <button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">opslaan</button>
+
                     </form>
                 </div>
             </div>

@@ -131,11 +131,12 @@ class MintyBolController extends Controller
 
     //Get all logs
     public function GetLogs(){
-        try {
-            $response = $this->guzzleClient->request('GET', 'logs?page=31', ['headers' => $this->headers]);
-        } catch (GuzzleException $e) {
-        }
-        return json_decode($response->getBody()->getContents());
+        //Check wat de hoogste pagina is - Laatste updates
+        $response = $this->guzzleClient->request('GET', 'logs?page=31', ['headers' => $this->headers]);
+        $maxPage = json_decode($response->getBody()->getContents());
+        //Haal meest recente logs op.
+        $logList = $this->guzzleClient->request('GET', 'logs?page='.$maxPage->pages, ['headers' => $this->headers]);
+        return json_decode($logList->getBody()->getContents());
     }
 
     //Update Order Wachtagent Plugin
@@ -158,6 +159,34 @@ class MintyBolController extends Controller
                 "email"=> $email,
                 "status"=> "default"
         ]
+        ]);
+        //dd($body);
+        $this->headers['Content-Type'] = 'application/json';
+        $response = $this->guzzleClient->request('PUT', 'modules/user', ['headers' => $this->headers, 'body' => $body]);
+        return redirect( 'GetAllModules');
+    }
+
+    //Update Product Wachtagent Plugin
+    public function updateProductWachtagent(){
+
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
+
+        $stock = "";
+        $price = "";
+
+        if (isset($_POST['stockSetting']))$stock = "true";
+        if (isset($_POST['priceSetting']))$price = "true";
+
+
+        $body = json_encode([
+            "bolUserId"=> $bolUser->userIdApi,
+            "identifier"=> "bol.mintyconnect.product.wachtagent",
+            "settings"=> [
+                "stockSync"=> $stock,
+                "priceSync"=> $price,
+            ]
         ]);
         //dd($body);
         $this->headers['Content-Type'] = 'application/json';

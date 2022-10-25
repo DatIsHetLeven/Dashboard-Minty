@@ -110,6 +110,7 @@ Route::get('CreateMandate', [MintyBolController::class, 'CreateMandate'])->name(
 Route::get('payments/{id}', [HomeController::class, 'payments'])->name('payments')->middleware('check.user');
 Route::get('payment', [HomeController::class, 'payment'])->name('payment')->middleware('check.user');
 Route::post('updateOrderWachtagent', [MintyBolController::class, 'updateOrderWachtagent'])->name('updateOrderWachtagent')->middleware('check.user');
+Route::post('updateProductWachtagent', [MintyBolController::class, 'updateProductWachtagent'])->name('updateProductWachtagent')->middleware('check.user');
 
 
 
