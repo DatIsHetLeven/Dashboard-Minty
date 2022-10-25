@@ -410,11 +410,13 @@ class UserController extends Controller
         $getUser = User::where('userId', '=', $loggedUser->userId)->first();
 
         //Als je geen rechten hebt tot deze functie
-        if(!$getUser->rol == 1)return back();
+        if($getUser->rol === 1){
+            setcookie("adminSessie", FALSE, time() + (86400 * 30),"/");
+            $currentCookieToken = $getUser->cookie_token;
+            $cookie_name = "adminSessie";
+            setcookie($cookie_name, $currentCookieToken, time() + (86400 * 30),"/");
+        }
 
-        $currentCookieToken = $getUser->cookie_token;
-        $cookie_name = "adminSessie";
-        setcookie($cookie_name, $currentCookieToken, time() + (86400 * 30),"/");
 
         //Haal cookieToken op van klant.
         $GegevensKlant = User::where('userId', '=', $userIdKlantAccount)->first();
