@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//ongebruikte classes en  class die niet goed worden opgehaald
-use Illuminate\Http\Request;
-
 class LoginController extends Controller
 {
     // public function __construct()

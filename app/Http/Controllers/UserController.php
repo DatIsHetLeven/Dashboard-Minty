@@ -11,14 +11,7 @@ use App\Models\statusdetails;
 use App\Models\factuursturen;
 use App\Models\bolApi;
 
-
-
-//De classes hier onder worden niet gebruikt - minty pawel
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Password;
-use App\Providers\FortifyServiceProvider;
-use App\Actions\Fortify;
-use App\Http\Controllers\MailController;
 
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 

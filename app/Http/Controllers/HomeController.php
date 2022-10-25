@@ -1,14 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
-use App\Http\Controllers\UserController;
 
 use App\Models\statusdetails;
 use App\Models\User;
 
-use Illuminate\Http\Request;
 
-//Deze class wordt niet gebruikt - minty pawel
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;

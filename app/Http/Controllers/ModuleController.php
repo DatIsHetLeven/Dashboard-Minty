@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
-use App\Http\Controllers\HomeController;
-use App\Models\bolApi;
 use Illuminate\Support\Facades\DB;
 
 

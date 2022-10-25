@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Mail;
 
-// De Class password wordt nergens aangemaakt - minty pawel
 use App\Mail\password;
 use App\Mail\ResetPass;
 
