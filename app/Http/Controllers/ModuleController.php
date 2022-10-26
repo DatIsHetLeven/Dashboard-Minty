@@ -8,42 +8,40 @@ use Illuminate\Support\Facades\DB;
 
 class ModuleController extends Controller
 {
+    private $homeController;
+    private $MintyBolApi;
+    private $loggedUser;
+
+    public function  __construct(){
+        $this->homeController = new HomeController();
+        $this->MintyBolApi = new MintyBolController();
+        $this->loggedUser = $this->homeController->renderPersonalDetails();
+    }
+    
     public function GetAllModules(){
-        $MintyBolApi = new MintyBolController();
-        $homeController = new HomeController();
-        $loggedUser = $homeController->renderPersonalDetails();
-        if (empty($loggedUser->userId))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
+        if (empty($this->loggedUser->userId))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         //Get bolUserId (userid from arthurs api)
         $bolUser = DB::table('bolApi')
-            ->where('userId', '=', $loggedUser->userId)->first();
-        //dd($loggedUser);
-        $alleModules = $MintyBolApi->GetAllModules();
+            ->where('userId', '=', $this->loggedUser->userId)->first();
+        $alleModules = $this->MintyBolApi->GetAllModules();
         $logs = $this->GetLog();
-        //dd($bolUser);
         $CheckModuleArray = array();
         for ($x = 0; $x < count($alleModules); $x++){
-            $boolModule = $MintyBolApi->CheckModuleBolUser($bolUser->userIdApi, $alleModules[$x]->identifier);
+            $boolModule = $this->MintyBolApi->CheckModuleBolUser($bolUser->userIdApi, $alleModules[$x]->identifier);
             $CheckModuleArray[] = $boolModule;
         }
-        $user = $homeController->renderPersonalDetails();
+        $user = $this->homeController->renderPersonalDetails();
 
         return view('dashboard/module/allemodules', ['allUsers' => $alleModules, 'allLogs' => $logs, 'boolModule' =>$CheckModuleArray, 'userByCookie' => $user]);
     }
     public function GetLog(){
-        $MintyBolApi = new MintyBolController();
-        $singleModule = $MintyBolApi->GetLogs();
-
+        $singleModule = $this->MintyBolApi->GetLogs();
         return $singleModule;
-
     }
-
-
 
     //Toon de correcte module
     public function GetSingleModule($moduleNaam){
-
-        $MintyBolApi = new MintyBolController();
-        $singleModule = $MintyBolApi->getSingleModuleUser();
+        $singleModule = $this->MintyBolApi->getSingleModuleUser();
 
 
         if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule[0]]);
@@ -52,43 +50,26 @@ class ModuleController extends Controller
     }
     //Enable 1 module
     public function EnableSingleModule($moduleNaam){
-
-        $homeController = new HomeController();
-        $loggedUser = $homeController->renderPersonalDetails();
         //Get bolUserId (userid from arthurs api)
-
-        $bolUser = $homeController->getUserBolId($loggedUser->userId);
-
-//        $bolUser = DB::table('bolApi')
-//            ->where('userId', '=', $loggedUser->userId)->first();
-        $MintyBolApi = new MintyBolController();
-        $MintyBolApi->CreateModuleBolUser($bolUser->userIdApi, $moduleNaam);
+        $bolUser = $this->homeController->getUserBolId($this->loggedUser->userId);
+        $this->MintyBolApi->CreateModuleBolUser($bolUser->userIdApi, $moduleNaam);
 
         return redirect()->route('GetAllModules');
     }
     //Disable 1 module
     public function DisableSingleModule($moduleNaam){
-        $homeController = new HomeController();
-        $loggedUser = $homeController->renderPersonalDetails();
-
-        $bolUser = $homeController->getUserBolId($loggedUser->userId);
-
-        $MintyBolApi = new MintyBolController();
-        $MintyBolApi->deleteModuleBolUser($bolUser->userIdApi, $moduleNaam);
+        $bolUser = $this->homeController->getUserBolId($this->loggedUser->userId);
+        $this->MintyBolApi->deleteModuleBolUser($bolUser->userIdApi, $moduleNaam);
 
         return redirect()->route('GetAllModules');
     }
 
 
     public function getWachtagentPlugin(){
-        $MintyBolApi = new MintyBolController();
-        $singleModule = $MintyBolApi->GetSingleModule("bol.mintyconnect.order.wachtagent");
+        $singleModule = $this->MintyBolApi->GetSingleModule("bol.mintyconnect.order.wachtagent");
 
         return view('dashboard/module/order_wachtagent_plugin.blade.php', ['singleModule' => $singleModule]);
     }
-
-
-
 
 }
 
