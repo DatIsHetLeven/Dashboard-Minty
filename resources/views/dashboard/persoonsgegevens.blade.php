@@ -60,7 +60,34 @@
                     </form>
                 </div>
             </div>
+
+            <div class="card mb-4">
+                <div class="card-header">Woo - Koppeling</div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('createWooUser',$userByCookie->userId) }}" >
+                        @csrf
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Host</label>
+                            <input class="form-control" id="inputUsername" name='wooClientHost' type="text" >
+                        </div>
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Woo Key</label>
+                            <input class="form-control" id="inputUsername" name='wooClientKey' type="text" >
+                        </div>
+                        <!-- Form Row-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Secret</label>
+                            <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" >
+                        </div>
+                        <br>
+                        <a href="{{ route('createBolUser',$userByCookie->userId) }}"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Versturen</button></a>
+                    </form>
+                </div>
+            </div>
         </div>
+
+
 
 
 

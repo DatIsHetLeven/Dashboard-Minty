@@ -40,13 +40,11 @@ class MintyBolController extends Controller
         $this->headers['Content-Type'] = 'application/json';
         $response = $this->guzzleClient->request('POST', 'accounts/user', ['headers' => $this->headers, 'body' => $body]);
         $data = json_decode($response->getBody()->getContents());
-        //dd($data->userId);
         return $data->userId;
     }
 
     //Create a new bol account
     public  function  CreateBolAccount($userId, $clientId, $secret, $country, $label){
-
         try {
             $body = json_encode([
                 "userId" => $userId,
@@ -63,10 +61,28 @@ class MintyBolController extends Controller
             dd("gegevens onjuist, probeer opnieuw!");
         }
     }
+
+    //Create a new bol account
+    public  function  CreateWooAccount($userId, $host, $key, $secret){
+        try {
+            $body = json_encode([
+                "userId" => $userId,
+                "host" => $host,
+                "wooKey" => $key,
+                "secret" => $secret,
+            ]);
+
+            $this->headers['Content-Type'] = 'application/json';
+
+            $response = $this->guzzleClient->request('POST', 'accounts/woo', ['headers' => $this->headers, 'body' => $body]);
+        } catch (GuzzleException $e) {
+            dd("gegevens onjuist, probeer opnieuw!");
+        }
+    }
+
     //Controleren of modules al aangezet zijn (bij het laden van de pagina)
     public function CheckModuleBolUser($bolUserId, $identifier){
         $moduleBschikbaar = false;
-
         try {
             $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
             $moduleBschikbaar = true;
@@ -79,11 +95,6 @@ class MintyBolController extends Controller
 
     //Create standaard module per boluser
     public function CreateModuleBolUser($bolUserId, $identifier){
-        $ModuleController = new ModuleController();
-
-        //Controleren of gebruiker al modules heeft.
-        $moduleUserList = 0;
-        //Als gebruiker de module al heeft.
         try {
             $response = $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
@@ -106,7 +117,6 @@ class MintyBolController extends Controller
         }
     }
 
-
     //Get all modules
     public function GetAllModules(){
         try {
@@ -122,9 +132,7 @@ class MintyBolController extends Controller
         $loggedUser = $homeController->renderPersonalDetails();
         $bolUser = $homeController->getUserBolId($loggedUser->userId)->userIdApi;
 
-
         $response = $this->guzzleClient->request('GET', 'modules/user/'.$bolUser, ['headers' => $this->headers]);
-        //dd($response->getBody()->getContents());
         return json_decode($response->getBody()->getContents());
     }
 
@@ -168,7 +176,6 @@ class MintyBolController extends Controller
                 "status"=> "default"
         ]
         ]);
-        //dd($body);
         $this->headers['Content-Type'] = 'application/json';
         $response = $this->guzzleClient->request('PUT', 'modules/user', ['headers' => $this->headers, 'body' => $body]);
         return redirect( 'GetAllModules');
@@ -186,7 +193,6 @@ class MintyBolController extends Controller
 
         if (isset($_POST['stockSetting']))$stock = "true";
         if (isset($_POST['priceSetting']))$price = "true";
-
 
         $body = json_encode([
             "bolUserId"=> $bolUser->userIdApi,

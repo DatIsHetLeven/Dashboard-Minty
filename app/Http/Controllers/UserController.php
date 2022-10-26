@@ -337,6 +337,25 @@ class UserController extends Controller
         return back();
     }
 
+
+    //Create Woo user
+    public function createWooUser(Request $request, $userId){
+        $CheckUserLogin = bolApi::Where('userId', '=', $userId)->first();
+        $userIdApi = $CheckUserLogin->userIdApi;
+
+
+        if(isset($_POST['createWooUserBTN'])) {
+            $host = $_POST['wooClientHost'];
+            $key = $_POST['wooClientKey'];
+            $secret = $_POST['wooClientSecret'];
+        }
+
+        $MintyBolApi = new MintyBolController();
+        $newBolUser = $MintyBolApi->CreateWooAccount($userIdApi,$host, $key, $secret );
+
+        return back();
+    }
+
         /**
     * This function return the current loggedin user
      * @return User|null
