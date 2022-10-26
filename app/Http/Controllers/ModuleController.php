@@ -17,7 +17,7 @@ class ModuleController extends Controller
         $this->MintyBolApi = new MintyBolController();
         $this->loggedUser = $this->homeController->renderPersonalDetails();
     }
-    
+
     public function GetAllModules(){
         if (empty($this->loggedUser->userId))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         //Get bolUserId (userid from arthurs api)
@@ -42,7 +42,6 @@ class ModuleController extends Controller
     //Toon de correcte module
     public function GetSingleModule($moduleNaam){
         $singleModule = $this->MintyBolApi->getSingleModuleUser();
-
 
         if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule[0]]);
         if ($moduleNaam === 'bol.mintyconnect.product.wachtagent') return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule[1]]);

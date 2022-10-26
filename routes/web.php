@@ -93,7 +93,7 @@ Route::get('allemodules', function () {
 })->name('allemodules')->middleware('check.user');
 
 
-Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules')->middleware('check.user');
+Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules')->middleware('CheckBolAccount');
 
 
 Route::get('GetSingleModule/{moduleId}', [ModuleController::class, 'GetSingleModule'])->name('GetSingleModule')->middleware('check.user');

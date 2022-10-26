@@ -252,9 +252,19 @@ class MintyBolController extends Controller
             return redirect('payment');
         }
 
-
         else return redirect('dashboard')->with(['error'=> "Er ging iets mis tijdens de betaling, probeer opnieuw!"]);
-        //If paid -> insert user in FS -> NIET VERGETEN -> BANKCODE + BICCODE MEEGEVEN
+    }
+
+    public function CheckIfBolUserExist(){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
+
+        $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
+        $checker = json_decode($response->getBody()->getContents());
+        //dd($checker);
+        if (empty($checker))return false;
+        return true;
     }
 
 

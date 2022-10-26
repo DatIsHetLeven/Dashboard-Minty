@@ -331,7 +331,6 @@ class UserController extends Controller
             if ($label == 'nl-be')$country = 'Netherlands & Belgium';
         }
 
-
         $MintyBolApi = new MintyBolController();
         $newBolUser = $MintyBolApi->CreateBolAccount($userIdApi, $clientId, $secret, $country, $label );
 
@@ -353,7 +352,6 @@ class UserController extends Controller
         $fsnlAPI = new fsnl_api_Controller;
 
         $fSApi = new fsnl_api_Controller();
-        $newClient = [];
 
         $newClient = [
             'contact' => $getUser->naam,
