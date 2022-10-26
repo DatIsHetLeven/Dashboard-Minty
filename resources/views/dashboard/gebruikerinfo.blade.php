@@ -19,7 +19,7 @@
                             <label class="small mb-1" for="inputUsername">Koppeling :</label>
                             <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="qwertyuiopasdfghjklzxcvbnm">
                         </div>
-                        <button class="btn btn-primary" id="btnDeleteUser" type="button">Blokkeer Api voor klant</button>
+                        <a href="{{ route('blokkeerApi',$user->userId) }}"><button class="btn btn-primary" id="btnDeleteUser" type="button">Blokkeer Api voor klant</button></a>
                         <a href="{{ route('inloggenAlsKlant',$user->userId) }}"><button class="btn btn-primary" id="btnInloggenAlsKlant" type="button">Inloggen als klant</button></a>
                         <a href="{{ route('deleteUser',$user->userId) }}"><button class="btn btn-primary" id="btnDeleteUser" type="button">Verwijder klant</button></a>
                         <br><br><br>

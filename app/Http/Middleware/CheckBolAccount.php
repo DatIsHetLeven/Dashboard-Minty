@@ -21,6 +21,7 @@ class CheckBolAccount
         //Check if cookie sessie geldig is
         $MintyBolController = new MintyBolController();
 
+
         $bool = $MintyBolController->CheckIfBolUserExist();
         $bool2 = $MintyBolController->CheckIfWooUserExist();
         //dd($bool);

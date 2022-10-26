@@ -118,7 +118,7 @@ Route::post('updateProductWachtagent', [MintyBolController::class, 'updateProduc
 Route::get('inloggenAlsKlant/{id}', [UserController::class, 'inloggenAlsKlant'])->name('inloggenAlsKlant')->middleware('check.user');
 Route::get('herstellenEigenAccountInlog', [UserController::class, 'herstellenEigenAccountInlog'])->name('herstellenEigenAccountInlog')->middleware('check.user');
 
-
+Route::get('blokkeerApi/{id}', [HomeController::class, 'blokApiVoorKlant'])->name('blokkeerApi')->middleware('check.user');
 
 
 Route::get('orderWachtagentPlugin', function () {

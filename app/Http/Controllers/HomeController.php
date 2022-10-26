@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 
+use App\Models\bolApi;
 use App\Models\statusdetails;
 use App\Models\User;
 
@@ -124,6 +125,25 @@ class HomeController extends Controller
         $getUser = User::
         where('cookie_token', '=', $token)->first();
         if (empty($getUser))return false;
+        return true;
+    }
+
+    public function blokApiVoorKlant($userId){
+        $bolContoller = new MintyBolController();
+
+        $bolUser = bolApi::where('userId', '=', $userId)->first();
+        $bolUser->block = 1;
+        $bolUser->save();
+
+        $bolContoller->blokkeerApi($userId);
+
+        return back();
+    }
+
+    public function checkBlokKlant($userId){
+        $bolUser = bolApi::where('userId', '=', $userId)->first();
+        if ($bolUser->block === 1)return false;
+
         return true;
     }
 

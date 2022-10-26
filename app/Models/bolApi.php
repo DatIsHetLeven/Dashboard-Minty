@@ -18,5 +18,6 @@ class bolApi extends Authenticatable
     protected $fillable = [
         'userId',
         'userIdApi',
+        'block',
     ];
 }

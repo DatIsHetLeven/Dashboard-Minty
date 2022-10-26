@@ -8,6 +8,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\UserController;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 
 //Prachtige API van Arthur :o
@@ -290,6 +291,10 @@ class MintyBolController extends Controller
         $loggedUser = $homeController->renderPersonalDetails();
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
+        $bool = $homeController->checkBlokKlant($loggedUser->userId);
+        if ($bool == false) return false;
+
+
         //Admins kunnen altijd de modules bekijken.
         if($loggedUser->rol === 1)return true;
 
@@ -307,12 +312,29 @@ class MintyBolController extends Controller
 
         //Admins kunnen altijd de modules bekijken.
         if($loggedUser->rol === 1)return true;
+        //dd($bolUser->userIdApi);
+        try {
+            $response = $this->guzzleClient->request('GET', 'accounts/woo/'.$bolUser->userIdApi, ['headers' => $this->headers]);
+            $checker = json_decode($response->getBody()->getContents());
+            if (empty($checker))return false;
+        }catch (GuzzleException $e){
+            return true;
+        }
+    }
 
-        $response = $this->guzzleClient->request('GET', 'accounts/woo/'.$bolUser->userIdApi, ['headers' => $this->headers]);
-        $checker = json_decode($response->getBody()->getContents());
-        //dd($checker);
-        if (empty($checker))return false;
-        return true;
+    public function blokkeerApi($userId){
+        $homeController = new HomeController();
+        $bolUser = $homeController->getUserBolId($userId)->userIdApi;
+
+
+        $body = json_encode([
+            "licenseIsActive"=> false
+        ]);
+        $this->headers['Content-Type'] = 'application/json';
+        $response = $this->guzzleClient->request('PUT', 'accounts/user/'.$bolUser, ['headers' => $this->headers, 'body' => $body]);
+
+        return back();
+
     }
 
 
