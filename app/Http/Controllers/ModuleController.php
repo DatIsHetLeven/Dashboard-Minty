@@ -12,6 +12,7 @@ class ModuleController extends Controller
         $MintyBolApi = new MintyBolController();
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
+        if (empty($loggedUser->userId))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         //Get bolUserId (userid from arthurs api)
         $bolUser = DB::table('bolApi')
             ->where('userId', '=', $loggedUser->userId)->first();

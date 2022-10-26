@@ -31,7 +31,7 @@ Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpasswo
 
 Route::get('persoonsgegevens', [HomeController::class, 'toonPersoonsgegevens'])->name('persoonsgegevens')->middleware('check.user');;
 
-Route::GET('dashboard', [HomeController::class, 'renderDashboard'])->name('dashboard')->middleware('check.user');
+Route::GET('dashboard', [HomeController::class, 'renderDashboard'])->name('dashboard');
 
 Route::get('gebruikers', [UserController::class, 'getAllUsers'])->name('allegebruikers')->middleware('check.user');;
 
@@ -113,6 +113,7 @@ Route::get('payment', [HomeController::class, 'payment'])->name('payment')->midd
 Route::post('updateOrderWachtagent', [MintyBolController::class, 'updateOrderWachtagent'])->name('updateOrderWachtagent')->middleware('check.user');
 Route::post('updateProductWachtagent', [MintyBolController::class, 'updateProductWachtagent'])->name('updateProductWachtagent')->middleware('check.user');
 Route::get('inloggenAlsKlant/{id}', [UserController::class, 'inloggenAlsKlant'])->name('inloggenAlsKlant')->middleware('check.user');
+Route::get('herstellenEigenAccountInlog', [UserController::class, 'herstellenEigenAccountInlog'])->name('herstellenEigenAccountInlog')->middleware('check.user');
 
 
 

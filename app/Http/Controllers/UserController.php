@@ -25,15 +25,12 @@ class UserController extends Controller
     public function getUser()
     {
         if(!isset($_POST['loginButton'])) return redirect()->route('login')->with(['error'=> "login error"]);
-
-        $error = '';
         $username = $_POST['userName'];
         $CheckUserLogin = User::Where('email', '=', $username)->first();
 
         if(empty($CheckUserLogin)) return back()->with(['error'=> "Geberuiker niet gevonden"]);
 
         $password = password_verify($_POST['password'], $CheckUserLogin->password);
-
         if($password === TRUE)
         {
             //CMaak cookie token + opslaan in db
@@ -42,7 +39,8 @@ class UserController extends Controller
             $CheckUserLogin->save();
 
             $cookie_name = "user";
-            setcookie($cookie_name, $cookieToken, time() + (86400 * 30));
+            setcookie('user', $cookieToken, time() + (86400 * 30));
+
             return redirect()->route('dashboard');
 
         }
@@ -414,27 +412,31 @@ class UserController extends Controller
             setcookie("adminSessie", FALSE, time() + (86400 * 30),"/");
             $currentCookieToken = $getUser->cookie_token;
             $cookie_name = "adminSessie";
-            setcookie($cookie_name, $currentCookieToken, time() + (86400 * 30),"/");
+            setcookie("adminSessie", $currentCookieToken, time() + (86400 * 30),"/");
         }
-
-
         //Haal cookieToken op van klant.
         $GegevensKlant = User::where('userId', '=', $userIdKlantAccount)->first();
         $cookieTokenKlant = $GegevensKlant->cookie_token;
-
-
-
         setcookie("user", FALSE, time() + (86400 * 30),"/");
-
         $cookie_name = "user";
         setcookie($cookie_name, $cookieTokenKlant, time() + (86400 * 30),"/");
-
 
 
         return view('dashboard/dashboard', ['userByCookie' => $GegevensKlant]);
     }
 
-    public function getCookie(Request $request){
+    public function herstellenEigenAccountInlog(){
+        //dd("test");
+        if(isset($_COOKIE['adminSessie'])){
+            setcookie("user", FALSE, time() + (86400 * 30),"/");
+            $cookieToken = $_COOKIE['adminSessie'];
 
+            $eigenAccount = User::where('cookie_token', '=', $cookieToken)->first();
+
+            setcookie("user", $cookieToken, time() + (86400 * 30),"/");
+            setcookie("adminSessie", FALSE, time() + (86400 * 30),"/");
+            return view('dashboard/dashboard', ['userByCookie' => $eigenAccount]);
+        }
+        return back();
     }
 }

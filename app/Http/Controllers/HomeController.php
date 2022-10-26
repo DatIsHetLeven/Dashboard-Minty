@@ -38,6 +38,7 @@ class HomeController extends Controller
     public function renderPersonalDetails () {
         $userbytoken = UserController::getByCookie();
 
+        if ($userbytoken === null)return redirect('login');
         $getUser = DB::table('statusdetails')
         ->join('user', 'statusdetails.userId', '=', 'user.userId')
         ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
@@ -46,6 +47,7 @@ class HomeController extends Controller
     }
     public function toonPersoonsgegevens(){
         $user = $this->renderPersonalDetails();
+        if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         return view('dashboard/persoonsgegevens', ['userByCookie' => $user]);
     }
 

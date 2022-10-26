@@ -18,10 +18,6 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
-
-
-
-
         //Check if cookie sessie geldig is
         $homeController = new HomeController();
         if (!isset($_COOKIE['user'])) {
