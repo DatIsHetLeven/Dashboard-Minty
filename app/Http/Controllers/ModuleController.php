@@ -42,16 +42,28 @@ class ModuleController extends Controller
     //Toon de correcte module
     public function GetSingleModule($moduleNaam){
         $singleModule = $this->MintyBolApi->getSingleModuleUser();
+        $changeName = str_ireplace(array('.', 'bol', 'minty', 'connect'), '',$moduleNaam);
+        $correcteView = str_ireplace(array('wachtagent'), 'WachtagentPlugin',$changeName);
 
-        if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule[0]]);
-        if ($moduleNaam === 'bol.mintyconnect.product.wachtagent') return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule[1]]);
+        //dd($correcteView);
+        for ($x = 0; $x <= count($singleModule); $x++){
+            if ($singleModule[$x]->identifier === $moduleNaam) return view('dashboard/module/'.$correcteView, ['singleModule' => $singleModule[$x]]);
+        }
+
+
+        if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule[1]]);
+        if ($moduleNaam === 'bol.mintyconnect.product.wachtagent') return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule[0]]);
         return view('dashboard/module/permodule', ['singleModule' => $singleModule]);
     }
     //Enable 1 module
     public function EnableSingleModule($moduleNaam){
         //Get bolUserId (userid from arthurs api)
         $bolUser = $this->homeController->getUserBolId($this->loggedUser->userId);
-        $this->MintyBolApi->CreateModuleBolUser($bolUser->userIdApi, $moduleNaam);
+        $changeName = str_ireplace(array('.', 'bol', 'minty', 'connect'), '',$moduleNaam);
+        //1 module aanzetten obv modulenaam
+        $this->MintyBolApi->$changeName($bolUser->userIdApi, $moduleNaam);
+
+
 
         return redirect()->route('GetAllModules');
     }

@@ -121,7 +121,9 @@ Route::get('herstellenEigenAccountInlog', [UserController::class, 'herstellenEig
 
 
 
-
+Route::get('orderWachtagentPlugin', function () {
+    return view('dashboard/module/orderWachtagentPlugin', ["singleModule" => $singlemodule]);
+})->name('bol.mintyconnect.order.wachtagent');
 
 
 

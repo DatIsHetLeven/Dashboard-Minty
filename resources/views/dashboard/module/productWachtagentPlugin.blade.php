@@ -84,7 +84,7 @@
                         @csrf
                         <?php
                         $possibleSettingList = json_decode($singleModule->settings,true);
-                        //dd($singleModule);
+                        //dd($singleModule->settings);
                         $stockSyncSetting = $possibleSettingList['stockSync'];
                         $priceSyncSetting= $possibleSettingList['priceSync'];
 

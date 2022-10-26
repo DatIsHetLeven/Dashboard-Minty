@@ -94,16 +94,37 @@ class MintyBolController extends Controller
     }
 
     //Create standaard module per boluser
-    public function CreateModuleBolUser($bolUserId, $identifier){
+    public function orderwachtagent($bolUserId, $identifier){
         try {
             $response = $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
             $body = json_encode([
                 "bolUserId" => $bolUserId,
                 "identifier" => $identifier,
-                "settings" => "{}",
+                "settings" => [
+                    "phone" => "",
+                    "email" => "",
+                    "status" => "default",
+                ]
             ]);
+            $this->headers['Content-Type'] = 'application/json';
+            $response = $this->guzzleClient->request('POST', 'modules/User', ['headers' => $this->headers, 'body' => $body]);
+        }
+    }
 
+    //Create standaard module per boluser
+    public function productwachtagent($bolUserId, $identifier){
+        try {
+            $response = $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
+        } catch (GuzzleException $e) {
+            $body = json_encode([
+                "bolUserId" => $bolUserId,
+                "identifier" => $identifier,
+                "settings" => [
+                    "stockSync" => "",
+                    "priceSync" => "",
+                ]
+            ]);
             $this->headers['Content-Type'] = 'application/json';
             $response = $this->guzzleClient->request('POST', 'modules/User', ['headers' => $this->headers, 'body' => $body]);
         }
@@ -133,6 +154,7 @@ class MintyBolController extends Controller
         $bolUser = $homeController->getUserBolId($loggedUser->userId)->userIdApi;
 
         $response = $this->guzzleClient->request('GET', 'modules/user/'.$bolUser, ['headers' => $this->headers]);
+        //dd(json_decode($response->getBody()->getContents()));
         return json_decode($response->getBody()->getContents());
     }
 
@@ -194,7 +216,9 @@ class MintyBolController extends Controller
         if (isset($_POST['stockSetting']))$stock = "true";
         if (isset($_POST['priceSetting']))$price = "true";
 
-        $body = json_encode([
+
+
+        $bodyy = json_encode([
             "bolUserId"=> $bolUser->userIdApi,
             "identifier"=> "bol.mintyconnect.product.wachtagent",
             "settings"=> [
@@ -204,7 +228,7 @@ class MintyBolController extends Controller
         ]);
         //dd($body);
         $this->headers['Content-Type'] = 'application/json';
-        $response = $this->guzzleClient->request('PUT', 'modules/user', ['headers' => $this->headers, 'body' => $body]);
+        $response = $this->guzzleClient->request('PUT', 'modules/user', ['headers' => $this->headers, 'body' => $bodyy]);
         return redirect( 'GetAllModules');
     }
 

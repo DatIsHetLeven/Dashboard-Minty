@@ -86,7 +86,7 @@
 
                         <?php
                         $possibleSettingList = json_decode($singleModule->settings,true);
-                        //dd($possibleSettingList);
+                        //dd($singleModule);
                         //dump($singleModule->settings);
                         //dd($possibleSettingList);
                         $phoneSetting = $possibleSettingList['phone'];
