@@ -330,11 +330,14 @@ class MintyBolController extends Controller
         $body = json_encode([
             "licenseIsActive"=> false
         ]);
-        $this->headers['Content-Type'] = 'application/json';
-        $response = $this->guzzleClient->request('PUT', 'accounts/user/'.$bolUser, ['headers' => $this->headers, 'body' => $body]);
+        try {
+            $this->headers['Content-Type'] = 'application/json';
+            $response = $this->guzzleClient->request('PUT', 'accounts/user/'.$bolUser, ['headers' => $this->headers, 'body' => $body]);
+        }catch (GuzzleException $e){
+            return back()->with(['error'=> "HO-HO even rustig. De gebruiker is al geblokkeerd :( "]);
+        }
 
         return back();
-
     }
 
 

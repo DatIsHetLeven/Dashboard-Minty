@@ -41,7 +41,7 @@ Route::get('dashboardOld', function () {
 
 Route::POST('logincheck', [UserController::class, 'getUser'])->name('login_check');
 
-Route::POST('cretateUser', [UserController::class, 'createUser'])->name('create_user_check')->middleware('check.user');
+Route::POST('cretateUser', [UserController::class, 'createUser'])->name('create_user_check');
 
 // gebruikt kortere class path - minty pawel
 Route::POST('createPassword', [UserController::class, 'createPassword'])->name('set_password')->middleware('check.user');

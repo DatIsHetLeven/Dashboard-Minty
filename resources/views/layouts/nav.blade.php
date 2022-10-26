@@ -20,8 +20,13 @@
             <li>
                 <a href="{{ route('GetAllModules') }}"><ion-icon size="large" name="build-outline"></ion-icon></a>
             </li>
+                <?php if (isset($_COOKIE['adminSessie'])){?>
             <li>
-                <a href="{{ route('instellingen') }}"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
+                <a href="{{ route('allegebruikers') }}"><ion-icon size="large" name="people-outline"></ion-icon></a>
+            </li>
+                <?php } ?>
+            <li>
+                <a href="{{ route('dashboard') }}"> <ion-icon size="large"  name="settings-outline"></ion-icon></a>
             </li>
             <li>
                 <a href="{{ route('logout') }}"><ion-icon size="Large" name="log-out-outline"></ion-icon></a>

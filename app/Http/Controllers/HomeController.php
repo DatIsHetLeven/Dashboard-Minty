@@ -142,7 +142,9 @@ class HomeController extends Controller
 
     public function checkBlokKlant($userId){
         $bolUser = bolApi::where('userId', '=', $userId)->first();
-        if ($bolUser->block === 1)return false;
+
+
+        if ($bolUser->block == 1)return false;
 
         return true;
     }
