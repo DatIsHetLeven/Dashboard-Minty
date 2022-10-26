@@ -260,6 +260,9 @@ class MintyBolController extends Controller
         $loggedUser = $homeController->renderPersonalDetails();
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
+        //Admins kunnen altijd de modules bekijken.
+        if($loggedUser->rol === 1)return true;
+
         $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
         $checker = json_decode($response->getBody()->getContents());
         //dd($checker);
