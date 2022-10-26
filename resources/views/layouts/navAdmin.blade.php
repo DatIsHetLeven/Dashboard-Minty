@@ -30,7 +30,7 @@
             <li>
                 <a href="{{ route('logout') }}"><ion-icon size="Large" name="log-out-outline"></ion-icon></a>
             </li>
-                <?php if (isset($_COOKIE['adminSessie'])){?>
+                <?php if (isset($_COOKIE['adminSessie'])){ ?>
             <li>
                 <a href="{{ route('herstellenEigenAccountInlog') }}"><ion-icon size="large" name="rocket-outline"></ion-icon></a>
             </li>

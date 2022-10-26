@@ -1,6 +1,9 @@
 
-    @extends( ($userByCookie->rol === 3) ? 'layouts.nav' :  'layouts.navAdmin')
+    @extends( ($userByCookie->rol === 1) ? 'layouts.navAdmin' :  'layouts.nav')
     @section('content')
+
+
+        <h1><?=dump( $userByCookie->rol) ?></h1>
 
 
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
