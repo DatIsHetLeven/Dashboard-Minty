@@ -22,8 +22,9 @@ class CheckBolAccount
         $MintyBolController = new MintyBolController();
 
         $bool = $MintyBolController->CheckIfBolUserExist();
+        $bool2 = $MintyBolController->CheckIfWooUserExist();
         //dd($bool);
-        if ($bool == false) return redirect()->route('persoonsgegevens')->with(['error'=> "Om de Modules te gebruiken moet je eerste je website koppelen!"]);;
+        if ($bool == false or $bool2 == false) return redirect()->route('persoonsgegevens')->with(['error'=> "Om de Modules te gebruiken moet je eerste je website koppelen!"]);;
 
         return $next($request);
     }
