@@ -289,7 +289,7 @@ class MintyBolController extends Controller
     public function checkBlokKlant(){
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
-
+        if(empty($loggedUser->userId))return false;
         $bool = $homeController->checkBlokKlant($loggedUser->userId);
         if ($bool == false) return false;
 

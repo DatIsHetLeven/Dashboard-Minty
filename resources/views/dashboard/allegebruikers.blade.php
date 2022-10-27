@@ -79,6 +79,7 @@
                               <select name="userRole" id="color">
 	                              <option value="">--- Kies een functie ---</option>
 	                              <option value="Admin">Admin</option>
+                                  <option value="Gebruiker" selected>Klant</option>
 	                              <option value="Proefaccount" selected>Klant(14 dagen proef)</option>
                               </select>
                             </div>

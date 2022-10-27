@@ -97,6 +97,7 @@ class UserController extends Controller
             if(!empty($_POST['userRole'])){
                 $userRole = $_POST['userRole'];
                 if($userRole ==='Proefaccount')$newUser->rol = 3;
+                if($userRole ==='Gebruiker')$newUser->rol = 2;
                 if($userRole ==='Admin')$newUser->rol = 1;
             }else{$newUser->rol = 3;}
 

@@ -250,6 +250,7 @@ $(document).ready(function(){
                               <select name="userRole" id="color">
 	                              <option value="">--- Kies een functie ---</option>
 	                              <option value="Admin">Admin</option>
+                                  <option value="Gebruiker" selected>Klant</option>
 	                              <option value="Proefaccount" selected>Klant(14 dagen proef)</option>
                               </select>
                             </div>
@@ -284,7 +285,7 @@ $(document).ready(function(){
                         <th>Gebruiker</th>
                         <th>Bedrijfsnaam</th>
                         <th>Email</th>
-                        <th>Actief</th>
+                        <th>ActiefAccount</th>
                         <th>Eind</th>
                         <th>Geverifieerd</th>
                         <th>Geabonneerd</th>
@@ -295,7 +296,7 @@ $(document).ready(function(){
 
     $current_date = new DateTime();
     for ($x = 0; $x < count($allegebruikers); $x++) {
-
+        //Data in nederlands format
         $opening_date = $allegebruikers[$x]->geldig;
         $current_date = date('Y-m-d');
 
