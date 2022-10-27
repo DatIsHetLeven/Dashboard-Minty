@@ -3,9 +3,6 @@
     @section('content')
 
 
-        <h1><?=dump( $userByCookie->rol) ?></h1>
-
-
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -15,7 +12,6 @@
         <h2>Goede middag <?php echo $userByCookie ->naam;?> !</h2>
         <p><span class="welkomBol">Welkom bij de Bol Koppeling</span></p>
     </div>
-<?php dump($userByCookie->naam)?>
     <div class="boxes">
         <div class="box1">
             <h4>Actieve module(s)</h4>

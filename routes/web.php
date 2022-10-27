@@ -24,7 +24,7 @@ use App\Http\Controllers\ModuleController;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view('logintest');
 })->name('welcome');
 
 Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword')->middleware('check.user');

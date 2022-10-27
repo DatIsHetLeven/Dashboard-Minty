@@ -1,5 +1,5 @@
 
-<link href="{{ asset('css/logintest.css') }}" rel="stylesheet"> 
+<link href="{{ asset('css/logintest.css') }}" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=0.8">
 <br><br></br></br>
 <h3><a href="{{ route('login') }}" span id="minty" > MINTY</span><span id="media"> MEDIA</span></a><h3>
@@ -50,24 +50,24 @@
          <div class="userinput">
             <div class="links">
                 <input type="email" id="userInput" name="email" placeholder='Email' required autocomplete="email"><br><br>
-          
+
                 <input type="text" id="userInput" name="userName" placeholder='Naam' required autocomplete="email"><br><br>
-          
+
                 <input type="text" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer (alleen getallen)' required><br><br>
-          
+
                 <input type="text" id="userInput" name="Bedijfsnaam" placeholder='Bedijfsnaam' required><br><br>
             </div>
             <div class="rechts">
                 <input type="text" id="userInput" name="BTW-Nummer" placeholder='BTW-Nummer' required><br><br>
-          
+
                 <input type="text" id="userInput" name="Adres" placeholder='Adres+Huisnummer' required><br><br>
-          
+
                 <input type="text" id="userInput" name="Postcode" placeholder='Postcode' required><br><br>
-          
+
                 <input type="text" id="userInput" name="Plaats" placeholder='Plaats' required><br><br>
             </div>
-         </div>   
-         <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>           
+         </div>
+         <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>
         </form>
 
 	</div>
@@ -76,4 +76,3 @@
 
 
 
-      

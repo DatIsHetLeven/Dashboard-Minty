@@ -289,6 +289,8 @@ class MintyBolController extends Controller
     public function CheckIfBolUserExist(){
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
+
+        if (empty($loggedUser->userId))return false;
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
         $bool = $homeController->checkBlokKlant($loggedUser->userId);
@@ -308,6 +310,7 @@ class MintyBolController extends Controller
     public function CheckIfWooUserExist(){
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
+        if (empty($loggedUser->userId))return false;
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
         //Admins kunnen altijd de modules bekijken.

@@ -26,7 +26,7 @@ class HomeController extends Controller
 
     public function renderDashboard () {
         $userbytoken = UserController::getByCookie();
-        if(empty($userbytoken))return view('welcome');
+        if(empty($userbytoken))return redirect('login');
 
         $getUser = DB::table('statusdetails')
         ->join('user', 'statusdetails.userId', '=', 'user.userId')

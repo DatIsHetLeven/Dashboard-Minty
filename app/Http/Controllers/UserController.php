@@ -330,6 +330,7 @@ class UserController extends Controller
             if ($label == 'nl')$country = 'Netherlands';
             if ($label == 'be')$country = 'Belgium';
             if ($label == 'nl-be')$country = 'Netherlands & Belgium';
+            else return back()->with(['error'=> "Kies het land waaruit u werkt voor u verder gaat"]);
         }
 
         $MintyBolApi = new MintyBolController();

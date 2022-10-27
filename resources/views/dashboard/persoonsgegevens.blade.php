@@ -1,7 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<link href="{{ asset('css/logintest.css') }}" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
@@ -32,6 +32,11 @@
 
         <div class="col-xl-4">
             <div class="card mb-4">
+                @if(\Session::has('error'))
+                    <p class="error">
+                        {{\Session::get('error')}}
+                    </p>
+                @endif
                 <div class="card-header">Bol - Koppeling</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('createBolUser',$userByCookie->userId) }}" >
