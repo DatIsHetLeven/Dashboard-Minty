@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\UserController;
+use App\Models\statusdetails;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -59,7 +60,7 @@ class MintyBolController extends Controller
 
             $response = $this->guzzleClient->request('POST', 'accounts/bol', ['headers' => $this->headers, 'body' => $body]);
         } catch (GuzzleException $e) {
-            dd("gegevens onjuist, probeer opnieuw!");
+            return back()->with(['error'=> "Gegevens onjuist, probeer het opnieuw!"]);
         }
     }
 
@@ -285,7 +286,15 @@ class MintyBolController extends Controller
 
         else return redirect('dashboard')->with(['error'=> "Er ging iets mis tijdens de betaling, probeer opnieuw!"]);
     }
+    public function checkBlokKlant(){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
 
+        $bool = $homeController->checkBlokKlant($loggedUser->userId);
+        if ($bool == false) return false;
+
+        return true;
+    }
     public function CheckIfBolUserExist(){
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
@@ -293,11 +302,7 @@ class MintyBolController extends Controller
         if (empty($loggedUser->userId))return false;
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
-        $bool = $homeController->checkBlokKlant($loggedUser->userId);
-        if ($bool == false) return false;
-
-
-        //Admins kunnen altijd de modules bekijken.
+        //Admins en betalende klanten kunnen altijd de modules bekijken.
         if($loggedUser->rol === 1)return true;
 
         $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
@@ -341,6 +346,14 @@ class MintyBolController extends Controller
         }
 
         return back();
+    }
+
+    public function UpdateApiActief($id){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $statusDetails = statusdetails::where('userId', '=', $loggedUser->userId)->first();
+        $statusDetails->API =$id;
+        $statusDetails->save();
     }
 
 

@@ -144,9 +144,34 @@ class HomeController extends Controller
         $bolUser = bolApi::where('userId', '=', $userId)->first();
 
 
-        if ($bolUser->block == 1)return false;
-
+        if ($bolUser->block === 1)return false;
         return true;
     }
 
+    public function valideerUserRechten(){
+        $MintyBolController = new MintyBolController();
+
+
+
+        //Check of gebruiker userRole 2 heeft (betalende klant)
+        $loggedUser = $this->renderPersonalDetails();
+        if ($loggedUser->userId === 2){
+            $MintyBolController->UpdateApiActief(1);
+            return true;
+        }
+        //Check of gebruiker binnen de 14 dagen valt.
+        $user = $this->renderPersonalDetails();
+            $geldig = $user->geldig;
+            $dayVandaag = date('Y-m-d');
+            //Als de 14 dagen voorbij zijn
+            if($geldig < $dayVandaag) {
+                $MintyBolController->UpdateApiActief(0);
+                return false;
+            }
+            // Als de klant binnen de 14 dagen valt (nog niet gevrf)
+            if($geldig > $dayVandaag){
+                $MintyBolController->UpdateApiActief(1);
+                return true;
+            }
+    }
 }

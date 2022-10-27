@@ -28,7 +28,7 @@
                         <div class="row gx-3 mb-3">
                         <!-- Form Group (organization name)-->
                           <div class="col-md-6">
-                            <input class="form-control" id="inputOrgName" type="text" name="email" placeholder='Email' required autocomplete="email">
+                            <input class="form-control" id="inputOrgName" type="email" name="email" placeholder='Email' required autocomplete="email">
                           </div>
                           <!-- Form Group (location)-->
                           <div class="col-md-6">

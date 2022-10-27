@@ -14,7 +14,7 @@ class MailController extends Controller
     {
         Mail::to($email)->send(new password($token));
 
-        return view('welcome');
+        return redirect()->route('login');
     }
 
 
@@ -22,7 +22,7 @@ class MailController extends Controller
     {
         Mail::to($email)->send(new ResetPass($token));
 
-        return view('welcome');
+        return redirect()->route('welcome');
     }
 
 }
