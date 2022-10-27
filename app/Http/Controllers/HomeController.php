@@ -97,7 +97,6 @@ class HomeController extends Controller
     public function getUserBolId($userId){
         $bolUser = DB::table('bolApi')
             ->where('userId', '=', $userId)->first();
-
         return $bolUser;
     }
 
@@ -118,6 +117,10 @@ class HomeController extends Controller
         $NewStatusDetails->geabonneerd = 1;
         $NewStatusDetails->save();
 
+        //Zet de user rol op gebruiker ipv proefaccount
+        $user = User::where('userId', '=', $loggedUser->userId)->first();
+        $user->rol = 2;
+        $user->save();
         return view('dashboard/payment/payment');
     }
 
@@ -130,11 +133,9 @@ class HomeController extends Controller
 
     public function blokApiVoorKlant($userId){
         $bolContoller = new MintyBolController();
-
         $bolUser = bolApi::where('userId', '=', $userId)->first();
         $bolUser->block = 1;
         $bolUser->save();
-
         $bolContoller->blokkeerApi($userId);
 
         return back();
@@ -142,17 +143,13 @@ class HomeController extends Controller
 
     public function checkBlokKlant($userId){
         $bolUser = bolApi::where('userId', '=', $userId)->first();
-
-
+        if ($bolUser === null)return redirect('login');
         if ($bolUser->block === 1)return false;
         return true;
     }
 
     public function valideerUserRechten(){
         $MintyBolController = new MintyBolController();
-
-
-
         //Check of gebruiker userRole 2 heeft (betalende klant)
         $loggedUser = $this->renderPersonalDetails();
         if ($loggedUser->userId === 2){

@@ -23,6 +23,7 @@ class ModuleController extends Controller
         //Get bolUserId (userid from arthurs api)
         $bolUser = DB::table('bolApi')
             ->where('userId', '=', $this->loggedUser->userId)->first();
+        if (empty($bolUser))return redirect('login');
         $alleModules = $this->MintyBolApi->GetAllModules();
         $logs = $this->GetLog();
         $CheckModuleArray = array();
@@ -45,14 +46,12 @@ class ModuleController extends Controller
         $changeName = str_ireplace(array('.', 'bol', 'minty', 'connect'), '',$moduleNaam);
         $correcteView = str_ireplace(array('wachtagent'), 'WachtagentPlugin',$changeName);
 
-        //dd($correcteView);
         for ($x = 0; $x <= count($singleModule); $x++){
             if ($singleModule[$x]->identifier === $moduleNaam) return view('dashboard/module/'.$correcteView, ['singleModule' => $singleModule[$x]]);
         }
-
-
-        if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule[1]]);
-        if ($moduleNaam === 'bol.mintyconnect.product.wachtagent') return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule[0]]);
+//        oude manier
+//        if ($moduleNaam === 'bol.mintyconnect.order.wachtagent')return view('dashboard/module/orderWachtagentPlugin', ['singleModule' => $singleModule[1]]);
+//        if ($moduleNaam === 'bol.mintyconnect.product.wachtagent') return view('dashboard/module/productWachtagentPlugin', ['singleModule' => $singleModule[0]]);
         return view('dashboard/module/permodule', ['singleModule' => $singleModule]);
     }
     //Enable 1 module
@@ -62,8 +61,6 @@ class ModuleController extends Controller
         $changeName = str_ireplace(array('.', 'bol', 'minty', 'connect'), '',$moduleNaam);
         //1 module aanzetten obv modulenaam
         $this->MintyBolApi->$changeName($bolUser->userIdApi, $moduleNaam);
-
-
 
         return redirect()->route('GetAllModules');
     }

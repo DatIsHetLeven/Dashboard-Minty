@@ -331,7 +331,6 @@ class MintyBolController extends Controller
             if (empty($checker))return false;
             return true;
         }catch (GuzzleException $e){
-            dd("test");
             return true;
         }
 
@@ -365,5 +364,5 @@ class MintyBolController extends Controller
 
 
 
- 
+
 }

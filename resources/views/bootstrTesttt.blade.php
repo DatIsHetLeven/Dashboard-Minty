@@ -85,7 +85,7 @@ table.table th i {
     font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
-}	
+}
 table.table td:last-child i {
     opacity: 0.9;
     font-size: 22px;
@@ -151,11 +151,11 @@ table.table .avatar {
 }
 .pagination li a:hover {
     color: #666;
-}	
+}
 .pagination li.active a, .pagination li.active a.page-link {
     background: #03A9F4;
 }
-.pagination li.active a:hover {        
+.pagination li.active a:hover {
     background: #0397d6;
 }
 .pagination li.disabled i {
@@ -194,7 +194,7 @@ $(document).ready(function(){
         <div class="card mb-7">
                 <div class="card-header">Niuewe gebruiker</div>
                 <div class="card-body">
-                    <form>    
+                    <form>
                         <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
                         <!-- Form Group (organization name)-->
@@ -254,12 +254,12 @@ $(document).ready(function(){
                               </select>
                             </div>
                         </div>
-                        <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>  
+                        <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>
                     </form>
                 </div>
             </div>
         </div>
-    </form>           
+    </form>
   </div>
 </div>
 <!-- Einde Popup! -->
@@ -282,23 +282,39 @@ $(document).ready(function(){
                 <thead>
                     <tr>
                         <th>Gebruiker</th>
-                        <th>Bedrijfsnaam</th>						
+                        <th>Bedrijfsnaam</th>
                         <th>Email</th>
-                        <th>Factuursturen</th>
+                        <th>Actief</th>
+                        <th>Eind</th>
                         <th>Geverifieerd</th>
                         <th>Geabonneerd</th>
                         <th>API actief</th>
                     </tr>
                 </thead><?php
     $count = 0;
-    for ($x = 0; $x < count($allegebruikers); $x++) {?>
+
+    $current_date = new DateTime();
+    for ($x = 0; $x < count($allegebruikers); $x++) {
+
+        $opening_date = $allegebruikers[$x]->geldig;
+        $current_date = date('Y-m-d');
+
+        $orgDate = $opening_date;
+        $newDate = date("d-m-Y", strtotime($orgDate));
+        ?>
+
+
+
+
       <div class="perGeberuiker" value={{$count}}>
         <tr>
-            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->naam; ?></a></td>    
+            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->naam; ?></a></td>
             <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->bedrijfsnaam; ?></td>
             <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->email; ?></td>
             <?php $count++;?>
-            <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>
+            <td><input type="checkbox" id="test"<?php if($opening_date > $current_date ){?>checked<?php }?> onclick="return false;"></td>
+            <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $newDate; ?></td>
+{{--            <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>--}}
             <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
             <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
             <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->API == TRUE){?>checked<?php }?> onclick="return false;"></td>
@@ -309,6 +325,6 @@ $(document).ready(function(){
 </div>
 </div>
     </div>
-</div>     
+</div>
 </body>
 </html>

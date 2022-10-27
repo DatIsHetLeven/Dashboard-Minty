@@ -121,7 +121,7 @@
             <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->bedrijfsnaam; ?></td>
             <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $allegebruikers[$x]->email; ?></td>
             <?php $count++;?>
-            <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>
+            <td><a href="{{ route('',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>
             <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
             <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
             <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->API == TRUE){?>checked<?php }?> onclick="return false;"></td>

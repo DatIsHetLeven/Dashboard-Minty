@@ -1,6 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <link href="{{ asset('css/logintest.css') }}" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
@@ -66,6 +67,35 @@
                 </div>
             </div>
 
+            <div class="card-header">Huidig Bol verbindingen</div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('createBolUser',$userByCookie->userId) }}" >
+                    @csrf
+                    <!-- Form Group (username)-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="inputUsername">Client Id</label>
+                        <input class="form-control" id="inputUsername" name='clientId' type="text" >
+                    </div>
+                    <!-- Form Row-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="inputUsername">Secret</label>
+                        <input class="form-control" id="inputUsername" name='secret' type="text" >
+                    </div>
+                    <div class="col-md-3">
+                        <br><label for="color">Land :</label>
+                        <select name="land" id="color">
+                            <option value="" selected>--- Maak uw keuze ---</option>
+                            <option value="nl">Netherlands</option>
+                            <option value="be">Belgium</option>
+                            <option value="nl-be">Netherlands & Belgium</option>
+                        </select>
+                    </div>
+                    <br>
+                    <a href="{{ route('createBolUser',$userByCookie->userId) }}"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Versturen</button></a>
+                </form>
+            </div>
+        </div>
+
             <div class="card mb-4">
                 <div class="card-header">Woo - Koppeling</div>
                 <div class="card-body">
@@ -103,4 +133,6 @@
 
 
 </div>
-</div>>
+</div>
+
+
