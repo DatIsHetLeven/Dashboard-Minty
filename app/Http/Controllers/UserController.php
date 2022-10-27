@@ -145,7 +145,7 @@ class UserController extends Controller
             $bolApi = new bolApi();
             $bolApi->userId = $userId->userId;
             $bolApi->userIdApi = $userIdBol;
-            $bolApi->block = true;
+            $bolApi->block = false;
             $bolApi->save();
 
             return back()->with(['succes'=> "Account succesvol aangemaakt"]);

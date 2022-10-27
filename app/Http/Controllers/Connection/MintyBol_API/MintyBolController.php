@@ -316,18 +316,25 @@ class MintyBolController extends Controller
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
         if (empty($loggedUser->userId))return false;
+
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
         //Admins kunnen altijd de modules bekijken.
         if($loggedUser->rol === 1)return true;
         //dd($bolUser->userIdApi);
+
         try {
+            //dd($bolUser->userIdApi);
             $response = $this->guzzleClient->request('GET', 'accounts/woo/'.$bolUser->userIdApi, ['headers' => $this->headers]);
             $checker = json_decode($response->getBody()->getContents());
+
             if (empty($checker))return false;
+            return true;
         }catch (GuzzleException $e){
+            dd("test");
             return true;
         }
+
     }
 
     public function blokkeerApi($userId){
@@ -358,5 +365,5 @@ class MintyBolController extends Controller
 
 
 
-
+ 
 }

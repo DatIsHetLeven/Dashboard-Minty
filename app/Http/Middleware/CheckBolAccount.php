@@ -29,7 +29,8 @@ class CheckBolAccount
 
         if ($boolCheckBlock == false)return redirect()->route('persoonsgegevens')->with(['error'=> "API geblokkeerd, neem contact op met de klantenservice"]);
         //dd($bool);
-        if ($bool == false or $bool2 == false) return redirect()->route('persoonsgegevens')->with(['error'=> "Om de Modules te gebruiken moet je eerste je website koppelen!"]);
+        if ($bool == false)return redirect()->route('persoonsgegevens')->with(['error'=> "Om de Modules te gebruiken moet je eerst je bol account koppelen"]);
+        if ($bool2 == false) return redirect()->route('persoonsgegevens')->with(['error'=> "Om de Modules te gebruiken moet je eerste je Woo account koppelen"]);
         //Valideren of gebruiker recht heeft om de modules in te zien.
         $boolValideerAccount = $HomeController->valideerUserRechten();
         if ($boolValideerAccount == false)return redirect()->route('dashboard')->with(['error'=> "Uw proefperiode is voorbij. Om gebruik blijven te maken van de koppelling, kunt u zich aten abonneren!"]);
