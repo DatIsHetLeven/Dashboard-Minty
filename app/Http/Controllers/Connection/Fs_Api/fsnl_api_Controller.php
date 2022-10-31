@@ -62,7 +62,6 @@ class fsnl_api_Controller extends Controller
 
         //Haal alle producten op uit FS
         public function getAllProducts(){
-
             $this->fSApi->setUrl($this->urlBuilder('products'));
             $this->fSApi->setVerb("GET");
 
@@ -118,6 +117,41 @@ class fsnl_api_Controller extends Controller
         }
 
 
+    public function createFactuurFS($id){
 
+        $newClient = [
+            "clientnr" => $id,
+            "lines" => array(
+                array(
+                    "amount" => 1,
+                    "description" => "Minty Media's Bol-wooCommerce Koppeling",
+                    "tax_rate" => 21,
+                    "price" => 29.99,
+                )
+            ),
+            "action" => "repeat",
+            "savename" => "test",
+            "initialdate" => date("Y-m-d"),
+            "frequency" => "monthly",
+            "repeattype" => "auto",
+        ];
+
+
+
+        $this->fSApi->setUrl($this->urlBuilder('invoices'));
+        $this->fSApi->setVerb("POST");
+        $this->fSApi->buildPostBody($newClient);
+
+        $this->fSApi->execute();
+
+        if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
+
+            dump('het is niet gelukt :)');
+            dd($this->fSApi);
+            return false;
+        }
+
+        return $this->fSApi->getResponseBody();
+    }
 
 }

@@ -107,7 +107,7 @@ class HomeController extends Controller
 
     public function payment(){
         $dayVandaag = date('Y-m-d');
-        $geldigTot =  date('Y-m-d', strtotime("$dayVandaag + 365 day"));
+        $geldigTot =  date('Y-m-d', strtotime("$dayVandaag + 30 day"));
 
         $loggedUser = $this->renderPersonalDetails();
 

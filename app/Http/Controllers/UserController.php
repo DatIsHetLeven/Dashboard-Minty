@@ -367,6 +367,7 @@ class UserController extends Controller
 
     //Maak gebruiker aan in Factuursturen (na eerste betaling/ mandaat )
     public function createUserFS($bankcode, $biccode, $mollieId){
+        $fsApi = new fsnl_api_Controller();
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
 
@@ -409,6 +410,8 @@ class UserController extends Controller
         else{
             dd("Er is een fout opgetreden!");
         }
+
+        $fsApi->createFactuurFS($factuurid);
         return back();
     }
 

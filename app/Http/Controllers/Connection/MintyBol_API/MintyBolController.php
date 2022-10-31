@@ -267,8 +267,32 @@ class MintyBolController extends Controller
 
         $responseBody = array(json_decode(($response->getBody()->getContents())));
         $this->mollieId = $responseBody[0]->customerId;
-
+        //dd($responseBody[0]);
         return redirect(($responseBody[0]->checkoutUrl));
+    }
+    //Factuur aanmaken
+    public function createFactuurFS($id){
+        $body = json_encode([
+            "clientnr" => $id,
+            "lines" => array(
+                array(
+                    "amount" => 1,
+                    "description" => "Minty Media's Bol-wooCommerce Koppeling",
+                    "tax_rate" => 21,
+                    "price" => 29.99,
+                )
+            ),
+            "action" => "repeat",
+            "savename" => "test",
+            "initialdate" => date("Y-m-d"),
+            "frequency" => "monthly",
+            "repeattype" => "auto",
+        ]);
+
+        $this->headers['Content-Type'] = 'application/json';
+        $response = $this->guzzleClient->request('POST', 'v1/invoices', ['headers' => $this->headers, 'body' => $body]);
+        $data = json_decode($response->getBody()->getContents());
+        dd($data);
     }
 
     //Check mandate status
