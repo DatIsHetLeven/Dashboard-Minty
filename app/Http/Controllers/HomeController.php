@@ -53,22 +53,44 @@ class HomeController extends Controller
         $user = $this->renderPersonalDetails();
         if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         $MintyBolApi = new MintyBolController();
-        $AllBolConnection = $MintyBolApi->getAllBolConnection();
+        //ARRAY WEG WERKT HALF MET ARRAY WERKT OOK HALF
+        $AllBolConnection = ($MintyBolApi->getAllBolConnection());
 
-        for ($x = 0; $x < count($AllBolConnection); $x++) {
-            //Check of er descript van bekend is.
-            $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
-            if (!empty($respond))$AllBolConnection[$x]->description = $respond;
+
+        if (is_countable($AllBolConnection)) {
+            if (!empty($AllBolConnection) or count($AllBolConnection) != 1) {
+                for ($x = 0; $x < count($AllBolConnection); $x++) {
+                    //Check of er descript van bekend is.
+                    //dd($AllBolConnection[0]);
+                    $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
+                    if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
+                }
+                return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+            }
+        }
+        if (!is_countable($AllBolConnection)) {
+            $AllBolConnection = array($MintyBolApi->getAllBolConnection());
+
+            if (!empty($AllBolConnection) or count($AllBolConnection) != 1) {
+                for ($x = 0; $x < count($AllBolConnection); $x++) {
+                    //Check of er descript van bekend is.
+                    //dd($AllBolConnection[0]);
+                    $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
+                    if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
+                }
+                return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+            }
         }
 
+
         //dd($AllBolConnection);
-        return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+        //dd($AllBolConnection);
+        return view('dashboard/persoonsgegevens', ['userByCookie' => $user]);
     }
 
     public function checkDescription($id){
         $getUser = DB::table('descriptionBolAccount')
             ->where('bolId', '=', $id)->first();
-
 
         if ($getUser == null)return null;
         return $getUser->description;
@@ -224,6 +246,13 @@ class HomeController extends Controller
         $nieuwGeldig =  date('Y-m-d',strtotime('+'.$aantaldagen.' days',strtotime($getUser->geldig)));
         $getUser->geldig = $nieuwGeldig;
         $getUser->save();
+        return back();
+    }
+
+    public function deleteBolUser($id){
+        $bolContoller = new MintyBolController();
+        $bolContoller->deleteBolUser($id);
+
         return back();
     }
 

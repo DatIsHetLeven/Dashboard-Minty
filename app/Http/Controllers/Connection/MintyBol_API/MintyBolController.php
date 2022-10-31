@@ -412,6 +412,13 @@ class MintyBolController extends Controller
         return json_decode($response->getBody()->getContents());
     }
 
+    public function deleteBolUser($id){
+        try {
+            $response = $this->guzzleClient->request('DELETE', 'accounts/bol/'.$id, ['headers' => $this->headers]);
+        } catch (GuzzleException $e) {
+            dd("error delete bol user");
+        }
+    }
 
 
 

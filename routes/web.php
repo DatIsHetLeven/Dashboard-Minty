@@ -119,6 +119,9 @@ Route::get('inloggenAlsKlant/{id}', [UserController::class, 'inloggenAlsKlant'])
 Route::get('herstellenEigenAccountInlog', [UserController::class, 'herstellenEigenAccountInlog'])->name('herstellenEigenAccountInlog')->middleware('check.user');
 
 Route::get('blokkeerApi/{id}', [HomeController::class, 'blokApiVoorKlant'])->name('blokkeerApi')->middleware('check.user');
+Route::get('deleteBolUser/{id}', [HomeController::class, 'deleteBolUser'])->name('deleteBolUser')->middleware('check.user');
+
+
 
 
 Route::get('orderWachtagentPlugin', function () {

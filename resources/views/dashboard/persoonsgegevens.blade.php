@@ -105,9 +105,9 @@
             <div class="mb-3">
                 <?php
                 if (!empty($bolConnection)){
+
                     for ($x = 0; $x < count($bolConnection); $x++) { ?>
                         <div class="mb-3">
-
                             <div class="card mb-4">
                                 <div class="card-header">Woo - Koppeling</div>
                                 <div class="card-body">
@@ -117,7 +117,7 @@
                                 <div class="card-body">
                                     <label class="small mb-1" for="inputUsername">client id</label>
                                     <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php echo $bolConnection[$x]->clientId ?> >
-                                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                                    <a href="{{ route('deleteBolUser',$bolConnection[$x]->bolUserId) }}"><button type="button" class="btn btn-danger">Verwijderen</button></a>
                                 </div>
                                 <div class="card-body">
                                 </div>
