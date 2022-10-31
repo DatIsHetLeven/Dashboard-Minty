@@ -171,4 +171,19 @@ class HomeController extends Controller
                 return true;
             }
     }
+
+
+
+    public function updateStatus(){
+        $userbytoken = UserController::getByCookie();
+
+        if ($userbytoken === null)return redirect('login');
+        $getUser = statusdetails::join('user', 'statusdetails.userId', '=', 'user.userId')
+            ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
+
+        $nieuwGeldig =  date('Y-m-d',strtotime('+30 days',strtotime($getUser->geldig)));
+        $getUser->geldig = $nieuwGeldig;
+        $getUser->save();
+
+    }
 }

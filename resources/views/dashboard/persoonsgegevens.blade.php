@@ -19,13 +19,16 @@
                 <div class="card-header">Persoonsgegevens</div>
                 <div class="card-body">
                     <form>
+                       @csrf
                         Naam<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->naam ?>><br>
                         Email<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->email ?>><br>
                         Telefoonnummer<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->telefoonnummer ?>><br>
                         Bedijfsnaam<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->bedrijfsnaam ?>><br>
+                        BTW-Nummer<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->btwNummer ?>><br>
                         Adres<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->adres ?>><br>
                         Postcode<input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->postcode ?>><br>
                         Plaats<input class="form-control" type="text" id="text" placeholder<?php echo $userByCookie->plaats ?>><br>
+                        <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Aanpassen</button></a>
                     </form>
                 </div>
             </div>
@@ -67,35 +70,6 @@
                 </div>
             </div>
 
-            <div class="card-header">Huidig Bol verbindingen</div>
-            <div class="card-body">
-                <form method="POST" action="{{ route('createBolUser',$userByCookie->userId) }}" >
-                    @csrf
-                    <!-- Form Group (username)-->
-                    <div class="mb-3">
-                        <label class="small mb-1" for="inputUsername">Client Id</label>
-                        <input class="form-control" id="inputUsername" name='clientId' type="text" >
-                    </div>
-                    <!-- Form Row-->
-                    <div class="mb-3">
-                        <label class="small mb-1" for="inputUsername">Secret</label>
-                        <input class="form-control" id="inputUsername" name='secret' type="text" >
-                    </div>
-                    <div class="col-md-3">
-                        <br><label for="color">Land :</label>
-                        <select name="land" id="color">
-                            <option value="" selected>--- Maak uw keuze ---</option>
-                            <option value="nl">Netherlands</option>
-                            <option value="be">Belgium</option>
-                            <option value="nl-be">Netherlands & Belgium</option>
-                        </select>
-                    </div>
-                    <br>
-                    <a href="{{ route('createBolUser',$userByCookie->userId) }}"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Versturen</button></a>
-                </form>
-            </div>
-        </div>
-
             <div class="card mb-4">
                 <div class="card-header">Woo - Koppeling</div>
                 <div class="card-body">
@@ -122,6 +96,13 @@
             </div>
         </div>
 
+        <div class="card-header">Huidig Bol verbinding(en)</div>
+        <div class="card-body">
+
+
+        </div>
+        </div>
+    </div>
 
 
 

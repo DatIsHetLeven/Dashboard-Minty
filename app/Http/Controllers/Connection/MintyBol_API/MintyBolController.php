@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Connection\MintyBol_API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\UserController;
 use App\Models\statusdetails;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Symfony\Component\Config\Definition\Exception\Exception;
+
+
+use Illuminate\Support\Facades\DB;
+use Validator;
+use Auth;
+
 
 
 //Prachtige API van Arthur :o
@@ -289,6 +293,7 @@ class MintyBolController extends Controller
     public function checkBlokKlant(){
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
+
         if(empty($loggedUser->userId))return false;
         $bool = $homeController->checkBlokKlant($loggedUser->userId);
         if ($bool == false) return false;
@@ -303,6 +308,18 @@ class MintyBolController extends Controller
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
         //Admins en betalende klanten kunnen altijd de modules bekijken.
+        $vandaag =  date("Y-m-d") ;
+
+        //dd($loggedUser);
+        if ($loggedUser->rol ===2){
+            //Laatste dag actief -> +30 dagen
+            if ($vandaag == $loggedUser->geldig){
+                $loggedUser = $homeController->updateStatus();
+            }
+        }
+
+
+
         if($loggedUser->rol === 1)return true;
 
         $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
