@@ -97,11 +97,14 @@
             <div class="card mb-4">
                 <div class="card-header">Koppeling</div>
                 <div class="card-body">
-                    <form>
+                    <form method="POST" action="{{ route('verlengVervaldatum',$user->userId) }}" >
+                        @csrf
                         <!-- Form -->
                         <div class="mb-3">
                             <label class="small mb-1" for="inputUsername">Koppeling :</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="" value="">
+                            <input class="form-control" id="inputUsername" type="number" name="aantalDagen" placeholder="" value="">
+
+                            <a href="{{ route('verlengVervaldatum',$user->userId) }}"><button class="btn btn-primary" id="btnDeleteUser" name="btnAddDays" type="submit">Toevoegen</button></a><br>
 
                             <!-- Bereken hoelang koppeling nog geldig is -->
                             <?php

@@ -125,6 +125,8 @@ Route::get('orderWachtagentPlugin', function () {
     return view('dashboard/module/orderWachtagentPlugin', ["singleModule" => $singlemodule]);
 })->name('bol.mintyconnect.order.wachtagent');
 
+Route::POST('verlengVervaldatum/{id}', [HomeController::class, 'verlengVervaldatum'])->name('verlengVervaldatum')->middleware('check.user');
+
 
 
 

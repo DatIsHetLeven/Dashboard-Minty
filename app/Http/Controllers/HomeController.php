@@ -9,6 +9,7 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use PhpMyAdmin\ConfigStorage\Features\DatabaseDesignerSettingsFeature;
 use Validator;
 use Auth;
 
@@ -187,6 +188,24 @@ class HomeController extends Controller
         $getUser->geldig = $nieuwGeldig;
         $getUser->save();
 
+    }
+
+    public function verlengVervaldatum($id){
+        //dd("test");
+        $userbytoken = UserController::getByCookie();
+
+        if(isset($_POST['btnAddDays'])){
+            $aantaldagen = $_POST['aantalDagen'];
+        }
+
+        if ($userbytoken === null)return redirect('login');
+        $getUser = statusdetails::join('user', 'statusdetails.userId', '=', 'user.userId')
+            ->where('statusdetails.userId', '=', $id)->first();
+
+        $nieuwGeldig =  date('Y-m-d',strtotime('+'.$aantaldagen.' days',strtotime($getUser->geldig)));
+        $getUser->geldig = $nieuwGeldig;
+        $getUser->save();
+        return back();
     }
 
 
