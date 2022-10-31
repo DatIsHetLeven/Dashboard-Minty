@@ -410,7 +410,7 @@ class UserController extends Controller
         else{
             dd("Er is een fout opgetreden!");
         }
-
+        //Functie om automatisch elke maand een factuur te sturen
         $fsApi->createFactuurFS($factuurid);
         return back();
     }

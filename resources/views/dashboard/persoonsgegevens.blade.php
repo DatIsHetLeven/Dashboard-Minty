@@ -98,11 +98,23 @@
 
         <div class="card-header">Huidig Bol verbinding(en)</div>
         <div class="card-body">
+            <div class="mb-3">
+                <?php
+                if (!empty($bolConnection)){
+                    for ($x = 0; $x < count($bolConnection); $x++) {?>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Secret</label>
+                            <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php echo $bolConnection[$x]->secret ?> >
+                            <label class="small mb-1" for="inputUsername">client id</label>
+                            <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php echo $bolConnection[$x]->clientId ?> >
+                        </div>
+                    <?php }
+                } ?>
+            </div>
 
-
-        </div>
         </div>
     </div>
+</div>
 
 
 

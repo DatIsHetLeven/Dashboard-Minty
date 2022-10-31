@@ -49,7 +49,9 @@ class HomeController extends Controller
     public function toonPersoonsgegevens(){
         $user = $this->renderPersonalDetails();
         if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
-        return view('dashboard/persoonsgegevens', ['userByCookie' => $user]);
+        $MintyBolApi = new MintyBolController();
+        $AllBolConnection = $MintyBolApi->getAllBolConnection();
+        return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
     }
 
     public function resetPassword()
@@ -186,4 +188,6 @@ class HomeController extends Controller
         $getUser->save();
 
     }
+
+
 }

@@ -150,7 +150,6 @@ class MintyBolController extends Controller
             $response = $this->guzzleClient->request('GET', 'modules', ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
         }
-
         return json_decode($response->getBody()->getContents());
     }
     //Get single module
@@ -342,8 +341,6 @@ class MintyBolController extends Controller
             }
         }
 
-
-
         if($loggedUser->rol === 1)return true;
 
         $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
@@ -401,6 +398,17 @@ class MintyBolController extends Controller
         $statusDetails = statusdetails::where('userId', '=', $loggedUser->userId)->first();
         $statusDetails->API =$id;
         $statusDetails->save();
+    }
+
+    public function getAllBolConnection(){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
+
+
+        $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
+
+        return json_decode($response->getBody()->getContents());
     }
 
 

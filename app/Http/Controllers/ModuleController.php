@@ -25,6 +25,7 @@ class ModuleController extends Controller
             ->where('userId', '=', $this->loggedUser->userId)->first();
         if (empty($bolUser))return redirect('login');
         $alleModules = $this->MintyBolApi->GetAllModules();
+        //dd($alleModules);
         $logs = $this->GetLog();
         $CheckModuleArray = array();
         for ($x = 0; $x < count($alleModules); $x++){
