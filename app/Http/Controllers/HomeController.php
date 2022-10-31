@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 
 use App\Models\bolApi;
+use App\Models\descrBolAccount;
 use App\Models\statusdetails;
 use App\Models\User;
 
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use PhpMyAdmin\ConfigStorage\Features\DatabaseDesignerSettingsFeature;
 use Validator;
 use Auth;
+use function Sodium\add;
 
 class HomeController extends Controller
 {
@@ -52,7 +54,24 @@ class HomeController extends Controller
         if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         $MintyBolApi = new MintyBolController();
         $AllBolConnection = $MintyBolApi->getAllBolConnection();
+
+        for ($x = 0; $x < count($AllBolConnection); $x++) {
+            //Check of er descript van bekend is.
+            $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
+            if (!empty($respond))$AllBolConnection[$x]->description = $respond;
+        }
+
+        //dd($AllBolConnection);
         return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+    }
+
+    public function checkDescription($id){
+        $getUser = DB::table('descriptionBolAccount')
+            ->where('bolId', '=', $id)->first();
+
+
+        if ($getUser == null)return null;
+        return $getUser->description;
     }
 
     public function resetPassword()

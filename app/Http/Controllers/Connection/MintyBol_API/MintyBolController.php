@@ -63,6 +63,7 @@ class MintyBolController extends Controller
             $this->headers['Content-Type'] = 'application/json';
 
             $response = $this->guzzleClient->request('POST', 'accounts/bol', ['headers' => $this->headers, 'body' => $body]);
+            return json_decode($response->getBody()->getContents());
         } catch (GuzzleException $e) {
             return back()->with(['error'=> "Gegevens onjuist, probeer het opnieuw!"]);
         }

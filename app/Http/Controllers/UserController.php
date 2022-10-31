@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Connection\Fs_Api\fsnl_api_Controller;
+use App\Models\descrBolAccount;
 use Illuminate\Http\Request;
 
 
@@ -322,12 +323,11 @@ class UserController extends Controller
         $CheckUserLogin = bolApi::Where('userId', '=', $userId)->first();
         $userIdApi = $CheckUserLogin->userIdApi;
 
-
         if(isset($_POST['createBolUserBTN'])) {
             $clientId = $_POST['clientId'];
             $secret = $_POST['secret'];
             $label = $_POST['land'];
-
+            $description = $_POST['description'];
             if ($label == 'nl')$country = 'Netherlands';
             else if ($label == 'be')$country = 'Belgium';
             else if ($label == 'nl-be')$country = 'Netherlands & Belgium';
@@ -336,6 +336,11 @@ class UserController extends Controller
 
         $MintyBolApi = new MintyBolController();
         $newBolUser = $MintyBolApi->CreateBolAccount($userIdApi, $clientId, $secret, $country, $label );
+
+
+
+        DB::insert('insert into descriptionBolAccount(bolId, userId, description)
+                values (?,?,?)',[$newBolUser->bolUserId, $userId,$description]);
 
         return back();
     }

