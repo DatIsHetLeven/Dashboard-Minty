@@ -36,6 +36,7 @@ class HomeController extends Controller
         ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
         if(empty($getUser))return view('welcome');
 
+        //dd($getUser);
         return view('dashboard/dashboard', ['userByCookie' => $getUser]);
     }
 
@@ -53,7 +54,7 @@ class HomeController extends Controller
         $user = $this->renderPersonalDetails();
         if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         $MintyBolApi = new MintyBolController();
-        //ARRAY WEG WERKT HALF MET ARRAY WERKT OOK HALF
+        //ARRAY WEG WERKT HALF MET ARRAY WERKT OOK HALF. Vandaar deze lelijke oplossing -__-
         $AllBolConnection = ($MintyBolApi->getAllBolConnection());
 
 

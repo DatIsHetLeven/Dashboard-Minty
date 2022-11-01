@@ -16,10 +16,10 @@
                 <br>
                 <?php echo $allUsers[$x]->description ?>
                 <div class="card-body">
-                    <label class="switch">
-                        <input type="checkbox" <?php if ($boolModule[$x] === true){?>checked<?php  }?> >
-                        <span class="slider round"></span>
-                    </label>
+{{--                    <label class="switch">--}}
+{{--                        <input type="checkbox" <?php if ($boolModule[$x] === true){?>checked<?php  }?> >--}}
+{{--                        <span class="slider round"></span>--}}
+{{--                    </label>--}}
                         <?php if (!$boolModule[$x] === true){?>
                     <a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}">Install</a><?php }
                     else{?><a href="{{ route('DisableSingleModule',$allUsers[$x]->identifier) }}">Uninstall</a><?php } ?>

@@ -117,7 +117,7 @@ class UserController extends Controller
             $passwordToken = $this->createToken();
             $newUser->token=$passwordToken;
             $mailSender = new MailController();
-            $mailSender->sendPassword($passwordToken, $newUser->email);
+            $mailSender->sendPassword($passwordToken, $newUser->email, $newUser->naam);
 
             $newUser->save();
 

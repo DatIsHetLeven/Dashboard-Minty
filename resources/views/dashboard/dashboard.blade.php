@@ -9,7 +9,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <div class="WelkomBanner">
-        <h2>Goede middag <?php echo $userByCookie ->naam;?> !</h2>
+        <h2>Goede middag <?php echo $userByCookie->naam;?> !</h2>
         <p><span class="welkomBol">Welkom bij de Bol Koppeling</span></p>
     </div>
     <div class="boxes">
@@ -18,8 +18,11 @@
             <?php
             $geldig = $userByCookie->geldig;
             $dayVandaag = date('Y-m-d');
+
         //Laat deze melding alleen zien voor niet Admin!
-        if($userByCookie->rol !=1 ){
+        if(($userByCookie->rol) ==3 and($geldig != null) ){
+
+
             // Als koppeling niet meer geldig is
             if($geldig < $dayVandaag){
                 ?> Uw proefperiode van 14 dagen zijn voorbij.<br>

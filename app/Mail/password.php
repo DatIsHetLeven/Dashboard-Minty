@@ -19,9 +19,10 @@ class password extends Mailable
      *
      * @return void
      */
-    public function __construct($passtoken)
+    public function __construct($passtoken, $naam)
     {
         $this->token = $passtoken;
+        $this->naam = $naam;
     }
 
 
@@ -32,6 +33,6 @@ class password extends Mailable
      */
     public function build()
     {
-        return $this->view('/auth/mail/password', ['token' => $this->token]);
+        return $this->view('/auth/mail/password', ['token' => $this->token, 'naam' => $this->naam]);
     }
 }

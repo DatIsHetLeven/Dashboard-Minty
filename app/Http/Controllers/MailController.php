@@ -10,9 +10,9 @@ use App\Mail\ResetPass;
 
 class MailController extends Controller
 {
-    public function sendPassword($token, $email)
+    public function sendPassword($token, $email, $naam)
     {
-        Mail::to($email)->send(new password($token));
+        Mail::to($email)->send(new password($token, $naam));
 
         return redirect()->route('login');
     }

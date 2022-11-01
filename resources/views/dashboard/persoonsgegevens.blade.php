@@ -109,7 +109,7 @@
                     for ($x = 0; $x < count($bolConnection); $x++) { ?>
                         <div class="mb-3">
                             <div class="card mb-4">
-                                <div class="card-header">Woo - Koppeling</div>
+                                <div class="card-header">Verbinding: <?php echo $x+1 ?></div>
                                 <div class="card-body">
                                     <label class="small mb-1" for="inputUsername">Omschrijving:</label>
                                     <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php if (!empty($bolConnection[$x]->description)) echo $bolConnection[$x]->description; ?> >
