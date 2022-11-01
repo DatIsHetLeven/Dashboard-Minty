@@ -19,6 +19,9 @@
                 <a href="{{ route('persoonsgegevens') }}"><ion-icon size="large" name="person-outline"></ion-icon></a>
             </li>
             <li>
+                <a href="{{ route('toonBolSetting') }}"><ion-icon size="large"  name="settings-outline"></ion-icon></a>
+            </li>
+            <li>
                 <a href="{{ route('GetAllModules') }}"><ion-icon size="large" name="build-outline"></ion-icon></a>
             </li>
             <li>

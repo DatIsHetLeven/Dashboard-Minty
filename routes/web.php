@@ -84,9 +84,7 @@ Route::get('passwordreset', function () {
     return view('auth/passwords/password');
 })->name('passwordreset');
 
-Route::get('testpage', function () {
-    return view('testpage');
-})->name('testpage');
+
 
 Route::get('allemodules', function () {
     return view('dashboard/module/allemodules');
@@ -131,6 +129,17 @@ Route::get('orderWachtagentPlugin', function () {
 Route::POST('verlengVervaldatum/{id}', [HomeController::class, 'verlengVervaldatum'])->name('verlengVervaldatum')->middleware('check.user');
 
 
+
+//Test paginas na nieuw design
+Route::get('toonBolSetting', [HomeController::class, 'toonBolSetting'])->name('toonBolSetting')->middleware('check.user');
+
+Route::get('testpage', function () {
+    return view('testpage');
+})->name('testpage');
+
+Route::get('testBol', function () {
+    return view('testBol');
+})->name('testBol');
 
 
 

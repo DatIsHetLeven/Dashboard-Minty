@@ -1,223 +1,357 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap User Management Data Table</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
-body {
-    color: #566787;
-    background: #f5f5f5;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 13px;
-}
-.table-responsive {
-    margin: 30px 0;
-}
-.table-wrapper {
-    min-width: 1000px;
-    background: #fff;
-    padding: 20px 25px;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
-.table-title {
-    padding-bottom: 15px;
-    background: #299be4;
-    color: #fff;
-    padding: 16px 30px;
-    margin: -20px -25px 10px;
-    border-radius: 3px 3px 0 0;
-}
-.table-title h2 {
-    margin: 5px 0 0;
-    font-size: 24px;
-}
-.table-title .btn {
-    color: #566787;
-    float: right;
-    font-size: 13px;
-    background: #fff;
-    border: none;
-    min-width: 50px;
-    border-radius: 2px;
-    border: none;
-    outline: none !important;
-    margin-left: 10px;
-}
-.table-title .btn:hover, .table-title .btn:focus {
-    color: #566787;
-    background: #f2f2f2;
-}
-.table-title .btn i {
-    float: left;
-    font-size: 21px;
-    margin-right: 5px;
-}
-.table-title .btn span {
-    float: left;
-    margin-top: 2px;
-}
-table.table tr th, table.table tr td {
-    border-color: #e9e9e9;
-    padding: 12px 15px;
-    vertical-align: middle;
-}
-table.table tr th:first-child {
-    width: 60px;
-}
-table.table tr th:last-child {
-    width: 100px;
-}
-table.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #fcfcfc;
-}
-table.table-striped.table-hover tbody tr:hover {
-    background: #f5f5f5;
-}
-table.table th i {
-    font-size: 13px;
-    margin: 0 5px;
-    cursor: pointer;
-}	
-table.table td:last-child i {
-    opacity: 0.9;
-    font-size: 22px;
-    margin: 0 5px;
-}
-table.table td a {
-    font-weight: bold;
-    color: #566787;
-    display: inline-block;
-    text-decoration: none;
-}
-table.table td a:hover {
-    color: #2196F3;
-}
-table.table td a.settings {
-    color: #2196F3;
-}
-table.table td a.delete {
-    color: #F44336;
-}
-table.table td i {
-    font-size: 19px;
-}
-table.table .avatar {
-    border-radius: 50%;
-    vertical-align: middle;
-    margin-right: 10px;
-}
-.status {
-    font-size: 30px;
-    margin: 2px 2px 0 0;
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 10px;
-}
-.text-success {
-    color: #10c469;
-}
-.text-info {
-    color: #62c9e8;
-}
-.text-warning {
-    color: #FFC107;
-}
-.text-danger {
-    color: #ff5b5b;
-}
-.pagination {
-    float: right;
-    margin: 0 0 5px;
-}
-.pagination li a {
-    border: none;
-    font-size: 13px;
-    min-width: 30px;
-    min-height: 30px;
-    color: #999;
-    margin: 0 2px;
-    line-height: 30px;
-    border-radius: 2px !important;
-    text-align: center;
-    padding: 0 6px;
-}
-.pagination li a:hover {
-    color: #666;
-}	
-.pagination li.active a, .pagination li.active a.page-link {
-    background: #03A9F4;
-}
-.pagination li.active a:hover {        
-    background: #0397d6;
-}
-.pagination li.disabled i {
-    color: #ccc;
-}
-.pagination li i {
-    font-size: 16px;
-    padding-top: 6px
-}
-.hint-text {
-    float: left;
-    margin-top: 10px;
-    font-size: 13px;
-}
+    body{
+        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    }
+    .emp-profile{
+        padding: 3%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        border-radius: 0.5rem;
+        background: #fff;
+    }
+    .profile-img{
+        text-align: center;
+    }
+    .profile-img img{
+        width: 70%;
+        height: 100%;
+    }
+    .profile-img .file {
+        position: relative;
+        overflow: hidden;
+        margin-top: -20%;
+        width: 70%;
+        border: none;
+        border-radius: 0;
+        font-size: 15px;
+        background: #212529b8;
+    }
+    .profile-img .file input {
+        position: absolute;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+    .profile-head h5{
+        color: #333;
+    }
+    .profile-head h6{
+        color: #0062cc;
+    }
+    .profile-edit-btn{
+        border: none;
+        border-radius: 1.5rem;
+        width: 70%;
+        padding: 2%;
+        font-weight: 600;
+        color: #6c757d;
+        cursor: pointer;
+    }
+    .proile-rating{
+        font-size: 12px;
+        color: #818182;
+        margin-top: 5%;
+    }
+    .proile-rating span{
+        color: #495057;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .profile-head .nav-tabs{
+        margin-bottom:5%;
+    }
+    .profile-head .nav-tabs .nav-link{
+        font-weight:600;
+        border: none;
+    }
+    .profile-head .nav-tabs .nav-link.active{
+        border: none;
+        border-bottom:2px solid #0062cc;
+    }
+    .profile-work{
+        padding: 14%;
+        margin-top: -15%;
+    }
+    .profile-work p{
+        font-size: 12px;
+        color: #818182;
+        font-weight: 600;
+        margin-top: 10%;
+    }
+    .profile-work a{
+        text-decoration: none;
+        color: #495057;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .profile-work ul{
+        list-style: none;
+    }
+    .profile-tab label{
+        font-weight: 600;
+    }
+    .profile-tab p{
+        font-weight: 600;
+        color: #0062cc;
+    }
+
+    body {
+        background-color: #ecf0f1;
+        margin: 20px;
+        font-family: Arial, Tahoma;
+        font-size: 20px;
+        color: #666666;
+        text-align: center;
+    }
+
+    /*-=-=-=-=-=-=-=-=-=-*/
+    /* Column Grids */
+    /*-=-=-=-=-=-=-=-=-= */
+
+    .col_third { width: 35%; }
+    .col_third{
+        position: relative;
+        display:inline;
+        display: inline-block;
+        float: left;
+        margin-right: 2%;
+        margin-bottom: 20px;
+    }
+    .end { margin-right: 0 !important; }
+
+    /*-=-=-=-=-=-=-=-=-=-=- */
+    /* Flip Panel */
+    /*-=-=-=-=-=-=-=-=-=-=- */
+
+    .wrapper{ width: 1200px; margin: 20 auto;  background-color: #bdd3de; hoverflow: hidden;}
+
+
+
+    .panel .front{
+        text-align: center;
+    }
+
+
+
+    .box1{
+        background-color: #14bcc8;
+        width: 250px;
+        height: 380px;
+        margin: 0 auto;
+        margin-left: 200px;
+        padding: 20px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+    }
+
 </style>
-<script>
-$(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-});
-</script>
-</head>
-<body>
-<div class="container-xl">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-5">
-                        <h2>Alle gebruikers</h2>
-                    </div>
-                    <div class="col-sm-7">
-                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+@extends( ($userByCookie->rol === 1) ? 'layouts.navAdmin' :  'layouts.nav')
+@section('content')
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        Persoonsgegevens
+                    </h5>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Naam</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userByCookie->naam ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userByCookie->email ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Telefoonnummer</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userByCookie->telefoonnummer ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Bedijfsnaam</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userByCookie->bedrijfsnaam ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label><?php echo $userByCookie->btwNummer ?></label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Web Developer and Designer</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Adres</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userByCookie->adres ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Postcode</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userByCookie->postcode ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Plaats</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userByCookie->plaats ?></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>						
-                        <th>Date Created</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar"> Michael Holz</a></td>
-                        <td>04/10/2013</td>                        
-                        <td>Admin</td>
-                        <td><span class="status text-success">&bull;</span> Active</td>
-                        <td>
-                            <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </div>
-</div>     
-</body>
-</html>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+{{--<div class="wrapper">--}}
+{{--    <div class="col_third">--}}
+{{--        <div class="hover panel">--}}
+{{--            <div class="front">--}}
+{{--                <div class="box1">--}}
+{{--                    <form method="POST" action="#" >--}}
+{{--                        @csrf--}}
+{{--                        <h5>Bol-Koppeling</h5>--}}
+{{--                        <!-- Form Group (username)-->--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="small mb-1" for="inputUsername">Client Id</label>--}}
+{{--                            <input class="form-control" id="inputUsername" name='clientId' type="text" >--}}
+{{--                        </div>--}}
+{{--                        <!-- Form Row-->--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="small mb-1" for="inputUsername">Secret</label>--}}
+{{--                            <input class="form-control" id="inputUsername" name='secret' type="text" >--}}
+{{--                        </div>--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="small mb-1" for="inputUsername">description</label>--}}
+{{--                            <input class="form-control" id="inputUsername" name='description' type="text">--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-3">--}}
+{{--                            <br><label for="color">Land :</label>--}}
+{{--                            <select name="land" id="color">--}}
+{{--                                <option value="" selected>--- Maak uw keuze ---</option>--}}
+{{--                                <option value="nl">Netherlands</option>--}}
+{{--                                <option value="be">Belgium</option>--}}
+{{--                                <option value="nl-be">Netherlands & Belgium</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                        <br>--}}
+{{--                        <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Versturen</button></a>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
+{{--    <div class="col_third">--}}
+{{--        <div class="hover panel">--}}
+{{--            <div class="front">--}}
+{{--                <div class="box1">--}}
+{{--                    <form method="POST" action="#" >--}}
+{{--                        @csrf--}}
+{{--                        <h5>Woo-Koppeling</h5>--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="small mb-1" for="inputUsername">Host</label>--}}
+{{--                            <input class="form-control" id="inputUsername" name='wooClientHost' type="text" >--}}
+{{--                        </div>--}}
+{{--                        <!-- Form Group (username)-->--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="small mb-1" for="inputUsername">Woo Key</label>--}}
+{{--                            <input class="form-control" id="inputUsername" name='wooClientKey' type="text" >--}}
+{{--                        </div>--}}
+{{--                        <!-- Form Row-->--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="small mb-1" for="inputUsername">Secret</label>--}}
+{{--                            <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" >--}}
+{{--                        </div>--}}
+{{--                        <br>--}}
+{{--                        <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Versturen</button></a>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
+
+{{--<br><br><br><br><br><br>--}}
+{{--<br><br><br><br><br><br>--}}
+{{--<br><br><br><br><br><br>--}}
+{{--<br>--}}
+{{--<div class="container emp-profile">--}}
+{{--    <h5> Actieve verbinding(en) </h5>--}}
+{{--    <?php--}}
+{{--    if (!empty($bolConnection)){--}}
+
+{{--    for ($x = 0; $x < count($bolConnection); $x++) { ?>--}}
+{{--    <div class="mb-3">--}}
+{{--        <div class="card mb-4">--}}
+{{--            <div class="card-header">Verbinding: <?php echo $x+1 ?></div>--}}
+{{--            <div class="card-body">--}}
+{{--                <label class="small mb-1" for="inputUsername">Omschrijving:</label>--}}
+{{--                <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php if (!empty($bolConnection[$x]->description)) echo $bolConnection[$x]->description; ?> >--}}
+{{--            </div>--}}
+{{--            <div class="card-body">--}}
+{{--                <label class="small mb-1" for="inputUsername">client id</label>--}}
+{{--                <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php echo $bolConnection[$x]->clientId ?> >--}}
+{{--                <a href="{{ route('deleteBolUser',$bolConnection[$x]->bolUserId) }}"><button type="button" class="btn btn-danger">Verwijderen</button></a>--}}
+{{--            </div>--}}
+{{--            <div class="card-body">--}}
+{{--            </div>--}}
+{{--        </div>--}}
+
+{{--    </div>--}}
+{{--    <?php }--}}
+{{--    } ?>--}}
+{{--</div>--}}
+
+
+
+
+
