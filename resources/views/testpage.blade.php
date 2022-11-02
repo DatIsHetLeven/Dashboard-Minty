@@ -1,6 +1,6 @@
 <style>
     body{
-        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        /*background: -webkit-linear-gradient(left, #3931af, #00c6ff);*/
     }
     .emp-profile{
         padding: 3%;
@@ -131,7 +131,9 @@
         text-align: center;
     }
 
-
+    .border{
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    }
 
     .box1{
         background-color: #14bcc8;
@@ -154,8 +156,10 @@
 
 @extends( ($userByCookie->rol === 1) ? 'layouts.navAdmin' :  'layouts.nav')
 @section('content')
+
 <div class="container emp-profile">
-    <form method="post">
+    <form>
+        <div class="border">
         <div class="row">
 
             </div>
@@ -180,7 +184,7 @@
                                 <label>Naam</label>
                             </div>
                             <div class="col-md-6">
-                                <p><?php echo $userByCookie->naam ?></p>
+                                <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->naam ?>>
                             </div>
                         </div>
                         <div class="row">
@@ -188,7 +192,7 @@
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <p><?php echo $userByCookie->email ?></p>
+                                <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->email ?>>
                             </div>
                         </div>
                         <div class="row">
@@ -196,7 +200,7 @@
                                 <label>Telefoonnummer</label>
                             </div>
                             <div class="col-md-6">
-                                <p><?php echo $userByCookie->telefoonnummer ?></p>
+                                <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->telefoonnummer ?>>
                             </div>
                         </div>
                         <div class="row">
@@ -204,15 +208,15 @@
                                 <label>Bedijfsnaam</label>
                             </div>
                             <div class="col-md-6">
-                                <p><?php echo $userByCookie->bedrijfsnaam ?></p>
+                                <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->bedrijfsnaam ?>>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label><?php echo $userByCookie->btwNummer ?></label>
+                                <label>BTW-nummer</label>
                             </div>
                             <div class="col-md-6">
-                                <p>Web Developer and Designer</p>
+                                <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->btwNummer ?>>
                             </div>
                         </div>
                         <div class="row">
@@ -220,7 +224,7 @@
                                 <label>Adres</label>
                             </div>
                             <div class="col-md-6">
-                                <p><?php echo $userByCookie->adres ?></p>
+                                <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->adres ?>>
                             </div>
                         </div>
                         <div class="row">
@@ -228,7 +232,7 @@
                                 <label>Postcode</label>
                             </div>
                             <div class="col-md-6">
-                                <p><?php echo $userByCookie->postcode ?></p>
+                                <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->postcode ?>>
                             </div>
                         </div>
                         <div class="row">
@@ -236,16 +240,17 @@
                                 <label>Plaats</label>
                             </div>
                             <div class="col-md-6">
-                                <p><?php echo $userByCookie->plaats ?></p>
+                                <input class="form-control" type="text" id="text" placeholder<?php echo $userByCookie->plaats ?>>
                             </div>
                         </div>
+                        <a href="#"><button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Aanpassen</button></a>
                     </div>
                 </div>
             </div>
         </div>
     </form>
 </div>
-
+</div>
 
 
 

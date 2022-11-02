@@ -2,7 +2,7 @@
     @extends( ($userByCookie->rol === 1) ? 'layouts.navAdmin' :  'layouts.nav')
     @section('content')
 
-
+    <link href="{{ asset('css/logintest.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -15,6 +15,11 @@
     <div class="boxes">
         <div class="box1">
             <h4>Actieve module(s)</h4>
+            @if(\Session::has('error'))
+                <p class="error">
+                    {{\Session::get('error')}}
+                </p>
+            @endif<p>
             <?php
             $geldig = $userByCookie->geldig;
             $dayVandaag = date('Y-m-d');

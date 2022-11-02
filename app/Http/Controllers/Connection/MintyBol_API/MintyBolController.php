@@ -272,21 +272,39 @@ class MintyBolController extends Controller
     }
     //Factuur aanmaken
     public function createFactuurFS($id){
+//        $body = json_encode([
+//            "clientnr" => $id,
+//            "lines" => array(
+//                array(
+//                    "amount" => 1,
+//                    "description" => "Minty Media's Bol-wooCommerce Koppeling",
+//                    "tax_rate" => 21,
+//                    "price" => 29.99,
+//                )
+//            ),
+//            "action" => "repeat",
+//            "savename" => "test",
+//            "initialdate" => date("Y-m-d"),
+//            "frequency" => "monthly",
+//            "repeattype" => "auto",
+//        ]);
+
         $body = json_encode([
-            "clientnr" => $id,
-            "lines" => array(
+            "clientnr"=> $id,
+            "lines"=> array(
                 array(
-                    "amount" => 1,
-                    "description" => "Minty Media's Bol-wooCommerce Koppeling",
-                    "tax_rate" => 21,
-                    "price" => 29.99,
+                    "amount"=> 1,
+                    "description"=> "Minty Media's Bol-wooCommerce koppeling",
+                    "tax_rate"=> 21,
+                    "price"=> 29,99,
                 )
             ),
-            "action" => "repeat",
-            "savename" => "test",
-            "initialdate" => date("Y-m-d"),
-            "frequency" => "monthly",
-            "repeattype" => "auto",
+        "action"=> "repeat",
+        "savename"=> "test",
+        "initialdate"=> date("Y-m-d"),
+        "frequency"=> "monthly",
+        "repeattype"=> "auto",
+        "sendmethod"=> "email"
         ]);
 
         $this->headers['Content-Type'] = 'application/json';

@@ -1,5 +1,18 @@
 <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+<style>
+    #lowerleft
+    {
+        margin-bottom: 1px;
+        margin-left : 1px;
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        color: green;
+        position: fixed;
+        bottom: 0;
+    }
+</style>
 
 
 <meta name="viewport" content="width=device-width, initial-scale=0.5">
@@ -33,14 +46,20 @@
             <li>
                 <a href="{{ route('logout') }}"><ion-icon size="Large" name="log-out-outline"></ion-icon></a>
             </li>
-                <?php if (isset($_COOKIE['adminSessie'])){ ?>
-            <li>
-                <a href="{{ route('herstellenEigenAccountInlog') }}"><ion-icon size="large" name="rocket-outline"></ion-icon></a>
-            </li>
-                <?php } ?>
+{{--                <?php if (isset($_COOKIE['adminSessie'])){ ?>--}}
+{{--            <li>--}}
+{{--                <a href="{{ route('herstellenEigenAccountInlog') }}"><ion-icon size="large" name="rocket-outline"></ion-icon></a>--}}
+{{--            </li>--}}
+{{--                <?php } ?>--}}
 
             </ul>
         </div>
     </div>
+    <?php if (isset($_COOKIE['adminSessie'])){ ?>
+
+    <div id="lowerleft">
+        <a href="{{ route('herstellenEigenAccountInlog') }}">U bent ingelogd als een klant. Druk hier om terug te gaan naar je eigen account!</a>
+    </diV>
+    <?php } ?>
 </div>
 @yield('content')

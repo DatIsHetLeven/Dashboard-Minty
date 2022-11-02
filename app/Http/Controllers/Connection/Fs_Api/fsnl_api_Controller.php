@@ -117,7 +117,7 @@ class fsnl_api_Controller extends Controller
         }
 
 
-    public function createFactuurFS($id){
+    public function createFactuurFS($id, $naam){
 
         $newClient = [
             "clientnr" => $id,
@@ -130,12 +130,11 @@ class fsnl_api_Controller extends Controller
                 )
             ),
             "action" => "repeat",
-            "savename" => "test",
-            "initialdate" => date("Y-m-d"),
+           "initialdate" => date("Y-m-d"),
             "frequency" => "monthly",
             "repeattype" => "auto",
+            "savename" => "Factuur".date("Y-m-d").$naam,
         ];
-
 
 
         $this->fSApi->setUrl($this->urlBuilder('invoices'));

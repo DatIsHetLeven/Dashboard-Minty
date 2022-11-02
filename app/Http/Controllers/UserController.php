@@ -336,7 +336,7 @@ class UserController extends Controller
 
         $MintyBolApi = new MintyBolController();
         $newBolUser = $MintyBolApi->CreateBolAccount($userIdApi, $clientId, $secret, $country, $label );
-
+        if (empty($newBolUser->bolUserId))return back()->with(['error'=> "Gegevens onjuist"]);
 
 
         DB::insert('insert into descriptionBolAccount(bolId, userId, description)
@@ -416,7 +416,7 @@ class UserController extends Controller
             dd("Er is een fout opgetreden!");
         }
         //Functie om automatisch elke maand een factuur te sturen
-        $fsApi->createFactuurFS($factuurid);
+        $fsApi->createFactuurFS($factuurid, $getUser->naam);
         return back();
     }
 

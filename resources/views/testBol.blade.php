@@ -1,9 +1,6 @@
 <link href="{{ asset('css/logintest.css') }}" rel="stylesheet">
 <style>
-    body{
-        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
 
-    }
     .emp-profile{
         padding: 3%;
         margin-top: 3%;
@@ -132,7 +129,9 @@
     .panel .front{
         text-align: center;
     }
-
+    table{
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    }
 
     .centerDiv{
         margin-left: 350px;
@@ -177,26 +176,24 @@
                             <!-- Form Group (username)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputUsername">Client Id</label>
-                                <input class="form-control" id="inputUsername" name='clientId' type="text" >
+                                <input class="form-control" id="inputUsername" name='clientId' type="text" required>
                             </div>
                             <!-- Form Row-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputUsername">Secret</label>
-                                <input class="form-control" id="inputUsername" name='secret' type="text" >
+                                <input class="form-control" id="inputUsername" name='secret' type="text" required>
                             </div>
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputUsername">description</label>
-                                <input class="form-control" id="inputUsername" name='description' type="text">
+                                <input class="form-control" id="inputUsername" name='description' type="text" required>
                             </div>
-                            <div class="col-md-3">
-                                <br><label for="color">Land :</label>
-                                <select name="land" id="color">
-                                    <option value="" selected>--- Maak uw keuze ---</option>
-                                    <option value="nl">Netherlands</option>
-                                    <option value="be">Belgium</option>
-                                    <option value="nl-be">Netherlands & Belgium</option>
-                                </select>
-                            </div>
+                            <label for="color">Land :</label>
+                            <select name="land" class="form-select" aria-label="Default select example">
+                                <option selected>--- Maak uw keuze ---</option>
+                                <option value="nl">Netherlands</option>
+                                <option value="be">Belgium</option>
+                                <option value="nl-be">Netherlands & Belgium</option>
+                            </select>
                             <br>
                             <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Versturen</button></a>
                         </form>
@@ -214,17 +211,17 @@
                         <h5>Woo-Koppeling</h5>
                         <div class="mb-3">
                             <label class="small mb-1" for="inputUsername">Host</label>
-                            <input class="form-control" id="inputUsername" name='wooClientHost' type="text" >
+                            <input class="form-control" id="inputUsername" name='wooClientHost' type="text" required>
                         </div>
                         <!-- Form Group (username)-->
                         <div class="mb-3">
                             <label class="small mb-1" for="inputUsername">Woo Key</label>
-                            <input class="form-control" id="inputUsername" name='wooClientKey' type="text" >
+                            <input class="form-control" id="inputUsername" name='wooClientKey' type="text" required>
                         </div>
                         <!-- Form Row-->
                         <div class="mb-3">
                             <label class="small mb-1" for="inputUsername">Secret</label>
-                            <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" >
+                            <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" required>
                         </div>
                         <br>
                         <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Versturen</button></a>
@@ -252,6 +249,8 @@
                     <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
                         <table class="table manage-candidates-top mb-0">
                             <thead>
+                            <h5>Actieve verbinding(en)</h5>
+                            <br>
                             <tr>
                                 <th>Omschrijving</th>
                                 <th class="text-center">Client Id</th>
