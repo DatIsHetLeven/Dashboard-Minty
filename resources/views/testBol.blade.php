@@ -118,12 +118,7 @@
     }
     .end { margin-right: 0 !important; }
 
-    /*-=-=-=-=-=-=-=-=-=-=- */
-    /* Flip Panel */
-    /*-=-=-=-=-=-=-=-=-=-=- */
-
     .wrapper{ width: 1200px; margin: 20 auto;  background-color: #bdd3de; hoverflow: hidden;}
-
 
 
     .panel .front{
@@ -184,7 +179,7 @@
                                 <input class="form-control" id="inputUsername" name='secret' type="text" required>
                             </div>
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputUsername">description</label>
+                                <label class="small mb-1" for="inputUsername">Omschrijving</label>
                                 <input class="form-control" id="inputUsername" name='description' type="text" required>
                             </div>
                             <label for="color">Land :</label>
@@ -224,10 +219,11 @@
                             <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" required>
                         </div>
                         <br>
-                        Gebruik de volgende api key in je wordpress website om verbinding te mkaen met het dashboard.
-                         <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" required value=<?php echo $userApiKey ?> >
-                        <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Versturen</button></a>
+                       <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Versturen</button></a>
                     </form>
+                    Gebruik de volgende api key in je wordpress website om verbinding te maken met het dashboard.
+                    <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" required value=<?php echo $userApiKey ?> >
+
                 </div>
             </div>
         </div>
@@ -283,34 +279,6 @@
         </div>
     </div>
 </div>
-
-
-    <div class="container emp-profile">
-        <h5> Actieve verbinding(en) </h5>
-        <?php
-        if (!empty($bolConnection)){
-
-        for ($x = 0; $x < count($bolConnection); $x++) { ?>
-        <div class="mb-3">
-            <div class="card mb-4">
-                <div class="card-header">Verbinding: <?php echo $x+1 ?></div>
-                <div class="card-body">
-                    <label class="small mb-1" for="inputUsername">Omschrijving:</label>
-                    <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php if (!empty($bolConnection[$x]->description)) echo $bolConnection[$x]->description; ?> >
-                </div>
-                <div class="card-body">
-                    <label class="small mb-1" for="inputUsername">client id</label>
-                    <input class="form-control" id="inputUsername" name='wooClientKey' placeholder=<?php echo $bolConnection[$x]->clientId ?> >
-                    <a href="{{ route('deleteBolUser',$bolConnection[$x]->bolUserId) }}"><button type="button" class="btn btn-danger">Verwijderen</button></a>
-                </div>
-                <div class="card-body">
-                </div>
-            </div>
-
-        </div>
-        <?php }
-        } ?>
-    </div>
 
 
 
