@@ -58,11 +58,7 @@ class ProductController extends Controller
 
         return view('dashboard/setting/productinfo')->with(['productInfo'=> $fsClient]);
     }
-
-    public function createBolAccount(){
-
-
-    }
+    
 
 
 }

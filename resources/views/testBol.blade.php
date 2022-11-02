@@ -224,6 +224,8 @@
                             <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" required>
                         </div>
                         <br>
+                        Gebruik de volgende api key in je wordpress website om verbinding te mkaen met het dashboard.
+                         <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" required value=<?php echo $userApiKey ?> >
                         <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Versturen</button></a>
                     </form>
                 </div>

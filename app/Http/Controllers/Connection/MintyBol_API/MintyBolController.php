@@ -424,10 +424,17 @@ class MintyBolController extends Controller
         $loggedUser = $homeController->renderPersonalDetails();
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
-
         $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
 
         return json_decode($response->getBody()->getContents());
+    }
+    public  function getApiKey(){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
+
+        $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi, ['headers' => $this->headers]);
+        return (json_decode($response->getBody()->getContents())->apiKey->apiKey);
     }
 
     public function deleteBolUser($id){

@@ -3,18 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Connection\Fs_Api\fsnl_api_Controller;
-use App\Models\descrBolAccount;
 use Illuminate\Http\Request;
-
-
 use App\Models\User;
 use App\Models\statusdetails;
 use App\Models\factuursturen;
 use App\Models\bolApi;
-
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
-
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 
 
@@ -39,17 +33,11 @@ class UserController extends Controller
             $CheckUserLogin->cookie_token = $cookieToken;
             $CheckUserLogin->save();
 
-            $cookie_name = "user";
             setcookie('user', $cookieToken, time() + (86400 * 30));
 
             return redirect()->route('dashboard');
-
         }
-        else
-        {
-            $error = "Wachtwoord klopt niet!";
-            return back()->with(['error'=> $error]);
-        }
+        else return back()->with(['error'=> "Wachtwoord klopt niet!"]);
     }
 //Request gebruiken + returns - minty pawel
     public function createPassword(Request $request)
@@ -134,15 +122,11 @@ class UserController extends Controller
             $newStatus->save();
 
             //Gebruiker aanmaken voor de BOL-koppeling
-
             //UserId ophalen eigen db nieuwe User
             $userId = User::where('email', '=', $newUser->email)->first();
-
-
             //UserId aanmaken bol-koppeling van Arthur
             $MintyBolApi = new MintyBolController();
             $userIdBol = $MintyBolApi->CreateUserBolApi($newUser->email,$newUser->naam );
-
             //Insert userId + boluserId in BolApi
             $bolApi = new bolApi();
             $bolApi->userId = $userId->userId;
@@ -170,14 +154,10 @@ class UserController extends Controller
 
     //Stuur mail met rest wachtwoord
     public function resetPass(){
-
         if(isset($_POST['resetpassword']))
         {
-            $error = '';
             $email = $_POST['username'];
-            $getUser = User::where('email', '=', $email)
-                ->first();
-
+            $getUser = User::where('email', '=', $email)->first();
             if(!empty($getUser))
             {
                 $passwordToken = $this->createToken();
@@ -187,12 +167,7 @@ class UserController extends Controller
                 $getUser->save();
                 return back()->with(['succes'=> 'E-mail is verzonden']);
             }
-            else
-            {
-                $error = "Geberuiker niet gevonden";
-                // return redirect()->route('resetpassword')->with(['error'=> $error]);
-                return redirect('auth/passwords/resettest')->with(['error'=> $error]);
-            }
+            else return redirect('auth/passwords/resettest')->with(['error'=> "Geberuiker niet gevonden"]);
         }
     }
 
@@ -210,8 +185,7 @@ class UserController extends Controller
     //Haal alle gebruikers op uit
     public function getAllUsers(){
         $allUsers= DB::table('user')
-            ->leftJoin('statusdetails', 'user.userId','=','statusdetails.userId')
-            ->get();
+            ->leftJoin('statusdetails', 'user.userId','=','statusdetails.userId')->get();
         //return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
         return view('bootstrTesttt')->with(['allegebruikers'=> $allUsers]);
     }
@@ -220,10 +194,8 @@ class UserController extends Controller
     public function getFactuursturenUser(){
         $fSApi = new fsnl_api_Controller();
 
-        if(isset($_POST['btnFactuurId']))
-        {
-            $UserId = $_POST['factuurId'];
-        }
+        if(isset($_POST['btnFactuurId'])) $UserId = $_POST['factuurId'];
+
         $opgehaaldeGberuiker = $fSApi->getFactuursturenUser($UserId);
         $fsClient = json_decode($opgehaaldeGberuiker);
         $fsClient = $fsClient->client;
@@ -267,12 +239,8 @@ class UserController extends Controller
 
     //Maak gebruiker aan in Factuursturen
     public function createUserFactuursturen($id){
-
         $getUser = User::where('userId', '=', $id)->first();
-        $fsnlAPI = new fsnl_api_Controller;
-
         $fSApi = new fsnl_api_Controller();
-            $newClient = [];
 
             $newClient = [
                 'contact' => $getUser->naam,
@@ -304,9 +272,8 @@ class UserController extends Controller
                 DB::insert('insert into factuursturen (userId, factuurId)
                 values (?,?)',[$getUser->userId, $factuurid]);
             }
-            else{
-                dd("Er is een fout opgetreden!");
-            }
+            else dd("Er is een fout opgetreden!");
+
             return back();
     }
     //Verwijder gebruiker
@@ -351,24 +318,16 @@ class UserController extends Controller
         $CheckUserLogin = bolApi::Where('userId', '=', $userId)->first();
         $userIdApi = $CheckUserLogin->userIdApi;
 
-
         if(isset($_POST['createWooUserBTN'])) {
             $host = $_POST['wooClientHost'];
             $key = $_POST['wooClientKey'];
             $secret = $_POST['wooClientSecret'];
         }
-
         $MintyBolApi = new MintyBolController();
         $newBolUser = $MintyBolApi->CreateWooAccount($userIdApi,$host, $key, $secret );
 
         return back();
     }
-
-        /**
-    * This function return the current loggedin user
-     * @return User|null
-     */
-
 
     //Maak gebruiker aan in Factuursturen (na eerste betaling/ mandaat )
     public function createUserFS($bankcode, $biccode, $mollieId){
@@ -377,7 +336,6 @@ class UserController extends Controller
         $loggedUser = $homeController->renderPersonalDetails();
 
         $getUser = User::where('userId', '=', $loggedUser->userId)->first();
-        $fsnlAPI = new fsnl_api_Controller;
 
         $fSApi = new fsnl_api_Controller();
 
@@ -412,23 +370,12 @@ class UserController extends Controller
             DB::insert('insert into factuursturen (userId, factuurId)
                 values (?,?)',[$getUser->userId, $factuurid]);
         }
-        else{
-            dd("Er is een fout opgetreden!");
-        }
+        else dd("Er is een fout opgetreden!");
+
         //Functie om automatisch elke maand een factuur te sturen
         $fsApi->createFactuurFS($factuurid, $getUser->naam);
         return back();
     }
-
-
-
-
-
-
-
-
-
-
 
     public function inloggenAlsKlant($userIdKlantAccount){
         $homeController = new HomeController();
@@ -454,7 +401,6 @@ class UserController extends Controller
     }
 
     public function herstellenEigenAccountInlog(){
-        //dd("test");
         if(isset($_COOKIE['adminSessie'])){
             setcookie("user", FALSE, time() + (86400 * 30),"/");
             $cookieToken = $_COOKIE['adminSessie'];
@@ -466,5 +412,10 @@ class UserController extends Controller
             return view('dashboard/dashboard', ['userByCookie' => $eigenAccount]);
         }
         return back();
+    }
+
+    public function updatePersonalDetails($userId){
+//        if (isset())
+
     }
 }

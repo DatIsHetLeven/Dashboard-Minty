@@ -97,10 +97,10 @@ class HomeController extends Controller
         $user = $this->renderPersonalDetails();
         if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         $MintyBolApi = new MintyBolController();
-        //ARRAY WEG WERKT HALF MET ARRAY WERKT OOK HALF. Vandaar deze lelijke oplossing -__-
+        //ARRAY WEG WERKT HALF MET ARRAY WERKT OOK HALF. Vandaar deze lelijke oplossing -_-
         $AllBolConnection = ($MintyBolApi->getAllBolConnection());
+        $userApiKey =$MintyBolApi->getApiKey();
 
-        //return view('testpage', ['userByCookie' => $user]);
         if (is_countable($AllBolConnection)) {
             if (!empty($AllBolConnection) or count($AllBolConnection) != 1) {
                 for ($x = 0; $x < count($AllBolConnection); $x++) {
@@ -111,7 +111,7 @@ class HomeController extends Controller
                 }
                 //return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
                 //return view('testpage', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
-                return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+                return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
             }
         }
         if (!is_countable($AllBolConnection)) {
@@ -126,7 +126,7 @@ class HomeController extends Controller
                 }
                 //return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
                 //return view('testpage', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
-                return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+                return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
             }
         }
 
