@@ -175,11 +175,19 @@ class MintyBolController extends Controller
 
     //Get all logs
     public function GetLogs(){
+        //Haal de API key van de gebruiker op -> in de header.
+        $apiKey = $this->getApiKey();
+        $this->headers = [
+            'Authorization' => 'Basic ' . $apiKey,
+        ];
+        //dd($apiKey);
         //Check wat de hoogste pagina is - Laatste updates
-        $response = $this->guzzleClient->request('GET', 'logs?page=31', ['headers' => $this->headers]);
-        $maxPage = json_decode($response->getBody()->getContents());
+        $response = $this->guzzleClient->request('GET', 'logs?page=1', ['headers' => $this->headers]);
+        $maxPage = json_decode($response->getBody()->getContents())->pages;
+
         //Haal meest recente logs op.
-        $logList = $this->guzzleClient->request('GET', 'logs?page='.$maxPage->pages, ['headers' => $this->headers]);
+        $logList = $this->guzzleClient->request('GET', 'logs?page='.$maxPage, ['headers' => $this->headers]);
+        //dd(json_decode($logList->getBody()->getContents()));
         return json_decode($logList->getBody()->getContents());
     }
 
@@ -237,21 +245,6 @@ class MintyBolController extends Controller
         $response = $this->guzzleClient->request('PUT', 'modules/user', ['headers' => $this->headers, 'body' => $bodyy]);
         return redirect( 'GetAllModules');
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //Mandaat aanmaken
@@ -434,6 +427,18 @@ class MintyBolController extends Controller
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
         $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi, ['headers' => $this->headers]);
+
+
+
+        $datum = (date('Y-m-d H:i:s'));
+        $datumIso = (date(DATE_ISO8601, strtotime($datum)));
+
+        //If license not active
+//        if (json_decode($response->getBody()->getContents())->licenseExpiryDate < $datumIso){
+//            return false;
+//        }
+
+        //dd(json_decode($response->getBody()->getContents()));
         return (json_decode($response->getBody()->getContents())->apiKey->apiKey);
     }
 
@@ -443,6 +448,19 @@ class MintyBolController extends Controller
         } catch (GuzzleException $e) {
             dd("error delete bol user");
         }
+    }
+
+    public function updateExpireDate($newDate){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
+        //dd($newDate);
+
+        $body = json_encode([
+            "licenseExpiryDate"=> $newDate,
+        ]);
+        $this->headers['Content-Type'] = 'application/json';
+        $response = $this->guzzleClient->request('PUT', 'accounts/user/'.$bolUser->userIdApi, ['headers' => $this->headers, 'body' => $body]);
     }
 
 

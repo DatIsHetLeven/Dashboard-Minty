@@ -274,10 +274,21 @@ class HomeController extends Controller
         if ($userbytoken === null)return redirect('login');
         $getUser = statusdetails::join('user', 'statusdetails.userId', '=', 'user.userId')
             ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
-
+        //Update in db.
         $nieuwGeldig =  date('Y-m-d',strtotime('+30 days',strtotime($getUser->geldig)));
         $getUser->geldig = $nieuwGeldig;
         $getUser->save();
+        //Call Api Arthur -> expireDate
+
+        $datum = (date('Y-m-d H:i:s'));
+        $datum2 = (date('Y-m-d H:i:s', strtotime('+30 days', strtotime($datum))));
+
+        $datumIso = (date(DATE_ISO8601, strtotime($datum2)));
+
+        $str = str_replace('T', ' ', $datumIso);
+        $str2 = str_replace('+0000', '', $str);
+        $bolContoller = new MintyBolController();
+        $bolContoller->updateExpireDate($str2);
 
     }
 
