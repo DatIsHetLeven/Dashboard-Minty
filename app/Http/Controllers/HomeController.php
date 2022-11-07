@@ -317,5 +317,14 @@ class HomeController extends Controller
         return back();
     }
 
+    public function veranderPrijs(){
+        $variable = $_POST['newPrijs'];
+
+        DB::table('dynamisch')
+            ->where('bolPrijs', '>', 0)
+            ->update(['bolPrijs' => $variable]);
+        return back();
+    }
+
 
 }

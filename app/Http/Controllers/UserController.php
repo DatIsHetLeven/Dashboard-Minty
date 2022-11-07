@@ -373,16 +373,18 @@ class UserController extends Controller
             DB::table('factuursturen')->insert([
                 'userId' => $getUser->userId,
                 'factuurId' => $factuurid,
-                'factuur_reference' => $references
+                'factuur_reference' => "BOLLERT_CUID_".$loggedUser->userId
             ]);
 //            DB::insert('insert into factuursturen (userId, factuurId, factuur_reference)
 //                values (?,?)',[$getUser->userId, $factuurid],$references );
         }
-
         else dd("Er is een fout opgetreden!");
+        //Haal prijs op uit db
+        $bolprijs = DB::table('dynamisch')
+            ->where('bolprijs', '>', 0)->first();
 
         //Functie om automatisch elke maand een factuur te sturen
-        $fsApi->createFactuurFS($factuurid, $getUser->naam);
+        $fsApi->createFactuurFS($factuurid, $loggedUser->userId, $bolprijs);
         return back();
     }
 

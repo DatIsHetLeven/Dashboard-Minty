@@ -130,6 +130,11 @@ Route::POST('verlengVervaldatum/{id}', [HomeController::class, 'verlengVervaldat
 
 
 
+
+Route::POST('veranderPrijs}', [HomeController::class, 'veranderPrijs'])->name('veranderPrijs')->middleware('check.user');
+
+
+
 //Test paginas na nieuw design
 Route::get('toonBolSetting', [HomeController::class, 'toonBolSetting'])->name('toonBolSetting')->middleware('check.user');
 

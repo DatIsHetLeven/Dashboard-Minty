@@ -116,7 +116,10 @@ class fsnl_api_Controller extends Controller
         }
 
 
-    public function createFactuurFS($id, $naam){
+    public function createFactuurFS($id, $naam, $bolPrijs){
+        $remove = array("{", "}","bolPrijs", '""', ":");
+        $prijs = str_replace($remove, "", json_encode($bolPrijs));
+
 
         $newClient = [
             "clientnr" => $id,
@@ -125,14 +128,14 @@ class fsnl_api_Controller extends Controller
                     "amount" => 1,
                     "description" => "Minty Media's Bol-wooCommerce Koppeling",
                     "tax_rate" => 21,
-                    "price" => 29.99,
+                    "price" => 28,
                 )
             ),
             "action" => "repeat",
            "initialdate" => date("Y-m-d"),
             "frequency" => "monthly",
             "repeattype" => "auto",
-            "savename" => "Factuur".date("Y-m-d").$naam,
+            "savename" => "BOLLERT_CUID_".$naam
         ];
 
 
@@ -140,10 +143,10 @@ class fsnl_api_Controller extends Controller
         $this->fSApi->setVerb("POST");
         $this->fSApi->buildPostBody($newClient);
 
+
         $this->fSApi->execute();
 
         if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
-
             dump('het is niet gelukt :)');
             dd($this->fSApi);
             return false;
