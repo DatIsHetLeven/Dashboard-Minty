@@ -130,6 +130,7 @@
                 <div class="card-header">Facturing</div>
                 <div class="card-body">
                     <form>
+                        factuur reference : <?php echo ($user->factuur_reference); ?>
 
                     </form>
                 </div>

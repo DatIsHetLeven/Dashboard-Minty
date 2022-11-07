@@ -32,7 +32,6 @@ class fsnl_api_Controller extends Controller
         $this->fSApi->buildPostBody($clientData);
 
         $this->fSApi->execute();
-
         if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
 
             dump('het is niet gelukt :)');

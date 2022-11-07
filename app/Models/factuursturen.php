@@ -19,5 +19,6 @@ class factuursturen extends Authenticatable
         'id',
         'userId',
         'factuurId',
+        'factuur_reference'
     ];
 }

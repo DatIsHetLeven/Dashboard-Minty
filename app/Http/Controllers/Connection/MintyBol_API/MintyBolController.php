@@ -357,7 +357,6 @@ class MintyBolController extends Controller
 
         $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
         $checker = json_decode($response->getBody()->getContents());
-        //dd($checker);
         if (empty($checker))return false;
         return true;
     }
@@ -428,17 +427,9 @@ class MintyBolController extends Controller
 
         $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi, ['headers' => $this->headers]);
 
-
-
         $datum = (date('Y-m-d H:i:s'));
         $datumIso = (date(DATE_ISO8601, strtotime($datum)));
 
-        //If license not active
-//        if (json_decode($response->getBody()->getContents())->licenseExpiryDate < $datumIso){
-//            return false;
-//        }
-
-        //dd(json_decode($response->getBody()->getContents()));
         return (json_decode($response->getBody()->getContents())->apiKey->apiKey);
     }
 
@@ -462,7 +453,4 @@ class MintyBolController extends Controller
         $this->headers['Content-Type'] = 'application/json';
         $response = $this->guzzleClient->request('PUT', 'accounts/user/'.$bolUser->userIdApi, ['headers' => $this->headers, 'body' => $body]);
     }
-
-
-
 }

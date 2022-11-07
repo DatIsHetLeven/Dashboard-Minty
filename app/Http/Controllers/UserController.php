@@ -338,6 +338,7 @@ class UserController extends Controller
         $getUser = User::where('userId', '=', $loggedUser->userId)->first();
 
         $fSApi = new fsnl_api_Controller();
+        $references = "fs_bol_".$loggedUser->userId;
 
         $newClient = [
             'contact' => $getUser->naam,
@@ -362,14 +363,22 @@ class UserController extends Controller
             'default_doclang' => 'nl',
             'email_reminder' => $getUser->email,
             'currency' => 'EUR',
-            'tax_type' => 'extax'
+            'tax_type' => 'extax',
+            'reference' => $references
         ];
+
         $factuurid = $fSApi->CreateNewClient($newClient);
         //Insert factuurid bij bijbehorende klantid.
         if(!empty($factuurid)){
-            DB::insert('insert into factuursturen (userId, factuurId)
-                values (?,?)',[$getUser->userId, $factuurid]);
+            DB::table('factuursturen')->insert([
+                'userId' => $getUser->userId,
+                'factuurId' => $factuurid,
+                'factuur_reference' => $references
+            ]);
+//            DB::insert('insert into factuursturen (userId, factuurId, factuur_reference)
+//                values (?,?)',[$getUser->userId, $factuurid],$references );
         }
+
         else dd("Er is een fout opgetreden!");
 
         //Functie om automatisch elke maand een factuur te sturen
