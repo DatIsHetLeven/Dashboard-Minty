@@ -102,20 +102,22 @@ class MintyBolController extends Controller
 
     //Create standaard module per boluser
     public function orderwachtagent($bolUserId, $identifier){
+
         try {
-            $response = $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
+            $response = $this->guzzleClient->request('Get', 'modules/user/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
             $body = json_encode([
-                "bolUserId" => $bolUserId,
+                "userId" => $bolUserId,
                 "identifier" => $identifier,
                 "settings" => [
                     "phone" => "",
                     "email" => "",
-                    "status" => "default",
+                    "status" => "",
                 ]
             ]);
+
             $this->headers['Content-Type'] = 'application/json';
-            $response = $this->guzzleClient->request('POST', 'modules/User', ['headers' => $this->headers, 'body' => $body]);
+            $response = $this->guzzleClient->request('POST', 'modules/user', ['headers' => $this->headers, 'body' => $body]);
         }
     }
 
@@ -125,7 +127,7 @@ class MintyBolController extends Controller
             $response = $this->guzzleClient->request('Get', 'modules/User/'.$bolUserId.'?identifier='.$identifier, ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
             $body = json_encode([
-                "bolUserId" => $bolUserId,
+                "userId" => $bolUserId,
                 "identifier" => $identifier,
                 "settings" => [
                     "stockSync" => "",
@@ -199,17 +201,20 @@ class MintyBolController extends Controller
 
         $phone = "";
         $email = "";
+        $status = "";
 
         if (isset($_POST['phoneSetting']))$phone = "123456789";
         if (isset($_POST['emailSetting']))$email = "Mintymail@Media.nl";
+        if (isset($_POST['statusSetting']))$status = "Default";
+
 
         $body = json_encode([
-            "bolUserId"=> $bolUser->userIdApi,
+            "userId"=> $bolUser->userIdApi,
             "identifier"=> "bol.mintyconnect.order.wachtagent",
             "settings"=> [
                 "phone"=> $phone,
                 "email"=> $email,
-                "status"=> "default"
+                "status"=> $status,
         ]
         ]);
         $this->headers['Content-Type'] = 'application/json';
@@ -224,8 +229,8 @@ class MintyBolController extends Controller
         $loggedUser = $homeController->renderPersonalDetails();
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
-        $stock = "";
-        $price = "";
+        $stock = '';
+        $price = '';
 
         if (isset($_POST['stockSetting']))$stock = "true";
         if (isset($_POST['priceSetting']))$price = "true";
@@ -233,7 +238,7 @@ class MintyBolController extends Controller
 
 
         $bodyy = json_encode([
-            "bolUserId"=> $bolUser->userIdApi,
+            "userId"=> $bolUser->userIdApi,
             "identifier"=> "bol.mintyconnect.product.wachtagent",
             "settings"=> [
                 "stockSync"=> $stock,

@@ -27,7 +27,7 @@ Route::get('/', function () {
     return view('auth/login');
 })->name('welcome');
 
-Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword')->middleware('check.user');
+Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword');
 
 Route::get('persoonsgegevens', [HomeController::class, 'toonPersoonsgegevens'])->name('persoonsgegevens')->middleware('check.user');;
 
@@ -44,9 +44,9 @@ Route::POST('logincheck', [UserController::class, 'getUser'])->name('login_check
 Route::POST('cretateUser', [UserController::class, 'createUser'])->name('create_user_check');
 
 // gebruikt kortere class path - minty pawel
-Route::POST('createPassword', [UserController::class, 'createPassword'])->name('set_password')->middleware('check.user');
+Route::POST('createPassword', [UserController::class, 'createPassword'])->name('setPassword');
 
-Route::POST('resetPass', [UserController::class, 'resetPass'])->name('reset_password')->middleware('check.user');
+Route::POST('resetPass', [UserController::class, 'resetPass'])->name('reset_password');
 
 Auth::routes();
 
@@ -83,6 +83,10 @@ Route::get('logout', [HomeController::class, 'logout'])->name('logout')->middlew
 Route::get('passwordreset', function () {
     return view('auth/passwords/password');
 })->name('passwordreset');
+
+Route::get('resettest', function () {
+    return view('auth/passwords/resettest');
+})->name('resettest');
 
 
 

@@ -56,8 +56,11 @@ class UserController extends Controller
 
             if($password == $password2)
             {
+                dump($password2);
                 //Update user
+                //dump($password);
                 $hashPassword = password_hash($password2, PASSWORD_DEFAULT);
+                //dd($hashPassword);
                 $getUser->password=$hashPassword;
                 $getUser->token = NULL;
                 $getUser->save();
@@ -154,6 +157,7 @@ class UserController extends Controller
 
     //Stuur mail met rest wachtwoord
     public function resetPass(){
+
         if(isset($_POST['resetpassword']))
         {
             $email = $_POST['username'];

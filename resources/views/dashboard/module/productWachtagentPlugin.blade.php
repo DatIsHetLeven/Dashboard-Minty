@@ -98,7 +98,7 @@
 
                         PriceSync setting :
                         <label class="switch" >
-                            <input type="checkbox" value="price" name='priceSetting' {{   (empty($stockSyncSetting)) ? '': "checked"   }}>
+                            <input type="checkbox" value="price" name='priceSetting' {{   (empty($priceSyncSetting)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
                         <br><br><br>
