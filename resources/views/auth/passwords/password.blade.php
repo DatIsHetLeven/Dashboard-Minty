@@ -30,7 +30,7 @@
 
 
     <!-- Button aanmelden -->
-          <a href="{{ route('setPassword') }}">test</a><input type="submit" name="passwordButton" class="buttonlogin" value="Maak aan"></a>
+          <a href="{{ route('setPassword') }}"></a><input type="submit" name="passwordButton" class="buttonlogin" value="Maak aan"></a>
 
   </form>
 

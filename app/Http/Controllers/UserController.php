@@ -64,6 +64,7 @@ class UserController extends Controller
                 $getUser->password=$hashPassword;
                 $getUser->token = NULL;
                 $getUser->save();
+                return redirect('login')->with(['succes'=> "Wachtwoord succesvol veranderd"]);
                 return back()->with(['succes'=> "Wachtwoord succesvol veranderd"]);
 
             }else{
@@ -157,7 +158,6 @@ class UserController extends Controller
 
     //Stuur mail met rest wachtwoord
     public function resetPass(){
-
         if(isset($_POST['resetpassword']))
         {
             $email = $_POST['username'];
@@ -197,7 +197,6 @@ class UserController extends Controller
     //Haal gebruiker op uit FS -> dmv bestaande Factuurid
     public function getFactuursturenUser(){
         $fSApi = new fsnl_api_Controller();
-
         if(isset($_POST['btnFactuurId'])) $UserId = $_POST['factuurId'];
 
         $opgehaaldeGberuiker = $fSApi->getFactuursturenUser($UserId);
@@ -205,7 +204,6 @@ class UserController extends Controller
         $fsClient = $fsClient->client;
 
         $this->insertUser($fsClient);
-
         return back();
     }
 
@@ -241,50 +239,52 @@ class UserController extends Controller
 
     }
 
-    //Maak gebruiker aan in Factuursturen
-    public function createUserFactuursturen($id){
-        $getUser = User::where('userId', '=', $id)->first();
-        $fSApi = new fsnl_api_Controller();
-
-            $newClient = [
-                'contact' => $getUser->naam,
-                'showcontact' => true,
-                'company' => $getUser->bedrijfsnam,
-                'address' => $getUser->adres,
-                'zipcode' => $getUser->postcode,
-                'city' => $getUser->plaats,
-                'country' => '146',
-                'phone' => $getUser->telefoonnummer,
-                'mobile' => $getUser->telefoonnummer,
-                'email' => $getUser->email,
-                'bankcode' => 'NL91INGB0001234567',
-                'biccode' => 'INGBNL2A',
-                'taxnumber' => $getUser->btwNummer,
-                'tax_shifted' => false,
-                'sendmethod' => 'email',
-                'paymentmethod' => 'autocollect',
-                'top' => 14,
-                'active' => true,
-                'default_doclang' => 'nl',
-                'email_reminder' => $getUser->email,
-                'currency' => 'EUR',
-                'tax_type' => 'extax'
-            ];
-            $factuurid = $fSApi->CreateNewClient($newClient);
-            //Insert factuurid bij bijbehorende klantid.
-            if(!empty($factuurid)){
-                DB::insert('insert into factuursturen (userId, factuurId)
-                values (?,?)',[$getUser->userId, $factuurid]);
-            }
-            else dd("Er is een fout opgetreden!");
-
-            return back();
-    }
-    //Verwijder gebruiker
+//    //Maak gebruiker aan in Factuursturen
+//    public function createUserFactuursturen($id){
+//        $getUser = User::where('userId', '=', $id)->first();
+//        $fSApi = new fsnl_api_Controller();
+//
+//            $newClient = [
+//                'contact' => $getUser->naam,
+//                'showcontact' => true,
+//                'company' => $getUser->bedrijfsnam,
+//                'address' => $getUser->adres,
+//                'zipcode' => $getUser->postcode,
+//                'city' => $getUser->plaats,
+//                'country' => '146',
+//                'phone' => $getUser->telefoonnummer,
+//                'mobile' => $getUser->telefoonnummer,
+//                'email' => $getUser->email,
+//                'bankcode' => 'NL91INGB0001234567',
+//                'biccode' => 'INGBNL2A',
+//                'taxnumber' => $getUser->btwNummer,
+//                'tax_shifted' => false,
+//                'sendmethod' => 'email',
+//                'paymentmethod' => 'autocollect',
+//                'top' => 14,
+//                'active' => true,
+//                'default_doclang' => 'nl',
+//                'email_reminder' => $getUser->email,
+//                'currency' => 'EUR',
+//                'tax_type' => 'extax'
+//            ];
+//            $factuurid = $fSApi->CreateNewClient($newClient);
+//            //Insert factuurid bij bijbehorende klantid.
+//            if(!empty($factuurid)){
+//                DB::insert('insert into factuursturen (userId, factuurId)
+//                values (?,?)',[$getUser->userId, $factuurid]);
+//            }
+//            else dd("Er is een fout opgetreden!");
+//
+//            return back();
+//    }
+    //Verwijder gebruiker uit alle tables
     public function deleteUser($userId){
         DB::table('user')->where('userId', '=', $userId)->delete();
-        DB::table('statusdetails')->where('userId', '=', $userId)->delete();
+        DB::table('bolApi')->where('userId', '=', $userId)->delete();
+        DB::table('descriptionBolAccount')->where('userId', '=', $userId)->delete();
         DB::table('factuursturen')->where('userId', '=', $userId)->delete();
+        DB::table('statusdetails')->where('userId', '=', $userId)->delete();
 
         return $this->getAllUsers();
     }
@@ -407,19 +407,14 @@ class UserController extends Controller
         //Haal cookieToken op van klant.
         $GegevensKlant = User::where('userId', '=', $userIdKlantAccount)->first();
         $cookieTokenKlant = $GegevensKlant->cookie_token;
-
+        //Als er geen cookie is -> maak er een (zodat hij niet crasht)
         if (empty($cookieTokenKlant)){
             $GegevensKlant->cookie_token = bin2hex(random_bytes(20));
             $GegevensKlant->save();
         }
-        
-
-
-
         setcookie("user", FALSE, time() + (86400 * 30),"/");
         $cookie_name = "user";
         setcookie($cookie_name, $GegevensKlant->cookie_token, time() + (86400 * 30),"/");
-
 
         return view('dashboard/dashboard', ['userByCookie' => $GegevensKlant]);
     }

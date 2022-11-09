@@ -1,5 +1,5 @@
 
-<link href="{{ asset('css/logintest.css') }}" rel="stylesheet"> 
+<link href="{{ asset('css/logintest.css') }}" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=0.8">
 <br><br></br></br>
 <h3><a href="{{ route('login') }}" span id="minty" > MINTY</span><span id="media"> MEDIA</span></a><h3>
@@ -35,4 +35,3 @@
 
 
 
-      
