@@ -152,5 +152,9 @@ Route::get('testBol', function () {
     return view('testBol');
 })->name('testBol');
 
+Route::get('SignUp', function () {
+    return view('SignUp');
+})->name('SignUp');
+
 
 

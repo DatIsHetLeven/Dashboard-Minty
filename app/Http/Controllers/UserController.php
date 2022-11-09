@@ -177,7 +177,6 @@ class UserController extends Controller
 
     //Haal gebruiker op dmv cookie token (bij het inloggen)
     public static function getByCookie(){
-
         $cookieToken = ((isset($_COOKIE['user']) )) ? $_COOKIE['user'] : '';
         if (empty($cookieToken)) return null;
         $getUser = User::where('cookie_token', '=', $cookieToken )->first();
