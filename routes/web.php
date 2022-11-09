@@ -122,6 +122,8 @@ Route::get('herstellenEigenAccountInlog', [UserController::class, 'herstellenEig
 
 Route::get('blokkeerApi/{id}', [HomeController::class, 'blokApiVoorKlant'])->name('blokkeerApi')->middleware('check.user');
 Route::get('deleteBolUser/{id}', [HomeController::class, 'deleteBolUser'])->name('deleteBolUser')->middleware('check.user');
+Route::get('deleteWooConnection/{id}', [HomeController::class, 'deleteWooConnection'])->name('deleteWooConnection')->middleware('check.user');
+
 
 
 

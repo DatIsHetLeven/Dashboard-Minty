@@ -99,18 +99,22 @@ class HomeController extends Controller
         $MintyBolApi = new MintyBolController();
         //ARRAY WEG WERKT HALF MET ARRAY WERKT OOK HALF. Vandaar deze lelijke oplossing -_-
         $AllBolConnection = ($MintyBolApi->getAllBolConnection());
+        $wooConnection =($MintyBolApi->getWooConnection());
+        if (!empty($wooConnection)) {
+            $wooConnection->wooKey = (substr($wooConnection->wooKey, 35));
+            $wooConnection->secret = 0;
+        }
+
+
         $userApiKey =$MintyBolApi->getApiKey();
 
         if (is_countable($AllBolConnection)) {
             if (!empty($AllBolConnection) or count($AllBolConnection) != 1) {
                 for ($x = 0; $x < count($AllBolConnection); $x++) {
-                    //Check of er descript van bekend is.
-                    //dd($AllBolConnection[0]);
                     $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
-                //return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
-                //return view('testpage', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+                if (!empty($wooConnection)) return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey, 'wooConnection' => $wooConnection]);
                 return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
             }
         }
@@ -119,20 +123,13 @@ class HomeController extends Controller
 
             if (!empty($AllBolConnection) or count($AllBolConnection) != 1) {
                 for ($x = 0; $x < count($AllBolConnection); $x++) {
-                    //Check of er descript van bekend is.
-                    //dd($AllBolConnection[0]);
                     $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
-                //return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
-                //return view('testpage', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+                if (!empty($wooConnection)) return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey, 'wooConnection' => $wooConnection]);
                 return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
             }
         }
-
-
-        //dd($AllBolConnection);
-        //dd($AllBolConnection);
         return view('dashboard/persoonsgegevens', ['userByCookie' => $user]);
     }
 
@@ -313,6 +310,12 @@ class HomeController extends Controller
     public function deleteBolUser($id){
         $bolContoller = new MintyBolController();
         $bolContoller->deleteBolUser($id);
+
+        return back();
+    }
+    public function deleteWooConnection($id){
+        $bolContoller = new MintyBolController();
+        $bolContoller->deleteWooConnection($id);
 
         return back();
     }

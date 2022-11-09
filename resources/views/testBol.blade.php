@@ -237,8 +237,6 @@
 
 
 
-
-
 <div class="centerDiv">
     <div class="container mt-3 mb-4">
         <div class="col-lg-9 mt-4 mt-lg-0">
@@ -247,7 +245,7 @@
                     <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
                         <table class="table manage-candidates-top mb-0">
                             <thead>
-                            <h5>Actieve verbinding(en)</h5>
+                            <h5>Actieve verbinding(en) Bol-Koppeling</h5>
                             <br>
                             <tr>
                                 <th>Omschrijving</th>
@@ -256,7 +254,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php for ($x = 0; $x < count($bolConnection); $x++) { ?>
+                            <?php for ($x = 0; $x < count($bolConnection); $x++) {?>
                             <tr class="candidates-list">
                                 <td class="title">
                                     <?php if (!empty($bolConnection[$x]->description)) echo $bolConnection[$x]->description; ?>
@@ -266,11 +264,47 @@
                                 </td>
                                 <td>
                                     <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                        <li><a href="{{ route('deleteBolUser',$bolConnection[$x]->bolUserId) }}" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                                        <li><a href="{{ route('deleteBolUser',$bolConnection[$x]->userId) }}" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
                                     </ul>
                                 </td>
                             </tr>
                             <?php } ?>
+                            </tbody>
+                        </table>
+                        <br><br><br>
+                        <?php if (!empty($wooConnection) ) { ?>
+                        <table class="table manage-candidates-top mb-0">
+                            <thead>
+                            <h5>Actieve verbinding Woo-Koppeling</h5>
+                            <br>
+                            @if(\Session::has('errorWoo'))
+                                <p class="error">
+                                    {{\Session::get('error')}}
+                                </p>
+                            @endif<p>
+                            <tr>
+                                <th>Host</th>
+                                <th class="text-center">Woo key</th>
+                                <th class="action text-right">Verwijder</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php for ($x = 0; $x < 1; $x++) { ?>
+                            <tr class="candidates-list">
+                                <td class="title">
+                                        <?php if (!empty($wooConnection->host)) echo $wooConnection->host; ?>
+                                </td>
+                                <td class="candidate-list-favourite-time text-center">
+                                        <?php echo $wooConnection->wooKey ?>
+                                </td>
+                                <td>
+                                    <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                                        <li><a href="{{ route('deleteWooConnection',$wooConnection->userId) }}" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <?php }
+                            }?>
                             </tbody>
                         </table>
                     </div>

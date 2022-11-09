@@ -26,6 +26,7 @@ class CheckBolAccount
         //Controleren of gebruiker zowel bol als woo account hebben in de API
         $bool = $MintyBolController->CheckIfBolUserExist();
         $bool2 = $MintyBolController->CheckIfWooUserExist();
+        //dd($bool2);
         $boolCheckBlock = $MintyBolController->checkBlokKlant();
 
         if ($boolCheckBlock == false)return redirect()->route('toonBolSetting')->with(['error'=> "API geblokkeerd, neem contact op met de klantenservice"]);

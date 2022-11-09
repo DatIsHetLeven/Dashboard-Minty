@@ -407,9 +407,18 @@ class UserController extends Controller
         //Haal cookieToken op van klant.
         $GegevensKlant = User::where('userId', '=', $userIdKlantAccount)->first();
         $cookieTokenKlant = $GegevensKlant->cookie_token;
+
+        if (empty($cookieTokenKlant)){
+            $GegevensKlant->cookie_token = bin2hex(random_bytes(20));
+            $GegevensKlant->save();
+        }
+        
+
+
+
         setcookie("user", FALSE, time() + (86400 * 30),"/");
         $cookie_name = "user";
-        setcookie($cookie_name, $cookieTokenKlant, time() + (86400 * 30),"/");
+        setcookie($cookie_name, $GegevensKlant->cookie_token, time() + (86400 * 30),"/");
 
 
         return view('dashboard/dashboard', ['userByCookie' => $GegevensKlant]);

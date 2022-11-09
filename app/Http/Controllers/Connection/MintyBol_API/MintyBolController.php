@@ -78,12 +78,11 @@ class MintyBolController extends Controller
                 "wooKey" => $key,
                 "secret" => $secret,
             ]);
-
             $this->headers['Content-Type'] = 'application/json';
 
             $response = $this->guzzleClient->request('POST', 'accounts/woo', ['headers' => $this->headers, 'body' => $body]);
         } catch (GuzzleException $e) {
-            dd("gegevens onjuist, probeer opnieuw!");
+            return back()->with(['errorWoo'=> "Gegevens onjuist, probeer het opnieuw!"]);
         }
     }
 
@@ -372,20 +371,17 @@ class MintyBolController extends Controller
         if (empty($loggedUser->userId))return false;
 
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
-
         //Admins kunnen altijd de modules bekijken.
         if($loggedUser->rol === 1)return true;
         //dd($bolUser->userIdApi);
-
         try {
-            //dd($bolUser->userIdApi);
             $response = $this->guzzleClient->request('GET', 'accounts/woo/'.$bolUser->userIdApi, ['headers' => $this->headers]);
             $checker = json_decode($response->getBody()->getContents());
 
             if (empty($checker))return false;
             return true;
         }catch (GuzzleException $e){
-            return true;
+            return false;
         }
 
     }
@@ -425,6 +421,21 @@ class MintyBolController extends Controller
 
         return json_decode($response->getBody()->getContents());
     }
+
+    public function getWooConnection(){
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+        $bolUser = $homeController->getUserBolId($loggedUser->userId);
+
+        try {
+            $response = $this->guzzleClient->request('GET', 'accounts/woo/'.$bolUser->userIdApi, ['headers' => $this->headers]);
+        }catch (GuzzleException $e){
+            return false;
+        }
+
+
+        return json_decode($response->getBody()->getContents());
+    }
     public  function getApiKey(){
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
@@ -441,6 +452,13 @@ class MintyBolController extends Controller
     public function deleteBolUser($id){
         try {
             $response = $this->guzzleClient->request('DELETE', 'accounts/bol/'.$id, ['headers' => $this->headers]);
+        } catch (GuzzleException $e) {
+            dd("error delete bol user");
+        }
+    }
+    public function deleteWooConnection($id){
+        try {
+            $response = $this->guzzleClient->request('DELETE', 'accounts/woo/'.$id, ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
             dd("error delete bol user");
         }
