@@ -31,12 +31,12 @@ class HomeController extends Controller
         $userbytoken = UserController::getByCookie();
         if(empty($userbytoken))return redirect('login');
 
-        $getUser = DB::table('statusdetails')
-        ->join('user', 'statusdetails.userId', '=', 'user.userId')
-        ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
+        $getUser = $this->renderPersonalDetails();
+//        $getUser = DB::table('statusdetails')
+//        ->join('user', 'statusdetails.userId', '=', 'user.userId')
+//        ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
         if(empty($getUser))return view('welcome');
 
-        //dd($getUser);
         return view('dashboard/dashboard', ['userByCookie' => $getUser]);
     }
 

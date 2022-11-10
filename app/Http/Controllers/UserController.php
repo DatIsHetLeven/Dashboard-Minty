@@ -39,7 +39,7 @@ class UserController extends Controller
         }
         else return back()->with(['error'=> "Wachtwoord klopt niet!"]);
     }
-//Request gebruiken + returns - minty pawel
+
     public function createPassword(Request $request)
     {
         if(isset($_POST['passwordButton']))
@@ -47,29 +47,19 @@ class UserController extends Controller
             $password = $_POST['password'];
             $password2 = $_POST['password2'];
             $resetToken = $_POST['resetToken'];
-
             //Check of gebruiker nog een token heeft -> wachtwoord wijzigen
             $getUser = User::where('token',  $resetToken)->first();
-            if(empty($getUser)){
-                return back()->with(['error'=> "Link niet meer geldig, vraag een nieuw wachtwoord aan"]);
-            }
+            if(empty($getUser)) return back()->with(['error'=> "Link niet meer geldig, vraag een nieuw wachtwoord aan"]);
 
             if($password == $password2)
             {
                 dump($password2);
-                //Update user
-                //dump($password);
                 $hashPassword = password_hash($password2, PASSWORD_DEFAULT);
-                //dd($hashPassword);
                 $getUser->password=$hashPassword;
                 $getUser->token = NULL;
                 $getUser->save();
                 return redirect('login')->with(['succes'=> "Wachtwoord succesvol veranderd"]);
-                return back()->with(['succes'=> "Wachtwoord succesvol veranderd"]);
-
-            }else{
-                return back()->with(['error'=> "Wachtwoord komt niet overeen"]);
-            }
+            }else return back()->with(['error'=> "Wachtwoord komt niet overeen"]);
         }
     }
 
@@ -82,8 +72,7 @@ class UserController extends Controller
             $newUser = new User();
             $newUser->email = $_POST['email'];
 
-            $getUser = User::where('email', '=', $newUser->email)
-            ->first();
+            $getUser = User::where('email', '=', $newUser->email)->first();
 
             if(!empty($getUser))return back()->with(['error'=> "Email al in gebruik"]);
 
@@ -238,45 +227,6 @@ class UserController extends Controller
 
     }
 
-//    //Maak gebruiker aan in Factuursturen
-//    public function createUserFactuursturen($id){
-//        $getUser = User::where('userId', '=', $id)->first();
-//        $fSApi = new fsnl_api_Controller();
-//
-//            $newClient = [
-//                'contact' => $getUser->naam,
-//                'showcontact' => true,
-//                'company' => $getUser->bedrijfsnam,
-//                'address' => $getUser->adres,
-//                'zipcode' => $getUser->postcode,
-//                'city' => $getUser->plaats,
-//                'country' => '146',
-//                'phone' => $getUser->telefoonnummer,
-//                'mobile' => $getUser->telefoonnummer,
-//                'email' => $getUser->email,
-//                'bankcode' => 'NL91INGB0001234567',
-//                'biccode' => 'INGBNL2A',
-//                'taxnumber' => $getUser->btwNummer,
-//                'tax_shifted' => false,
-//                'sendmethod' => 'email',
-//                'paymentmethod' => 'autocollect',
-//                'top' => 14,
-//                'active' => true,
-//                'default_doclang' => 'nl',
-//                'email_reminder' => $getUser->email,
-//                'currency' => 'EUR',
-//                'tax_type' => 'extax'
-//            ];
-//            $factuurid = $fSApi->CreateNewClient($newClient);
-//            //Insert factuurid bij bijbehorende klantid.
-//            if(!empty($factuurid)){
-//                DB::insert('insert into factuursturen (userId, factuurId)
-//                values (?,?)',[$getUser->userId, $factuurid]);
-//            }
-//            else dd("Er is een fout opgetreden!");
-//
-//            return back();
-//    }
     //Verwijder gebruiker uit alle tables
     public function deleteUser($userId){
         DB::table('user')->where('userId', '=', $userId)->delete();
@@ -303,11 +253,9 @@ class UserController extends Controller
             else if ($label == 'nl-be')$country = 'Netherlands & Belgium';
             else return back()->with(['error'=> "Kies het land waaruit u werkt voor u verder gaat"]);
         }
-
         $MintyBolApi = new MintyBolController();
         $newBolUser = $MintyBolApi->CreateBolAccount($userIdApi, $clientId, $secret, $country, $label );
         if (empty($newBolUser->bolUserId))return back()->with(['error'=> "Gegevens onjuist"]);
-
 
         DB::insert('insert into descriptionBolAccount(bolId, userId, description)
                 values (?,?,?)',[$newBolUser->bolUserId, $userId,$description]);

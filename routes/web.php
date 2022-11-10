@@ -163,6 +163,9 @@ Route::get('persoons', function () {
 Route::get('instellingen', function () {
     return view('designv2/instellingen');
 })->name('instellingen');
+Route::get('modules', function () {
+    return view('designv2/modules');
+})->name('modules');
 
 
 

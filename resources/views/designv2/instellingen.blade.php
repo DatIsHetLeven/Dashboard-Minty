@@ -78,7 +78,7 @@
 
     .page-header .logo {
         display: block;
-        margin: 0 15px;
+        margin: 0 37px;
     }
 
     .page-header .logo svg {
@@ -118,6 +118,7 @@
     .page-header .admin-menu li > * {
         width: 100%;
         padding: 12px 15px;
+        padding-left: 0px !important;
     }
 
     .page-header .admin-menu .switcher {

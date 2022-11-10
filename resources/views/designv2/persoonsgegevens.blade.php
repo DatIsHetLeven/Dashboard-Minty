@@ -1,3 +1,6 @@
+
+
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -78,7 +81,7 @@
 
     .page-header .logo {
         display: block;
-        margin: 0 15px;
+        margin: 0 37px;
     }
 
     .page-header .logo svg {
@@ -86,7 +89,7 @@
         fill: var(--white);
     }
 
-    .page-header .toggle-mob-menu {
+    .page-header .toggle-mob-menu1 {
         display: none;
         margin-left: 5px;
         padding: 4px;
@@ -94,7 +97,7 @@
         border-radius: var(--border-radius);
     }
 
-    .page-header .toggle-mob-menu svg {
+    .page-header .toggle-mob-menu1 svg {
         fill: var(--black);
         transition: transform 0.2s;
     }
@@ -118,6 +121,7 @@
     .page-header .admin-menu li > * {
         width: 100%;
         padding: 12px 15px;
+        padding-left: 0px !important;
     }
 
     .page-header .admin-menu .switcher {
@@ -125,7 +129,7 @@
         width: auto;
     }
 
-    .page-header .admin-menu .menu-heading h3 {
+    .page-header .admin-menu .menu-heading-nav h3 {
         text-transform: uppercase;
         letter-spacing: 0.15em;
         font-size: 12px;
@@ -256,13 +260,13 @@
         <a href="#0" aria-label="forecastr logo" class="logo">
             Minty Media
         </a>
-        <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+        <button class="toggle-mob-menu1" aria-expanded="false" aria-label="open menu">
             <svg width="20" height="20" aria-hidden="true">
                 <use xlink:href="#down"></use>
             </svg>
         </button>
         <ul class="admin-menu">
-            <li class="menu-heading">
+            <li class="menu-heading-nav">
                 <h3>Algemeen</h3>
             </li>
             <li>
@@ -300,7 +304,7 @@
             </li>
 
 
-            <li class="menu-heading">
+            <li class="menu-heading-nav">
                 <h3>Settings</h3>
             </li>
             <li>
@@ -391,7 +395,6 @@
         border: solid 1px #BA68C8
     }
     </style>
-
 
 
 <section class="page-content">
