@@ -152,9 +152,17 @@ Route::get('testBol', function () {
     return view('testBol');
 })->name('testBol');
 
+
+//Vernieuwde design!!!
 Route::get('SignUp', function () {
-    return view('SignUp');
+    return view('designv2/SignUp');
 })->name('SignUp');
+Route::get('persoons', function () {
+    return view('designv2/persoonsgegevens');
+})->name('persoons');
+Route::get('instellingen', function () {
+    return view('designv2/instellingen');
+})->name('instellingen');
 
 
 

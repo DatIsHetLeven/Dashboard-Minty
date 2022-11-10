@@ -1,73 +1,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script>
-    const html = document.documentElement;
-    const body = document.body;
-    const menuLinks = document.querySelectorAll(".admin-menu a");
-    const collapseBtn = document.querySelector(".admin-menu .collapse-btn");
-    const toggleMobileMenu = document.querySelector(".toggle-mob-menu");
-    const switchInput = document.querySelector(".switch input");
-    const switchLabel = document.querySelector(".switch label");
-    const switchLabelText = switchLabel.querySelector("span:last-child");
-    const collapsedClass = "collapsed";
-    const lightModeClass = "light-mode";
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    /*TOGGLE HEADER STATE*/
-    collapseBtn.addEventListener("click", function () {
-        body.classList.toggle(collapsedClass);
-        this.getAttribute("aria-expanded") == "true"
-            ? this.setAttribute("aria-expanded", "false")
-            : this.setAttribute("aria-expanded", "true");
-        this.getAttribute("aria-label") == "collapse menu"
-            ? this.setAttribute("aria-label", "expand menu")
-            : this.setAttribute("aria-label", "collapse menu");
-    });
-
-    /*TOGGLE MOBILE MENU*/
-    toggleMobileMenu.addEventListener("click", function () {
-        body.classList.toggle("mob-menu-opened");
-        this.getAttribute("aria-expanded") == "true"
-            ? this.setAttribute("aria-expanded", "false")
-            : this.setAttribute("aria-expanded", "true");
-        this.getAttribute("aria-label") == "open menu"
-            ? this.setAttribute("aria-label", "close menu")
-            : this.setAttribute("aria-label", "open menu");
-    });
-
-    /*SHOW TOOLTIP ON MENU LINK HOVER*/
-    for (const link of menuLinks) {
-        link.addEventListener("mouseenter", function () {
-            if (
-                body.classList.contains(collapsedClass) &&
-                window.matchMedia("(min-width: 768px)").matches
-            ) {
-                const tooltip = this.querySelector("span").textContent;
-                this.setAttribute("title", tooltip);
-            } else {
-                this.removeAttribute("title");
-            }
-        });
-    }
-
-    /*TOGGLE LIGHT/DARK MODE*/
-    if (localStorage.getItem("dark-mode") === "false") {
-        html.classList.add(lightModeClass);
-        switchInput.checked = false;
-        switchLabelText.textContent = "Light";
-    }
-
-    switchInput.addEventListener("input", function () {
-        html.classList.toggle(lightModeClass);
-        if (html.classList.contains(lightModeClass)) {
-            switchLabelText.textContent = "Light";
-            localStorage.setItem("dark-mode", "false");
-        } else {
-            switchLabelText.textContent = "Dark";
-            localStorage.setItem("dark-mode", "true");
-        }
-    });
-</script>
 
 <style>
     :root {
@@ -412,7 +345,97 @@
         </ul>
     </nav>
 </header>
-<section class="page-content">
 
+<style>
+    body {
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #BA68C8
+    }
+
+    .profile-button {
+        background-color: #0a58ca;
+        box-shadow: none;
+        border: none
+    }
+
+    .profile-button:hover {
+        background: #682773
+    }
+
+    .profile-button:focus {
+        background: #682773;
+        box-shadow: none
+    }
+
+    .profile-button:active {
+        background: #682773;
+        box-shadow: none
+    }
+
+    .back:hover {
+        color: #682773;
+        cursor: pointer
+    }
+
+    .labels {
+        font-size: 11px
+    }
+
+    .add-experience:hover {
+        background: #BA68C8;
+        color: #fff;
+        cursor: pointer;
+        border: solid 1px #BA68C8
+    }
+    </style>
+
+
+
+<section class="page-content">
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Persoonsgegevens</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
+                        <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
+                        <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                        <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                        <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                        <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
+                        <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span>Extra info ?!?!?!?!?!?</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                    <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+                    <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
 </section>
+
+
+
 
