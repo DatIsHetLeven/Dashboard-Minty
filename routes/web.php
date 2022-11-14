@@ -13,6 +13,8 @@ use App\Http\Controllers\ModuleController;
 
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -166,6 +168,24 @@ Route::get('instellingen', function () {
 Route::get('modules', function () {
     return view('designv2/modules');
 })->name('modules');
+Route::get('alleGebruikers', function () {
+    return view('designv2/alleGebruikers');
+})->name('alleGebruikers');
+Route::get('test', function () {
+    return view('designv2/Testjesss');
+})->name('testentesten');
+Route::get('gebruikerinfo', function () {
+    return view('designv2/gebruikerInfo');
+})->name('gebruikerinfo');
+
+Route::get('home', function () {
+    return view('designv2/home');
+})->name('home');
+
+
+
+
+
 
 
 

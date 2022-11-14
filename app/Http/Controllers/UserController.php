@@ -178,8 +178,11 @@ class UserController extends Controller
     public function getAllUsers(){
         $allUsers= DB::table('user')
             ->leftJoin('statusdetails', 'user.userId','=','statusdetails.userId')->get();
-        //return view('dashboard/allegebruikers')->with(['allegebruikers'=> $allUsers]);
-        return view('bootstrTesttt')->with(['allegebruikers'=> $allUsers]);
+
+        //return view('bootstrTesttt')->with(['allegebruikers'=> $allUsers]);
+
+
+        return view('designv2/alleGebruikers')->with(['allegebruikers'=> $allUsers]);
     }
 
     //Haal gebruiker op uit FS -> dmv bestaande Factuurid
@@ -363,6 +366,7 @@ class UserController extends Controller
         $cookie_name = "user";
         setcookie($cookie_name, $GegevensKlant->cookie_token, time() + (86400 * 30),"/");
 
+        return view('designv2/home', ['userByCookie' => $GegevensKlant]);
         return view('dashboard/dashboard', ['userByCookie' => $GegevensKlant]);
     }
 
@@ -375,8 +379,11 @@ class UserController extends Controller
 
             setcookie("user", $cookieToken, time() + (86400 * 30),"/");
             setcookie("adminSessie", FALSE, time() + (86400 * 30),"/");
+
+            return view('designv2/home', ['userByCookie' => $eigenAccount]);
             return view('dashboard/dashboard', ['userByCookie' => $eigenAccount]);
         }
+        dd("herstelleneigenaccountinlog");
         return back();
     }
 

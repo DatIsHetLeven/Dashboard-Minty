@@ -10,6 +10,7 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use PhpMyAdmin\ConfigStorage\Features\DatabaseDesignerSettingsFeature;
 use Validator;
 use Auth;
@@ -37,6 +38,8 @@ class HomeController extends Controller
 //        ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
         if(empty($getUser))return view('welcome');
 
+
+        return view('designv2/home', ['userByCookie' => $getUser]);
         return view('dashboard/dashboard', ['userByCookie' => $getUser]);
     }
 
@@ -66,9 +69,10 @@ class HomeController extends Controller
                     $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
-                //return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
-                return view('testpage', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
-                //return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+
+
+                return view('designv2/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+
             }
         }
         if (!is_countable($AllBolConnection)) {
@@ -82,6 +86,8 @@ class HomeController extends Controller
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
                 //return view('dashboard/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+                return view('designv2/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
+
                 return view('testpage', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
                 //return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
             }
@@ -94,6 +100,13 @@ class HomeController extends Controller
     }
 
     public function toonBolSetting(){
+//        $url = Storage::disk("public")->url('details.json');
+//        dump($url);
+//        echo asset('storage/details.json');
+//        echo phpinfo();
+//
+//        dd("");
+
         $user = $this->renderPersonalDetails();
         if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         $MintyBolApi = new MintyBolController();
@@ -114,7 +127,8 @@ class HomeController extends Controller
                     $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
-                if (!empty($wooConnection)) return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey, 'wooConnection' => $wooConnection]);
+                if (!empty($wooConnection)) return view('designv2/instellingen', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey, 'wooConnection' => $wooConnection]);
+                return view('designv2/instellingen', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
                 return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
             }
         }
@@ -126,10 +140,12 @@ class HomeController extends Controller
                     $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
-                if (!empty($wooConnection)) return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey, 'wooConnection' => $wooConnection]);
+                if (!empty($wooConnection)) return view('designv2/instellingen', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey, 'wooConnection' => $wooConnection]);
+                return view('designv2/instellingen', 'testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
                 return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
             }
         }
+
         return view('dashboard/persoonsgegevens', ['userByCookie' => $user]);
     }
 
@@ -165,10 +181,12 @@ class HomeController extends Controller
             join('factuursturen', 'factuursturen.userId', '=', 'user.userId')
             ->where('factuursturen.userId', '=', $userId)->first();
         }
-        if(empty($getUser)){
+        if(empty($getUser)) {
             $getUser = User::where('userId', '=', $userId)->first();
         }
-        return view('dashboard/gebruikerinfo')->with(['user'=> $getUser]);
+            //dd("test");
+        return view('designv2/gebruikerInfo')->with(['user'=> $getUser]);
+        //return view('dashboard/gebruikerinfo')->with(['user'=> $getUser]);
     }
 
     public function logout(){
@@ -265,14 +283,15 @@ class HomeController extends Controller
 
 
 
-    public function updateStatus(){
+    public function updateStatus()
+    {
         $userbytoken = UserController::getByCookie();
 
-        if ($userbytoken === null)return redirect('login');
+        if ($userbytoken === null) return redirect('login');
         $getUser = statusdetails::join('user', 'statusdetails.userId', '=', 'user.userId')
             ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
         //Update in db.
-        $nieuwGeldig =  date('Y-m-d',strtotime('+30 days',strtotime($getUser->geldig)));
+        $nieuwGeldig = date('Y-m-d', strtotime('+30 days', strtotime($getUser->geldig)));
         $getUser->geldig = $nieuwGeldig;
         $getUser->save();
         //Call Api Arthur -> expireDate
@@ -281,16 +300,13 @@ class HomeController extends Controller
         $datum2 = (date('Y-m-d H:i:s', strtotime('+30 days', strtotime($datum))));
 
         $datumIso = (date(DATE_ISO8601, strtotime($datum2)));
-
         $str = str_replace('T', ' ', $datumIso);
         $str2 = str_replace('+0000', '', $str);
         $bolContoller = new MintyBolController();
         $bolContoller->updateExpireDate($str2);
-
     }
-
     public function verlengVervaldatum($id){
-        //dd("test");
+
         $userbytoken = UserController::getByCookie();
 
         if(isset($_POST['btnAddDays'])){
@@ -303,6 +319,7 @@ class HomeController extends Controller
 
         $nieuwGeldig =  date('Y-m-d',strtotime('+'.$aantaldagen.' days',strtotime($getUser->geldig)));
         $getUser->geldig = $nieuwGeldig;
+
         $getUser->save();
         return back();
     }

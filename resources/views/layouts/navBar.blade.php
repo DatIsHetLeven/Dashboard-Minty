@@ -1,73 +1,8 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script>
-    const html = document.documentElement;
-    const body = document.body;
-    const menuLinks = document.querySelectorAll(".admin-menu a");
-    const collapseBtn = document.querySelector(".admin-menu .collapse-btn");
-    const toggleMobileMenu = document.querySelector(".toggle-mob-menu");
-    const switchInput = document.querySelector(".switch input");
-    const switchLabel = document.querySelector(".switch label");
-    const switchLabelText = switchLabel.querySelector("span:last-child");
-    const collapsedClass = "collapsed";
-    const lightModeClass = "light-mode";
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    /*TOGGLE HEADER STATE*/
-    collapseBtn.addEventListener("click", function () {
-        body.classList.toggle(collapsedClass);
-        this.getAttribute("aria-expanded") == "true"
-            ? this.setAttribute("aria-expanded", "false")
-            : this.setAttribute("aria-expanded", "true");
-        this.getAttribute("aria-label") == "collapse menu"
-            ? this.setAttribute("aria-label", "expand menu")
-            : this.setAttribute("aria-label", "collapse menu");
-    });
 
-    /*TOGGLE MOBILE MENU*/
-    toggleMobileMenu.addEventListener("click", function () {
-        body.classList.toggle("mob-menu-opened");
-        this.getAttribute("aria-expanded") == "true"
-            ? this.setAttribute("aria-expanded", "false")
-            : this.setAttribute("aria-expanded", "true");
-        this.getAttribute("aria-label") == "open menu"
-            ? this.setAttribute("aria-label", "close menu")
-            : this.setAttribute("aria-label", "open menu");
-    });
-
-    /*SHOW TOOLTIP ON MENU LINK HOVER*/
-    for (const link of menuLinks) {
-        link.addEventListener("mouseenter", function () {
-            if (
-                body.classList.contains(collapsedClass) &&
-                window.matchMedia("(min-width: 768px)").matches
-            ) {
-                const tooltip = this.querySelector("span").textContent;
-                this.setAttribute("title", tooltip);
-            } else {
-                this.removeAttribute("title");
-            }
-        });
-    }
-
-    /*TOGGLE LIGHT/DARK MODE*/
-    if (localStorage.getItem("dark-mode") === "false") {
-        html.classList.add(lightModeClass);
-        switchInput.checked = false;
-        switchLabelText.textContent = "Light";
-    }
-
-    switchInput.addEventListener("input", function () {
-        html.classList.toggle(lightModeClass);
-        if (html.classList.contains(lightModeClass)) {
-            switchLabelText.textContent = "Light";
-            localStorage.setItem("dark-mode", "false");
-        } else {
-            switchLabelText.textContent = "Dark";
-            localStorage.setItem("dark-mode", "true");
-        }
-    });
-</script>
 
 <style>
     :root {
@@ -145,7 +80,7 @@
 
     .page-header .logo {
         display: block;
-        margin: 0 15px;
+        margin: 0 37px;
     }
 
     .page-header .logo svg {
@@ -185,6 +120,7 @@
     .page-header .admin-menu li > * {
         width: 100%;
         padding: 12px 15px;
+        padding-left: 0px !important;
     }
 
     .page-header .admin-menu .switcher {
@@ -333,7 +269,7 @@
                 <h3>Algemeen</h3>
             </li>
             <li>
-                <a href="#0">
+                <a href="{{ route('dashboard') }}">
                     &nbsp;<i class="fa fa-home"></i> &nbsp;&nbsp;
                     <span>Home</span>
                 </a>
@@ -342,7 +278,7 @@
 
             </li>
             <li>
-                <a href="#0">
+                <a href="{{ route('persoonsgegevens') }}">
                     <svg>
                         <use xlink:href="#users"></use>
                     </svg>
@@ -350,7 +286,7 @@
                 </a>
             </li>
             <li>
-                <a href="#0">
+                <a href="{{ route('toonBolSetting') }}">
                     <svg>
                         <use xlink:href="#options"></use>
                     </svg>
@@ -358,7 +294,7 @@
                 </a>
             </li>
             <li>
-                <a href="#0">
+                <a href="{{ route('GetAllModules') }}">
                     <svg>
                         <use xlink:href="#collection"></use>
                     </svg>
@@ -378,40 +314,22 @@
                     <span>Home</span>
                 </a>
             </li>
+
             <li>
-                <a href="#0">
-                    <svg>
-                        <use xlink:href="#options"></use>
-                    </svg>
-                    <span>Persoonsgegevens</span>
-                </a>
-            </li>
-            <li>
-                <a href="#0">
-                    <svg>
-                        <use xlink:href="#charts"></use>
-                    </svg>
-                    <span>Instellingen</span>
-                </a>
-            </li>
-            <li>
-                <a href="#0">
-                    <svg>
-                        <use xlink:href="#charts"></use>
-                    </svg>
-                    <span>Modules</span>
-                </a>
-            </li>
-            <li>
-                <a href="#0">
+                <a href="{{ route('logout') }}">
                     &nbsp;<i class="fas fa-unlock-alt" ></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                     <span>Uitloggen</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
-<section class="page-content">
+<?php if (isset($_COOKIE['adminSessie'])){ ?>
 
-</section>
+<div id="lowerleft">
+    <a href="{{ route('herstellenEigenAccountInlog') }}">U bent ingelogd als een klant. Druk hier om terug te gaan naar je eigen account!</a>
+</diV>
+<?php } ?>
 
+@yield('content')
