@@ -25,11 +25,10 @@
                                     </div>
                                     <p style="margin: 0 auto !important; text-align: left !important; width: 550px !important; font-size: 16px !important; line-height: 1.5 !important; color: #ffffff !important;">
                                         Beste <?php echo $naam;?>,<br>
-                                        Je account is successvol aangemakat! Je kan nu inloggen op <a href="{base_url}/login" target="_blank" style="color: #FF6C00 !important">{host}</a>.
+                                        Je account is successvol aangemaakt! Je kan nu inloggen op <a href="{base_url}/login" target="_blank" style="color: #FF6C00 !important">{host}</a>.
                                         <br>
                                         Mocht je vragen hebben over hoe het paneel werkt, contact ons via <a href="mailto:info@mintymedia.nl" style="color: #FF6C00 !important">{email}</a>.
-                                        <a href="{base_url}/login" target="_blank" rel="noopener noreferrer" style="text-decoration: none !important;">
-                                            <button style="margin-top: 35px !important; display: block !important; margin: 0 auto; width: 122px !important; height: 44px !important; background-color: #FF6C00 !important; color: #ffffff !important; font-weight: bold !important; font-size: 15px !important; border-radius: 1000px !important; border: none !important; cursor: pointer !important;">Log in</button>
+                                            <a href="https://mintydashboard.myio.nl/passwordreset?urlode=<?php echo $token;?>"><button style="margin-top: 35px !important; display: block !important; margin: 0 auto; width: 122px !important; height: 44px !important; background-color: #FF6C00 !important; color: #ffffff !important; font-weight: bold !important; font-size: 15px !important; border-radius: 1000px !important; border: none !important; cursor: pointer !important;">Log in</button></a>
                                         </a>
                                     </p>
                                 </div>

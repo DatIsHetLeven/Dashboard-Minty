@@ -306,9 +306,7 @@ class HomeController extends Controller
         $bolContoller->updateExpireDate($str2);
     }
     public function verlengVervaldatum($id){
-
         $userbytoken = UserController::getByCookie();
-
 
         if(isset($_POST['btnAddDays']))$aantaldagen = $_POST['aantalDagen'];
 
@@ -326,7 +324,6 @@ class HomeController extends Controller
     }
 
     public function updateBolUser($geldig, $aantaldagen){
-
         $datum = $geldig.' '.(date('H:i:s'));
         $newDate = (date('Y-m-d H:i:s', strtotime('+'.$aantaldagen.' days', strtotime($datum))));
 

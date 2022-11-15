@@ -182,6 +182,10 @@ Route::get('home', function () {
     return view('designv2/home');
 })->name('home');
 
+Route::get('info', function () {
+    return view('designv2/info');
+})->name('info');
+
 
 
 

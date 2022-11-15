@@ -304,21 +304,20 @@
 
 
             <li class="menu-heading">
-                <h3>Settings</h3>
+                <h3>Hulp nodig</h3>
             </li>
             <li>
-                <a href="#0">
-                    <svg>
-                        <use xlink:href="#settings"></use>
-                    </svg>
-                    <span>Home</span>
+                <a href="{{ route('info') }}">
+                    &nbsp;<i class="fa fa-info-circle"></i>&nbsp; &nbsp;
+                    <span>Info</span>
                 </a>
             </li>
+
+
 
             <li>
                 <a href="{{ route('logout') }}">
                     &nbsp;<i class="fas fa-unlock-alt" ></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
                     <span>Uitloggen</span>
                 </a>
             </li>

@@ -25,7 +25,6 @@ class MintyBolController extends Controller
     private $mollieId;
 
     public function  __construct(){
-
         $token = '8b6694313db35e41fc5381ee4b0786fd7a39d96bcc959936dd20dc5dd451d99e';
         $this->headers = [
             'Authorization' => 'Basic ' . $token,
@@ -181,7 +180,7 @@ class MintyBolController extends Controller
         $this->headers = [
             'Authorization' => 'Basic ' . $apiKey,
         ];
-        //dd($apiKey);
+
         //Check wat de hoogste pagina is - Laatste updates
         $response = $this->guzzleClient->request('GET', 'logs?page=1', ['headers' => $this->headers]);
         $maxPage = json_decode($response->getBody()->getContents())->pages;

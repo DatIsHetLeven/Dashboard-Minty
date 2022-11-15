@@ -26,6 +26,7 @@ class ModuleController extends Controller
         if (empty($bolUser))return redirect('login');
         $alleModules = $this->MintyBolApi->GetAllModules();
         //dd($alleModules);
+
         $logs = $this->GetLog();
         $CheckModuleArray = array();
         for ($x = 0; $x < count($alleModules); $x++){
@@ -46,7 +47,8 @@ class ModuleController extends Controller
     //Toon de correcte module
     public function GetSingleModule($moduleNaam){
         $singleModule = $this->MintyBolApi->getSingleModuleUser();
-        $changeName = str_ireplace(array('.', 'bol', 'minty', 'connect'), '',$moduleNaam);
+        $changeName = str_ireplace(array('.', 'bol', 'minty', 'connect', 'management', 'wachtagent'), '',$moduleNaam);
+        $changeName = $changeName."wachtagent";
         $correcteView = str_ireplace(array('wachtagent'), 'WachtagentPlugin',$changeName);
 
         for ($x = 0; $x <= count($singleModule); $x++){
@@ -61,7 +63,9 @@ class ModuleController extends Controller
     public function EnableSingleModule($moduleNaam){
         //Get bolUserId (userid from arthurs api)
         $bolUser = $this->homeController->getUserBolId($this->loggedUser->userId);
-        $changeName = str_ireplace(array('.', 'bol', 'minty', 'connect'), '',$moduleNaam);
+        $changeName = str_ireplace(array('.', 'bol', 'minty', 'connect', 'management','wachtagent'), '',$moduleNaam);
+        //Omdat de naam van de plugins veranderd is -> zelfde structuur aanhouden.
+        $changeName = $changeName."wachtagent";
         //1 module aanzetten obv modulenaam
         $this->MintyBolApi->$changeName($bolUser->userIdApi, $moduleNaam);
 

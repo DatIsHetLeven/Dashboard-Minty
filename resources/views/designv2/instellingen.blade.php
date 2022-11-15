@@ -119,7 +119,7 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center experience"><span>API key</span></div><br>
                     Gebruik de volgende api key in je wordpress website om verbinding te maken met het dashoard.<br><br>
-                    <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" required value=<?php echo $userApiKey ?> >
+                    <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" readonly required value=<?php echo $userApiKey ?> >
                 </div>
             </div>
 {{--            Empty field -> center actieve verbindingen--}}
