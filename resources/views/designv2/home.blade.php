@@ -47,6 +47,6 @@
             Laten we samen door deze stappen lopen!
 
             <input type="submit" class="btnZelfStudie" value="Zelf studie">
-            <input type="submit" class="btnSupport" value="Support">
+            <a href="mailto:support@mintymedia.nl" style="color: #FF6C00 !important">} <input type="submit" class="btnSupport" value="Support"></a>
         </div>
     </div>
