@@ -7,9 +7,12 @@
         <h2>Goede middag <?php echo $userByCookie->naam;?> !</h2>
         <p><span class="welkomBol">Welkom bij de Bol Koppeling</span></p>
     </div>
+
+
     <div class="boxes">
+
         <div class="box1">
-            <h4>Actieve module(s)</h4>
+            <h4>WooCommerce plugin downloaden</h4>
             @if(\Session::has('error'))
                 <p class="error">
                     {{\Session::get('error')}}
@@ -49,4 +52,13 @@
             <input type="submit" class="btnZelfStudie" value="Zelf studie">
             <a href="mailto:support@mintymedia.nl" style="color: #FF6C00 !important">} <input type="submit" class="btnSupport" value="Support"></a>
         </div>
-    </div>
+
+        <div class="box2">
+            <p>
+            <h4>Koppeling informatie</h4>
+
+            Koppeling : <?php echo($userByCookie->API != 0) ? 'Actief' : 'Inactief';?> <p><p>
+            Abonnement : <?php echo($userByCookie->geabonneerd != 0) ? 'Actief' : 'Inactief';?>
+
+            </div>
+        </div>

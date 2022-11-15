@@ -38,6 +38,8 @@ class HomeController extends Controller
 //        ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
         if(empty($getUser))return view('welcome');
 
+        $allUsers= DB::table('user')
+            ->leftJoin('statusdetails', 'user.userId','=','statusdetails.userId')->get();
 
         return view('designv2/home', ['userByCookie' => $getUser]);
         return view('dashboard/dashboard', ['userByCookie' => $getUser]);
