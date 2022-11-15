@@ -167,7 +167,11 @@
                                                 {{\Session::get('error')}}
                                             </p>
                                         @endif
-
+                                        @if(\Session::has('errorWoo'))
+                                            <p class="error">
+                                                {{\Session::get('error')}}
+                                            </p>
+                                        @endif
                                         @if(\Session::has('succes'))
                                             <p class="succes">
                                                 {{\Session::get('succes')}}

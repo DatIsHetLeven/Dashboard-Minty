@@ -80,8 +80,11 @@ class MintyBolController extends Controller
             $this->headers['Content-Type'] = 'application/json';
 
             $response = $this->guzzleClient->request('POST', 'accounts/woo', ['headers' => $this->headers, 'body' => $body]);
+            return back();
         } catch (GuzzleException $e) {
-            return back()->with(['errorWoo'=> "Gegevens onjuist, probeer het opnieuw!"]);
+
+            if (str_contains($e->getMessage(), 'Is the consumer already'))return back()->with(['errorWoo'=> "U heeft al een verbinding met een webshop. Mocht u nog een webshop willen verbinden neem dan contact op met de klantenservice ."]);
+            return back()->with(['errorWoo'=> "Kon niet verbinden. Gegevens niet juist"]);
         }
     }
 

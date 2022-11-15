@@ -277,9 +277,9 @@ class UserController extends Controller
             $secret = $_POST['wooClientSecret'];
         }
         $MintyBolApi = new MintyBolController();
-        $newBolUser = $MintyBolApi->CreateWooAccount($userIdApi,$host, $key, $secret );
+        return $MintyBolApi->CreateWooAccount($userIdApi,$host, $key, $secret );
 
-        return back();
+        //return back()->with(['error'=> "Wachtwoord komt niet overeen"]);
     }
 
     //Maak gebruiker aan in Factuursturen (na eerste betaling/ mandaat )

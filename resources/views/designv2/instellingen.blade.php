@@ -86,7 +86,7 @@
                     <option value="be">Belgium</option>
                     <option value="nl-be">Netherlands & Belgium</option>
                 </select>
-                    <br><a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Versturen</button></a>
+                    <br><a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Maak bol account aan</button></a>
                     </form>
                 </div></div>
 {{--            Woo koppeling--}}
@@ -94,6 +94,11 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center experience"><span>Woo koppeling</span></div><br><p>
                     <form method="POST" action="{{ route('createWooUser',$userByCookie->userId) }}" >
+                        @if(\Session::has('errorWoo'))
+                            <p class="error">
+                                {{\Session::get('errorWoo')}}
+                            </p>
+                        @endif
                         @csrf
                     <div class="mb-3">
                         <label class="small mb-1" for="inputUsername">Host</label>
@@ -110,7 +115,7 @@
                         <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" required>
                     </div>
                     <br>
-                        <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Versturen</button></a>
+                        <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Maak verbinding</button></a>
                     </form>
                 </div>
             </div>
@@ -154,7 +159,7 @@
                                         </td>
                                         <td>
                                             <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                                <li><a href="{{ route('deleteBolUser',$bolConnection[$x]->userId) }}" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                                                <li><a href="{{ route('deleteBolUser',$bolConnection[$x]->bolUserId) }}" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
                                             </ul>
                                         </td>
                                     </tr>
