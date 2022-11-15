@@ -13,7 +13,9 @@
 
         <div class="box1">
             <h4>WooCommerce plugin downloaden</h4>
-            @if(\Session::has('error'))
+            <a href="{{Storage::disk('public')->url("pluginmanager/bolconnector/minty-bolconnector-plugin.zip")}}"><button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Nu downloaden</button></a>
+
+        @if(\Session::has('error'))
                 <p class="error">
                     {{\Session::get('error')}}
                 </p>
