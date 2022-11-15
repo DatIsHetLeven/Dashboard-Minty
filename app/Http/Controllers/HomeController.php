@@ -353,5 +353,22 @@ class HomeController extends Controller
         return back();
     }
 
+    public function veranderWachtwoordLogged($userId){
+        $wachtwoord1 = ($_POST['wachtwoord1']);
+        $wachtwoord2 = ($_POST['wachtwoord2']);
+
+        if ($wachtwoord2 === $wachtwoord1){
+            //hash passw
+            $hashPassword = password_hash($wachtwoord2, PASSWORD_DEFAULT);
+            //insert db
+            $getUser = User::where('userId',  $userId)->first();
+            $getUser->password = $hashPassword;
+            $getUser->save();
+            //return melding ->succesvol!
+            return back()->with(['succes'=> "Wachtwoord succesvol veranderd"]);
+        }
+        else return back()->with(['error'=> "Wachtwoord komt niet overeen"]);
+    }
+
 
 }

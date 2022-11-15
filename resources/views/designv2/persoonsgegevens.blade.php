@@ -4,7 +4,12 @@
 <style>
     body {
     }
-
+    .succes{
+        color:green;
+    }
+    .error{
+        color: red;
+    }
     .form-control:focus {
         box-shadow: none;
         border-color: #BA68C8
@@ -143,6 +148,48 @@
         </form>
     </div>
     </div>
+
+
+    <br>
+    <div class="container emp-profile">
+        <form method="POST" action="{{ route('veranderWachtwoordLogged',$userByCookie->userId) }}" >
+            @csrf
+            <div class="border">
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h5>Verander wachtwoord</h5>
+                                        @if(\Session::has('error'))
+                                            <p class="error">
+                                                {{\Session::get('error')}}
+                                            </p>
+                                        @endif
+
+                                        @if(\Session::has('succes'))
+                                            <p class="succes">
+                                                {{\Session::get('succes')}}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <form method="post" id="passwordForm">
+                                            <input type="password" class="input-lg form-control" name="wachtwoord1" id="password1" placeholder="Nieuw wachtwoord" required >
+                                            <input type="password" class="input-lg form-control" name="wachtwoord2" id="password2" placeholder="Herhaal nieuw wachtwoord" required >
+                                            <div class="row">
+                                            </div>
+                                            <a href="#"><button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Aanpassen</button></a>
+                                        </form>
+                                    </div><!--/col-sm-6-->
+                                </div><!--/row-->
+                            </div>
+                        </form>
+                    </div>
+                </div>
 </section>
 
 

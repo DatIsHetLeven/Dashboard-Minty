@@ -53,7 +53,6 @@ class UserController extends Controller
 
             if($password == $password2)
             {
-                dump($password2);
                 $hashPassword = password_hash($password2, PASSWORD_DEFAULT);
                 $getUser->password=$hashPassword;
                 $getUser->token = NULL;
@@ -385,10 +384,5 @@ class UserController extends Controller
         }
         dd("herstelleneigenaccountinlog");
         return back();
-    }
-
-    public function updatePersonalDetails($userId){
-//        if (isset())
-
     }
 }

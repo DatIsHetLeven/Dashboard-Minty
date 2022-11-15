@@ -143,6 +143,10 @@ Route::POST('veranderPrijs}', [HomeController::class, 'veranderPrijs'])->name('v
 
 
 
+Route::POST('veranderWachtwoord/{id}}', [HomeController::class, 'veranderWachtwoordLogged'])->name('veranderWachtwoordLogged')->middleware('check.user');
+
+
+
 //Test paginas na nieuw design
 Route::get('toonBolSetting', [HomeController::class, 'toonBolSetting'])->name('toonBolSetting')->middleware('check.user');
 
