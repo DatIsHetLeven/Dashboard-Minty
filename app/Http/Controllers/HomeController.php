@@ -309,19 +309,29 @@ class HomeController extends Controller
 
         $userbytoken = UserController::getByCookie();
 
-        if(isset($_POST['btnAddDays'])){
-            $aantaldagen = $_POST['aantalDagen'];
-        }
+
+        if(isset($_POST['btnAddDays']))$aantaldagen = $_POST['aantalDagen'];
 
         if ($userbytoken === null)return redirect('login');
         $getUser = statusdetails::join('user', 'statusdetails.userId', '=', 'user.userId')
             ->where('statusdetails.userId', '=', $id)->first();
+
+        $this->updateBolUser($getUser->geldig, $aantaldagen );
 
         $nieuwGeldig =  date('Y-m-d',strtotime('+'.$aantaldagen.' days',strtotime($getUser->geldig)));
         $getUser->geldig = $nieuwGeldig;
 
         $getUser->save();
         return back();
+    }
+
+    public function updateBolUser($geldig, $aantaldagen){
+
+        $datum = $geldig.' '.(date('H:i:s'));
+        $newDate = (date('Y-m-d H:i:s', strtotime('+'.$aantaldagen.' days', strtotime($datum))));
+
+        $bolContoller = new MintyBolController();
+        $bolContoller->updateExpireDate($newDate);
     }
 
     public function deleteBolUser($id){

@@ -92,10 +92,9 @@
 {{--            Woo koppeling--}}
             <div class="col-md-4">
                 <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience"><span>Woo koppeling</span></div><br>
+                    <div class="d-flex justify-content-between align-items-center experience"><span>Woo koppeling</span></div><br><p>
                     <form method="POST" action="{{ route('createWooUser',$userByCookie->userId) }}" >
                         @csrf
-
                     <div class="mb-3">
                         <label class="small mb-1" for="inputUsername">Host</label>
                         <input class="form-control" id="inputUsername" name='wooClientHost' type="text" required>
