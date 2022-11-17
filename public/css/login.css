@@ -1,5 +1,6 @@
 body{
-  background-color: #77BFA0;
+  /*background-color: #77BFA0;*/
+    background-color: #77BFA0 !important;
 }
 
 .divForm{

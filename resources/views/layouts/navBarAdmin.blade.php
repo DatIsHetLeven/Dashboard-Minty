@@ -166,7 +166,11 @@
         fill: var(--blue);
     }
 
-
+.userDetails{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(96,96,96);
+}
 
 
 
@@ -265,13 +269,27 @@
             #Media{
                 color: #FFFFFF;
             }
+            .rechts{
+                position: relative;
+                margin-left: 40%;
+                top: -90%;
+                font-size: 12px;
+            }
             </style>
-        <h3><span id="minty"> MINTY</span><span id="Media"> MEDIA</span><h3>
+        <h3><span id="minty"> &nbsp;&nbsp;MINTY</span><span id="Media"> MEDIA</span></h3>
         <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
             <svg width="20" height="20" aria-hidden="true">
                 <use xlink:href="#down"></use>
             </svg>
         </button>
+        <div class="userDetails">
+            <img src="{{ route('profielfotoGravatar') }}">
+            <div class="rechts">
+                <?php echo $_COOKIE['userName']; ?><br>
+                Online <i class="fas fa-dot-circle fa-1x" style="color:green"></i>
+
+            </div>
+        </div>
         <ul class="admin-menu">
             <li class="menu-heading">
                 <h3>Algemeen</h3>

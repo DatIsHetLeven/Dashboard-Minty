@@ -34,7 +34,7 @@ class UserController extends Controller
             $CheckUserLogin->save();
 
             setcookie('user', $cookieToken, time() + (86400 * 30));
-
+            setcookie('userName', $CheckUserLogin->naam, time() +(86400 * 30));
             return redirect()->route('dashboard');
         }
         else return back()->with(['error'=> "Wachtwoord klopt niet!"]);

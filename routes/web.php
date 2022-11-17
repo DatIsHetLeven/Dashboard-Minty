@@ -191,8 +191,12 @@ Route::get('info', function () {
 })->name('info');
 
 
+Route::get('profielfotoGravatar', [HomeController::class, 'profielfotoGravatar'])->name('profielfotoGravatar')->middleware('check.user');
+Route::get('userName', [HomeController::class, 'userName'])->name('userName')->middleware('check.user');
 
 
+
+Route::get('/gravatar', 'GravatarController@gravatar');
 
 
 

@@ -1,13 +1,14 @@
 body {
     font-family: sans-serif;
     background: #ffffff;
+    background-color: #77BFA0 !important;
   }
 
   label{
     color: #888888;
   }
 
-  
+
   h3, h5 {
     margin-top: 5px;
     text-align: center;
@@ -15,7 +16,7 @@ body {
   }
 
   #minty{
-    color: rgb(53, 216, 140);
+    color: #ffffffA1;
   }
 
   #media{
@@ -23,28 +24,32 @@ body {
   }
 
   #dashboard{
-    color: rgb(170, 167, 164);
+    /*color: rgb(170, 167, 164);*/
+      color: #ffffffA1;
   }
-  
+
   .formlogin {
     width: 350px;
     height: 250px;
     background: white;
     margin: 80px auto;
     padding: 60px 20px;
-    
-    
+      paddinf-top: 5px;
+
+      background: #ffffffA1;
+
+
     border-radius: 7px;
     box-shadow: 5px 10px 5px #888888;
 
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
-  
+
   label {
     font-size: 11pt;
   }
-  
+
   .form_login {
     box-sizing: border-box;
     width: 100%;
@@ -53,11 +58,12 @@ body {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    
+
   }
-  
+
   .buttonlogin {
     background: #ff6600;
+      background: #7dcaa9;
     color: white;
     font-size: 11pt;
     margin-left: 10%;
@@ -66,7 +72,7 @@ body {
     border-radius: 25px;
     padding: 10px 20px;
   }
-  
+
   .link {
     color: rgb(170, 167, 164);
     text-decoration: none;
@@ -74,21 +80,22 @@ body {
   }
 
   #resetpass{
-    color: #ff6600;
+    /*color: #ff6600;*/
+      color: #77BFA0;
     float: right;
 
   }
 
 /* De registreren voor het registreren  */
 
-  
+
   h1 {
     text-align: center;
     font-family: Tahoma, Arial, sans-serif;
     color: #06D85F;
     margin: 80px 0;
   }
-  
+
   .box {
     width: 40%;
     margin: 0 auto;
@@ -99,7 +106,7 @@ body {
     background-clip: padding-box;
     text-align: center;
   }
-  
+
   .button {
     font-size: 1em;
     padding: 10px;
@@ -110,7 +117,7 @@ body {
     cursor: pointer;
     transition: all 0.3s ease-out;
   }
-  
+
   .overlay {
     position: fixed;
     top: 0;
@@ -126,7 +133,7 @@ body {
     visibility: visible;
     opacity: 1;
   }
-  
+
   .registreren {
     margin: 70px auto;
     padding-top: 5px;
@@ -136,7 +143,7 @@ body {
     position: relative;
     /* transition: all 5s ease-in-out; */
   }
-  
+
   .registreren h2 {
     margin-top: 0;
     color: #333;
@@ -159,14 +166,14 @@ body {
     max-height: 40%;
     overflow: auto;
   }
-  
+
 
   body{padding:0;margin:0;}
 
   .userinput{
     display: flex;
-    padding: 5%; 
-    width: 80%; 
+    padding: 5%;
+    width: 80%;
   }
 
   #userInput{
@@ -174,7 +181,7 @@ body {
     width: 250px;
     margin-left: 25px;
   }
-  
+
 
   #buttonLogin{
     background-color: #ff6600;
@@ -200,8 +207,8 @@ body {
 
     .userinput{
       display: block;
-      padding: 22%; 
-      width: 80%; 
+      padding: 22%;
+      width: 80%;
     }
 
     #buttonLogin{
@@ -250,4 +257,3 @@ body {
     text-decoration: none;
   }
 
-  

@@ -2,11 +2,8 @@
 @section('content')
 
 
-
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-
     <div class="WelkomBanner">
-        <h2>Goede middag <?php echo $userByCookie->naam;?> !</h2>
+        <h2>Goedemiddag <?php echo $userByCookie->naam;?> !</h2>
         <p><span class="welkomBol">Welkom bij de Bol Koppeling</span></p>
     </div>
 

@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 
 <style>
@@ -259,11 +259,21 @@
         <a href="#0" aria-label="forecastr logo" class="logo">
             Minty Media
         </a>
+        <style>
+            #minty{
+                color: #00bb00;
+            }
+            #Media{
+                color: #FFFFFF;
+            }
+        </style>
+        <h3><span id="minty"> &nbsp;&nbsp;MINTY</span><span id="Media"> MEDIA</span><h3>
         <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
             <svg width="20" height="20" aria-hidden="true">
                 <use xlink:href="#down"></use>
             </svg>
         </button>
+
         <ul class="admin-menu">
             <li class="menu-heading">
                 <h3>Algemeen</h3>
@@ -273,9 +283,6 @@
                     &nbsp;<i class="fa fa-home"></i> &nbsp;&nbsp;
                     <span>Home</span>
                 </a>
-            </li>
-            <li>
-
             </li>
             <li>
                 <a href="{{ route('persoonsgegevens') }}">

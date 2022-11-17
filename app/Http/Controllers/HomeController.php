@@ -374,5 +374,19 @@ class HomeController extends Controller
         else return back()->with(['error'=> "Wachtwoord komt niet overeen"]);
     }
 
+    public function profielfotoGravatar(){
+        $getUser = $this->renderPersonalDetails();
+
+        $hash =  md5( strtolower( trim( $getUser->email ) ) );
+        $imageData = file_get_contents("https://www.gravatar.com/avatar/".$hash);
+
+        echo $imageData;
+
+    }
+    public function userName(){
+        $getUser = $this->renderPersonalDetails();
+        echo $getUser->naam;
+        return back()->with($getUser->naam);
+    }
 
 }
