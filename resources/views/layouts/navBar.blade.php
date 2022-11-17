@@ -120,7 +120,7 @@
     .page-header .admin-menu li > * {
         width: 100%;
         padding: 12px 15px;
-        padding-left: 0px !important;
+        padding-left: 2px !important;
     }
 
     .page-header .admin-menu .switcher {
