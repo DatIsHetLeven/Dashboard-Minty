@@ -29,6 +29,7 @@ class HomeController extends Controller
     }
 
     public function renderDashboard () {
+
         $userbytoken = UserController::getByCookie();
         if(empty($userbytoken))return redirect('login');
 
@@ -143,8 +144,9 @@ class HomeController extends Controller
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
                 if (!empty($wooConnection)) return view('designv2/instellingen', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey, 'wooConnection' => $wooConnection]);
+                return view('designv2/instellingen', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey, 'wooConnection' => $wooConnection]);
                 return view('designv2/instellingen', 'testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
-                return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
+                //return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection, 'userApiKey' =>$userApiKey]);
             }
         }
 

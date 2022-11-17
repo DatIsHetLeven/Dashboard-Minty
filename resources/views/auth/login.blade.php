@@ -56,6 +56,7 @@
                 <input type="text" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer (alleen getallen)' required><br><br>
 
                 <input type="text" id="userInput" name="Bedijfsnaam" placeholder='Bedijfsnaam' required><br><br>
+
             </div>
             <div class="rechts">
                 <input type="text" id="userInput" name="BTW-Nummer" placeholder='BTW-Nummer' required><br><br>
@@ -65,6 +66,21 @@
                 <input type="text" id="userInput" name="Postcode" placeholder='Postcode' required><br><br>
 
                 <input type="text" id="userInput" name="Plaats" placeholder='Plaats' required><br><br>
+
+
+                    <input type="radio" id="nl" name="nl" checked>
+                    <label>Nederland</label><br>
+                    <input type="radio" id="be" name="be" >
+                    <label>Belgie</label><br>
+
+                <input type="radio" name="land"
+                       <?php if (isset($land) && $land=="nl") echo "checked";?>
+                       value="nl">Nederland
+                <input type="radio" name="land"
+                       <?php if (isset($land) && $land=="be") echo "checked";?>
+                       value="be">Belgie
+
+
             </div>
          </div>
          <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>

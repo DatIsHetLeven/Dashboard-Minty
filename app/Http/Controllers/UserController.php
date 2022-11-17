@@ -10,7 +10,7 @@ use App\Models\factuursturen;
 use App\Models\bolApi;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
-
+use function Composer\Autoload\includeFile;
 
 
 class UserController extends Controller
@@ -82,6 +82,7 @@ class UserController extends Controller
                 if($userRole ==='Admin')$newUser->rol = 1;
             }else{$newUser->rol = 3;}
 
+
             $newUser->naam = $_POST['userName'];
             $newUser->password = $this->createToken();
             $newUser->telefoonnummer = $_POST['Telefoonnummer'];
@@ -92,6 +93,7 @@ class UserController extends Controller
 //            dubbele code  - minty pawel
             $newUser->plaats = $_POST['Plaats'];
             $newUser->plaats = $_POST['Plaats'];
+            $newUser->land = ($_POST["land"]);
 
 
             $passwordToken = $this->createToken();
@@ -365,7 +367,9 @@ class UserController extends Controller
         $cookie_name = "user";
         setcookie($cookie_name, $GegevensKlant->cookie_token, time() + (86400 * 30),"/");
 
-        return view('designv2/home', ['userByCookie' => $GegevensKlant]);
+        return redirect()->route('dashboard');
+        //return redirect()->route('dashboardv2')->with(['userByCookie'=> $GegevensKlant]);
+        return view('designv2/persoonsgegevens', ['userByCookie' => $GegevensKlant]);
         return view('dashboard/dashboard', ['userByCookie' => $GegevensKlant]);
     }
 
@@ -379,6 +383,7 @@ class UserController extends Controller
             setcookie("user", $cookieToken, time() + (86400 * 30),"/");
             setcookie("adminSessie", FALSE, time() + (86400 * 30),"/");
 
+            return redirect()->route('dashboard');
             return view('designv2/home', ['userByCookie' => $eigenAccount]);
             return view('dashboard/dashboard', ['userByCookie' => $eigenAccount]);
         }

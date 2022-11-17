@@ -240,7 +240,7 @@ class MintyBolController extends Controller
 
         $bodyy = json_encode([
             "userId"=> $bolUser->userIdApi,
-            "identifier"=> "bol.mintyconnect.product.wachtagent",
+            "identifier"=> "bol.mintyconnect.product.management",
             "settings"=> [
                 "stockSync"=> $stock,
                 "priceSync"=> $price,

@@ -30,6 +30,7 @@ class User extends Authenticatable
         'adres',
         'postcode',
         'plaats',
+        'land',
         'token',
         'cookie_token',
         'rol',

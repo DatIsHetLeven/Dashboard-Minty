@@ -182,9 +182,9 @@ Route::get('gebruikerinfo', function () {
     return view('designv2/gebruikerInfo');
 })->name('gebruikerinfo');
 
-Route::get('home', function () {
+Route::get('dashboardv2', function () {
     return view('designv2/home');
-})->name('home');
+})->name('dashboardv2');
 
 Route::get('info', function () {
     return view('designv2/info');

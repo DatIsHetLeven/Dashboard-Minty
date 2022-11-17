@@ -1,6 +1,8 @@
 @extends( ($userByCookie->rol === 1) ? 'layouts.navBarAdmin' :  'layouts.navBar')
 @section('content')
 
+
+
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
     <div class="WelkomBanner">
@@ -10,7 +12,6 @@
 
 
     <div class="boxes">
-
         <div class="box1">
             <h4>WooCommerce plugin downloaden</h4>
             <a href="{{Storage::disk('public')->url("pluginmanager/bolconnector/minty-bolconnector-plugin.zip")}}"><button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Nu downloaden</button></a>

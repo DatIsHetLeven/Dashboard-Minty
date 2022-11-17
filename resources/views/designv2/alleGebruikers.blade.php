@@ -297,6 +297,17 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <input type="radio" name="land" checked
+                                           <?php if (isset($land) && $land=="nl") echo "checked";?>
+                                           value="nl">Nederland
+                                    <input type="radio" name="land"
+                                           <?php if (isset($land) && $land=="be") echo "checked";?>
+                                           value="be">Belgie
+                            </div>
+
+
                                 <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>
                         </form>
                     </div>
