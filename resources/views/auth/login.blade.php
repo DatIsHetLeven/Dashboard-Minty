@@ -57,7 +57,7 @@
 
                 <input type="text" id="userInput" name="userName" placeholder='Naam' required autocomplete="email"><br><br>
 
-                <input type="text" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer (alleen getallen)' required><br><br>
+                <input type="number" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer' required><br><br>
 
                 <input type="text" id="userInput" name="Bedijfsnaam" placeholder='Bedijfsnaam' required><br><br>
 

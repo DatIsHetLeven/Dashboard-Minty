@@ -4,6 +4,7 @@
 
 <style>
     body {
+
     }
     .succes{
         color:green;
@@ -51,6 +52,22 @@
         cursor: pointer;
         border: solid 1px #BA68C8
     }
+
+
+    @media screen and (max-width: 1770px){
+        form{
+            margin-left: 10% !important;
+        }
+    }
+    @media screen and (max-width: 1500px){
+        form{
+            margin-left: 20% !important;
+        }
+    }
+
+
+
+
     </style>
 <br><br><br>
 
@@ -82,7 +99,7 @@
                                     <label>Naam</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->naam ?>>
+                                    <input class="form-control" type="text" id="text" value=<?php echo $userByCookie->naam ?>>
                                 </div>
                             </div>
                             <div class="row">
@@ -90,7 +107,7 @@
                                     <label>Email</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->email ?>>
+                                    <input class="form-control" type="text" id="text" value=<?php echo $userByCookie->email ?>>
                                 </div>
                             </div>
                             <div class="row">
@@ -98,7 +115,7 @@
                                     <label>Telefoonnummer</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->telefoonnummer ?>>
+                                    <input class="form-control" type="text" id="text" value=<?php echo $userByCookie->telefoonnummer ?>>
                                 </div>
                             </div>
                             <div class="row">
@@ -106,7 +123,7 @@
                                     <label>Bedijfsnaam</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->bedrijfsnaam ?>>
+                                    <input class="form-control" type="text" id="text" value=<?php echo $userByCookie->bedrijfsnaam ?>>
                                 </div>
                             </div>
                             <div class="row">
@@ -114,7 +131,7 @@
                                     <label>BTW-nummer</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->btwNummer ?>>
+                                    <input class="form-control" type="text" id="text" value=<?php echo $userByCookie->btwNummer ?>>
                                 </div>
                             </div>
                             <div class="row">
@@ -122,7 +139,7 @@
                                     <label>Adres</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->adres ?>>
+                                    <input class="form-control" type="text" id="text" value=<?php echo $userByCookie->adres ?>>
                                 </div>
                             </div>
                             <div class="row">
@@ -130,7 +147,7 @@
                                     <label>Postcode</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" id="text" placeholder=<?php echo $userByCookie->postcode ?>>
+                                    <input class="form-control" type="text" id="text" value=<?php echo $userByCookie->postcode ?>>
                                 </div>
                             </div>
                             <div class="row">
@@ -138,7 +155,7 @@
                                     <label>Plaats</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" id="text" placeholder<?php echo $userByCookie->plaats ?>>
+                                    <input class="form-control" type="text" id="text" value<?php echo $userByCookie->plaats ?>>
                                 </div>
                             </div>
                             <a href="#"><button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Aanpassen</button></a>
@@ -149,6 +166,7 @@
         </form>
     </div>
     </div>
+
 
 
     <br>

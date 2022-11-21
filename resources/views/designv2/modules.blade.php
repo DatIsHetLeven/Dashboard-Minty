@@ -1,4 +1,3 @@
-
 @extends( ($userByCookie->rol === 1) ? 'layouts.navBarAdmin' :  'layouts.navBar')
 @section('content')
 
@@ -12,37 +11,24 @@
     .install{
         color: green;
     }
+
+    @media screen and (max-width: 1770px){
+        .row{
+            margin-left: 15% !important;
+        }
+    }
+    @media screen and (max-width: 1500px){
+        .row{
+            margin-left: 20% !important;
+        }
+    }
     </style>
 
 
 
 
-{{--<section class="page-content">--}}
-{{--    <div class="container rounded bg-white mt-5 mb-5">--}}
-{{--        <div class="row">--}}
-{{--            <div class="item  col-xs-4 col-lg-4">--}}
-{{--                <div class="thumbnail">--}}
-{{--                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />--}}
-{{--                    <div class="caption">--}}
-{{--                        <h4 class="group inner list-group-item-heading">--}}
-{{--                            Order wachtagent plugin</h4>--}}
-{{--                        <p class="group inner list-group-item-text">--}}
-{{--                            Deze plugin biedt de mogelijkheid om bestellingen van Bol naar WooCommerce te verzenden.--}}
-{{--                        </p>--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-xs-12 col-md-6">--}}
-{{--                                <p class="lead">--}}
-{{--                                    €1.000.000 (cash only)</p>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-xs-12 col-md-6">--}}
-{{--                                <a class="btn btn-success" href="#">Downloaden</a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+
+
     <div class="container-xl px-4 mt-4">
         <div class="row">
             <?php  for ($x = 0; $x < count($allUsers); $x++) {?>
@@ -99,3 +85,34 @@
         </div>
     </div>
 </section>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">VERWIJDER DE KLANT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Weet je zeker dat je deze klant wilt verwijderen
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var myModal = document.getElementById('exampleModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
+</script>

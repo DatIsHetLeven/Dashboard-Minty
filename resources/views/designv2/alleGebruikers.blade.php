@@ -3,7 +3,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Bootstrap User Management Data Table</title>
+        <title>Alle gebuikers</title>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -219,6 +219,23 @@
             .popUp.active .content {
                 transition: all 300ms ease-in-out;
                 transform: translate(-50%, -50%) scale(1);
+            }
+
+            @media screen and (max-width: 1770px){
+                form{
+                    margin-left: 10% !important;
+                }
+                body{
+                    background-color: red;
+                }
+            }
+            @media screen and (max-width: 1500px){
+                form{
+                    margin-left: 20% !important;
+                }
+                body{
+                    background-color: red;
+                }
             }
         </style>
 

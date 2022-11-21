@@ -10,6 +10,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
 
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;
@@ -152,9 +153,10 @@ class MintyBolController extends Controller
     public function GetAllModules(){
         try {
             $response = $this->guzzleClient->request('GET', 'modules', ['headers' => $this->headers]);
+            return json_decode($response->getBody()->getContents());
         } catch (GuzzleException $e) {
+            return redirect('underConstruction');
         }
-        return json_decode($response->getBody()->getContents());
     }
     //Get single module
     public function getSingleModuleUser(){
@@ -185,11 +187,16 @@ class MintyBolController extends Controller
         ];
 
         //Check wat de hoogste pagina is - Laatste updates
-        $response = $this->guzzleClient->request('GET', 'logs?page=1', ['headers' => $this->headers]);
-        $maxPage = json_decode($response->getBody()->getContents())->pages;
+        try {
+            $response = $this->guzzleClient->request('GET', 'logs?page=1', ['headers' => $this->headers]);
+            $maxPage = json_decode($response->getBody()->getContents())->pages;
+            $logList = $this->guzzleClient->request('GET', 'logs?page='.$maxPage, ['headers' => $this->headers]);
+        }catch (RequestException $e){
+            return redirect('underConstruction');
+        }
+
 
         //Haal meest recente logs op.
-        $logList = $this->guzzleClient->request('GET', 'logs?page='.$maxPage, ['headers' => $this->headers]);
         //dd(json_decode($logList->getBody()->getContents()));
         return json_decode($logList->getBody()->getContents());
     }
@@ -318,6 +325,7 @@ class MintyBolController extends Controller
         try {
             $response = $this->guzzleClient->request('GET', 'mandate/'.$customerIdMollie.'/status', ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
+            return back()->with(['error' => "Error check mandate status"]);
             dd("EROORR CHECK MANDATE STATUS!!!!");
         }
 
@@ -419,9 +427,15 @@ class MintyBolController extends Controller
         $loggedUser = $homeController->renderPersonalDetails();
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
-        $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
+        try {
+            $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
 
-        return json_decode($response->getBody()->getContents());
+            return json_decode($response->getBody()->getContents());
+        }catch (RequestException $e){
+
+            return redirect('underConstruction');
+        }
+
     }
 
     public function getWooConnection(){
@@ -443,8 +457,11 @@ class MintyBolController extends Controller
         $loggedUser = $homeController->renderPersonalDetails();
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
-        $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi, ['headers' => $this->headers]);
-
+        try {
+            $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi, ['headers' => $this->headers]);
+        }catch (RequestException $e){
+            return redirect('underConstruction');
+        }
         $datum = (date('Y-m-d H:i:s'));
         $datumIso = (date(DATE_ISO8601, strtotime($datum)));
 

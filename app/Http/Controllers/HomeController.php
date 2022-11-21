@@ -8,6 +8,7 @@ use App\Models\statusdetails;
 use App\Models\User;
 
 
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -81,10 +82,13 @@ class HomeController extends Controller
         if (!is_countable($AllBolConnection)) {
             $AllBolConnection = array($MintyBolApi->getAllBolConnection());
 
+
+
             if (!empty($AllBolConnection) or count($AllBolConnection) != 1) {
                 for ($x = 0; $x < count($AllBolConnection); $x++) {
-                    //Check of er descript van bekend is.
-                    //dd($AllBolConnection[0]);
+
+                    if (!isset($AllBolConnection[$x]->bolUserId)) return redirect('underConstruction');
+
                     $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
@@ -127,6 +131,7 @@ class HomeController extends Controller
         if (is_countable($AllBolConnection)) {
             if (!empty($AllBolConnection) or count($AllBolConnection) != 1) {
                 for ($x = 0; $x < count($AllBolConnection); $x++) {
+                    if (!isset($AllBolConnection[$x]->bolUserId)) return redirect('underConstruction');
                     $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
@@ -140,6 +145,7 @@ class HomeController extends Controller
 
             if (!empty($AllBolConnection) or count($AllBolConnection) != 1) {
                 for ($x = 0; $x < count($AllBolConnection); $x++) {
+                    if (!isset($AllBolConnection[$x]->bolUserId)) return redirect('underConstruction');
                     $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
@@ -154,8 +160,10 @@ class HomeController extends Controller
     }
 
     public function checkDescription($id){
-        $getUser = DB::table('descriptionBolAccount')
-            ->where('bolId', '=', $id)->first();
+
+            $getUser = DB::table('descriptionBolAccount')
+                ->where('bolId', '=', $id)->first();
+
 
         if ($getUser == null)return null;
         return $getUser->description;

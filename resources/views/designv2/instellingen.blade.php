@@ -48,6 +48,17 @@
     .error{
         color: red;
     }
+
+    @media screen and (max-width: 1770px){
+        section{
+            margin-left: 15% !important;
+        }
+    }
+    @media screen and (max-width: 1500px){
+        section{
+            margin-left: 20% !important;
+        }
+    }
 </style>
 
 
@@ -209,6 +220,7 @@
             </div>
         </div>
     </div>
+
     </div>
     </div>
 </section>

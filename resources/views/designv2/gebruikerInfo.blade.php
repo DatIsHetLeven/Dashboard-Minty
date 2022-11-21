@@ -25,7 +25,8 @@
                                 API actief<input type="checkbox" <?php if($user->API == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
                                 Wordpress ingesteld<input type="checkbox" <?php if($user->wordpress == TRUE){?>checked<?php }?> onclick="return false;"><br><br>
                                 Koppeling server<input class="form-control" type="text" id="text" placeholder=<?php if(!empty($user->server)){echo $user->server;} else{echo "n.v.t";}?> onclick="return false;"><br><br>
-                                Koppeling geldig tm<input class="form-control" type="text" id="text" placeholder=<?php if(!empty($user->geldig)){echo $user->geldig;} else{echo "n.v.t";}?> onclick="return false;"><br><br>
+                                Koppeling geldig tm<input class="form-control" type="text" id="text" placeholder=<?php if(!empty($user->geldig)){                                $originalDate = $user->geldig;
+                                $newDate = date("d-m-Y", strtotime($originalDate));echo $newDate;} else{echo "n.v.t";}?> onclick="return false;"><br><br>
                             </form>
                         </div>
                     </div>

@@ -199,5 +199,10 @@ Route::get('userName', [HomeController::class, 'userName'])->name('userName')->m
 Route::get('/gravatar', 'GravatarController@gravatar');
 
 
+Route::get('underConstruction', function () {
+    return view('designv2/underConstruction');
+})->name('underConstruction');
+
+
 
 

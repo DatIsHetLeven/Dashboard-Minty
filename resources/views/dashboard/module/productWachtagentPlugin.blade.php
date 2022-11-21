@@ -1,5 +1,5 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+@extends('layouts.navBar')
+@section('content')
 <style>
     .switch {
         position: relative;
@@ -60,6 +60,17 @@
     .slider.round:before {
         border-radius: 50%;
     }
+
+    @media screen and (max-width: 1770px){
+        .InfoBar{
+            margin-left: 15% !important;
+        }
+    }
+    @media screen and (max-width: 1500px){
+        .InfoBar{
+            margin-left: 20% !important;
+        }
+    }
 </style>
 
 
@@ -76,7 +87,7 @@
     <div class="container-xl px-4 mt-4">
         <hr class="mt-0 mb-4">
 
-        <div class="col-xl-12">
+        <div class="InfoBar">
             <div class="card mb-6">
                 <div class="card-header"><?php echo $singleModule->identifier ?></div>
                 <div class="card-body">
