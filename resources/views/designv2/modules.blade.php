@@ -2,7 +2,17 @@
 @extends( ($userByCookie->rol === 1) ? 'layouts.navBarAdmin' :  'layouts.navBar')
 @section('content')
 
-
+<style>
+    .bcolor{
+        color: blue;
+    }
+    .uninstall{
+        color: red;
+    }
+    .install{
+        color: green;
+    }
+    </style>
 
 
 
@@ -44,8 +54,15 @@
                         <?php echo $allUsers[$x]->description ?>
                     <div class="card-body">
                             <?php if (!$boolModule[$x] === true){?>
-                        <a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}">Install</a><?php }
-                                                                                                         else{?><a href="{{ route('DisableSingleModule',$allUsers[$x]->identifier) }}">Uninstall</a><?php } ?>
+                        <span class="install"><a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}">Install</a></span><?php }
+                                                                                                         else{?><span class="uninstall"><a href="{{ route('DisableSingleModule',$allUsers[$x]->identifier) }}">Uninstall</a></span><?php } ?>
+
+                        &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+                        <?php if (!$boolModule[$x] === true){?>
+                        <a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}"></a><?php }
+                        else{?><span class="bcolor"><a href=" {{ route('GetSingleModule',$allUsers[$x]->identifier) }}">Bekijk instellingen</a></span><?php } ?>
+
                     </div>
                 </div>
             </div>

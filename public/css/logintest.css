@@ -30,10 +30,10 @@ body {
 
   .formlogin {
     width: 350px;
-    height: 250px;
+    /*height: 250px;*/
     background: white;
-    margin: 80px auto;
-    padding: 60px 20px;
+    margin: 50px auto;
+    padding: 30px 20px;
       paddinf-top: 5px;
 
       background: #ffffffA1;

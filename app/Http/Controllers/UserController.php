@@ -88,7 +88,7 @@ class UserController extends Controller
             $newUser->telefoonnummer = $_POST['Telefoonnummer'];
             $newUser->bedrijfsnaam = $_POST['Bedijfsnaam'];
             $newUser->btwNummer = $_POST['BTW-Nummer'];
-            $newUser->adres = $_POST['BTW-Nummer'];
+            $newUser->adres = $_POST['Adres'];
             $newUser->postcode = $_POST['Postcode'];
 //            dubbele code  - minty pawel
             $newUser->plaats = $_POST['Plaats'];

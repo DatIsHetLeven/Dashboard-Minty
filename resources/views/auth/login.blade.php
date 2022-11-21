@@ -2,8 +2,11 @@
 <link href="{{ asset('css/logintest.css') }}" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=0.8">
 <br><br></br></br>
-<h3><a href="{{ route('login') }}" span id="minty" > MINTY</span><span id="media"> MEDIA</span></a><h3>
-<h5><span id="dashboard">DASHBOARD</span></h5>
+{{--<h3><a href="{{ route('login') }}" span id="minty" > MINTY</span><span id="media"> MEDIA</span></a><h3>--}}
+{{--<h5><span id="dashboard">DASHBOARD</span></h5>--}}
+
+<h3><img width="243" height="26" src="https://mintymedia.nl/wp-content/uploads/2021/08/minty-logo-1.svg"></h3>
+
 
 <div class="formlogin">
 
@@ -21,7 +24,8 @@
     </p>
   @endif
     <!-- E-mail invoeren -->
-    <label>E-mail adres</label>
+      <h3><img width="243" height="100" src="https://bol.mintyconnect.nl/images/logo_white.svg"></h3>
+    <label>E-mail</label>
     <p><input type="email" name="userName" class="form_login" required autocomplete="email">
     <!-- Wachtwoord invoeren -->
     <label>Wachtwoord </label> <a id="resetpass" class="link" href="{{ route('resetpassword') }}">Wachtwoord vergeten?</a>
@@ -68,12 +72,8 @@
                 <input type="text" id="userInput" name="Plaats" placeholder='Plaats' required><br><br>
 
 
-                    <input type="radio" id="nl" name="nl" checked>
-                    <label>Nederland</label><br>
-                    <input type="radio" id="be" name="be" >
-                    <label>Belgie</label><br>
 
-                <input type="radio" name="land"
+                <input type="radio" name="land" checked
                        <?php if (isset($land) && $land=="nl") echo "checked";?>
                        value="nl">Nederland
                 <input type="radio" name="land"
