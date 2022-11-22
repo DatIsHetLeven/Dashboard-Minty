@@ -397,4 +397,21 @@ class HomeController extends Controller
         return back()->with($getUser->naam);
     }
 
+    public function AuthRequest($secret_key ){
+
+        $user_provided_code = $_POST['userInputAuth'];
+        $loggedUser = $this->renderPersonalDetails();
+
+
+        $google2fa = new \PragmaRX\Google2FA\Google2FA();
+        if ($google2fa->verifyKey($secret_key, $user_provided_code)) {
+            $getUser = User::where('email',  $loggedUser->email)->first();
+            $getUser->Auth =$secret_key;
+            $getUser->save();
+            return back()->with(['correct' => '2FA succesvol ingeschakeld']);
+        } else {
+            return back()->with(['error' => 'Ingevoerde code onjuist!']);
+        }
+    }
+
 }

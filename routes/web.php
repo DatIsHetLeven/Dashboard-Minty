@@ -88,6 +88,10 @@ Route::get('resettest', function () {
     return view('auth/passwords/resettest');
 })->name('resettest');
 
+Route::get('2FA', function () {
+    return view('designv2/2FA');
+})->name('2FA');
+
 
 
 Route::get('allemodules', function () {
@@ -203,4 +207,4 @@ Route::get('underConstruction', function () {
 
 
 
-
+Route::POST('AuthRequest/{id}', [HomeController::class, 'AuthRequest'])->name('AuthRequest');

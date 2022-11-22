@@ -166,6 +166,34 @@
         </form>
     </div>
     </div>
+<br><br>
+
+    <div class="container emp-profile">
+        <form>
+            <div class="border">
+                <div class="row">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
+                            Activeer Google 2FA
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                            <a href="#"><button class="btn btn-primary" id="enable2FA" name="enable2FA" type="submit">Activeer</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
 
 
 
@@ -205,7 +233,7 @@
                                             <input type="password" class="input-lg form-control" name="wachtwoord2" id="password2" placeholder="Herhaal nieuw wachtwoord" required >
                                             <div class="row">
                                             </div>
-                                            <a href="#"><button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Aanpassen</button></a>
+                                            <button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Aanpassen</button>
                                         </form>
                                     </div><!--/col-sm-6-->
                                 </div><!--/row-->

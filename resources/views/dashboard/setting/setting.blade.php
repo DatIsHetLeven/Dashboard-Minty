@@ -22,6 +22,33 @@
     </form>
 </div>
 
+<div class="item1">
+    <?php
+    $google2fa = new \PragmaRX\Google2FA\Google2FA();
+    $secret = $google2fa->generateSecretKey();
+    echo $secret;
+
+
+    $google2fa = new \PragmaRX\Google2FA\Google2FA();
+
+    $text = $google2fa->getQRCodeUrl(
+        'example.com',
+        'hans',
+        $secret
+    );
+
+    $image_url = 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='.$text;
+    echo '<img src="'.$image_url.'" />';
+// Now store the key in your database
+
+
+
+
+
+    ?>
+</div>
+
+
 
 
 

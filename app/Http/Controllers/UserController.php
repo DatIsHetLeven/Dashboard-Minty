@@ -28,6 +28,7 @@ class UserController extends Controller
         $password = password_verify($_POST['password'], $CheckUserLogin->password);
         if($password === TRUE)
         {
+            // if table filles -> voer code in else doorgaan
             //CMaak cookie token + opslaan in db
             $cookieToken = $this->createToken();
             $CheckUserLogin->cookie_token = $cookieToken;
