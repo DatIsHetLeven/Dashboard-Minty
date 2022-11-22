@@ -169,7 +169,7 @@
 <br><br>
 
     <div class="container emp-profile">
-        <form>
+        <form method="GET" action="{{ route('2FA') }}">
             <div class="border">
                 <div class="row">
 
