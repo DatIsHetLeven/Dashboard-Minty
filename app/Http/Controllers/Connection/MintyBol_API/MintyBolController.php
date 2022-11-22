@@ -368,8 +368,11 @@ class MintyBolController extends Controller
         }
 
         if($loggedUser->rol === 1)return true;
-
-        $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
+        try {
+            $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi.'/bol', ['headers' => $this->headers]);
+        }catch (RequestException $e){
+            return redirect('underConstruction');
+        }
         $checker = json_decode($response->getBody()->getContents());
         if (empty($checker))return false;
         return true;
@@ -472,14 +475,15 @@ class MintyBolController extends Controller
         try {
             $response = $this->guzzleClient->request('DELETE', 'accounts/bol/'.$id, ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
-            dd("error delete bol user");
+            return back()->with(['error'=> "Bol verbinding kon niet verwijderd worden. Probeer het later opnieuw"]);
+
         }
     }
     public function deleteWooConnection($id){
         try {
             $response = $this->guzzleClient->request('DELETE', 'accounts/woo/'.$id, ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
-            dd("error delete bol user");
+            return back()->with(['error'=> "Woocommerce account kon niet verwijderd worden. Probeer het later opnieuw"]);
         }
     }
 

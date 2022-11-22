@@ -342,8 +342,15 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('instellingen') }}">
+                    <i class="fas fa-tools"></i>&nbsp;&nbsp;&nbsp;
+
+                    <span>Beheer</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('logout') }}">
-                    &nbsp;<i class="fas fa-unlock-alt" ></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fas fa-unlock-alt" ></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     <span>Uitloggen</span>
                 </a>

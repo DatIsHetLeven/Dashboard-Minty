@@ -275,6 +275,7 @@ class UserController extends Controller
 
         if(isset($_POST['createWooUserBTN'])) {
             $host = $_POST['wooClientHost'];
+            if (!filter_var($host, FILTER_VALIDATE_URL)) return back()->with(['error'=> "Url is ongeldig"]);
             $key = $_POST['wooClientKey'];
             $secret = $_POST['wooClientSecret'];
         }

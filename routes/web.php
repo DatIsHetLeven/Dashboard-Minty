@@ -70,11 +70,9 @@ Route::get('instellingen', function () {
     return view('dashboard/setting/setting');
 })->name('instellingen')->middleware('check.user');
 
-Route::get('alleproducten', [ProductController::class, 'getAllProducts'])->name('alleproducten')->middleware('check.user');
-
-Route::get('productinfo/{id}', [ProductController::class, 'getSingleProduct'])->name('productinfo')->middleware('check.user');
-
-Route::POST('updatePoduct/{id}', [ProductController::class, 'updatePoduct'])->name('updatePoduct')->middleware('check.user');
+//Route::get('alleproducten', [ProductController::class, 'getAllProducts'])->name('alleproducten')->middleware('check.user');
+//Route::get('productinfo/{id}', [ProductController::class, 'getSingleProduct'])->name('productinfo')->middleware('check.user');
+//Route::POST('updatePoduct/{id}', [ProductController::class, 'updatePoduct'])->name('updatePoduct')->middleware('check.user');
 
 Route::get('logout', [HomeController::class, 'logout'])->name('logout')->middleware('check.user');
 
@@ -166,9 +164,9 @@ Route::get('SignUp', function () {
 Route::get('persoons', function () {
     return view('designv2/persoonsgegevens');
 })->name('persoons');
-Route::get('instellingen', function () {
-    return view('designv2/instellingen');
-})->name('instellingen');
+//Route::get('instellingen', function () {
+//    return view('designv2/instellingen');
+//})->name('instellingen');
 Route::get('modules', function () {
     return view('designv2/modules');
 })->name('modules');

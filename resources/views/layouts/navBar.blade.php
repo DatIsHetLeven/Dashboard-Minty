@@ -168,6 +168,11 @@
 
 
 
+    .userDetails{
+        width: 100%;
+        height: 80px;
+        background-color: rgb(96,96,96);
+    }
 
 
 </style>
@@ -257,7 +262,7 @@
 <header class="page-header">
     <nav>
         <a href="#0" aria-label="forecastr logo" class="logo">
-            Minty Media
+            <br>
         </a>
         <style>
             #minty{
@@ -266,13 +271,27 @@
             #Media{
                 color: #FFFFFF;
             }
+            .rechts{
+                position: relative;
+                margin-left: 40%;
+                top: -90%;
+                font-size: 12px;
+            }
         </style>
-        <h3><span id="minty"> &nbsp;&nbsp;MINTY</span><span id="Media"> MEDIA</span><h3>
+        <h3><img width="210" height="26" src="https://mintymedia.nl/wp-content/uploads/2021/08/minty-logo-1.svg"></h3>
         <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
             <svg width="20" height="20" aria-hidden="true">
                 <use xlink:href="#down"></use>
             </svg>
         </button>
+        <div class="userDetails">
+            <img src="{{ route('profielfotoGravatar') }}">
+            <div class="rechts">
+                <?php echo $_COOKIE['userName']; ?><br>
+                Online <i class="fas fa-dot-circle fa-1x" style="color:green"></i>
+
+            </div>
+        </div>
 
         <ul class="admin-menu">
             <li class="menu-heading">
