@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 
 use App\Models\bolApi;
@@ -411,6 +412,20 @@ class HomeController extends Controller
             return back()->with(['correct' => '2FA succesvol ingeschakeld']);
         } else {
             return back()->with(['error' => 'Ingevoerde code onjuist!']);
+        }
+    }
+
+    public function check2FAInput(){
+        $loggedUser = $this->renderPersonalDetails();
+        $secret_key = $loggedUser->Auth;
+        $user_provided_code = $_POST['authCodeInput'];
+        $CheckUserLogin = User::Where('email', '=', $loggedUser->email)->first();
+
+        $google2fa = new \PragmaRX\Google2FA\Google2FA();
+        if ($google2fa->verifyKey($secret_key, $user_provided_code)) {
+            return redirect()->route('dashboard');
+        } else {
+            return back()->with(['error' => 'Ingevoerde code onjuist']);
         }
     }
 

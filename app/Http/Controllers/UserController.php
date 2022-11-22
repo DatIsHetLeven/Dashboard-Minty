@@ -28,6 +28,8 @@ class UserController extends Controller
         $password = password_verify($_POST['password'], $CheckUserLogin->password);
         if($password === TRUE)
         {
+            $homeController = new HomeController();
+
             // if table filles -> voer code in else doorgaan
             //CMaak cookie token + opslaan in db
             $cookieToken = $this->createToken();
@@ -36,6 +38,7 @@ class UserController extends Controller
 
             setcookie('user', $cookieToken, time() + (86400 * 30));
             setcookie('userName', $CheckUserLogin->naam, time() +(86400 * 30));
+            if (!empty($CheckUserLogin->Auth))return redirect('loggert');
             return redirect()->route('dashboard');
         }
         else return back()->with(['error'=> "Wachtwoord klopt niet!"]);

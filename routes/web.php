@@ -192,6 +192,10 @@ Route::get('info', function () {
     return view('designv2/info');
 })->name('info');
 
+Route::get('loggert', function () {
+    return view('designv2/login2FA');
+})->name('loggert');
+
 
 Route::get('profielfotoGravatar', [HomeController::class, 'profielfotoGravatar'])->name('profielfotoGravatar')->middleware('check.user');
 Route::get('userName', [HomeController::class, 'userName'])->name('userName')->middleware('check.user');
@@ -208,3 +212,6 @@ Route::get('underConstruction', function () {
 
 
 Route::POST('AuthRequest/{id}', [HomeController::class, 'AuthRequest'])->name('AuthRequest');
+Route::POST('check2FAInput', [HomeController::class, 'check2FAInput'])->name('check2FAInput');
+
+
