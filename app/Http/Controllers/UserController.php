@@ -371,7 +371,7 @@ class UserController extends Controller
             $GegevensKlant->cookie_token = bin2hex(random_bytes(20));
             $GegevensKlant->save();
         }
-
+        setcookie('userName', $GegevensKlant->naam, time()+3600, '/');
 //        $cookie_name = 'userNameKlant';
 //        setcookie($cookie_name, "", time() - (86400 * 50));
 //
@@ -394,6 +394,7 @@ class UserController extends Controller
             $cookieToken = $_COOKIE['adminSessie'];
 
             $eigenAccount = User::where('cookie_token', '=', $cookieToken)->first();
+            setcookie('userName', $eigenAccount->naam, time()+3600, '/');
 
             setcookie("user", $cookieToken, time() + (86400 * 30),"/");
             setcookie("adminSessie", FALSE, time() + (86400 * 30),"/");
@@ -402,7 +403,6 @@ class UserController extends Controller
             return view('designv2/home', ['userByCookie' => $eigenAccount]);
             return view('dashboard/dashboard', ['userByCookie' => $eigenAccount]);
         }
-        dd("herstelleneigenaccountinlog");
         return back();
     }
 
