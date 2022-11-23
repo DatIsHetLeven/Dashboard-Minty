@@ -1,4 +1,5 @@
 @extends('layouts.navBarAdmin')
+<title>Users</title>
 @section('content')
 
         <meta charset="utf-8">

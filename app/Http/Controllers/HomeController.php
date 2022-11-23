@@ -55,6 +55,7 @@ class HomeController extends Controller
         $getUser = DB::table('statusdetails')
         ->join('user', 'statusdetails.userId', '=', 'user.userId')
         ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
+
         return $getUser;
 
     }
@@ -427,6 +428,13 @@ class HomeController extends Controller
         } else {
             return back()->with(['error' => 'Ingevoerde code onjuist']);
         }
+    }
+
+    public function beveiligen(){
+        $user = $this->renderPersonalDetails();
+        if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
+
+        return view('designv2/beveiligen', ['userByCookie' => $user]);
     }
 
 }

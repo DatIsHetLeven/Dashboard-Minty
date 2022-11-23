@@ -213,5 +213,6 @@ Route::get('underConstruction', function () {
 
 Route::POST('AuthRequest/{id}', [HomeController::class, 'AuthRequest'])->name('AuthRequest');
 Route::POST('check2FAInput', [HomeController::class, 'check2FAInput'])->name('check2FAInput');
+Route::GET('beveiligen', [HomeController::class, 'beveiligen'])->name('beveiligen');
 
 

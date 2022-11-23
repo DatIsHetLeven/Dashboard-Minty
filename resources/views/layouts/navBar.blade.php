@@ -328,6 +328,18 @@
                 </a>
             </li>
 
+            <li class="menu-heading">
+                <h3>Beheer</h3>
+            </li>
+
+            <li>
+                <a href="{{ route('beveiligen') }}">
+                    {{--                    <i class="fa fa-user-lock"></i>--}}
+                    <i class="fa fa-fingerprint"></i>&nbsp;&nbsp;&nbsp;
+                    <span>Beveiligen</span>
+                </a>
+            </li>
+
 
             <li class="menu-heading">
                 <h3>Hulp nodig</h3>

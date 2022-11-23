@@ -276,6 +276,8 @@
                 font-size: 12px;
             }
             </style>
+
+
         <h3><img width="210" height="26" src="https://mintymedia.nl/wp-content/uploads/2021/08/minty-logo-1.svg"></h3>
         <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
             <svg width="20" height="20" aria-hidden="true">
@@ -284,6 +286,7 @@
         </button>
         <div class="userDetails">
             <img src="{{ route('profielfotoGravatar') }}">
+            <?php ?>
             <div class="rechts">
                 <?php echo $_COOKIE['userName']; ?><br>
                 Online <i class="fas fa-dot-circle fa-1x" style="color:green"></i>
@@ -341,6 +344,15 @@
                     <span>Alle gebruikers</span>
                 </a>
             </li>
+
+            <li>
+                <a href="{{ route('beveiligen') }}">
+{{--                    <i class="fa fa-user-lock"></i>--}}
+                    <i class="fa fa-fingerprint"></i>&nbsp;&nbsp;&nbsp;
+                    <span>Beveiligen</span>
+                </a>
+            </li>
+
             <li>
                 <a href="{{ route('instellingen') }}">
                     <i class="fas fa-tools"></i>&nbsp;&nbsp;&nbsp;

@@ -1,4 +1,5 @@
 @extends( ($userByCookie->rol === 1) ? 'layouts.navBarAdmin' :  'layouts.navBar')
+<title>Modules</title>
 @section('content')
 
 <style>

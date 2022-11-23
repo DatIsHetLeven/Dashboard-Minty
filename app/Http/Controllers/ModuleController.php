@@ -19,17 +19,23 @@ class ModuleController extends Controller
     }
 
     public function GetAllModules(){
+
         if (empty($this->loggedUser->userId))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
         //Get bolUserId (userid from arthurs api)
         $bolUser = DB::table('bolApi')
             ->where('userId', '=', $this->loggedUser->userId)->first();
         if (empty($bolUser))return redirect('login');
         $alleModules = $this->MintyBolApi->GetAllModules();
+        if (!is_array($alleModules)){
+            if ($alleModules->getStatusCode() > 299) return redirect('underConstruction');
+        }
+
+
         //dd($alleModules);
 
         $logs = $this->GetLog();
+        if ($logs === false)return redirect('underConstruction');
         $CheckModuleArray = array();
-        if (empty($alleModules->identifier))return redirect('underConstruction');
 
         for ($x = 0; $x < count($alleModules); $x++){
             $boolModule = $this->MintyBolApi->CheckModuleBolUser($bolUser->userIdApi, $alleModules[$x]->identifier);

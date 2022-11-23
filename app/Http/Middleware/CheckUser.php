@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Http\Controllers\HomeController;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
+
 
 class CheckUser
 {

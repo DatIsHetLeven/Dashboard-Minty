@@ -1,4 +1,5 @@
 @extends( 'layouts.navBarAdmin')
+<title>Beheer</title>
 @section('content')
 
 <link href="{{ asset('css/setting/setting.css') }}" rel="stylesheet">

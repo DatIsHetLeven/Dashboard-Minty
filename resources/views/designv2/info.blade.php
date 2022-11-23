@@ -1,5 +1,6 @@
 @extends('layouts.navBar')
 @section('content')
+    <title>Info</title>
 <style>
     .Content{
         margin-left: 20%;

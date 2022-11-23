@@ -193,13 +193,14 @@ class MintyBolController extends Controller
             'Authorization' => 'Basic ' . $apiKey,
         ];
 
+
         //Check wat de hoogste pagina is - Laatste updates
         try {
             $response = $this->guzzleClient->request('GET', 'logs?page=1', ['headers' => $this->headers]);
             $maxPage = json_decode($response->getBody()->getContents())->pages;
             $logList = $this->guzzleClient->request('GET', 'logs?page='.$maxPage, ['headers' => $this->headers]);
         }catch (RequestException $e){
-            return redirect('underConstruction');
+            return false;
         }
 
 

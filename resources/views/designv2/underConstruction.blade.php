@@ -405,6 +405,7 @@
         text-align: center;
     }
     </style>
+<title>Minty Offline</title>
 <h1 class="titre">WEBSITE IS UNDER CONSTRUCTION !</h1>
 <h3 class="center">Probeer het later opnieuw!</h3>
 

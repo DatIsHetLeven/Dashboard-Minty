@@ -11,9 +11,7 @@
                         <!-- navbar -->
                         <div style="display: block !important; height: 94px !important; background-color: #ffffff !important;">
                             <div>
-                                <a href="{base_url}" style="display: block !important; font-size: 1.25rem !important; line-height: 1.5 !important; padding: .8125rem .5rem !important; transition: width .3s ease-in-out !important; white-space: nowrap !important;">
-                                    <img style="height: 27px !important; width: 271px !important; display: block !important; margin: 0 auto !important; margin-top: 22px !important; color: #2F3044 !important; text-decoration-color: #ffffff !important;" src="{logo}" alt="Minty Hosting">
-                                    </a>
+                                    <img width="243" height="60" src="{{ asset('img/logo.PNG') }}" alt="Minty Hosting">
                             </div>
                         </div>
                         <!-- content -->
@@ -25,7 +23,7 @@
                                     </div>
                                     <p style="margin: 0 auto !important; text-align: left !important; width: 550px !important; font-size: 16px !important; line-height: 1.5 !important; color: #ffffff !important;">
                                         Beste <?php echo $naam;?>,<br>
-                                        Je account is successvol aangemaakt! Klik  <a href="{base_url}/login" target="_blank" style="color: #FF6C00 !important">hier</a> om je wachtwoord aan te maken.
+                                        Je account is successvol aangemaakt! Klik  <a href="https://mintydashboard.myio.nl/passwordreset?urlode=<?php echo $token;?>" target="_blank" style="color: #FF6C00 !important">hier</a> om je wachtwoord aan te maken.
                                         <br>
                                         Mocht je vragen hebben over hoe het paneel werkt, contact ons via <a href="mailto:info@mintymedia.nl" style="color: #FF6C00 !important">email</a>.
                                             <a href="https://mintydashboard.myio.nl/passwordreset?urlode=<?php echo $token;?>"><button style="margin-top: 35px !important; display: block !important; margin: 0 auto; width: 122px !important; height: 44px !important; background-color: #FF6C00 !important; color: #ffffff !important; font-weight: bold !important; font-size: 15px !important; border-radius: 1000px !important; border: none !important; cursor: pointer !important;">Log in</button></a>
@@ -49,6 +47,6 @@
     <div style="height: 10px !important"></div>
 </div>
 </body>
-Je wachtwoord is : <h1>test test</h1>
-<br>
-<a href="https://mintydashboard.myio.nl/passwordreset?urlode=<?php echo $token;?>">Wachtwoord</a>
+{{--Je wachtwoord is : <h1>test test</h1>--}}
+{{--<br>--}}
+{{--<a href="https://mintydashboard.myio.nl/passwordreset?urlode=<?php echo $token;?>">Wachtwoord</a>--}}

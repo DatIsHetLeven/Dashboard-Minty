@@ -10,6 +10,7 @@ use App\Models\factuursturen;
 use App\Models\bolApi;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
+use ReCaptcha\RequestMethod\Post;
 use function Composer\Autoload\includeFile;
 
 
@@ -363,12 +364,20 @@ class UserController extends Controller
         }
         //Haal cookieToken op van klant.
         $GegevensKlant = User::where('userId', '=', $userIdKlantAccount)->first();
+
         $cookieTokenKlant = $GegevensKlant->cookie_token;
         //Als er geen cookie is -> maak er een (zodat hij niet crasht)
         if (empty($cookieTokenKlant)){
             $GegevensKlant->cookie_token = bin2hex(random_bytes(20));
             $GegevensKlant->save();
         }
+
+//        $cookie_name = 'userNameKlant';
+//        setcookie($cookie_name, "", time() - (86400 * 50));
+//
+//        setcookie('userNameKlant', $GegevensKlant->naam, time() +(86400 * 30));
+
+
         setcookie("user", FALSE, time() + (86400 * 30),"/");
         $cookie_name = "user";
         setcookie($cookie_name, $GegevensKlant->cookie_token, time() + (86400 * 30),"/");
@@ -396,4 +405,5 @@ class UserController extends Controller
         dd("herstelleneigenaccountinlog");
         return back();
     }
+
 }

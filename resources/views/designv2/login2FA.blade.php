@@ -1,4 +1,4 @@
-
+<title>2FA</title>
 <link href="{{ asset('css/logintest.css') }}" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=0.8">
 <br><br></br></br>
