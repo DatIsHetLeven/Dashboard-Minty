@@ -20,9 +20,7 @@
             width: 95%;
             margin: 20px auto;
         }
-        header {
-            padding: 0 15px;
-        }
+
 
         .columns {
             display: flex;
@@ -41,9 +39,7 @@
 
         }
 
-        footer {
-            padding: 0 15px;
-        }
+
 
 
         @media screen and (max-width: 980px) {
@@ -64,6 +60,13 @@
             .columns .column {
                 flex-basis: 100%;
                 margin: 0 0 5px 0;
+            }
+        }
+        @media screen and (max-width: 1500px) {
+            .columns .column {
+                flex-basis: 100%;
+                margin: 0 0 5px 0;
+                margin-left: 15%;
             }
         }
         </style>
