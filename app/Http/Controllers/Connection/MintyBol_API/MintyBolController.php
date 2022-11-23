@@ -31,7 +31,7 @@ class MintyBolController extends Controller
             'Authorization' => 'Basic ' . $token,
             'Accept' => 'application/json',
         ];
-        $this->baseUrl = 'https://dev.bol.mintycloud.nl/api/v1/';
+        $this->baseUrl = 'https://dev.api.bol.mintyconnect.nl/api/v1/';
 
         $this->guzzleClient = new Client(['base_uri' => $this->baseUrl, 'verify' => false]);
     }
@@ -44,7 +44,12 @@ class MintyBolController extends Controller
         ]);
 
         $this->headers['Content-Type'] = 'application/json';
-        $response = $this->guzzleClient->request('POST', 'accounts/user', ['headers' => $this->headers, 'body' => $body]);
+        try {
+            $response = $this->guzzleClient->request('POST', 'accounts/user', ['headers' => $this->headers, 'body' => $body]);
+
+        }catch (RequestException $e){
+            dd($e);
+        }
         $data = json_decode($response->getBody()->getContents());
         return $data->userId;
     }
@@ -163,9 +168,11 @@ class MintyBolController extends Controller
         $homeController = new HomeController();
         $loggedUser = $homeController->renderPersonalDetails();
         $bolUser = $homeController->getUserBolId($loggedUser->userId)->userIdApi;
-
-        $response = $this->guzzleClient->request('GET', 'modules/user/'.$bolUser, ['headers' => $this->headers]);
-        //dd(json_decode($response->getBody()->getContents()));
+        try {
+            $response = $this->guzzleClient->request('GET', 'modules/user/'.$bolUser, ['headers' => $this->headers]);
+        }catch (RequestException $e){
+            return redirect('underConstruction');
+        }
         return json_decode($response->getBody()->getContents());
     }
 
@@ -463,10 +470,12 @@ class MintyBolController extends Controller
         try {
             $response = $this->guzzleClient->request('GET', 'accounts/user/'.$bolUser->userIdApi, ['headers' => $this->headers]);
         }catch (RequestException $e){
-            return redirect('underConstruction');
+            return false;
         }
         $datum = (date('Y-m-d H:i:s'));
         $datumIso = (date(DATE_ISO8601, strtotime($datum)));
+
+
 
         return (json_decode($response->getBody()->getContents())->apiKey->apiKey);
     }

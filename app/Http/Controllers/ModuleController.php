@@ -29,6 +29,8 @@ class ModuleController extends Controller
 
         $logs = $this->GetLog();
         $CheckModuleArray = array();
+        if (empty($alleModules->identifier))return redirect('underConstruction');
+
         for ($x = 0; $x < count($alleModules); $x++){
             $boolModule = $this->MintyBolApi->CheckModuleBolUser($bolUser->userIdApi, $alleModules[$x]->identifier);
             $CheckModuleArray[] = $boolModule;

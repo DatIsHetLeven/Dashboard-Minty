@@ -98,6 +98,7 @@ class UserController extends Controller
             $newUser->plaats = $_POST['Plaats'];
             $newUser->plaats = $_POST['Plaats'];
             $newUser->land = ($_POST["land"]);
+            $newUser->Auth = "";
 
 
             $passwordToken = $this->createToken();

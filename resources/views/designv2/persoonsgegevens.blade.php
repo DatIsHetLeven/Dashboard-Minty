@@ -53,6 +53,10 @@
         border: solid 1px #BA68C8
     }
 
+    .googleAuth{
+
+    }
+
 
     @media screen and (max-width: 1770px){
         form{
@@ -71,7 +75,7 @@
     </style>
 <br><br><br>
 
-<section class="page-content">
+<div class="page-content">
     <div class="container emp-profile">
         <form>
             <div class="border">
@@ -167,7 +171,7 @@
     </div>
     </div>
 <br><br>
-
+<div class="googleAuth">
     <div class="container emp-profile">
         <form method="GET" action="{{ route('2FA') }}">
             <div class="border">
@@ -194,6 +198,7 @@
         </form>
     </div>
     </div>
+</div>
 
 
 
