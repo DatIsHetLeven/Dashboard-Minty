@@ -31,11 +31,11 @@ Route::get('/', function () {
 
 Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpassword');
 
-Route::get('persoonsgegevens', [HomeController::class, 'toonPersoonsgegevens'])->name('persoonsgegevens')->middleware('check.user');;
+Route::get('settings', [HomeController::class, 'toonPersoonsgegevens'])->name('persoonsgegevens')->middleware('check.user');;
 
 Route::GET('dashboard', [HomeController::class, 'renderDashboard'])->name('dashboard');
 
-Route::get('gebruikers', [UserController::class, 'getAllUsers'])->name('allegebruikers')->middleware('check.user');;
+Route::get('customers', [UserController::class, 'getAllUsers'])->name('allegebruikers')->middleware('check.user');;
 
 Route::get('dashboardOld', function () {
     return view('dashboard/dashboardOldMyDesign')->middleware('check.user');
@@ -99,7 +99,7 @@ Route::get('allemodules', function () {
 })->name('allemodules')->middleware('check.user');
 
 
-Route::get('GetAllModules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules')->middleware('CheckBolAccount');
+Route::get('modules', [ModuleController::class, 'GetAllModules'])->name('GetAllModules')->middleware('CheckBolAccount');
 
 
 Route::get('GetSingleModule/{moduleId}', [ModuleController::class, 'GetSingleModule'])->name('GetSingleModule')->middleware('check.user');
@@ -150,7 +150,7 @@ Route::POST('veranderWachtwoord/{id}}', [HomeController::class, 'veranderWachtwo
 
 
 //Test paginas na nieuw design
-Route::get('toonBolSetting', [HomeController::class, 'toonBolSetting'])->name('toonBolSetting')->middleware('check.user');
+Route::get('bol-settings', [HomeController::class, 'toonBolSetting'])->name('toonBolSetting')->middleware('check.user');
 
 Route::get('testpage', function () {
     return view('testpage');
@@ -171,9 +171,9 @@ Route::get('persoons', function () {
 //Route::get('instellingen', function () {
 //    return view('designv2/instellingen');
 //})->name('instellingen');
-Route::get('modules', function () {
-    return view('designv2/modules');
-})->name('modules');
+//Route::get('modules', function () {
+//    return view('designv2/modules');
+//})->name('modules');
 Route::get('alleGebruikers', function () {
     return view('designv2/alleGebruikers');
 })->name('alleGebruikers');
@@ -213,6 +213,6 @@ Route::get('underConstruction', function () {
 
 Route::POST('AuthRequest/{id}', [HomeController::class, 'AuthRequest'])->name('AuthRequest');
 Route::POST('check2FAInput', [HomeController::class, 'check2FAInput'])->name('check2FAInput');
-Route::GET('beveiligen', [HomeController::class, 'beveiligen'])->name('beveiligen');
+Route::GET('security', [HomeController::class, 'beveiligen'])->name('beveiligen');
 
 

@@ -43,7 +43,6 @@ class ModuleController extends Controller
         }
         $user = $this->homeController->renderPersonalDetails();
 
-
         return view('designv2/modules', ['allUsers' => $alleModules, 'allLogs' => $logs, 'boolModule' =>$CheckModuleArray, 'userByCookie' => $user]);
         //return view('dashboard/module/allemodules', ['allUsers' => $alleModules, 'allLogs' => $logs, 'boolModule' =>$CheckModuleArray, 'userByCookie' => $user]);
     }
