@@ -20,6 +20,7 @@ class UserController extends Controller
     //Haal inlog gebruiker op
     public function getUser()
     {
+
         if(!isset($_POST['loginButton'])) return redirect()->route('login')->with(['error'=> "login error"]);
         $username = $_POST['userName'];
         $CheckUserLogin = User::Where('email', '=', $username)->first();
@@ -29,6 +30,7 @@ class UserController extends Controller
         $password = password_verify($_POST['password'], $CheckUserLogin->password);
         if($password === TRUE)
         {
+
             $homeController = new HomeController();
 
             // if table filles -> voer code in else doorgaan
@@ -39,6 +41,7 @@ class UserController extends Controller
 
             setcookie('user', $cookieToken, time() + (86400 * 30));
             setcookie('userName', $CheckUserLogin->naam, time() +(86400 * 30));
+
             if (!empty($CheckUserLogin->Auth))return redirect('loggert');
             return redirect()->route('dashboard');
         }

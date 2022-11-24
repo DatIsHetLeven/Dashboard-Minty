@@ -285,6 +285,7 @@
             </svg>
         </button>
         <div class="userDetails">
+            <?php         if (!isset($_COOKIE['userName']))return route('welcome');?>
             <img src="{{ route('profielfotoGravatar') }}">
             <?php ?>
             <div class="rechts">

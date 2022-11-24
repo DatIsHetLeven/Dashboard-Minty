@@ -33,7 +33,7 @@ Route::get('reset', [HomeController::class, 'resetPassword'])->name('resetpasswo
 
 Route::get('settings', [HomeController::class, 'toonPersoonsgegevens'])->name('persoonsgegevens')->middleware('check.user');;
 
-Route::GET('dashboard', [HomeController::class, 'renderDashboard'])->name('dashboard');
+Route::GET('dashboard', [HomeController::class, 'renderDashboard'])->name('dashboard')->middleware('CheckValidRequest');
 
 Route::get('customers', [UserController::class, 'getAllUsers'])->name('allegebruikers')->middleware('check.user');;
 
