@@ -22,7 +22,6 @@ class CheckBolAccount
         //Check if cookie sessie geldig is
         $MintyBolController = new MintyBolController();
         $HomeController = new HomeController();
-
         //Controleren of gebruiker zowel bol als woo account hebben in de API
         $bool = $MintyBolController->CheckIfBolUserExist();
         $bool2 = $MintyBolController->CheckIfWooUserExist();
@@ -34,7 +33,6 @@ class CheckBolAccount
         if ($bool2 == false) return redirect()->route('toonBolSetting')->with(['error'=> "Om de Modules te gebruiken moet je eerste je Woo account koppelen"]);
         //Valideren of gebruiker het recht heeft om de modules in te zien.
         $boolValideerAccount = $HomeController->valideerUserRechten();
-
         if ($boolValideerAccount == false)return redirect()->route('dashboard')->with(['error'=> "Uw proefperiode is voorbij. Om gebruik blijven te maken van de koppelling, kunt u zich aten abonneren!"]);
         //Als account aanwezig zijn zet API op actief in de db.
         return $next($request);

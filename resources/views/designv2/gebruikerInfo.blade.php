@@ -132,8 +132,8 @@
                         <div class="card-body">
                             <form>
                                 <?php if(!empty($user->factuur_reference)) {?>
-                                factuur reference : <?php echo($user->factuur_reference);
-                                                    }?>
+                                <a href="{{ route('getUserInvoice',182) }}">factuur reference : <?php echo($user->factuur_reference);
+                                                                                          }?></a>
 
                             </form>
                         </div>

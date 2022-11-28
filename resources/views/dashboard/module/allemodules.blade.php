@@ -23,13 +23,10 @@
                         <?php if (!$boolModule[$x] === true){?>
                     <a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}">Install</a><?php }
                     else{?><a href="{{ route('DisableSingleModule',$allUsers[$x]->identifier) }}">Uninstall</a><?php } ?>
-
-
                 </div>
             </div>
         </div>
         <?php }?>
-
 
         <div class="scroll-bg">
             <div class="scroll-div">

@@ -409,4 +409,9 @@ class UserController extends Controller
         return back();
     }
 
+    public function getUserInvoice($fsID){
+        $fSApi = new fsnl_api_Controller();
+        return $fSApi->GetAllInvoiceSingleCustomer($fsID);
+    }
+
 }

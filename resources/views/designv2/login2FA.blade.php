@@ -4,7 +4,6 @@
 <br><br></br></br>
 {{--<h3><a href="{{ route('login') }}" span id="minty" > MINTY</span><span id="media"> MEDIA</span></a><h3>--}}
 {{--<h5><span id="dashboard">DASHBOARD</span></h5>--}}
-
 <h3><img width="243" height="26" src="https://mintymedia.nl/wp-content/uploads/2021/08/minty-logo-1.svg"></h3>
 
 <div class="formlogin">

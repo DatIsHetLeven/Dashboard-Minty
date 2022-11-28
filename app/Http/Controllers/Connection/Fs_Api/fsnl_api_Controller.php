@@ -5,7 +5,14 @@ namespace App\Http\Controllers\Connection\Fs_Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+
+
+use GuzzleHttp\Exception\RequestException;
+
 use App\Models\Connection\Fs_API\fsnl_api;
+use ReCaptcha\Response;
 
 class fsnl_api_Controller extends Controller
 {
@@ -151,8 +158,41 @@ class fsnl_api_Controller extends Controller
             dd($this->fSApi);
             return false;
         }
-
         return $this->fSApi->getResponseBody();
+    }
+
+    public function GetAllInvoiceSingleCustomer($fsId){
+
+        $test = $this->fSApi->setUrl($this->urlBuilder("invoices?client=$fsId"));
+        $this->fSApi->setVerb("GET");
+        $this->fSApi->execute();
+
+        if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
+
+            dump('het is niet gelukt :)');
+            dd($this->fSApi);
+            return false;
+        }
+        $Answer = json_decode($this->fSApi->getResponseBody());
+        $invoiceNmr = $Answer[0]->id;
+
+        return $this->DownloadPdfInvoice($invoiceNmr);
+    }
+
+    public function DownloadPdfInvoice($invoiceNmr){
+        //Mr Pawel dank voor het kijken, dit is waar het misgaat !!!!!!!
+        $invoiceNmr = 46;
+        $test = $this->fSApi->setUrl($this->urlBuilder("invoices_pdf/46"));
+        $this->fSApi->setVerb("GET");
+        if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
+            dump('het is niet gelukt :)');
+            dd($this->fSApi);
+            return false;
+        }
+
+        dump($test);
+        dump(($this->fSApi));
+        dd("test");
     }
 
 }

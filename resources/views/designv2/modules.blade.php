@@ -26,10 +26,6 @@
     </style>
 
 
-
-
-
-
     <div class="container-xl px-4 mt-4">
         <div class="row">
             <?php  for ($x = 0; $x < count($allUsers); $x++) {?>

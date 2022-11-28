@@ -73,7 +73,6 @@
     }
 </style>
 
-
 @extends('layouts.navAdmin')
 @section('content')
 

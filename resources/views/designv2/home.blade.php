@@ -60,6 +60,15 @@
 
             Koppeling : <?php echo($userByCookie->API != 0) ? 'Actief' : 'Inactief';?> <p><p>
             Abonnement : <?php echo($userByCookie->geabonneerd != 0) ? 'Actief' : 'Inactief';?>
-
             </div>
+
+
+        <div class="box1">
+            dddd
+            <a href="{{ route('wpae_after_export') }}"><button> wpae_after_export </button></a>
+
         </div>
+    </div>
+        </div>
+
+

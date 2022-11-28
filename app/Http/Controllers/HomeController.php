@@ -7,10 +7,12 @@ use App\Models\bolApi;
 use App\Models\descrBolAccount;
 use App\Models\statusdetails;
 use App\Models\User;
-
-
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Support\Facades\Cookie;
+
+
+use GuzzleHttp\Exception\RequestException;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PhpMyAdmin\ConfigStorage\Features\DatabaseDesignerSettingsFeature;
@@ -348,7 +350,6 @@ class HomeController extends Controller
     public function deleteBolUser($id){
         $bolContoller = new MintyBolController();
         $bolContoller->deleteBolUser($id);
-
         return back();
     }
     public function deleteWooConnection($id){
@@ -370,7 +371,6 @@ class HomeController extends Controller
     public function veranderWachtwoordLogged($userId){
         $wachtwoord1 = ($_POST['wachtwoord1']);
         $wachtwoord2 = ($_POST['wachtwoord2']);
-
         if ($wachtwoord2 === $wachtwoord1){
             //hash passw
             $hashPassword = password_hash($wachtwoord2, PASSWORD_DEFAULT);
@@ -386,7 +386,6 @@ class HomeController extends Controller
 
     public function profielfotoGravatar(){
         $getUser = $this->renderPersonalDetails();
-
         $hash =  md5( strtolower( trim( $getUser->email ) ) );
         $imageData = file_get_contents("https://www.gravatar.com/avatar/".$hash);
 
@@ -416,6 +415,15 @@ class HomeController extends Controller
         }
     }
 
+
+
+    public function beveiligen(){
+        $user = $this->renderPersonalDetails();
+        if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
+
+        return view('designv2/beveiligen', ['userByCookie' => $user]);
+    }
+
     public function check2FAInput(){
         $loggedUser = $this->renderPersonalDetails();
         $secret_key = $loggedUser->Auth;
@@ -430,11 +438,208 @@ class HomeController extends Controller
         }
     }
 
-    public function beveiligen(){
-        $user = $this->renderPersonalDetails();
-        if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
 
-        return view('designv2/beveiligen', ['userByCookie' => $user]);
+
+
+
+
+    /////////////////////////////////
+
+
+    function wpae_after_export()
+    {
+        $relativeFilePath = "https://www.ruitersport-levade.nl/wp-load.php?security_token=be58612c5f2adf45&export_id=1&action=get_data";
+
+        $ftp_server="marketplace-ftp.kentucky-horsewear.com";
+        $ftp_user_name="000113";
+        $ftp_user_pass='5W81V6975e$Zow1f';
+        $file = "$relativeFilePath";//tobe uploaded
+        $remote_file = "/file/serverFile.csv";
+
+        // set up basic connection
+        $conn_id = ftp_connect($ftp_server);
+        // login with username and password
+        $login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);
+
+        // upload a file
+        if (ftp_put($conn_id, $remote_file, $file, FTP_ASCII)) {
+            echo "successfully uploaded $file\n";
+//            exit;
+        } else {
+            echo "There was a problem while uploading $file\n";
+//            exit;
+        }
+        // close the connection
+        ftp_close($conn_id);
+//        add_action('pmxe_after_export', 'wpae_after_export', 10, 1);
+
+
+        dd("test");
+
+
+        ////
+        $ftp_host = "marketplace-ftp.kentucky-horsewear.com";
+        $ftp_user = "000113";
+        $ftp_pass = '5W81V6975e$Zow1f';
+
+        $ftp = ftp_connect($ftp_host, 21);
+        ftp_login($ftp, $ftp_user, $ftp_pass);
+
+        $dest_file = "/file/test.csv";
+        $source_file = "/storage/app/csv/current-kentucky-levade.csv";
+        $local_dir = "https://mintydashboard.myio.nl/csv/current-kentucky-levade.csv";
+
+
+        $ret = ftp_nb_put($ftp, $dest_file, $local_dir, FTP_ASCII);
+
+        while (FTP_MOREDATA == $ret)
+        {
+            // display progress bar, or something
+            $ret = ftp_nb_continue($ftp);
+        }
+
+
+dd("stop");
+
+
+        ////////////////////////////
+//        $ftp_host = "marketplace-ftp.kentucky-horsewear.com";
+//        $ftp_user = "000113";
+//        $ftp_pass = '5W81V6975e$Zow1f';
+//
+//        $ftp_connection = ftp_connect($ftp_host) or die("fail host");
+//        ftp_login($ftp_connection, $ftp_user, $ftp_pass) or die("fail login");
+//        ftp_pasv($ftp_connection, true);
+//
+//
+//        $local_dir = "https://mintydashboard.myio.nl/csv/current-kentucky-levade.csv";
+//        $filePAth = "https://mintydashboard.myio.nl/csv/current-kentucky-levade.csv";
+//        $fileName = "current-kentucky-levade.csv";
+//
+////        dd($local_dir);
+//        $remote_server_dir = "/file";
+//
+//        //dd($local_dir);
+//        ftp_put($ftp_connection, $remote_server_dir, $local_dir, FTP_BINARY );
+//
+//        dd("");
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+        // Retrieve export object.
+//        $export = new PMXE_Export_Record();
+//        $export->getById($export_id);
+
+        // Check if "Secure Mode" is enabled in All Export > Settings.
+//        $is_secure_export = PMXE_Plugin::getInstance()->getOption('secure');
+
+        // Retrieve file path when not using secure mode.
+//        if (!$is_secure_export) {
+//            $filepath = get_attached_file($export->attch_id);
+
+            // Retrieve file path when using secure mode.
+//        } else {
+//            $filepath = wp_all_export_get_absolute_path($export->options['filepath']);
+//        }
+
+//        // Path to the export file.
+//        $localfile = file("csv/current-kentucky-levade.csv");
+//
+//        // File name of remote file (destination file name).
+//        $remotefile = basename("/file");
+//
+//        // Remote FTP server details.
+//        // The 'path' is relative to the FTP user's login directory.
+//        $ftp = array(
+//            'server' => 'marketplace-ftp.kentucky-horsewear.com:21',
+//            'user' => '000113',
+//            'pass' => '5W81V6975e$Zow1f',
+//            'path' => '/file'
+//        );
+//
+//        // Ensure username is formatted properly
+//        $ftp['user'] = str_replace('@', '%40', $ftp['user']);
+//
+//        // Ensure password is formatted properly
+//        $ftp['pass'] = str_replace(array('#', '?', '/', '\\'), array('%23', '%3F', '%2F', '%5C'), $ftp['pass']);
+//
+//        // Remote FTP URL.
+//        $remoteurl = "ftp://{$ftp['user']}:{$ftp['pass']}@{$ftp['server']}{$ftp['path']}/{$remotefile}";
+//
+//        // Retrieve cURL object.
+//        $ch = curl_init();
+//
+//        // Open export file.
+//        $fp = fopen('csv/current-kentucky-levade.csv', "rb");
+//        $filesize = filesize('csv/current-kentucky-levade.csv');
+//        //dd("");
+//        // Proceed if the local file was opened.
+//        if ($fp) {
+//
+//            // Provide cURL the FTP URL.
+//            curl_setopt($ch, CURLOPT_URL, 'marketplace-ftp.kentucky-horsewear.com');
+//
+//            // Prepare cURL for uploading files.
+//            curl_setopt($ch, CURLOPT_UPLOAD, 1);
+//
+//            // Provide the export file to cURL.
+//            curl_setopt($ch, CURLOPT_INFILE, $fp);
+//
+//            // Provide the file size to cURL.
+//            curl_setopt($ch, CURLOPT_INFILESIZE, $filesize);
+//
+//            // Start the file upload.
+//            curl_exec($ch);
+//
+//            // If there is an error, write error number & message to PHP's error log.
+//            if ($errno = curl_errno($ch)) {
+//                if (version_compare(phpversion(), '5.5.0', '>=')) {
+//
+//                    // If PHP 5.5.0 or greater is used, use newer function for cURL error message.
+//                    $error_message = curl_strerror($errno);
+//
+//                } else {
+//
+//                    // Otherwise, use legacy cURL error message function.
+//                    $error_message = curl_error($ch);
+//                }
+//
+//                // Write error to PHP log.
+//                error_log("cURL error ({$errno}): {$error_message}");
+//
+//            }
+//
+//            // Close the connection to remote server.
+//            curl_close($ch);
+//
+//        } else {
+//            // If export file could not be found, write to error log.
+//            error_log("Could not find export file");
+//
+//        }
+//
+//        dd("");
+//        //add_action('pmxe_after_export', 'wpae_after_export', 10, 1);
+//
+//    }
+
+
+
+
+
+
+
+
 
 }

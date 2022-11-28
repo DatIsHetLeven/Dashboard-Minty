@@ -98,7 +98,6 @@
                         //dd($singleModule->settings);
                         $stockSyncSetting = $possibleSettingList['stockSync'];
                         $priceSyncSetting= $possibleSettingList['priceSync'];
-
                         ?>
                         StockSync setting :
                         <label class="switch" >

@@ -147,6 +147,9 @@ Route::POST('veranderPrijs}', [HomeController::class, 'veranderPrijs'])->name('v
 
 Route::POST('veranderWachtwoord/{id}}', [HomeController::class, 'veranderWachtwoordLogged'])->name('veranderWachtwoordLogged')->middleware('check.user');
 
+Route::GET('getUserInvoice/{id}}', [UserController::class, 'getUserInvoice'])->name('getUserInvoice')->middleware('check.user');
+
+Route::GET('wpae_after_export', [HomeController::class, 'wpae_after_export'])->name('wpae_after_export');
 
 
 //Test paginas na nieuw design
@@ -159,8 +162,6 @@ Route::get('testpage', function () {
 Route::get('testBol', function () {
     return view('testBol');
 })->name('testBol');
-
-
 //Vernieuwde design!!!
 Route::get('SignUp', function () {
     return view('designv2/SignUp');
