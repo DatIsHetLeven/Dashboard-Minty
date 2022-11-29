@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Connection\Fs_Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -12,13 +12,16 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 
 use App\Models\Connection\Fs_API\fsnl_api;
+use GuzzleHttp\Psr7\Request;
 use ReCaptcha\Response;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
 class fsnl_api_Controller extends Controller
 {
 
     private string $baseUrl;
     private fsnl_api $fSApi;
+    private $guzzleClient;
 
     public function  __construct(){
 
@@ -162,15 +165,12 @@ class fsnl_api_Controller extends Controller
     }
 
     public function GetAllInvoiceSingleCustomer($fsId){
-
         $test = $this->fSApi->setUrl($this->urlBuilder("invoices?client=$fsId"));
         $this->fSApi->setVerb("GET");
         $this->fSApi->execute();
 
         if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
-
-            dump('het is niet gelukt :)');
-            dd($this->fSApi);
+            return back()->with(['errorPDF' => 'Geen pdf gevonden!']);
             return false;
         }
         $Answer = json_decode($this->fSApi->getResponseBody());
@@ -179,20 +179,29 @@ class fsnl_api_Controller extends Controller
         return $this->DownloadPdfInvoice($invoiceNmr);
     }
 
-    public function DownloadPdfInvoice($invoiceNmr){
-        //Mr Pawel dank voor het kijken, dit is waar het misgaat !!!!!!!
-        $invoiceNmr = 46;
-        $test = $this->fSApi->setUrl($this->urlBuilder("invoices_pdf/46"));
-        $this->fSApi->setVerb("GET");
-        if( $this->fSApi->getResponseInfo()['http_code']  > 299) {
-            dump('het is niet gelukt :)');
-            dd($this->fSApi);
-            return false;
-        }
+    public function DownloadPdfInvoice($invoiceNmr)
+    {
 
-        dump($test);
-        dump(($this->fSApi));
-        dd("test");
+
+        $client = new Client();
+        $headers = [
+            'Authorization' => 'Basic bWludHlhcnRodXI6clMyMTkwNk1pcWdJRlVTdlF6YXlMSEs3R0x4UnlxUVB1bkZqekpOYQ==',
+            'Cookie' => 'PHPSESSID=t4frm6hiju62i3t1ptlrmet1rn'
+        ];
+        $request = new Request('GET', 'https://www.factuursturen.nl/api/v1/invoices_pdf/' . $invoiceNmr, $headers);
+        $res = $client->sendAsync($request)->wait();
+
+        header("Cache-Control: maxage=1");
+        header("Pragma: public");
+        header("Content-type: application/pdf");
+        header("Content-Description: PHP Generated Data");
+        header("Content-Transfer-Encoding: binary");
+
+        ob_clean();
+        flush();
+
+        echo $res->getBody();
+        exit;
     }
 
 }
