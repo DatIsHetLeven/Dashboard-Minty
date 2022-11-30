@@ -35,7 +35,7 @@
                         <!-- footer -->
                         <div style="bottom: 0 !important; padding: 1rem !important; background-color: #edf2f7 !important; color: #869099 !important; border-top: 1px solid #dee2e6 !important;border-bottom-left-radius: 6px !important;border-bottom-right-radius: 6px !important;">
                             <div style="font-size: 14px !important; max-height: 44px !important; margin-left: 1.5rem !important;">
-                                Copyright &copy; <a href="{base_url}" target="_blank" style="text-decoration: none !important; color: #FF6C00 !important">Minty Panel</a>. All rights reserved
+                                Copyright &copy; <a href="{base_url}" target="_blank" style="text-decoration: none !important; color: #FF6C00 !important">Minty Connect</a>. All rights reserved
                             </div>
                         </div>
                     </div>

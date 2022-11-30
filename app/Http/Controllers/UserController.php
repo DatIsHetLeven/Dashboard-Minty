@@ -30,8 +30,8 @@ class UserController extends Controller
         $password = password_verify($_POST['password'], $CheckUserLogin->password);
         if($password === TRUE)
         {
-
             $homeController = new HomeController();
+            if (isset($_COOKIE['adminSessie']))setcookie("adminSessie", "", time() - (86400 * 30));
 
             // if table filles -> voer code in else doorgaan
             //CMaak cookie token + opslaan in db

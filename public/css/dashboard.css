@@ -59,13 +59,19 @@
 #lowerleft
 {
     margin-bottom: 1px;
-    margin-left : 1px;
+    margin-left : 10px;
+    margin-bottom: 100px;
     width: 200px;
-    height: 200px;
+    height: 150px;
     background-color: red;
     color: green;
     position: fixed;
     bottom: 0;
+    border-radius: 15px;
+    text-align: center;
+
+    border: 1px solid #3498db;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
 }
 
 
