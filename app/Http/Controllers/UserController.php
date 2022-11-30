@@ -414,4 +414,37 @@ class UserController extends Controller
         return $fSApi->GetAllInvoiceSingleCustomer($fsID);
     }
 
+    public function UpdateUserDetails(){
+
+        $homeController = new HomeController();
+        $loggedUser = $homeController->renderPersonalDetails();
+
+        $naam = $_POST['naam'];
+        $Email = $_POST['email'];
+        $Telf = $_POST['telefoonnummer'];
+        $Bedrijfsnaam = $_POST['bedrijfsnaam'];
+        $BTW = $_POST['btw'];
+        $Adres = $_POST['adres'];
+        $Postcode = $_POST['postcode'];
+        $Plaats = $_POST['plaats'];
+
+
+        $newUser = User::where('userId', '=', $loggedUser->userId)->first();
+
+        $newUser->naam = $naam;
+        $newUser->email = $Email;
+        $newUser->telefoonnummer = $Telf;
+        $newUser->btwNummer = $BTW;
+        $newUser->adres = $Adres;
+        $newUser->postcode = $Postcode;
+        $newUser->plaats = $Plaats;
+
+        $newUser->save();
+
+        return back();
+        dump($naam, $Email, $Telf, $Bedrijfsnaam, $BTW, $Adres, $Postcode, $Plaats);
+        dd("ss");
+
+    }
+
 }

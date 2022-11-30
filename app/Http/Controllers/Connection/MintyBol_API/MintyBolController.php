@@ -235,7 +235,7 @@ class MintyBolController extends Controller
         ]);
         $this->headers['Content-Type'] = 'application/json';
         $response = $this->guzzleClient->request('PUT', 'modules/user', ['headers' => $this->headers, 'body' => $body]);
-        return redirect( 'GetAllModules');
+        return redirect()->route( 'GetAllModules');
     }
 
     //Update Product Wachtagent Plugin
@@ -264,7 +264,7 @@ class MintyBolController extends Controller
         //dd($body);
         $this->headers['Content-Type'] = 'application/json';
         $response = $this->guzzleClient->request('PUT', 'modules/user', ['headers' => $this->headers, 'body' => $bodyy]);
-        return redirect( 'GetAllModules');
+        return redirect()->route( 'GetAllModules');
     }
 
 

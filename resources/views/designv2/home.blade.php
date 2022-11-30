@@ -54,21 +54,27 @@
             <a href="mailto:support@mintymedia.nl" style="color: #FF6C00 !important">} <input type="submit" class="btnSupport" value="Support"></a>
         </div>
 
-        <div class="box2">
-            <p>
+
+        <div class="box1">
             <h4>Koppeling informatie</h4>
 
             Koppeling : <?php echo($userByCookie->API != 0) ? 'Actief' : 'Inactief';?> <p><p>
-            Abonnement : <?php echo($userByCookie->geabonneerd != 0) ? 'Actief' : 'Inactief';?>
-            </div>
-
-
-        <div class="box1">
-            dddd
-            <a href="{{ route('wpae_after_export') }}"><button> wpae_after_export </button></a>
-
+                Abonnement : <?php echo($userByCookie->geabonneerd != 0) ? 'Actief' : 'Inactief';?>
         </div>
+        <style>
+            .box2 img{
+                width: 300px;
+            }
+
+        </style>
+
+        <div class="box2">
+            <a href="https://partnerplatform.bol.com/nl/intermediair/8739/"><h4>Officieel Bol Partners!</h4>
+                Je kunt je webshop koppelen aan bol.com via Minty Media's bol koppeling. Door je webshop via de bol koppeling aan bol.com te koppelen is je voorraad op bol.com altijd actueel, worden bestellingen automatisch in je webshop geplaatst en heb je door de track&trace koppeling je leverbetrouwbaarheid goed onder controle. Daarnaast hebben we voor bol.com onze bol.com Repricer waarmee jij de concurrentie te slim af kunt zijn.
+                <img width="300" height="96" src="https://bolmate.nl/wp-content/uploads/2022/09/bolcom_Badge-Ambassador_compact_blauw_CMYK.png" class="attachment-full size-full" alt="" loading="lazy" srcset="https://bolmate.nl/wp-content/uploads/2022/09/bolcom_Badge-Ambassador_compact_blauw_CMYK.png 1247w, https://bolmate.nl/wp-content/uploads/2022/09/bolcom_Badge-Ambassador_compact_blauw_CMYK-300x129.png 300w, https://bolmate.nl/wp-content/uploads/2022/09/bolcom_Badge-Ambassador_compact_blauw_CMYK-1024x440.png 1024w, https://bolmate.nl/wp-content/uploads/2022/09/bolcom_Badge-Ambassador_compact_blauw_CMYK-768x330.png 768w" sizes="(max-width: 1247px) 100vw, 1247px">
+            </a>
+        </div>
+
     </div>
-        </div>
 
 

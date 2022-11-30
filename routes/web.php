@@ -109,6 +109,7 @@ Route::get('DisableSingleModule/{moduleId}', [ModuleController::class, 'DisableS
 
 Route::post('createBolUser/{id}', [UserController::class, 'createBolUser'])->name('createBolUser')->middleware('check.user');
 Route::post('createWooUser/{id}', [UserController::class, 'createWooUser'])->name('createWooUser')->middleware('check.user');
+Route::post('UpdateUserDetails', [UserController::class, 'UpdateUserDetails'])->name('UpdateUserDetails')->middleware('check.user');
 
 
 

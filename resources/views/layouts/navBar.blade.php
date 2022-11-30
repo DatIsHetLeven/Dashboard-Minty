@@ -69,7 +69,8 @@
         padding-top: 20px;
         width: var(--page-header-width);
         color: var(--page-header-txtColor);
-        background: var(--page-header-bgColor);
+        /*background: var(--page-header-bgColor);*/
+        background-color: #212529;
     }
 
     .page-header nav {
@@ -278,7 +279,7 @@
                 font-size: 12px;
             }
         </style>
-        <h3><img width="210" height="26" src="https://mintymedia.nl/wp-content/uploads/2021/08/minty-logo-1.svg"></h3>
+        <h3><img width="210" height="60" src="{{asset('img/logo.svg')}}"></h3>
         <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
             <svg width="20" height="20" aria-hidden="true">
                 <use xlink:href="#down"></use>

@@ -223,17 +223,18 @@
             }
 
             @media screen and (max-width: 1770px){
-                form{
-                    margin-left: 10% !important;
+                .container-xl{
+                    margin-left: 15% !important;
                 }
                 body{
                     background-color: red;
                 }
             }
             @media screen and (max-width: 1500px){
-                form{
+                .container-xl{
                     margin-left: 20% !important;
                 }
+
                 body{
                     background-color: red;
                 }

@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <body style="margin: 0 !important; height: 100% !important">
 <div style="font-family:Arial,Helvetica,sans-serif !important;line-height: 1.5 !important; font-weight: normal !important; font-size: 15px !important; color: #2F3044; min-height: 100% !important; margin:0 !important; padding:0 !important; padding-top: 15px !important; width:100% !important; background-color:#edf2f7 !important">
     <div style="height: 10px !important"></div>
@@ -11,9 +18,7 @@
                         <!-- navbar -->
                         <div style="display: block !important; height: 94px !important; background-color: #ffffff !important;">
                             <div>
-                                <a href="{base_url}" style="display: block !important; font-size: 1.25rem !important; line-height: 1.5 !important; padding: .8125rem .5rem !important; transition: width .3s ease-in-out !important; white-space: nowrap !important;">
-                                    <img style="height: 27px !important; width: 271px !important; display: block !important; margin: 0 auto !important; margin-top: 22px !important; color: #2F3044 !important; text-decoration-color: #ffffff !important;" src="{logo}" alt="Minty Hosting">
-                                </a>
+                                <img width="243" height="60" src="{{ asset('img/logo.PNG') }}" alt="Minty Hosting">
                             </div>
                         </div>
                         <!-- content -->
@@ -21,22 +26,13 @@
                             <div style="display: block !important; margin: 0 auto !important;">
                                 <div style="padding-top: 75px !important; width: 90% !important; padding: 75px 0 3rem 3rem !important">
                                     <div style="text-align: center !important; font-size: 30px !important; font-weight: bold !important; color: #ffffff !important;">
-                                        Bedankt voor uw bestelling!
+                                        Wachtwoord resetten
                                     </div>
-                                    <p style="text-align: left !important; font-size: 16px !important; line-height: 1.5 !important; color: #ffffff !important;">
-                                        Beste {fullname},<br>
-                                        U hebt een bestelling geplaatst op {date}<br>
-                                        Hieronder vindt u de details van uw bestelling.
-                                    </p>
-                                    <h4 style="color: #FF6C00 !important; font-size: 18px !important; font-weight: bold !important; margin-bottom: -10px;">Waar ik kan ik mijn producten beheren?</h4>
-                                    <p style="line-height: 1.7rem !important; color: #ffffff !important;">
-                                        U kunt uw producten beheren via het <a href="{dashboard}" target="_blank" style="color: #FF6C00 !important">dashboard</a>.<br>
-                                        Via het dashboard kunt u uw domeinen beheren, uw hostingpakketten beheren.<br> Daarnaast kunt u ook uw facturen bekijken en downloaden.
-                                    </p>
-                                    <p style="margin-top: 30px !important; color: #ffffff !important;">
-                                        Met vriendelijke groet,<br>
-                                        Minty Hosting
-                                    </p>
+                                    <p style="margin: 0 auto !important; text-align: left !important; width: 550px !important; font-size: 16px !important; line-height: 1.5 !important; color: #ffffff !important;">
+                                        U ontvangt deze mail omdat wij een verzoek ontvangen hebben om het wachtwoord te resetten.<br>
+                                        Klik op deze <a href="https://mintydashboard.myio.nl/passwordreset?urlode=<?php echo $token;?>" style="color: #FF6C00 !important">link</a> om je wachtwoord te resetten.<br><br>
+
+                                        Herkent u deze aanvraag niet? Neem dan gelijk op met de klantenservice! <br>
                                 </div>
                             </div>
                         </div>
@@ -55,5 +51,3 @@
     <div style="height: 10px !important"></div>
 </div>
 </body>
-
-<a href="https://mintydashboard.myio.nl/passwordreset?urlode=<?php echo $token;?>">Wachtwoord</a>
