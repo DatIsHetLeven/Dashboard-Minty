@@ -276,6 +276,7 @@ class MintyBolController extends Controller
         try {
             $response = $this->guzzleClient->request('GET', 'mandate/'.$bolUser->userIdApi, ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
+            return back();
             dd("EROORRRR CREATE MANDATE!!!");
         }
 

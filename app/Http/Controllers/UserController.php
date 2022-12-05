@@ -41,8 +41,7 @@ class UserController extends Controller
 
             setcookie('user', $cookieToken, time() + (86400 * 30));
             setcookie('userName', $CheckUserLogin->naam, time() +(86400 * 30));
-
-            if (!empty($CheckUserLogin->Auth))return redirect('loggert');
+            if (!empty($CheckUserLogin->Auth))return view('designv2/login2FA');
             return redirect()->route('dashboard');
         }
         else return back()->with(['error'=> "Wachtwoord klopt niet!"]);
@@ -73,6 +72,7 @@ class UserController extends Controller
     //Create user
     public function createUser()
     {
+        if (!isset($_POST['checkbox_algemenevoorwaarden']))return back()->with(['errorVoorwaarden'=> "U dient akkoord te gaan met de algemene voorwaarden"]);
         // Maak gebruik van Illuminate\Http\Request implaats van de $_POST varaible - minty pawel
         if(isset($_POST['buttonregister']))
         {
@@ -157,10 +157,12 @@ class UserController extends Controller
 
     //Stuur mail met rest wachtwoord
     public function resetPass(){
+
         if(isset($_POST['resetpassword']))
         {
             $email = $_POST['username'];
             $getUser = User::where('email', '=', $email)->first();
+
             if(!empty($getUser))
             {
                 $passwordToken = $this->createToken();
@@ -168,9 +170,12 @@ class UserController extends Controller
                 $mailSender->resetPassword($passwordToken, $email);
                 $getUser->token = $passwordToken;
                 $getUser->save();
-                return back()->with(['succes'=> 'E-mail is verzonden']);
+                return back()->with(['succes'=> 'Als dit e-mailadres bekend is bij ons, is er een mail verzonden ']);
             }
-            else return redirect('auth/passwords/resettest')->with(['error'=> "Geberuiker niet gevonden"]);
+            else{
+                return back()->with(['succes'=> "Als dit e-mailadres bekend is bij ons, is er een mail verzonden"]);
+
+            }
         }
     }
 

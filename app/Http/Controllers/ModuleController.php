@@ -53,6 +53,7 @@ class ModuleController extends Controller
 
     //Toon de correcte module
     public function GetSingleModule($moduleNaam){
+
         $singleModule = $this->MintyBolApi->getSingleModuleUser();
         $changeName = str_ireplace(array('.', 'bol', 'minty', 'connect', 'management', 'wachtagent'), '',$moduleNaam);
         $changeName = $changeName."wachtagent";

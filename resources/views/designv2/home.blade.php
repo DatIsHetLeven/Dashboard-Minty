@@ -1,6 +1,18 @@
 @extends( ($userByCookie->rol === 1) ? 'layouts.navBarAdmin' :  'layouts.navBar')
 <title>Home</title>
 @section('content')
+    <style>
+
+        button{
+            margin-top: 30% !important;
+            margin-left: 15% !important;
+
+        }
+        #changeUserDetails{
+            margin-top: 48% !important;
+        }
+
+    </style>
 
 
     <div class="WelkomBanner">
@@ -12,6 +24,7 @@
     <div class="boxes">
         <div class="box1">
             <h4>WooCommerce plugin downloaden</h4>
+
             <a href="{{Storage::disk('public')->url("pluginmanager/bolconnector/minty-bolconnector-plugin.zip")}}"><button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Nu downloaden</button></a>
 
         @if(\Session::has('error'))
@@ -49,9 +62,8 @@
             <h4>Hulp nodig bij het instellen?</h4>
             Om deze koppeling te kunnen gebruiken moeten een aantal dingen geinstalleerd en ingesteld worden
             Laten we samen door deze stappen lopen!
-
-            <input type="submit" class="btnZelfStudie" value="Zelf studie">
-            <a href="mailto:support@mintymedia.nl" style="color: #FF6C00 !important">} <input type="submit" class="btnSupport" value="Support"></a>
+            <a href="{{route('info')}}"><button class="btn btn-primary">Zelf studie</button></a>
+            <a href="mailto:support@mintymedia.nl" style="color: #FF6C00 !important"> <button class="btn btn-primary">Support</button></a>
         </div>
 
 

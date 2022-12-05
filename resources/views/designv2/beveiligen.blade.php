@@ -82,7 +82,7 @@
             <div class="column">
                 <h2>Activeer Google 2FA</h2>
                 <p>Met verificatie in 2 stappen (soms authenticatie in 2 stappen genoemd) kun je een extra beveiligingslaag aan je account toevoegen voor het geval je wachtwoord wordt gestolen. </p>
-                <form method="GET" action="{{ route('2FA') }}">
+                <form method="GET" action="{{ route('login2FA') }}">
                     <a href="#"><button class="btn btn-primary" id="enable2FA" name="enable2FA" type="submit">Activeer</button></a>
                 </form>
             </div>

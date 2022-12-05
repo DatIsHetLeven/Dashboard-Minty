@@ -335,6 +335,17 @@
 
 
             <li class="menu-heading">
+                <h3>Hulp nodig</h3>
+            </li>
+            <li>
+                <a href="{{ route('info') }}">
+                    &nbsp;<i class="fa fa-info-circle"></i>&nbsp; &nbsp;
+                    <span>Zelf studie</span>
+                </a>
+            </li>
+
+
+            <li class="menu-heading">
                 <h3>Beheer</h3>
             </li>
 

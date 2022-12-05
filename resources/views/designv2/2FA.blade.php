@@ -1,4 +1,4 @@
-@extends('layouts.navBar')
+@extends( ($userByCookie->rol === 1) ? 'layouts.navBarAdmin' :  'layouts.navBar')
 @section('content')
 
 

@@ -399,7 +399,6 @@ class HomeController extends Controller
     }
 
     public function AuthRequest($secret_key ){
-
         $user_provided_code = $_POST['userInputAuth'];
         $loggedUser = $this->renderPersonalDetails();
 
@@ -409,8 +408,10 @@ class HomeController extends Controller
             $getUser = User::where('email',  $loggedUser->email)->first();
             $getUser->Auth =$secret_key;
             $getUser->save();
+            dump("jaa");
             return back()->with(['correct' => '2FA succesvol ingeschakeld']);
         } else {
+            dump("nee");
             return back()->with(['error' => 'Ingevoerde code onjuist!']);
         }
     }
@@ -437,6 +438,18 @@ class HomeController extends Controller
             return back()->with(['error' => 'Ingevoerde code onjuist']);
         }
     }
+
+    public function info(){
+        $getUser = $this->renderPersonalDetails();
+        return view('designv2/info', ['userByCookie' => $getUser]);
+    }
+
+    public function login2FA(){
+        $getUser = $this->renderPersonalDetails();
+        return view('designv2/2FA', ['userByCookie' => $getUser]);
+    }
+
+
 
 
 

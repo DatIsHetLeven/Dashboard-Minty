@@ -22,7 +22,13 @@
     <p class="succes">
       {{\Session::get('succes')}}
     </p>
+
   @endif
+      @if(\Session::has('errorVoorwaarden'))
+          <p class="error">
+              {{\Session::get('errorVoorwaarden')}}
+          </p>
+      @endif
     <!-- E-mail invoeren -->
       <h3><img width="243" height="100" src="https://bol.mintyconnect.nl/images/logo_white.svg"></h3>
     <label>E-mail</label>
@@ -72,14 +78,17 @@
                 <input type="text" id="userInput" name="Plaats" placeholder='Plaats' required><br><br>
 
 
-
                 <input type="radio" name="land" checked
                        <?php if (isset($land) && $land=="nl") echo "checked";?>
                        value="nl">Nederland
                 <input type="radio" name="land"
                        <?php if (isset($land) && $land=="be") echo "checked";?>
                        value="be">Belgie
+                <br><br>
 
+                <span style="font-size: 12">Ik heb de <a href="https://mintymedia.nl/algemene-voorwaarden/"> algemene voorwaarden </a> van de website gelezen en ga hiermee akkoord.<input type="checkbox" name="checkbox_algemenevoorwaarden" value="checkox_value">
+
+<br><br><br>
 
             </div>
          </div>

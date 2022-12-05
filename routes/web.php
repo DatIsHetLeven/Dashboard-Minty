@@ -88,10 +88,9 @@ Route::get('resettest', function () {
     return view('auth/passwords/resettest');
 })->name('resettest');
 
-Route::get('2FA', function () {
-    return view('designv2/2FA');
-})->name('2FA');
-
+//Route::get('2FA', function () {
+//    return view('designv2/2FA');
+//})->name('2FA');
 
 
 Route::get('allemodules', function () {
@@ -190,13 +189,14 @@ Route::get('dashboardv2', function () {
     return view('designv2/home');
 })->name('dashboardv2');
 
-Route::get('info', function () {
-    return view('designv2/info');
-})->name('info');
+//Route::get('info', function () {
+//    return view('designv2/info');
+//})->name('info');
 
-Route::get('loggert', function () {
-    return view('designv2/login2FA');
-})->name('loggert');
+Route::get('login2FA', [HomeController::class, 'login2FA'])->name('login2FA')->middleware('check.user');
+
+Route::get('info', [HomeController::class, 'info'])->name('info')->middleware('check.user');
+
 
 
 Route::get('profielfotoGravatar', [HomeController::class, 'profielfotoGravatar'])->name('profielfotoGravatar')->middleware('check.user');

@@ -390,8 +390,8 @@
                                 <td><input type="checkbox" id="test"<?php if($opening_date > $current_date ){?>checked<?php }?> onclick="return false;"></td>
                                 <td><a href="{{ route('seeCustomerDetail',$allegebruikers[$x]->userId) }}"><?php echo $newDate; ?></td>
                                 {{--            <td><a href="{{ route('createUserFactuursturen',$allegebruikers[$x]->userId) }}" value=<?php $count?>>Add</a>--}}
-                                <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
-                                <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geabonneerd == TRUE){?>checked<?php }?> onclick="return false;"></td>
+                                <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geverifieerd == TRUE){?><?php }?> onclick="return false;"></td>
+                                <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->geabonneerd == TRUE){?> checked   <?php }?> onclick="return false;"></td>
                                 <td><input type="checkbox" id="test"<?php if($allegebruikers[$x]->API == TRUE){?>checked<?php }?> onclick="return false;"></td>
                             </tr>
                         </div>
