@@ -170,7 +170,7 @@ class UserController extends Controller
                 $mailSender->resetPassword($passwordToken, $email);
                 $getUser->token = $passwordToken;
                 $getUser->save();
-                return back()->with(['succes'=> 'Als dit e-mailadres bekend is bij ons, is er een mail verzonden ']);
+                return back()->with(['succes'=> 'Als dit e-mailadres bekend is bij ons, is er een mail verzonden']);
             }
             else{
                 return back()->with(['succes'=> "Als dit e-mailadres bekend is bij ons, is er een mail verzonden"]);
