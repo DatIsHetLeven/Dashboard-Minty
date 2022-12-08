@@ -243,6 +243,7 @@ class UserController extends Controller
         $statusdetails->factuurId = $FsUser->clientnr;
         $statusdetails->save();
 
+
     }
 
     //Verwijder gebruiker uit alle tables

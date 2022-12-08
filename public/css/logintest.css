@@ -1,8 +1,13 @@
 body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    gap: 40px;
     font-family: sans-serif;
-    background: #ffffff;
-    background-color: #77BFA0 !important;
-  }
+    background: #40CCA4;
+}
 
   label{
     color: #888888;
@@ -29,49 +34,46 @@ body {
   }
 
   .formlogin {
-    width: 350px;
-    /*height: 250px;*/
+    max-width: 350px;
     background: white;
-    margin: 50px auto;
-    padding: 30px 20px;
-      paddinf-top: 5px;
-
-      background: #ffffffA1;
-
-
-    border-radius: 7px;
-    box-shadow: 5px 10px 5px #888888;
-
-
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-
+    padding: 40px 40px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px 0px rgb(1 51 36 / 18%);
+    box-sizing: border-box;
+    width: 100%;
+}
+.account-aanmaken-link {
+  text-align: center;
+  margin-top: 20px;
+}
+.formlogin form {
+  margin: 0;
+}
   label {
     font-size: 11pt;
   }
 
   .form_login {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px;
-    font-size: 11pt;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-
+      width: 100%;
+      line-height: 1em;
+      height: 45px;
+      padding: 0px 15px;
+      border: 1px solid #d2d2d2;
+      border-radius: 4px;
+      margin-bottom: 20px;
   }
 
   .buttonlogin {
-    background: #ff6600;
-      background: #7dcaa9;
+    background: #FF6C00;
     color: white;
-    font-size: 11pt;
-    margin-left: 10%;
-    width: 80%;
+    font-size: 14px;
+    width: 100%;
     border: none;
     border-radius: 25px;
     padding: 10px 20px;
-  }
+    cursor: pointer;
+}
 
   .link {
     color: rgb(170, 167, 164);
@@ -82,8 +84,10 @@ body {
   #resetpass{
     /*color: #ff6600;*/
       color: #77BFA0;
-    float: right;
-
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: right!important;
+    display: inline-block;
   }
 
 /* De registreren voor het registreren  */
@@ -128,6 +132,9 @@ body {
     transition: opacity 500ms;
     visibility: hidden;
     opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .overlay:target {
     visibility: visible;
@@ -135,10 +142,8 @@ body {
   }
 
   .registreren {
-    margin: 70px auto;
-    padding-top: 5px;
     background: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 700px;
     position: relative;
     /* transition: all 5s ease-in-out; */
@@ -149,6 +154,13 @@ body {
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
   }
+  .registreren h1 {
+    text-align: left;
+    color: #f60;
+    margin: 0 0 20px 0;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
   .registreren .close {
     position: absolute;
     top: 20px;
@@ -171,32 +183,54 @@ body {
   body{padding:0;margin:0;}
 
   .userinput{
-    display: flex;
+    display: grid;
     padding: 5%;
     width: 80%;
   }
 
-  #userInput{
-    height: 40px;
-    width: 250px;
-    margin-left: 25px;
-  }
+  .userinput {
+    display: grid;
+    padding: 5%;
+    width: 80%;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
 
-
+span.label-span {
+  margin-bottom: 10px!important;
+  display: block;
+}
   #buttonLogin{
     background-color: #ff6600;
     color: #ffffff;
     border-radius: 25px;
     height: 35px;
-    width: 250px;
     margin: 0;
-    position: absolute;
-    bottom: 2%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    margin-left: 330px;
+    border: 0;
+    padding: 00px 20px;
+    cursor: pointer;
   }
-
+  .last-fields {
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .userinput #userInput {
+    width: 100%;
+    line-height: 1em;
+    height: 45px;
+    padding: 0px 15px;
+    border: 1px solid #d2d2d2;
+    border-radius: 4px;
+  }
+  .footer-buttons {
+    margin-top: 30px;
+  }
+  .algemene-voorwaarden {
+    font-size: 12px;
+    color: rgb(91, 91, 91);
+    margin-top: 10px;
+  }
   @media screen and (max-width: 700px){
     .box{
       width: 70%;
@@ -255,5 +289,8 @@ body {
 
   a{
     text-decoration: none;
+  }
+  .minty-logo {
+    max-width: 150px;
   }
 
