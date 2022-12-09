@@ -286,6 +286,11 @@ kbd {
   background-color: #212529;
   border-radius: 0.2rem;
 }
+.welkom {
+  font-size: 12px;
+  color: #858585;
+  margin-bottom: -3px;
+}
 kbd kbd {
   padding: 0;
   font-size: 1em;
@@ -11481,7 +11486,7 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #212529;
+  background-color: #40CCA4;;
   color: rgba(255, 255, 255, 0.5);
 }
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {

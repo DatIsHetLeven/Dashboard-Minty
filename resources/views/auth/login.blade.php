@@ -15,8 +15,7 @@
 
   @if(\Session::has('succes'))
     <p class="succes">
-      {{\Session::get('succes')}}
-    </p>
+      {{\Session::get('succes')}}\
 
   @endif
       @if(\Session::has('errorVoorwaarden'))
@@ -58,7 +57,7 @@
 
                 <input type="text" id="userInput" name="userName" placeholder='Naam' required autocomplete="email"><br><br>
 
-                <input type="number" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer' required><br><br>
+                <input type="tel" id="userInput" name="Telefoonnummer" placeholder='Telefoonnummer' required><br><br>
 
                 <input type="text" id="userInput" name="Bedijfsnaam" placeholder='Bedijfsnaam' required><br><br>
 

@@ -70,7 +70,7 @@
         width: var(--page-header-width);
         color: var(--page-header-txtColor);
         /*background: var(--page-header-bgColor);*/
-        background-color: #212529;
+        background-color: #40CCA4;
     }
 
     .page-header nav {
@@ -107,6 +107,7 @@
         flex-direction: column;
         flex-grow: 1;
         margin-top: 35px;
+        margin-bottom: 0px!important;
     }
 
     .page-header .admin-menu li:nth-last-child(2) {
@@ -290,7 +291,6 @@
             <div class="rechts">
                 <?php echo $_COOKIE['userName']; ?><br>
                 Online <i class="fas fa-dot-circle fa-1x" style="color:green"></i>
-
             </div>
         </div>
 

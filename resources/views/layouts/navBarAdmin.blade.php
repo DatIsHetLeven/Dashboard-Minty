@@ -66,11 +66,16 @@
         right: 0;
         bottom: 0;
         overflow: auto;
-        padding-top: 20px;
+        padding: 20px;
         width: var(--page-header-width);
         color: var(--page-header-txtColor);
         /*background: var(--page-header-bgColor);*/
-        background-color: #212529;
+        background-color: #446058;
+    }
+
+    .page-header h3 img {
+        max-width: 100%;
+        margin-bottom: 10px;
     }
 
     .page-header nav {
@@ -107,6 +112,8 @@
         flex-direction: column;
         flex-grow: 1;
         margin-top: 35px;
+        padding-left: 0px;
+        margin-bottom: 0;
     }
 
     .page-header .admin-menu li:nth-last-child(2) {
@@ -130,11 +137,11 @@
     }
 
     .page-header .admin-menu .menu-heading h3 {
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        font-size: 12px;
+        font-size: 15px;
         margin-top: 12px;
-        color: var(--page-header-headingColor);
+        color: #fff;
+        opacity: 0.5;
+
     }
 
     .page-header .admin-menu svg {
@@ -155,8 +162,7 @@
     .page-header .admin-menu a:focus,
     .page-header .admin-menu button:hover,
     .page-header .admin-menu button:focus {
-        background: var(--page-header-bgColor-hover);
-        color: var(--blue);
+        color: #02F8B2;
         outline: none;
     }
 
@@ -164,13 +170,11 @@
     .page-header .admin-menu a:focus svg,
     .page-header .admin-menu button:hover svg,
     .page-header .admin-menu button:focus svg {
-        fill: var(--blue);
+        fill: #02F8B2;
     }
 
 .userDetails{
     width: 100%;
-    height: 80px;
-    background-color: rgb(96,96,96);
 }
 
 
@@ -260,9 +264,6 @@
 </svg>
 <header class="page-header">
     <nav>
-        <a href="#0" aria-label="forecastr logo" class="logo">
-            <br>
-        </a>
         <style>
             #minty{
                 color: #00bb00;
@@ -270,11 +271,23 @@
             #Media{
                 color: #FFFFFF;
             }
-            .rechts{
-                position: relative;
-                margin-left: 40%;
-                top: -90%;
-                font-size: 12px;
+            .rechts {
+
+            }
+            .userDetails.navig {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                background-color: #fff;
+                border-radius: 10000px;
+                padding: 7px;
+                gap: 10px;
+                color: #000;
+                font-size: 14px; 
+            }
+            .userDetails.navig img {
+                max-width: 40px;
+                border-radius: 1000px;
             }
             </style>
 
@@ -285,13 +298,14 @@
                 <use xlink:href="#down"></use>
             </svg>
         </button>
-        <div class="userDetails">
+        <div class="userDetails navig">
             <?php         if (!isset($_COOKIE['userName']))return route('welcome');?>
             <img src="{{ route('profielfotoGravatar') }}">
             <?php ?>
             <div class="rechts">
+                <div class="welkom">Welkom,</div>
                 <?php echo $_COOKIE['userName']; ?><br>
-                Online <i class="fas fa-dot-circle fa-1x" style="color:green"></i>
+
 
             </div>
         </div>
