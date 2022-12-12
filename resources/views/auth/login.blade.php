@@ -69,12 +69,12 @@
                 <input type="text" id="userInput" name="Plaats" placeholder='Plaats' required><br><br>
             </div>
 
-        
+
 
           <div class="last-fields">
              <label><input type="radio" name="land" checked <?php if (isset($land) && $land=="nl") echo "checked";?> value="nl">Nederland</label>
               <label><input type="radio" name="land" <?php if (isset($land) && $land=="be") echo "checked";?> value="be">Belgie</label>
-                    
+
 
               <div class="algemene-voorwaarden"><input type="checkbox" name="checkbox_algemenevoorwaarden" value="checkox_value">Ik heb de <a target="_blank" href="https://mintymedia.nl/algemene-voorwaarden/"> algemene voorwaarden </a> van de website gelezen en ga hiermee akkoord.</div>
 

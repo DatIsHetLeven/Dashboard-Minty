@@ -325,6 +325,7 @@
                                            <?php if (isset($land) && $land=="be") echo "checked";?>
                                            value="be">Belgie
                             </div>
+                                <input type="hidden" name="checkbox_algemenevoorwaarden" value="checkox_value" checked>
 
 
                                 <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>
