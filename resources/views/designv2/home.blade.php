@@ -1,10 +1,6 @@
 @extends( ($userByCookie->rol === 1) ? 'layouts.navBarAdmin' :  'layouts.navBar')
 <title>Home</title>
 @section('content')
-    <style>
-
-    </style>
-
 
 
 
@@ -22,35 +18,47 @@
             <div class="button-footer">
             <a href="{{Storage::disk('public')->url("pluginmanager/bolconnector/minty-bolconnector-plugin.zip")}}"><button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Nu downloaden</button></a>
             </div>
-        @if(\Session::has('error'))
-                <p class="error">
-                    {{\Session::get('error')}}
-                </p>
-            @endif<p>
-                <?php
-                $geldig = $userByCookie->geldig;
-                $dayVandaag = date('Y-m-d');
 
-                //Laat deze melding alleen zien voor niet Admin!
-                if(($userByCookie->rol) ==3 and($geldig != null) ){
-
-
-                    // Als koppeling niet meer geldig is
-                if($geldig < $dayVandaag){
-                    ?> Uw proefperiode van 14 dagen zijn voorbij.<br>
+            <div class="error">
+                Uw proefperiode van 14 dagen zijn voorbij.<br>
                 Wilt u gebruik blijven maken van de koppeling ?<br>
-                    <a href="{{ route('CreateMandate') }}">Abonneer hier nu!
-                         <button type="submit">Abonneer nu!</button>
-                    </a><?php
-                    }
-                        // Als koppeling nog geldig is maar klant niet geverf is
-                    if($geldig > $dayVandaag){
-                    if(!$userByCookie->geverifieerd === 1){
-                        ?> Uw roefperiode loopt binnenkort af.<br>
-                Wilt u gebruik blijven maken van de koppeling ?<br>
-                <a href="#">Abonneer hier nu!</a><?php
-                                                 }}
-                                                 }?>
+                <div class="button-footer">
+                <a href="{{ route('CreateMandate') }}">
+                    <button class="btn" type="submit">Abonneer nu!</button>
+                </a>
+                </div>
+            </div>
+{{--tijdelijk eruit gehald om te testen!!!!!!!!!!!!!!!!! Niet verwijderen--}}
+
+{{--        @if(\Session::has('error'))--}}
+{{--                <p class="error">--}}
+{{--                    {{\Session::get('error')}}--}}
+{{--                </p>--}}
+{{--            @endif<p>--}}
+{{--                <?php--}}
+{{--                $geldig = $userByCookie->geldig;--}}
+{{--                $dayVandaag = date('Y-m-d');--}}
+
+{{--                //Laat deze melding alleen zien voor niet Admin!--}}
+{{--                if(($userByCookie->rol) ==3 and($geldig != null) ){--}}
+
+
+{{--                    // Als koppeling niet meer geldig is--}}
+{{--                if($geldig < $dayVandaag){--}}
+{{--                    ?> Uw proefperiode van 14 dagen zijn voorbij.<br>--}}
+{{--                Wilt u gebruik blijven maken van de koppeling ?<br>--}}
+{{--                    <a href="{{ route('CreateMandate') }}">Abonneer hier nu!--}}
+{{--                         <button type="submit">Abonneer nu!</button>--}}
+{{--                    </a> <?php--}}
+{{--                    }--}}
+{{--                        // Als koppeling nog geldig is maar klant niet geverf is--}}
+{{--                    if($geldig > $dayVandaag){--}}
+{{--                    if(!$userByCookie->geverifieerd === 1){ ?>--}}
+{{--                         Uw roefperiode loopt binnenkort af.<br>--}}
+{{--                Wilt u gebruik blijven maken van de koppeling ?<br>--}}
+{{--                <a href="#">Abonneer hier nu!</a> <?php--}}
+{{--                                                 }}--}}
+{{--                                                 } ?>--}}
         </div>
 
         <div class="box">
@@ -66,7 +74,7 @@
             <h4>Hulp nodig bij het instellen?</h4>
             <p>Om deze koppeling te kunnen gebruiken moeten een aantal dingen geinstalleerd en ingesteld worden
             Laten we samen door deze stappen lopen!</p>
-            
+
             <div class="button-footer">
                 <a href="{{route('info')}}"><button class="btn btn-primary">Zelf studie</button></a>
                 <a href="mailto:support@mintymedia.nl" style="color: #FF6C00 !important"> <button class="btn btn-primary">Support</button></a>

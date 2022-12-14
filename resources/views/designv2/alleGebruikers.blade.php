@@ -17,6 +17,7 @@
         </script>
 
         <script src="{{ asset('js/popupToevoegen.js') }}"></script>
+
         <style>
 
             .table-responsive {
@@ -181,20 +182,26 @@
                 top: 0;
                 left: 0;
                 background: rgba(0, 0, 0, 0.7);
-                z-index: 1;
+                z-index: 100;
                 display: none;
+                align-items: center;
+                justify-content: center;
+                padding-left: 220px;
+            }
+            .close-on-overlay {
+                height: 100vh;
+                width: 100vw;
+                position: fixed;
+                top: 0;
+                left: 0; 
             }
             .popUp .content {
                 background: #fff;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(0);
-                height: 550px;
-                width: 750px;
-                z-index: 2;
+                width: 100%;
+                max-width: 700px;
+                z-index: 20000;
                 text-align: center;
-                padding: 20px;
+                padding: 50px;
                 box-sizing: border-box;
                 border-radius: 10px;
             }
@@ -215,12 +222,13 @@
                 cursor: pointer;
             }
             .popUp.active .overlay {
-                display: block;
+                display: flex;
             }
             .popUp.active .content {
-                transition: all 300ms ease-in-out;
-                transform: translate(-50%, -50%) scale(1);
+                transform: scale(1);
             }
+
+            
 
             @media screen and (max-width: 1770px){
                 .container-xl{
@@ -245,94 +253,69 @@
 
 
         <div class="popUp" id="popUp-1">
-            <div class="overlay" onclick="show();"></div>
+            <div class="overlay">
+                <div class="close-on-overlay" onclick="show();"></div>
             <div class="content">
                 <div class="close-btn" onclick="show();">&times;</div>
         <!-- Begin van de popup -> gebruiker toevoegen -->
         <form method="POST" action="{{ route('create_user_check') }}" class="formRegister">
             @csrf
-            <div class="col-xl-10">
-                <div class="card mb-7">
-                    <div class="card-header">Niuewe gebruiker</div>
-                    <div class="card-body">
+
+            <h1 class="registreren">Registreren</h1>
                         <form>
-                            <!-- Form Row        -->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (organization name)-->
-                                <div class="col-md-6">
-                                    <input class="form-control" id="inputOrgName" type="text" name="email" placeholder='Email' required autocomplete="email">
-                                </div>
-                                <!-- Form Group (location)-->
-                                <div class="col-md-6">
-                                    <input class="form-control" id="inputLocation" type="text" name="userName" placeholder='Naam' required autocomplete="email">
-                                </div>
+                        <div class="form-flex">
+                            <div class="form-left">
+                            
+                                        <input class="form-control" id="inputOrgName" type="text" name="email" placeholder='Email' required autocomplete="email">
+                                
+                                        <input class="form-control" id="inputLocation" type="text" name="userName" placeholder='Naam' required autocomplete="email">
+                                
+                                        <input class="form-control" id="inputFirstName" type="text" name="Telefoonnummer" placeholder='Telefoonnummer' required>
+                            
+                                        <input class="form-control" id="inputLastName" type="text" name="Bedijfsnaam" placeholder='Bedijfsnaam' required>
+                                        
+                                        <input class="form-control" id="inputOrgName" type="text" name="BTW-Nummer" placeholder='BTW-Nummer' required>
+                                
                             </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (first name)-->
-                                <div class="col-md-6">
-                                    <input class="form-control" id="inputFirstName" type="text" name="Telefoonnummer" placeholder='Telefoonnummer' required>
-                                </div>
-                                <!-- Form Group (last name)-->
-                                <div class="col-md-6">
-                                    <input class="form-control" id="inputLastName" type="text" name="Bedijfsnaam" placeholder='Bedijfsnaam' required>
-                                </div>
-                            </div>
-                            <!-- Form Row        -->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (organization name)-->
-                                <div class="col-md-6">
-                                    <input class="form-control" id="inputOrgName" type="text" name="BTW-Nummer" placeholder='BTW-Nummer' required>
-                                </div>
-                                <!-- Form Group (location)-->
-                                <div class="col-md-6">
-                                    <input class="form-control" id="inputLocation" type="text" name="Adres" placeholder='Adres+Huisnummer' required>
-                                </div>
-                            </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (phone number)-->
-                                <div class="col-md-6">
-                                    <input class="form-control" id="inputPhone" type="text" name="Postcode" placeholder='Postcode' required>
-                                </div>
-                                <!-- Form Group (birthday)-->
-                                <div class="col-md-6">
-                                    <input class="form-control" id="inputBirthday" type="text" name="Plaats" placeholder='Plaats' required>
-                                </div>
-                                <!-- Form Row-->
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (phone number)-->
-                                    <div class="col-md-6">
+                            <div class="form-right">     
+                                
+                                        <input class="form-control" id="inputLocation" type="text" name="Adres" placeholder='Adres+Huisnummer' required>
+                                
+                                        <input class="form-control" id="inputPhone" type="text" name="Postcode" placeholder='Postcode' required>
+                                
+                                        <input class="form-control" id="inputBirthday" type="text" name="Plaats" placeholder='Plaats' required>
+                                
                                         <input class="form-control" id="inputPhone" type="text" name="FactuurId" placeholder='FactuursturenId' required>
-                                    </div>
-                                    <!-- Form Group (birthday)-->
-                                    <div class="col-md-6">
-                                        <br><label for="color">functie:</label>
+                                    <div class="land-switcher">
+                                       
+                                        <label><input type="radio" name="land" checked
+                                           <?php if (isset($land) && $land=="nl") echo "checked";?>
+                                           value="nl">Nederland</label>
+                                        
+                                        <label>   <input type="radio" name="land"
+                                           <?php if (isset($land) && $land=="be") echo "checked";?>
+                                           value="be">Belgie     </label>
+                                           
+                                     </div>
+                            </div>
+                        </div>
+                                    
+                                    <br><label for="color">functie:</label>
                                         <select name="userRole" id="color">
                                             <option value="">--- Kies een functie ---</option>
                                             <option value="Admin">Admin</option>
                                             <option value="Gebruiker" selected>Klant</option>
                                             <option value="Proefaccount" selected>Klant(14 dagen proef)</option>
                                         </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <input type="radio" name="land" checked
-                                           <?php if (isset($land) && $land=="nl") echo "checked";?>
-                                           value="nl">Nederland
-                                    <input type="radio" name="land"
-                                           <?php if (isset($land) && $land=="be") echo "checked";?>
-                                           value="be">Belgie
-                            </div>
+                                
                                 <input type="hidden" name="checkbox_algemenevoorwaarden" value="checkox_value" checked>
 
-
-                                <button id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>
-                        </form>
+                                <div class="button-footer">
+                                <button class="btn btn-primary" id="buttonLogin" name="buttonregister" type="submit"  value="Registreren">{{ __('Registreren') }}</button><br><br>
+                                </div>
+                            </form>
                     </div>
                 </div>
-            </div>
         </form>
         </div>
         </div>
@@ -341,26 +324,25 @@
 
 
 
-        <div class="container-xl">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <h2>Alle gebruikers</h2>
-                            </div>
-                            <div class="col-sm-7">
-                                <a href="#" class="btn btn-secondary" onclick="show()"><i class="material-icons">&#xE147;</i><span>Voeg gebruiker toe</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <table class="table table-striped table-hover">
+        <div class="main-grid-min-nav">
+        <div class="wrapped-container">
+        <div class="WelkomBanner plusbutton">
+        <div class="left">
+        <h2>Gebruikers</h2>
+        <p><span class="welkomBol">Zie alle gebruikers of voeg nieuwe toe</span></p>
+        </div>
+        <div class="right">
+        <a href="#" onclick="show()"><button class="btn btn-primary">Voeg gebruiker toe</button></a>
+        </div>    
+        </div>
+                <div class="table-wrapper box">
+                    <table class="table table-striped table-hover user-table">
                         <thead>
                         <tr>
                             <th>Gebruiker</th>
                             <th>Bedrijfsnaam</th>
                             <th>Email</th>
-                            <th>ActiefAccount</th>
+                            <th>Account</th>
                             <th>Eind</th>
                             <th>Geverifieerd</th>
                             <th>Geabonneerd</th>

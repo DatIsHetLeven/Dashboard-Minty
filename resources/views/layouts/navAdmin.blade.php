@@ -1,17 +1,6 @@
 <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <style>
-    #lowerleft
-    {
-        margin-bottom: 1px;
-        margin-left : 1px;
-        width: 200px;
-        height: 200px;
-        background-color: red;
-        color: green;
-        position: fixed;
-        bottom: 0;
-    }
 </style>
 
 
@@ -58,7 +47,9 @@
     <?php if (isset($_COOKIE['adminSessie'])){ ?>
 
     <div id="lowerleft">
-        <a href="{{ route('herstellenEigenAccountInlog') }}">U bent ingelogd als een klant. Druk hier om terug te gaan naar je eigen account!</a>
+        <h4>Beste admin,</h4>
+        Je bent ingelogd als een klant. Terug naar eigen account?
+        <a href="{{ route('herstellenEigenAccountInlog') }}"><button class="btn">Wissel terug</button></a>
     </diV>
     <?php } ?>
 </div>

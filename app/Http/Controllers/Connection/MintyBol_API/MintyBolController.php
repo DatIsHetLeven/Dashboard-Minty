@@ -137,8 +137,11 @@ class MintyBolController extends Controller
                 "userId" => $bolUserId,
                 "identifier" => $identifier,
                 "settings" => [
-                    "stockSync" => "",
-                    "priceSync" => "",
+                    "syncStock" => "false",
+                    "priceSync" => "false",
+                    "bolToWooSync" => "false",
+                    "wooToBolSync" => "false",
+                    "managedByRetailer" => "false",
                 ]
             ]);
             $this->headers['Content-Type'] = 'application/json';
@@ -219,8 +222,8 @@ class MintyBolController extends Controller
         $email = "";
         $status = "";
 
-        if (isset($_POST['phoneSetting']))$phone = "123456789";
-        if (isset($_POST['emailSetting']))$email = "Mintymail@Media.nl";
+        if (isset($_POST['phoneSetting']))$phone = "0612345678";
+        if (isset($_POST['emailSetting']))$email = "bol@mintyconnect.nl";
         if (isset($_POST['statusSetting']))$status = "Default";
 
 
@@ -245,11 +248,17 @@ class MintyBolController extends Controller
         $loggedUser = $homeController->renderPersonalDetails();
         $bolUser = $homeController->getUserBolId($loggedUser->userId);
 
-        $stock = '';
-        $price = '';
+        $stock = false;
+        $price = false;
+        $bolToWooSync = false;
+        $wooToBolSync = false;
+        $managedByRetailer = false;
 
-        if (isset($_POST['stockSetting']))$stock = "true";
-        if (isset($_POST['priceSetting']))$price = "true";
+        if (isset($_POST['stockSetting']))$stock = true;
+        if (isset($_POST['priceSetting']))$price = true;
+        if (isset($_POST['bolToWooSync']))$bolToWooSync = true;
+        if (isset($_POST['wooToBolSync']))$wooToBolSync = true;
+        if (isset($_POST['managedByRetailer']))$managedByRetailer = true;
 
 
 
@@ -257,8 +266,11 @@ class MintyBolController extends Controller
             "userId"=> $bolUser->userIdApi,
             "identifier"=> "bol.mintyconnect.product.management",
             "settings"=> [
-                "stockSync"=> $stock,
-                "priceSync"=> $price,
+                "syncStock" => $stock,
+                "priceSync" => $price,
+                "bolToWooSync" => $bolToWooSync,
+                "wooToBolSync" => $wooToBolSync,
+                "managedByRetailer" => $managedByRetailer,
             ]
         ]);
         //dd($body);

@@ -11,41 +11,6 @@
         border-color: #BA68C8
     }
 
-    .profile-button {
-        background-color: #0a58ca;
-        box-shadow: none;
-        border: none
-    }
-
-    .profile-button:hover {
-        background: #682773
-    }
-
-    .profile-button:focus {
-        background: #682773;
-        box-shadow: none
-    }
-
-    .profile-button:active {
-        background: #682773;
-        box-shadow: none
-    }
-
-    .back:hover {
-        color: #682773;
-        cursor: pointer
-    }
-
-    .labels {
-        font-size: 11px
-    }
-
-    .add-experience:hover {
-        background: #BA68C8;
-        color: #fff;
-        cursor: pointer;
-        border: solid 1px #BA68C8
-    }
     .error{
         color: red;
     }
@@ -62,7 +27,12 @@
     }
 </style>
 
-
+<div class="main-grid-min-nav">
+    <div class="wrapped-container">
+    <div class="WelkomBanner">
+        <h2>Instellingen</h2>
+        <p><span class="welkomBol">Dit zijn je instelling omtrent de koppeling</span></p>
+    </div>
 
 <section class="page-content">
     <div class="container rounded bg-white mt-5 mb-5">
@@ -98,7 +68,8 @@
                     <option value="be">Belgium</option>
                     <option value="nl-be">Netherlands & Belgium</option>
                 </select>
-                    <br><a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Maak bol account aan</button></a>
+                        <a href="https://partner.bol.com/sdd/preferences/services/api">Haal hier uw gegevens op</a>
+                        <br><a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Maak bol account aan</button></a>
                     </form>
                 </div></div>
 {{--            Woo koppeling--}}
@@ -225,6 +196,8 @@
     </div>
     </div>
 </section>
+
+                                </div></div>
 
 
 

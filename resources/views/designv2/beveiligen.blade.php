@@ -3,8 +3,6 @@
 @section('content')
 
     <style>
-
-
         * { box-sizing: border-box; }
 
         body {
@@ -39,9 +37,6 @@
 
         }
 
-
-
-
         @media screen and (max-width: 980px) {
             .columns .column {
                 margin-bottom: 5px;
@@ -69,7 +64,7 @@
                 margin-left: 15%;
             }
         }
-        </style>
+    </style>
 
     <div class="wrapper">
 
@@ -91,6 +86,12 @@
                 <h2>Verander je wachtwoord</h2>
                 <form method="POST" action="{{ route('veranderWachtwoordLogged',$userByCookie->userId) }}" >
                 @csrf
+                    <p class="error">
+                        Dit is een error testbericht :))))))))))))))))))))))))))))))))))))
+                    </p>
+                    <p class="succes">
+                        Dit is een succesvol testbericht :(((((((((((((((((((((((
+                    </p>
                                             @if(\Session::has('error'))
                                                 <p class="error">
                                                     {{\Session::get('error')}}

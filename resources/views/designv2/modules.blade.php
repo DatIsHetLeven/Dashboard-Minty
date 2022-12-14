@@ -23,7 +23,7 @@
             margin-left: 20% !important;
         }
     }
-    </style>
+</style>
 
 
     <div class="container-xl px-4 mt-4">

@@ -5,6 +5,7 @@
   }
   body {
     background-color: #40CCA4;
+    font-family: "Lato", sans-serif;
   }
   .main-grid-min-nav {
     padding-left: 220px;
@@ -38,6 +39,9 @@ span.welkomBol {
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+.btn-danger {
+    background-color: #dc3545!important;
 }
 span.status-circel {
     width: 12px;
@@ -101,7 +105,7 @@ button {
     font-size: 14px;
     border-radius: 25px!important;
     padding: 10px 20px;
-    cursor: pointer; 
+    cursor: pointer;
     border: 0!important;
 }
 
@@ -137,26 +141,179 @@ button {
 
 }
 
-#lowerleft
-{
-    margin-bottom: 1px;
-    margin-left : 10px;
-    margin-bottom: 100px;
-    width: 200px;
-    height: 150px;
-    background-color: red;
-    color: green;
-    position: fixed;
-    bottom: 0;
-    border-radius: 15px;
-    text-align: center;
-
-    border: 1px solid #3498db;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+.error button.btn {
+    background-color: #fff!important;
+    color: #446058;
 }
 
-
-
-
-
-
+#lowerleft {
+    width: 180px;
+    color: rgb(136, 136, 136);
+    position: fixed;
+    bottom: 20px;
+    padding: 20px 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 400;
+    left: 20px;
+    
+}
+#lowerleft h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #212529
+}
+#lowerleft button.btn {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #747474;
+    background-color: #d3d3d3!important;
+}
+.header-users {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+    gap: 50px;
+    margin-bottom: 30px;
+}
+.header-users h4 {
+    margin: 0!important
+}
+tbody, td, tfoot, th, thead, tr {
+    border: 0px 0xp 1px 0px solid!important;
+    border-color: #ccc!important;
+    font-size: 15px;
+}
+.table {
+    margin: 0;
+}
+table *,
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background: transparent!important;
+    --bs-table-accent-bg: transparent;
+    font-weight: 400!important;
+}
+table.table a {
+    color: #212529!important;
+}
+.user-table input[type="checkbox"],
+.wwrapper-stattussen input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+    border-radius: 100px;
+    appearance: none;
+    background-color: #dc3545!important;
+    margin: auto;
+    display: block;
+}
+.WelkomBanner.plusbutton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.WelkomBanner.plusbutton p {
+    margin: 0;
+}
+.user-table input[type="checkbox"]:checked,
+.wwrapper-stattussen input[type="checkbox"]:checked  {
+    background-color: #1bbd8e!important;
+}
+.error {
+    padding: 20px;
+    background-color: #dc3545;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+.form-left, .form-right {
+    width: 100%;
+    gap: 18px;
+    display: flex;
+    flex-direction: column;
+}
+.form-left input[type="text"], .form-right input[type="text"] {
+    width: 100%;
+    line-height: 1em;
+    height: 45px;
+    padding: 0px 15px;
+    border: 1px solid #d2d2d2;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.succes {
+    padding: 20px;
+    background-color: #1bbd8e;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+.form-flex {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 20px;
+}
+.land-switcher {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.land-switcher label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+h1.registreren {
+    text-align: left;
+    color: #f60;
+    margin: 0 0 20px 0;
+    font-weight: bold;
+}
+.card {
+    border-radius: 10px;
+    border: 0!important;
+    box-shadow: 0px 3px 10px 0px rgb(1 51 36 / 18%);
+    overflow: hidden;;
+}
+.card-header {
+    padding: 10px 15px;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 0px solid rgba(0,0,0,.125);
+    font-size: 15px;
+    color: #446058;
+    background-color: #f2f2f2;
+}
+.wwrapper-stattussen {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap: 15px;
+    font-size: 14px;
+    align-items: flex-start;
+    padding: 30px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    max-width: 300px;
+}
+label.label-inputs {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #4a4a4a;
+}

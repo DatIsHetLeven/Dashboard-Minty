@@ -95,20 +95,43 @@
                         @csrf
                         <?php
                         $possibleSettingList = json_decode($singleModule->settings,true);
-                        //dd($singleModule->settings);
-                        $stockSyncSetting = $possibleSettingList['stockSync'];
+                        $stockSyncSetting = $possibleSettingList['syncStock'];
                         $priceSyncSetting= $possibleSettingList['priceSync'];
+                        $bolToWooSync = $possibleSettingList['bolToWooSync'];
+                        $wooToBolSync = $possibleSettingList['wooToBolSync'];
+                        $managedByRetailer = $possibleSettingList['managedByRetailer']
                         ?>
                         StockSync setting :
                         <label class="switch" >
-                            <input type="checkbox" value="stock" name='stockSetting' {{   (empty($stockSyncSetting)) ? '': "checked"   }}>
+                            <input type="checkbox" value="stock" name='stockSetting' {{   (($stockSyncSetting == false)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
                         <br><br><br>
 
                         PriceSync setting :
                         <label class="switch" >
-                            <input type="checkbox" value="price" name='priceSetting' {{   (empty($priceSyncSetting)) ? '': "checked"   }}>
+                            <input type="checkbox" value="price" name='priceSetting' {{   (($priceSyncSetting == false)) ? '': "checked"   }}>
+                            <span class="slider round"></span>
+                        </label>
+                        <br><br><br>
+
+                        bolToWooSync setting :
+                        <label class="switch" >
+                            <input type="checkbox" value="price" name='bolToWooSync' {{   (($bolToWooSync == false)) ? '': "checked"   }}>
+                            <span class="slider round"></span>
+                        </label>
+                        <br><br><br>
+
+                        wooToBolSync setting :
+                        <label class="switch" >
+                            <input type="checkbox" value="price" name='wooToBolSync' {{   (($wooToBolSync == false)) ? '': "checked"   }}>
+                            <span class="slider round"></span>
+                        </label>
+                        <br><br><br>
+
+                        managedByRetailer setting :
+                        <label class="switch" >
+                            <input type="checkbox" value="price" name='managedByRetailer' {{   (($managedByRetailer == false)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
                         <br><br><br>

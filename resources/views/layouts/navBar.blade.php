@@ -2,9 +2,10 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+<link href="{{ asset('css/navigatieBar.css') }}" rel="stylesheet">
 
 
-<style>
+<!-- <style>
     :root {
         --page-header-bgColor: #242e42;
         --page-header-bgColor-hover: #1d2636;
@@ -177,7 +178,7 @@
     }
 
 
-</style>
+</style> -->
 
 <svg style="display:none;">
     <symbol id="logo" viewBox="0 0 140 59">
@@ -263,34 +264,17 @@
 </svg>
 <header class="page-header">
     <nav>
-        <a href="#0" aria-label="forecastr logo" class="logo">
-            <br>
-        </a>
-        <style>
-            #minty{
-                color: #00bb00;
-            }
-            #Media{
-                color: #FFFFFF;
-            }
-            .rechts{
-                position: relative;
-                margin-left: 40%;
-                top: -90%;
-                font-size: 12px;
-            }
-        </style>
         <h3><img width="210" height="60" src="{{asset('img/logo.svg')}}"></h3>
         <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
             <svg width="20" height="20" aria-hidden="true">
                 <use xlink:href="#down"></use>
             </svg>
         </button>
-        <div class="userDetails">
+        <div class="userDetails navig">
             <img src="{{ route('profielfotoGravatar') }}">
             <div class="rechts">
+                <div class="welkom">Welkom,</div>
                 <?php echo $_COOKIE['userName']; ?><br>
-                Online <i class="fas fa-dot-circle fa-1x" style="color:green"></i>
             </div>
         </div>
 
@@ -366,7 +350,9 @@
 <?php if (isset($_COOKIE['adminSessie'])){ ?>
 
 <div id="lowerleft">
-    <a href="{{ route('herstellenEigenAccountInlog') }}">U bent ingelogd als een klant. Druk hier om terug te gaan naar je eigen account!</a>
+    <h4>Beste admin,</h4>
+    Je bent ingelogd als een klant. Terug naar eigen account?
+    <a href="{{ route('herstellenEigenAccountInlog') }}"><button class="btn">Wissel terug</button></a>
 </diV>
 <?php } ?>
 

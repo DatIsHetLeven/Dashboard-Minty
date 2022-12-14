@@ -2,184 +2,184 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+<link href="{{ asset('css/navigatieBar.css') }}" rel="stylesheet">
 
+{{--<style>--}}
+{{--    :root {--}}
+{{--        --page-header-bgColor: #242e42;--}}
+{{--        --page-header-bgColor-hover: #1d2636;--}}
+{{--        --page-header-txtColor: #dde9f8;--}}
+{{--        --page-header-headingColor: #7889a4;--}}
+{{--        --page-header-width: 220px;--}}
+{{--        --page-content-bgColor: #f0f1f6;--}}
+{{--        --page-content-txtColor: #171616;--}}
+{{--        --page-content-blockColor: #fff;--}}
+{{--        --white: #fff;--}}
+{{--        --black: #333;--}}
+{{--        --blue: #00b9eb;--}}
+{{--        --red: #ec1848;--}}
+{{--        --border-radius: 4px;--}}
+{{--        --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);--}}
+{{--        --switch-bgLightModeColor: #87cefa;--}}
+{{--        --switch-sunColor: gold;--}}
+{{--        --switch-moonColor: #f4f4f4;--}}
+{{--        --switch-bgDarkModeColor: #1f1f27;--}}
+{{--    }--}}
 
-<style>
-    :root {
-        --page-header-bgColor: #242e42;
-        --page-header-bgColor-hover: #1d2636;
-        --page-header-txtColor: #dde9f8;
-        --page-header-headingColor: #7889a4;
-        --page-header-width: 220px;
-        --page-content-bgColor: #f0f1f6;
-        --page-content-txtColor: #171616;
-        --page-content-blockColor: #fff;
-        --white: #fff;
-        --black: #333;
-        --blue: #00b9eb;
-        --red: #ec1848;
-        --border-radius: 4px;
-        --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
-        --switch-bgLightModeColor: #87cefa;
-        --switch-sunColor: gold;
-        --switch-moonColor: #f4f4f4;
-        --switch-bgDarkModeColor: #1f1f27;
-    }
+{{--    * {--}}
+{{--        padding: 0;--}}
+{{--        margin: 0;--}}
+{{--        box-sizing: border-box;--}}
+{{--    }--}}
 
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
+{{--    ul {--}}
+{{--        list-style: none;--}}
+{{--    }--}}
 
-    ul {
-        list-style: none;
-    }
+{{--    a,--}}
+{{--    button {--}}
+{{--        color: inherit;--}}
+{{--    }--}}
 
-    a,
-    button {
-        color: inherit;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-
-
-
-    svg {
-        display: block;
-    }
-
-    body {
-        font: 16px/1.5 "Lato", sans-serif;
-    }
-
-
-    /* HEADER STYLES
-    –––––––––––––––––––––––––––––––––––––––––––––––––– */
-    .page-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow: auto;
-        padding: 20px;
-        width: var(--page-header-width);
-        color: var(--page-header-txtColor);
-        /*background: var(--page-header-bgColor);*/
-        background-color: #446058;
-    }
-
-    .page-header h3 img {
-        max-width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .page-header nav {
-        display: flex;
-        flex-direction: column;
-        min-height: 100%;
-    }
-
-    .page-header .logo {
-        display: block;
-        margin: 0 37px;
-    }
-
-    .page-header .logo svg {
-        max-width: 120px;
-        fill: var(--white);
-    }
-
-    .page-header .toggle-mob-menu {
-        display: none;
-        margin-left: 5px;
-        padding: 4px;
-        background: var(--page-content-blockColor);
-        border-radius: var(--border-radius);
-    }
-
-    .page-header .toggle-mob-menu svg {
-        fill: var(--black);
-        transition: transform 0.2s;
-    }
-
-    .page-header .admin-menu {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        margin-top: 35px;
-        padding-left: 0px;
-        margin-bottom: 0;
-    }
-
-    .page-header .admin-menu li:nth-last-child(2) {
-        margin-bottom: 35px;
-    }
-
-    .page-header .admin-menu li:last-child {
-        margin-top: auto;
-        margin-bottom: 20px;
-    }
-
-    .page-header .admin-menu li > * {
-        width: 100%;
-        padding: 12px 15px;
-        padding-left: 0px !important;
-    }
-
-    .page-header .admin-menu .switcher {
-        display: inline-block;
-        width: auto;
-    }
-
-    .page-header .admin-menu .menu-heading h3 {
-        font-size: 15px;
-        margin-top: 12px;
-        color: #fff;
-        opacity: 0.5;
-
-    }
-
-    .page-header .admin-menu svg {
-        width: 20px;
-        height: 20px;
-        fill: var(--page-header-txtColor);
-        margin-right: 10px;
-    }
-
-    .page-header .admin-menu a,
-    .page-header .admin-menu button {
-        display: flex;
-        align-items: center;
-        font-size: 0.9rem;
-    }
-
-    .page-header .admin-menu a:hover,
-    .page-header .admin-menu a:focus,
-    .page-header .admin-menu button:hover,
-    .page-header .admin-menu button:focus {
-        color: #02F8B2;
-        outline: none;
-    }
-
-    .page-header .admin-menu a:hover svg,
-    .page-header .admin-menu a:focus svg,
-    .page-header .admin-menu button:hover svg,
-    .page-header .admin-menu button:focus svg {
-        fill: #02F8B2;
-    }
-
-.userDetails{
-    width: 100%;
-}
+{{--    a {--}}
+{{--        text-decoration: none;--}}
+{{--    }--}}
 
 
 
-</style>
+
+{{--    svg {--}}
+{{--        display: block;--}}
+{{--    }--}}
+
+{{--    body {--}}
+{{--        font: 16px/1.5 "Lato", sans-serif;--}}
+{{--    }--}}
+
+
+{{--    /* HEADER STYLES--}}
+{{--    –––––––––––––––––––––––––––––––––––––––––––––––––– */--}}
+{{--    .page-header {--}}
+{{--        position: fixed;--}}
+{{--        top: 0;--}}
+{{--        left: 0;--}}
+{{--        right: 0;--}}
+{{--        bottom: 0;--}}
+{{--        overflow: auto;--}}
+{{--        padding: 20px;--}}
+{{--        width: var(--page-header-width);--}}
+{{--        color: var(--page-header-txtColor);--}}
+{{--        /*background: var(--page-header-bgColor);*/--}}
+{{--        background-color: #446058;--}}
+{{--    }--}}
+
+{{--    .page-header h3 img {--}}
+{{--        max-width: 100%;--}}
+{{--        margin-bottom: 10px;--}}
+{{--    }--}}
+
+{{--    .page-header nav {--}}
+{{--        display: flex;--}}
+{{--        flex-direction: column;--}}
+{{--        min-height: 100%;--}}
+{{--    }--}}
+
+{{--    .page-header .logo {--}}
+{{--        display: block;--}}
+{{--        margin: 0 37px;--}}
+{{--    }--}}
+
+{{--    .page-header .logo svg {--}}
+{{--        max-width: 120px;--}}
+{{--        fill: var(--white);--}}
+{{--    }--}}
+
+{{--    .page-header .toggle-mob-menu {--}}
+{{--        display: none;--}}
+{{--        margin-left: 5px;--}}
+{{--        padding: 4px;--}}
+{{--        background: var(--page-content-blockColor);--}}
+{{--        border-radius: var(--border-radius);--}}
+{{--    }--}}
+
+{{--    .page-header .toggle-mob-menu svg {--}}
+{{--        fill: var(--black);--}}
+{{--        transition: transform 0.2s;--}}
+{{--    }--}}
+
+{{--    .page-header .admin-menu {--}}
+{{--        display: flex;--}}
+{{--        flex-direction: column;--}}
+{{--        flex-grow: 1;--}}
+{{--        margin-top: 35px;--}}
+{{--        padding-left: 0px;--}}
+{{--        margin-bottom: 0;--}}
+{{--    }--}}
+
+{{--    .page-header .admin-menu li:nth-last-child(2) {--}}
+{{--        margin-bottom: 35px;--}}
+{{--    }--}}
+
+{{--    .page-header .admin-menu li:last-child {--}}
+{{--        margin-top: auto;--}}
+{{--        margin-bottom: 20px;--}}
+{{--    }--}}
+
+{{--    .page-header .admin-menu li > * {--}}
+{{--        width: 100%;--}}
+{{--        padding: 12px 15px;--}}
+{{--        padding-left: 0px !important;--}}
+{{--    }--}}
+
+{{--    .page-header .admin-menu .switcher {--}}
+{{--        display: inline-block;--}}
+{{--        width: auto;--}}
+{{--    }--}}
+
+{{--    .page-header .admin-menu .menu-heading h3 {--}}
+{{--        font-size: 15px;--}}
+{{--        margin-top: 12px;--}}
+{{--        color: #fff;--}}
+{{--        opacity: 0.5;--}}
+
+{{--    }--}}
+
+{{--    .page-header .admin-menu svg {--}}
+{{--        width: 20px;--}}
+{{--        height: 20px;--}}
+{{--        fill: var(--page-header-txtColor);--}}
+{{--        margin-right: 10px;--}}
+{{--    }--}}
+
+{{--    .page-header .admin-menu a,--}}
+{{--    .page-header .admin-menu button {--}}
+{{--        display: flex;--}}
+{{--        align-items: center;--}}
+{{--        font-size: 0.9rem;--}}
+{{--    }--}}
+
+{{--    .page-header .admin-menu a:hover,--}}
+{{--    .page-header .admin-menu a:focus,--}}
+{{--    .page-header .admin-menu button:hover,--}}
+{{--    .page-header .admin-menu button:focus {--}}
+{{--        color: #02F8B2;--}}
+{{--        outline: none;--}}
+{{--    }--}}
+
+{{--    .page-header .admin-menu a:hover svg,--}}
+{{--    .page-header .admin-menu a:focus svg,--}}
+{{--    .page-header .admin-menu button:hover svg,--}}
+{{--    .page-header .admin-menu button:focus svg {--}}
+{{--        fill: #02F8B2;--}}
+{{--    }--}}
+
+{{--.userDetails{--}}
+{{--    width: 100%;--}}
+{{--}--}}
+
+
+
+{{--</style>--}}
 <svg style="display:none;">
     <symbol id="logo" viewBox="0 0 140 59">
         <g>
@@ -264,32 +264,6 @@
 </svg>
 <header class="page-header">
     <nav>
-        <style>
-            #minty{
-                color: #00bb00;
-            }
-            #Media{
-                color: #FFFFFF;
-            }
-            .rechts {
-
-            }
-            .userDetails.navig {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                background-color: #fff;
-                border-radius: 10000px;
-                padding: 7px;
-                gap: 10px;
-                color: #000;
-                font-size: 14px; 
-            }
-            .userDetails.navig img {
-                max-width: 40px;
-                border-radius: 1000px;
-            }
-            </style>
 
 
         <h3><img width="210" height="60" src="{{asset('img/logo.svg')}}"></h3>
@@ -402,7 +376,9 @@
     <?php if (isset($_COOKIE['adminSessie'])){ ?>
 
     <div id="lowerleft">
-        <a href="{{ route('herstellenEigenAccountInlog') }}">U bent ingelogd als een klant. Druk hier om terug te gaan naar je eigen account!</a>
+    <h4>Beste admin,</h4>
+    Je bent ingelogd als een klant. Terug naar eigen account?
+        <a href="{{ route('herstellenEigenAccountInlog') }}"><button class="btn">Wissel terug</button></a>
     </diV>
     <?php } ?>
 </section>
