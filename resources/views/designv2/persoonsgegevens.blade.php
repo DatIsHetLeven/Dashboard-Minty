@@ -6,10 +6,20 @@
 <style>
 
 .box.persoonsgegevens {
-    max-width: 900px;
+    max-width: 700px;
 }
-
-
+label.label-inputs {
+    margin: 0!important;
+}
+.col-md-4 {
+    display: flex;
+    align-items: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
     </style>
 
     <div class="main-grid-min-nav">
@@ -24,66 +34,66 @@
                             <div class="row">
 
                                 @csrf
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="label-inputs">Naam</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input class="form-control" type="text" id="text" name="naam" value=<?php echo $userByCookie->naam ?>>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="label-inputs" class="label-inputs">Email</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input class="form-control" type="text" id="text" name="email" value=<?php echo $userByCookie->email ?>>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="label-inputs">Telefoonnummer</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input class="form-control" type="text" id="text" name="telefoonnummer" value=<?php echo $userByCookie->telefoonnummer ?>>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="label-inputs">Bedijfsnaam</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input class="form-control" type="text" id="text" name="bedrijfsnaam" value=<?php echo $userByCookie->bedrijfsnaam ?>>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="label-inputs">BTW-nummer</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input class="form-control" type="text" id="text" name="btw" value=<?php echo $userByCookie->btwNummer ?>>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="label-inputs">Adres</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input class="form-control" type="text" id="text" name="adres" value=<?php echo $userByCookie->adres ?>>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="label-inputs">Postcode</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input class="form-control" type="text" id="text" name="postcode" value=<?php echo $userByCookie->postcode ?>>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="label-inputs">Plaats</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input class="form-control" type="text" id="text" name="plaats" value=<?php echo $userByCookie->plaats ?>>
                                 </div>
                             </div>
