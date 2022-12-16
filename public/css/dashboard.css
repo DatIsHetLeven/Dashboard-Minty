@@ -84,7 +84,8 @@ span.status-circel {
     font-weight: 600;
     margin-bottom: 10px;
 }
-.box p {
+.box p,
+.card p {
     font-size: 15px;
     line-height: 1.8em;
     color: rgb(136, 136, 136);
@@ -231,7 +232,7 @@ table.table a {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: #fff!important;
     font-size: 14px;
     font-weight: 400;
 }
@@ -241,7 +242,8 @@ table.table a {
     display: flex;
     flex-direction: column;
 }
-.form-left input[type="text"], .form-right input[type="text"] {
+.form-left input[type="text"], .form-right input[type="text"],
+select.form-select  {
     width: 100%;
     line-height: 1em;
     height: 45px;

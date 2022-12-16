@@ -3,7 +3,32 @@
 @section('content')
 
 <style>
-
+.list-unstyled.mb-0.d-flex.justify-content-end {
+    justify-content: center!important;
+}
+th {
+    font-weight: 500!important;
+}
+td {
+    color: rgb(136, 136, 136);
+}
+a.text-danger {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1000px;
+    background-color: #dc3545!important;
+    font-size: 13px;
+    color: #fff!important;
+}
+i.far.fa-trash-alt {
+    color: #fff;
+}
+td {
+    vertical-align: middle!important;
+}
 </style>
 
 <div class="main-grid-min-nav">
@@ -36,7 +61,7 @@
                                     <input class="form-control" id="inputUsername" name='secret' type="text" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="label-inputs small mb-1" for="inputUsername">Omschrijving</label>
+                                    <label class="label-inputs small mb-1" for="inputUsername">Omschrijving A</label>
                                     <input class="form-control" id="inputUsername" name='description' type="text" required>
                                 </div>
                                 <label class="label-inputs" for="color">Land :</label>
@@ -105,34 +130,33 @@
 
 
 
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-12">           
-                <div class="mb-4 card">
+                <div class="card">
                     <div class="card-header">API koppeling</div>
                     <div class="card-body">
 
-                    Gebruik de volgende api key in je wordpress website om verbinding te maken met het dashoard.
+                    <p>Gebruik de volgende api key in je wordpress website om verbinding te maken met het dashoard.</p>
                     <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" readonly required value=<?php echo $userApiKey ?> >
                            
 
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="row mb-4">
             <div class="col-md-12">           
-                <div class="mb-4 card">
+                <div class="card">
                     <div class="card-header">Actieve verbinding Woo-Koppeling</div>
                     <div class="card-body">
 
-                    <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                    <div class="">
                                 <table class="table manage-candidates-top mb-0">
-                                    <thead>
-                                    <h5>Actieve verbinding(en) Bol-Koppeling</h5>
-                                    <br>
+                                    <thead></thead>
                                     <tr>
-                                        <th>Omschrijving</th>
+                                        <th>Omschrijving B BOL API KEYS</th>
                                         <th class="text-center">Client Id</th>
-                                        <th class="action text-right">Verwijder</th>
+                                        <th class="action text-center">Verwijder</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -153,48 +177,88 @@
                                     <?php } ?>
                                     </tbody>
                                 </table>
-                                <br><br><br>
-                                <?php if (!empty($wooConnection) ) { ?>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                <div class="row mb-4">
+                <div class="col-md-12">           
+                <div class="card">
+                    <div class="card-header">Actieve verbinding Woo-Koppeling</div>
+                    <div class="card-body">
                                 <table class="table manage-candidates-top mb-0">
                                     <thead>
-                                    <h5>Actieve verbinding Woo-Koppeling</h5>
-                                    <br>
-                                    @if(\Session::has('errorWoo'))
-                                        <p class="error">
-                                            {{\Session::get('error')}}
-                                        </p>
-                                    @endif<p>
+                                        <!-- <p class="error">
+                                            test error
+                                        </p> -->
                                         <tr>
-                                            <th>Host</th>
+                                            <th>Host woocommerce api keys</th>
                                             <th class="text-center">Woo key</th>
-                                            <th class="action text-right">Verwijder</th>
+                                            <th class="action text-center">Verwijder</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php for ($x = 0; $x < 1; $x++) { ?>
-                                    <tr class="candidates-list">
-                                        <td class="title">
-                                                <?php if (!empty($wooConnection->host)) echo $wooConnection->host; ?>
-                                        </td>
-                                        <td class="candidate-list-favourite-time text-center">
-                                                <?php echo $wooConnection->wooKey ?>
-                                        </td>
-                                        <td>
-                                            <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                                <li><a href="{{ route('deleteWooConnection',$wooConnection->userId) }}" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <?php }
-                                    }?>
+                                            <tr class="candidates-list">
+                                                <td class="title">
+                                                        test host
+                                                </td>
+                                                <td class="candidate-list-favourite-time text-center">
+                                                        test wOOCOMMERCE KEY
+                                                </td>
+                                                <td>
+                                                    <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                                                        <li><a href="\3" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
+
+                                <?php if (!empty($wooConnection) ): ?>
+                                    <!-- DIT IS DE TABLE VAN DE TABEL HIER BOVEN -->
+                                    <!-- <table class="table manage-candidates-top mb-0">
+                                        <thead>
+                                        <h5>Actieve verbinding Woo-Koppeling</h5>
+                                        <br>
+                                        @if(\Session::has('errorWoo'))
+                                            <p class="error">
+                                                {{\Session::get('error')}}
+                                            </p>
+                                        @endif<p>
+                                            <tr>
+                                                <th>Host</th>
+                                                <th class="text-center">Woo key</th>
+                                                <th class="action text-right">Verwijder</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php for ($x = 0; $x < 1; $x++) { ?>
+                                                <tr class="candidates-list">
+                                                    <td class="title">
+                                                            <?php if (!empty($wooConnection->host)) echo $wooConnection->host; ?>
+                                                    </td>
+                                                    <td class="candidate-list-favourite-time text-center">
+                                                            <?php echo $wooConnection->wooKey ?>
+                                                    </td>
+                                                    <td>
+                                                        <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                                                            <li><a href="{{ route('deleteWooConnection',$wooConnection->userId) }}" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table> -->
+                                <?php endif; ?>
                             </div>
                         </div>
                         
                     </div>
                 </div>
-        
+                </div>
         
         
         
