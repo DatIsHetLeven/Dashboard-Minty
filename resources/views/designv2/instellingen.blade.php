@@ -74,7 +74,7 @@ td {
                                 
                                 <div class="button-footer">
                                         <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Maak bol account aan</button></a>
-                                        <a href="https://partner.bol.com/sdd/preferences/services/api">Haal hier uw gegevens op</a>
+                                        <a href="https://partner.bol.com/sdd/preferences/services/api" target="_blank">Haal hier uw gegevens op</a>
                                 </div>
                             </form>
 
@@ -194,7 +194,7 @@ td {
                                             <p class="error">
                                                 {{\Session::get('error')}}
                                             </p>
-                                        @endif<p>
+                                        @endif
                                         <tr>
                                             <th>Host woocommerce api keys</th>
                                             <th class="text-center">Woo key</th>
