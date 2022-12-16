@@ -187,11 +187,14 @@ td {
                 <div class="card">
                     <div class="card-header">Actieve verbinding Woo-Koppeling</div>
                     <div class="card-body">
-                                <table class="table manage-candidates-top mb-0">
+                                <?php if (!empty($wooConnection) ): ?>
+                                    <table class="table manage-candidates-top mb-0">
                                     <thead>
-                                        <!-- <p class="error">
-                                            test error
-                                        </p> -->
+                                        @if(\Session::has('errorWoo'))
+                                            <p class="error">
+                                                {{\Session::get('error')}}
+                                            </p>
+                                        @endif<p>
                                         <tr>
                                             <th>Host woocommerce api keys</th>
                                             <th class="text-center">Woo key</th>
@@ -202,56 +205,20 @@ td {
                                         <?php for ($x = 0; $x < 1; $x++) { ?>
                                             <tr class="candidates-list">
                                                 <td class="title">
-                                                        test host
+                                                    <?php if (!empty($wooConnection->host)) echo $wooConnection->host; ?>
                                                 </td>
                                                 <td class="candidate-list-favourite-time text-center">
-                                                        test wOOCOMMERCE KEY
+                                                <?php echo $wooConnection->wooKey ?>
                                                 </td>
                                                 <td>
                                                     <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                                        <li><a href="\3" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                                                        <li><a href="{{ route('deleteWooConnection',$wooConnection->userId) }}" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
                                                     </ul>
                                                 </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
                                 </table>
-
-                                <?php if (!empty($wooConnection) ): ?>
-                                    <!-- DIT IS DE TABLE VAN DE TABEL HIER BOVEN -->
-                                    <!-- <table class="table manage-candidates-top mb-0">
-                                        <thead>
-                                        <h5>Actieve verbinding Woo-Koppeling</h5>
-                                        <br>
-                                        @if(\Session::has('errorWoo'))
-                                            <p class="error">
-                                                {{\Session::get('error')}}
-                                            </p>
-                                        @endif<p>
-                                            <tr>
-                                                <th>Host</th>
-                                                <th class="text-center">Woo key</th>
-                                                <th class="action text-right">Verwijder</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php for ($x = 0; $x < 1; $x++) { ?>
-                                                <tr class="candidates-list">
-                                                    <td class="title">
-                                                            <?php if (!empty($wooConnection->host)) echo $wooConnection->host; ?>
-                                                    </td>
-                                                    <td class="candidate-list-favourite-time text-center">
-                                                            <?php echo $wooConnection->wooKey ?>
-                                                    </td>
-                                                    <td>
-                                                        <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                                            <li><a href="{{ route('deleteWooConnection',$wooConnection->userId) }}" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table> -->
                                 <?php endif; ?>
                             </div>
                         </div>
