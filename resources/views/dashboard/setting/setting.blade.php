@@ -8,7 +8,8 @@
 
 <div class="item1">
     <h2>Prijs</h2>
-    Voer nieuw prijs in:
+    Voer nieuw prijs in:<br>
+    Let wel : Dit geldt alleen voor nieuwe klanten.<br>
 
 
     <form method="POST" action="{{ route('veranderPrijs') }}" >
@@ -24,30 +25,12 @@
 </div>
 
 <div class="item1">
-    <?php
-    $google2fa = new \PragmaRX\Google2FA\Google2FA();
-    $secret = $google2fa->generateSecretKey();
-    echo $secret;
-
-
-    $google2fa = new \PragmaRX\Google2FA\Google2FA();
-
-    $text = $google2fa->getQRCodeUrl(
-        'example.com',
-        'hans',
-        $secret
-    );
-
-    $image_url = 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='.$text;
-    echo '<img src="'.$image_url.'" />';
-// Now store the key in your database
-
-
-
-
-
-    ?>
+    <h2>Bol prijs : </h2>
+        <div class="mb-3">
+            <input class="form-control" id="inputUsername" name='newPrijs' type="double" value="<?php echo $bolPrijs->bolPrijs ?>" readonly >
+        </div>
 </div>
+
 
 
 

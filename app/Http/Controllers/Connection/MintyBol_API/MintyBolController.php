@@ -347,7 +347,6 @@ class MintyBolController extends Controller
             $response = $this->guzzleClient->request('GET', 'mandate/'.$customerIdMollie.'/status', ['headers' => $this->headers]);
         } catch (GuzzleException $e) {
             return back()->with(['error' => "Error check mandate status"]);
-            dd("EROORR CHECK MANDATE STATUS!!!!");
         }
 
         $mandateStatus = array(json_decode($response->getBody()->getContents()));

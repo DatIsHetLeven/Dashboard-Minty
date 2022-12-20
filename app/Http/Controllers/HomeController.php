@@ -5,6 +5,7 @@ use App\Http\Controllers\Connection\MintyBol_API\MintyBolController;
 
 use App\Models\bolApi;
 use App\Models\descrBolAccount;
+use App\Models\dynamisch;
 use App\Models\statusdetails;
 use App\Models\User;
 use GuzzleHttp\Client;
@@ -171,6 +172,13 @@ class HomeController extends Controller
 
         if ($getUser == null)return null;
         return $getUser->description;
+    }
+
+    public function toonProducten()
+    {
+        $user = $this->renderPersonalDetails();
+        return view('designv2/producten', ['userByCookie' => $user]);
+
     }
 
     public function resetPassword()
@@ -435,13 +443,14 @@ class HomeController extends Controller
         if ($google2fa->verifyKey($secret_key, $user_provided_code)) {
             return redirect()->route('dashboard');
         } else {
-            return back()->with(['error' => 'Ingevoerde code onjuist']);
+            return view('designv2/login2FA')->with(['error' => 'Ingevoerde code onjuist']);
+            //return back()->with(['error' => 'Ingevoerde code onjuist']);
         }
     }
 
     public function info(){
         $getUser = $this->renderPersonalDetails();
-        return view('designv2/info', ['userByCookie' => $getUser]);
+        return view('designv2/info')->with(['userByCookie' => $getUser]);
     }
 
     public function login2FA(){
@@ -450,6 +459,12 @@ class HomeController extends Controller
     }
 
 
+    public function instellingen(){
+        $bolprijs = DB::table('dynamisch')
+            ->where('bolPrijs', '>', 0)->first();
+
+        return view('dashboard/setting/setting', ['bolPrijs' => $bolprijs]);
+    }
 
 
 

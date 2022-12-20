@@ -320,6 +320,14 @@
                     <span>Modules</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('toonProducten') }}">
+                    <svg>
+                        <use xlink:href="#collection"></use>
+                    </svg>
+                    <span>Producten</span>
+                </a>
+            </li>
 
 
             <li class="menu-heading">

@@ -19,46 +19,36 @@
             <a href="{{Storage::disk('public')->url("pluginmanager/bolconnector/minty-bolconnector-plugin.zip")}}"><button class="btn btn-primary" id="changeUserDetails" name="changeUserDetails" type="submit">Nu downloaden</button></a>
             </div>
 
-            <div class="error">
-                Uw proefperiode van 14 dagen zijn voorbij.<br>
+
+        @if(\Session::has('error'))
+                <p class="error">
+                    {{\Session::get('error')}}
+                </p>
+            @endif<p>
+                <?php
+                $geldig = $userByCookie->geldig;
+                $dayVandaag = date('Y-m-d');
+
+                //Laat deze melding alleen zien voor niet Admin!
+                if(($userByCookie->rol) ==3 and($geldig != null) ){
+
+
+                    // Als koppeling niet meer geldig is
+                if($geldig < $dayVandaag){
+                    ?> Uw proefperiode van 14 dagen zijn voorbij.<br>
                 Wilt u gebruik blijven maken van de koppeling ?<br>
-                <div class="button-footer">
-                <a href="{{ route('CreateMandate') }}">
-                    <button class="btn" type="submit">Abonneer nu!</button>
-                </a>
-                </div>
-            </div>
-{{--tijdelijk eruit gehald om te testen!!!!!!!!!!!!!!!!! Niet verwijderen--}}
-
-{{--        @if(\Session::has('error'))--}}
-{{--                <p class="error">--}}
-{{--                    {{\Session::get('error')}}--}}
-{{--                </p>--}}
-{{--            @endif<p>--}}
-{{--                <?php--}}
-{{--                $geldig = $userByCookie->geldig;--}}
-{{--                $dayVandaag = date('Y-m-d');--}}
-
-{{--                //Laat deze melding alleen zien voor niet Admin!--}}
-{{--                if(($userByCookie->rol) ==3 and($geldig != null) ){--}}
-
-
-{{--                    // Als koppeling niet meer geldig is--}}
-{{--                if($geldig < $dayVandaag){--}}
-{{--                    ?> Uw proefperiode van 14 dagen zijn voorbij.<br>--}}
-{{--                Wilt u gebruik blijven maken van de koppeling ?<br>--}}
-{{--                    <a href="{{ route('CreateMandate') }}">Abonneer hier nu!--}}
-{{--                         <button type="submit">Abonneer nu!</button>--}}
-{{--                    </a> <?php--}}
-{{--                    }--}}
-{{--                        // Als koppeling nog geldig is maar klant niet geverf is--}}
-{{--                    if($geldig > $dayVandaag){--}}
-{{--                    if(!$userByCookie->geverifieerd === 1){ ?>--}}
-{{--                         Uw roefperiode loopt binnenkort af.<br>--}}
-{{--                Wilt u gebruik blijven maken van de koppeling ?<br>--}}
-{{--                <a href="#">Abonneer hier nu!</a> <?php--}}
-{{--                                                 }}--}}
-{{--                                                 } ?>--}}
+                    <a href="{{ route('CreateMandate') }}">Abonneer hier nu!
+                         <button type="submit">Abonneer nu!</button>
+                    </a> <?php
+                    }
+                        // Als koppeling nog geldig is maar klant niet geverf is
+                    if($geldig > $dayVandaag){
+                    if(!$userByCookie->geverifieerd === 1){ ?>
+                         Uw roefperiode loopt binnenkort af.<br>
+                Wilt u gebruik blijven maken van de koppeling ?<br>
+                <a href="#">Abonneer hier nu!</a> <?php
+                                                 }}
+                                                 } ?>
         </div>
 
         <div class="box">
