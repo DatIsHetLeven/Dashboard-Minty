@@ -3,6 +3,9 @@
     color: #858585;
     margin-bottom: -3px;
   }
+  a:hover {
+    color: #40CCA4;
+}
   body {
     background-color: #40CCA4;
     font-family: "Lato", sans-serif;
@@ -84,7 +87,8 @@ span.status-circel {
     font-weight: 600;
     margin-bottom: 10px;
 }
-.box p {
+.box p,
+.card p {
     font-size: 15px;
     line-height: 1.8em;
     color: rgb(136, 136, 136);
@@ -193,6 +197,10 @@ tbody, td, tfoot, th, thead, tr {
 .table {
     margin: 0;
 }
+.box.transparent {
+    background-color: rgb(255 255 255 / 20%);
+    color: #fff!important;
+}
 table *,
 .table-striped>tbody>tr:nth-of-type(odd) {
     background: transparent!important;
@@ -231,7 +239,7 @@ table.table a {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: #fff!important;
     font-size: 14px;
     font-weight: 400;
 }
@@ -241,7 +249,8 @@ table.table a {
     display: flex;
     flex-direction: column;
 }
-.form-left input[type="text"], .form-right input[type="text"] {
+.form-left input[type="text"], .form-right input[type="text"],
+select.form-select  {
     width: 100%;
     line-height: 1em;
     height: 45px;
@@ -334,4 +343,94 @@ label.label-inputs {
     padding: 15px 30px;
     background-color: #446058;
     color: #fff;
+}
+.box.module {
+    max-width: 700px;
+}
+.module-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+span.slider.round {
+    width: 40px;
+}
+label.switch {
+    display: flex;
+}
+.module-row {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc!important;
+    margin-bottom: 20px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #1bbd8e;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #1bbd8e;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+.module-row + .button-footer {
+    margin-top: 30px!important;
+}
+.box.module p {
+    width: 100%;
+    padding-right: 100px;
+    margin-bottom: 0;
+    margin-top: 5px;
 }

@@ -3,57 +3,62 @@
 @section('content')
 
 <style>
-    .bcolor{
-        color: blue;
-    }
-    .uninstall{
-        color: red;
-    }
-    .install{
-        color: green;
-    }
-
-    @media screen and (max-width: 1770px){
-        .row{
-            margin-left: 15% !important;
-        }
-    }
-    @media screen and (max-width: 1500px){
-        .row{
-            margin-left: 20% !important;
-        }
-    }
+    a.install-btn button {
+    background-color: #1bbd8e!important;
+    color: #fff;
+}
+.uninstall button {
+    background-color: #dc3545!important;
+    color: #fff;
+}
 </style>
 
+<div class="main-grid-min-nav">
+    <div class="wrapped-container">
+<div class="WelkomBanner">
+        <h2>Modules</h2>
+        <p><span class="welkomBol">Stel hier de koppeling naar wens aan</span></p>
+    </div>
 
-    <div class="container-xl px-4 mt-4">
+
+
         <div class="row">
             <?php  for ($x = 0; $x < count($allUsers); $x++) {?>
             <div class="col-xl-4">
                 <div class="card mb-4">
+                    
                         <?php if($boolModule[$x] == true){?><a href="{{ route('GetSingleModule',$allUsers[$x]->identifier) }}"><div class="card-header"><?php echo $allUsers[$x]->name?></div></a><?php } ?>
-                                                                                                                                                                                                      <?php if($boolModule[$x] == false){?><a href="#"><div class="card-header"><?php echo $allUsers[$x]->name?></div></a><?php } ?>
-                    <br>
+                        <?php if($boolModule[$x] == false){?><a href="#"><div class="card-header"><?php echo $allUsers[$x]->name?></div></a><?php } ?>
+
+                    <div class="card-body">  
                         <?php echo $allUsers[$x]->description ?>
-                    <div class="card-body">
+                        <div class="button-footer">
                             <?php if (!$boolModule[$x] === true){?>
-                        <span class="install"><a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}">Install</a></span><?php }
-                                                                                                         else{?><span class="uninstall"><a href="{{ route('DisableSingleModule',$allUsers[$x]->identifier) }}">Uninstall</a></span><?php } ?>
+                                    <span class="install">
+                                        <a class="install-btn" href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}"><button class="btn btn-primary">Installeren</button></a>
+                                    </span>
+                            <?php } else{?>
+                                <span class="uninstall">
+                                    <a href="{{ route('DisableSingleModule',$allUsers[$x]->identifier) }}"><button class="btn btn-primary">Deïnstalleren</button></a>
+                                </span>
+                            <?php } ?>
 
-                        &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
-                        <?php if (!$boolModule[$x] === true){?>
-                        <a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}"></a><?php }
-                        else{?><span class="bcolor"><a href=" {{ route('GetSingleModule',$allUsers[$x]->identifier) }}">Bekijk instellingen</a></span><?php } ?>
-
+                            <?php if (!$boolModule[$x] === true){?>
+                                <a href="{{ route('EnableSingleModule',$allUsers[$x]->identifier) }}"></a><?php }
+                            else{?>
+                                <span class="bcolor">
+                                    <a href=" {{ route('GetSingleModule',$allUsers[$x]->identifier) }}">Bekijk instellingen</a>
+                                </span>
+                            <?php } ?>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
+
         <?php }?>
-
-
-
-            <div class="scroll-bg">
+    </div>
+    <div class="box">
                 <div class="scroll-div">
                     <div class="scroll-object">
                         <table id="example" class="table table-striped">
@@ -79,7 +84,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </section>
 
@@ -102,8 +106,8 @@
             </div>
         </div>
     </div>
-</div>
-
+                        </div>
+                        </div>
 <script>
 
     var myModal = document.getElementById('exampleModal')
