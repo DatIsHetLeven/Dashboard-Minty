@@ -266,7 +266,7 @@ select.form-select  {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: #fff!important;
     font-size: 14px;
     font-weight: 400;
 }

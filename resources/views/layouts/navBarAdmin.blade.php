@@ -3,7 +3,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <link href="{{ asset('css/navigatieBar.css') }}" rel="stylesheet">
-
+<!-- 
 {{--<style>--}}
 {{--    :root {--}}
 {{--        --page-header-bgColor: #242e42;--}}
@@ -179,7 +179,7 @@
 
 
 
-{{--</style>--}}
+{{--</style>--}} -->
 <svg style="display:none;">
     <symbol id="logo" viewBox="0 0 140 59">
         <g>
@@ -322,9 +322,7 @@
             </li>
             <li>
                 <a href="{{ route('toonProducten') }}">
-                    <svg>
-                        <use xlink:href="#collection"></use>
-                    </svg>
+                    &nbsp;<i class="fa fa-box"></i> &nbsp;&nbsp;
                     <span>Producten</span>
                 </a>
             </li>

@@ -2,8 +2,6 @@
 <title>Home</title>
 @section('content')
 
-
-
 <div class="main-grid-min-nav">
     <div class="wrapped-container">
 <div class="WelkomBanner">
@@ -21,10 +19,8 @@
 
 
         @if(\Session::has('error'))
-                <p class="error">
-                    {{\Session::get('error')}}
-                </p>
-            @endif<p>
+                <p class="error">{{\Session::get('error')}}</p>
+            @endif
                 <?php
                 $geldig = $userByCookie->geldig;
                 $dayVandaag = date('Y-m-d');

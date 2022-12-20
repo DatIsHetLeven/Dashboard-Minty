@@ -314,9 +314,7 @@
             </li>
             <li>
                 <a href="{{ route('toonProducten') }}">
-                    <svg>
-                        <use xlink:href="#collection"></use>
-                    </svg>
+                &nbsp;<i class="fa fa-box"></i> &nbsp;&nbsp;
                     <span>Producten</span>
                 </a>
             </li>

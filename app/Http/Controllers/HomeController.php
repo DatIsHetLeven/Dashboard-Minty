@@ -460,10 +460,14 @@ class HomeController extends Controller
 
 
     public function instellingen(){
+
+        $user = $this->renderPersonalDetails();
+        if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
+        
         $bolprijs = DB::table('dynamisch')
             ->where('bolPrijs', '>', 0)->first();
 
-        return view('dashboard/setting/setting', ['bolPrijs' => $bolprijs]);
+        return view('dashboard/setting/setting', ['userByCookie' => $user, 'bolPrijs' => $bolprijs]);
     }
 
 
