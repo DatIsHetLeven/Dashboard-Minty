@@ -468,7 +468,6 @@ class HomeController extends Controller
 
     public function checkEanCode(){
         $EanInput = $_POST['EanInput'];
-
         $bolContoller = new MintyBolController();
         $response = $bolContoller->checkEan($EanInput);
 
@@ -478,6 +477,7 @@ class HomeController extends Controller
         //Get producten
         $bolContoller = new MintyBolController();
         $allProducts = $bolContoller->getProducts();
+
         return view('designv2/producten', ['userByCookie' => $user, 'allProducts' => $allProducts, 'EanResponse' => $response]);
 
 

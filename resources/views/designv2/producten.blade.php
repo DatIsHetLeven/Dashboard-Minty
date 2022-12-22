@@ -65,7 +65,7 @@
         <h1>Producten :</h1>
             <div class="scroll-bg">
                     <div class="scroll-object">
-                        <table id="example" class="table table-striped">
+                        <table id="example" class="table table-striped table-hover user-table">
                             <thead>
                             <tr>
                                 <th>WooId</th>
@@ -97,7 +97,7 @@
                                             <td><?php echo $allProducts[$x]->wooStock ?></td>
                                             <td><?php echo $allProducts[$x]->ean ?></td>
                                             <?php if ($allProducts[$x]->bolStock != $allProducts[$x]->wooStock){ ?>
-                                            <td><input type="checkbox" id="test"checked onclick="return false;"></td> <?php
+                                            <td><input type="checkbox" unchecked onclick="return false;"></td> <?php
                                             } ?>
                                         </tr>
                                     </div> <?php

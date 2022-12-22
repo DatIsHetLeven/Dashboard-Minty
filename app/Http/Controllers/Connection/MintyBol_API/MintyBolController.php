@@ -551,7 +551,18 @@ class MintyBolController extends Controller
         }catch (RequestException $e){
             return "Geen producten gevonden!";
         }
+
+//        dd($response->getStatusCode());
+//        if( $response->getStatusCode()  > 299) {
+//            dd("ddd");
+//        }
+
+
         $products = json_decode($response->getBody()->getContents());
+        if (isset($products[0]->status))
+        {
+            return "Geen producten gevonden!";
+        }
         return $products;
     }
 }
