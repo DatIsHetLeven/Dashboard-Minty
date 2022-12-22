@@ -87,6 +87,9 @@ Route::POST('check2FAInput', [HomeController::class, 'check2FAInput'])->name('ch
 Route::GET('security', [HomeController::class, 'beveiligen'])->name('beveiligen');
 
 
+
+Route::POST('Producten', [HomeController::class, 'checkEanCode'])->name('checkEanCode')->middleware('check.user');
+
 Route::get('underConstruction', function () {
     return view('designv2/underConstruction');
 })->name('underConstruction');

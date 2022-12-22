@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Connection\Fs_Api\fsnl_api_Controller;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\statusdetails;
@@ -16,13 +17,14 @@ use function Composer\Autoload\includeFile;
 
 class UserController extends Controller
 {
-
+    private $userName;
     //Haal inlog gebruiker op
     public function getUser()
     {
 
         if(!isset($_POST['loginButton'])) return redirect()->route('login')->with(['error'=> "login error"]);
         $username = $_POST['userName'];
+        $this->userName = $username;
         $CheckUserLogin = User::Where('email', '=', $username)->first();
 
         if(empty($CheckUserLogin)) return back()->with(['error'=> "Geberuiker niet gevonden"]);
@@ -30,21 +32,45 @@ class UserController extends Controller
         $password = password_verify($_POST['password'], $CheckUserLogin->password);
         if($password === TRUE)
         {
-            $homeController = new HomeController();
-            if (isset($_COOKIE['adminSessie']))setcookie("adminSessie", "", time() - (86400 * 30));
-
-            // if table filles -> voer code in else doorgaan
-            //CMaak cookie token + opslaan in db
-            $cookieToken = $this->createToken();
-            $CheckUserLogin->cookie_token = $cookieToken;
-            $CheckUserLogin->save();
-
-            setcookie('user', $cookieToken, time() + (86400 * 30));
-            setcookie('userName', $CheckUserLogin->naam, time() +(86400 * 30));
             if (!empty($CheckUserLogin->Auth))return view('designv2/login2FA');
-            return redirect()->route('dashboard');
+
+            $this->loginUser2Fa();
+            if ($this->loginUser2Fa() == true){
+                return redirect()->route('dashboard');
+            }
+
+//
+//            $homeController = new HomeController();
+//            if (isset($_COOKIE['adminSessie']))setcookie("adminSessie", "", time() - (86400 * 30));
+//
+//            // if table filles -> voer code in else doorgaan
+//            //CMaak cookie token + opslaan in db
+//            $cookieToken = $this->createToken();
+//            $CheckUserLogin->cookie_token = $cookieToken;
+//            $CheckUserLogin->save();
+//
+//            setcookie('user', $cookieToken, time() + (86400 * 30));
+//            setcookie('userName', $CheckUserLogin->naam, time() +(86400 * 30));
+//
+//            return redirect()->route('dashboard');
         }
         else return back()->with(['error'=> "Wachtwoord klopt niet!"]);
+    }
+
+    public function loginUser2Fa(){
+        $CheckUserLogin = User::Where('email', '=', $this->userName)->first();
+
+        if (isset($_COOKIE['adminSessie']))setcookie("adminSessie", "", time() - (86400 * 30));
+
+        $cookieToken = $this->createToken();
+        $CheckUserLogin->cookie_token = $cookieToken;
+        $CheckUserLogin->save();
+
+        setcookie('user', $cookieToken, time() + (86400 * 30));
+        setcookie('userName', $CheckUserLogin->naam, time() +(86400 * 30));
+
+        return true;
+        return redirect()->route('dashboard');
     }
 
     public function createPassword(Request $request)
@@ -128,15 +154,19 @@ class UserController extends Controller
             //UserId ophalen eigen db nieuwe User
             $userId = User::where('email', '=', $newUser->email)->first();
             //UserId aanmaken bol-koppeling van Arthur
-            $MintyBolApi = new MintyBolController();
-            $userIdBol = $MintyBolApi->CreateUserBolApi($newUser->email,$newUser->naam );
-            //Insert userId + boluserId in BolApi
-            $bolApi = new bolApi();
-            $bolApi->userId = $userId->userId;
-            $bolApi->userIdApi = $userIdBol;
-            $bolApi->block = false;
-            $bolApi->save();
-
+            try {
+                $MintyBolApi = new MintyBolController();
+                $userIdBol = $MintyBolApi->CreateUserBolApi($newUser->email,$newUser->naam );
+                //Insert userId + boluserId in BolApi
+                $bolApi = new bolApi();
+                $bolApi->userId = $userId->userId;
+                $bolApi->userIdApi = $userIdBol;
+                $bolApi->block = false;
+                $bolApi->save();
+            }catch(GuzzleException $e){
+                User::where('email', '=', $newUser->email)->delete();
+                return back()->with(['error'=> "Er ging iets mis, probeer het later opnieuw"]);
+            }
             return back()->with(['succes'=> "Account succesvol aangemaakt"]);
         }
     }

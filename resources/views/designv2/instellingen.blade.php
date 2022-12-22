@@ -40,7 +40,7 @@ td {
 
 <section class="page-content">
         <div class="row">
-            <div class="col-md-6">           
+            <div class="col-md-6">
                 <div class="mb-4 card">
                     <div class="card-header">Bol koppeling</div>
                     <div class="card-body">
@@ -61,7 +61,7 @@ td {
                                     <input class="form-control" id="inputUsername" name='secret' type="text" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="label-inputs small mb-1" for="inputUsername">Omschrijving A</label>
+                                    <label class="label-inputs small mb-1" for="inputUsername">Omschrijving</label>
                                     <input class="form-control" id="inputUsername" name='description' type="text" required>
                                 </div>
                                 <label class="label-inputs" for="color">Land :</label>
@@ -71,7 +71,7 @@ td {
                                     <option value="be">Belgium</option>
                                     <option value="nl-be">Netherlands & Belgium</option>
                                 </select>
-                                
+
                                 <div class="button-footer">
                                         <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createBolUserBTN" type="submit">Maak bol account aan</button></a>
                                         <a href="https://partner.bol.com/sdd/preferences/services/api" target="_blank">Haal hier uw gegevens op</a>
@@ -82,7 +82,7 @@ td {
                 </div>
             </div>
 
-            <div class="col-md-6">           
+            <div class="col-md-6">
                 <div class="mb-4 card">
                     <div class="card-header">WooCommerce koppeling</div>
                     <div class="card-body">
@@ -108,7 +108,7 @@ td {
                             <label class="label-inputs small mb-1" for="inputUsername">Secret</label>
                             <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" required>
                         </div>
-                        
+
                         <div class="button-footer">
                             <a href="#"><button class="btn btn-primary" id="btnDeleteUser" name="createWooUserBTN" type="submit">Maak verbinding</button></a>
                         </div>
@@ -117,35 +117,33 @@ td {
                     </div>
                 </div>
             </div>
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         </div>
 
 
 
 
 
-
         <div class="row mb-4">
-            <div class="col-md-12">           
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">API koppeling</div>
                     <div class="card-body">
 
                     <p>Gebruik de volgende api key in je wordpress website om verbinding te maken met het dashoard.</p>
                     <input class="form-control" id="inputUsername" name='wooClientSecret' type="text" readonly required value=<?php echo $userApiKey ?> >
-                           
 
                     </div>
                 </div>
             </div>
         </div>
         <div class="row mb-4">
-            <div class="col-md-12">           
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Actieve verbinding Woo-Koppeling</div>
                     <div class="card-body">
@@ -154,9 +152,9 @@ td {
                                 <table class="table manage-candidates-top mb-0">
                                     <thead></thead>
                                     <tr>
-                                        <th>Omschrijving B BOL API KEYS</th>
-                                        <th class="text-center">Client Id</th>
-                                        <th class="action text-center">Verwijder</th>
+                                        <th class="col-md-3">Omschrijving B BOL API KEYS</th>
+                                        <th class="text-center col-md-8">Client Id</th>
+                                        <th class="action text-center col-md-1">Verwijder</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -183,7 +181,7 @@ td {
                                     </div>
                                     </div>
                 <div class="row mb-4">
-                <div class="col-md-12">           
+                <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Actieve verbinding Woo-Koppeling</div>
                     <div class="card-body">
@@ -196,9 +194,9 @@ td {
                                             </p>
                                         @endif
                                         <tr>
-                                            <th>Host woocommerce api keys</th>
-                                            <th class="text-center">Woo key</th>
-                                            <th class="action text-center">Verwijder</th>
+                                            <th class="col-md-3">Host woocommerce api keys</th>
+                                            <th class="text-center col-md-8">Woo key</th>
+                                            <th class="action text-center col-md-1">Verwijder</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -222,15 +220,15 @@ td {
                                 <?php endif; ?>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 </div>
-        
-        
-        
-        
-        
+
+
+
+
+
         </div>
 
 

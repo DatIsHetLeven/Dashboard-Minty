@@ -434,3 +434,7 @@ input:checked + .slider:before {
     margin-bottom: 0;
     margin-top: 5px;
 }
+form .error,
+form .succes {
+    margin-top: 0!important;
+}

@@ -521,4 +521,37 @@ class MintyBolController extends Controller
         $this->headers['Content-Type'] = 'application/json';
         $response = $this->guzzleClient->request('PUT', 'accounts/user/'.$bolUser->userIdApi, ['headers' => $this->headers, 'body' => $body]);
     }
+
+    public function getProducts(){
+        //UTH key veranderen
+        $headers = [
+            'Authorization' => 'Basic 50bcb47fe4c33aba0acc606b3b8cfccc94a553c8b82e7c80a91880e4e1ceae29',
+            'Accept' => 'application/json'
+        ];
+
+        $response = $this->guzzleClient->request('GET', 'bol/products/', ['headers' => $headers]);
+        $products = json_decode($response->getBody()->getContents());
+        return $products;
+
+    }
+
+    public function checkEan($EanInput){
+
+        //Veranderen naar AUTH KEY van de user.
+        $headers = [
+            'Authorization' => 'Basic 50bcb47fe4c33aba0acc606b3b8cfccc94a553c8b82e7c80a91880e4e1ceae29',
+            'Accept' => 'application/json'
+        ];
+
+
+
+
+        try {
+            $response = $this->guzzleClient->request('GET', 'bol/products/ean/'.$EanInput, ['headers' => $headers]);
+        }catch (RequestException $e){
+            return "Geen producten gevonden!";
+        }
+        $products = json_decode($response->getBody()->getContents());
+        return $products;
+    }
 }

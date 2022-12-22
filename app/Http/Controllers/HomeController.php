@@ -39,9 +39,6 @@ class HomeController extends Controller
         if(empty($userbytoken))return redirect('login');
 
         $getUser = $this->renderPersonalDetails();
-//        $getUser = DB::table('statusdetails')
-//        ->join('user', 'statusdetails.userId', '=', 'user.userId')
-//        ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
         if(empty($getUser))return view('welcome');
 
         $allUsers= DB::table('user')
@@ -78,10 +75,7 @@ class HomeController extends Controller
                     $respond = $this->checkDescription($AllBolConnection[$x]->bolUserId);
                     if (!empty($respond)) $AllBolConnection[$x]->description = $respond;
                 }
-
-
                 return view('designv2/persoonsgegevens', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
-
             }
         }
         if (!is_countable($AllBolConnection)) {
@@ -104,20 +98,10 @@ class HomeController extends Controller
                 //return view('testBol', ['userByCookie' => $user, 'bolConnection' => $AllBolConnection]);
             }
         }
-
-
-        //dd($AllBolConnection);
-        //dd($AllBolConnection);
         return view('dashboard/persoonsgegevens', ['userByCookie' => $user]);
     }
 
     public function toonBolSetting(){
-//        $url = Storage::disk("public")->url('details.json');
-//        dump($url);
-//        echo asset('storage/details.json');
-//        echo phpinfo();
-//
-//        dd("");
 
         $user = $this->renderPersonalDetails();
         if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
@@ -177,7 +161,15 @@ class HomeController extends Controller
     public function toonProducten()
     {
         $user = $this->renderPersonalDetails();
-        return view('designv2/producten', ['userByCookie' => $user]);
+        //Get producten
+        $bolContoller = new MintyBolController();
+        $allProducts = $bolContoller->getProducts();
+        return view('designv2/producten', ['userByCookie' => $user, 'allProducts' => $allProducts]);
+
+    }
+
+    public function toonProductenEan($Ean)
+    {
 
     }
 
@@ -441,6 +433,10 @@ class HomeController extends Controller
 
         $google2fa = new \PragmaRX\Google2FA\Google2FA();
         if ($google2fa->verifyKey($secret_key, $user_provided_code)) {
+            $usercontroller = new UserController();
+            $usercontroller->loginUser2Fa();
+
+
             return redirect()->route('dashboard');
         } else {
             return view('designv2/login2FA')->with(['error' => 'Ingevoerde code onjuist']);
@@ -463,11 +459,28 @@ class HomeController extends Controller
 
         $user = $this->renderPersonalDetails();
         if (empty($user->naam))return redirect('login')->with(['error'=> "Geen actieve sessie, log opnieuw in"]);
-        
+
         $bolprijs = DB::table('dynamisch')
             ->where('bolPrijs', '>', 0)->first();
 
         return view('dashboard/setting/setting', ['userByCookie' => $user, 'bolPrijs' => $bolprijs]);
+    }
+
+    public function checkEanCode(){
+        $EanInput = $_POST['EanInput'];
+
+        $bolContoller = new MintyBolController();
+        $response = $bolContoller->checkEan($EanInput);
+
+
+
+        $user = $this->renderPersonalDetails();
+        //Get producten
+        $bolContoller = new MintyBolController();
+        $allProducts = $bolContoller->getProducts();
+        return view('designv2/producten', ['userByCookie' => $user, 'allProducts' => $allProducts, 'EanResponse' => $response]);
+
+
     }
 
 
