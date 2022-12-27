@@ -145,14 +145,15 @@ td {
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Actieve verbinding Woo-Koppeling</div>
+                    <div class="card-header">Actieve verbinding Bol-Koppeling</div>
                     <div class="card-body">
 
                     <div class="">
                                 <table class="table manage-candidates-top mb-0">
                                     <thead></thead>
+                                    <?php if (!empty($bolConnection) ){?>
                                     <tr>
-                                        <th class="col-md-3">Omschrijving B BOL API KEYS</th>
+                                        <th class="col-md-3">Omschrijving Bol</th>
                                         <th class="text-center col-md-8">Client Id</th>
                                         <th class="action text-center col-md-1">Verwijder</th>
                                     </tr>
@@ -172,7 +173,7 @@ td {
                                             </ul>
                                         </td>
                                     </tr>
-                                    <?php } ?>
+                                    <?php }} ?>
                                     </tbody>
                                 </table>
                                     </div>

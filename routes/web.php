@@ -99,3 +99,4 @@ Route::get('passwordreset', function () {
 Route::get('resettest', function () {
     return view('auth/passwords/resettest');
 })->name('resettest');
+

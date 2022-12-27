@@ -160,11 +160,16 @@ class HomeController extends Controller
 
     public function toonProducten()
     {
+        $MintyBolApi = new MintyBolController();
+        $userApiKey =$MintyBolApi->getApiKey();
+
+
         $user = $this->renderPersonalDetails();
         //Get producten
         $bolContoller = new MintyBolController();
-        $allProducts = $bolContoller->getProducts();
+        $allProducts = $bolContoller->getProducts($userApiKey);
         return view('designv2/producten', ['userByCookie' => $user, 'allProducts' => $allProducts]);
+        //return view('designv2/test', ['userByCookie' => $user, 'allProducts' => $allProducts]);
 
     }
 
@@ -471,12 +476,14 @@ class HomeController extends Controller
         $bolContoller = new MintyBolController();
         $response = $bolContoller->checkEan($EanInput);
 
+        $MintyBolApi = new MintyBolController();
+        $userApiKey =$MintyBolApi->getApiKey();
 
 
         $user = $this->renderPersonalDetails();
         //Get producten
         $bolContoller = new MintyBolController();
-        $allProducts = $bolContoller->getProducts();
+        $allProducts = $bolContoller->getProducts($userApiKey);
 
         return view('designv2/producten', ['userByCookie' => $user, 'allProducts' => $allProducts, 'EanResponse' => $response]);
 

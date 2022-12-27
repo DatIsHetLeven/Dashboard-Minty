@@ -163,7 +163,7 @@ button {
     font-size: 15px;
     font-weight: 400;
     left: 20px;
-    
+
 }
 #lowerleft h4 {
     font-size: 16px;
@@ -357,6 +357,7 @@ label.label-inputs {
 }
 span.slider.round {
     width: 40px;
+    visibility: visible !important;
 }
 label.switch {
     display: flex;

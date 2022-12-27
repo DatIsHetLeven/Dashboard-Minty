@@ -2,7 +2,7 @@
 @section('content')
 
 <style>
- 
+
 </style>
 
 @extends('layouts.navAdmin')
@@ -18,50 +18,45 @@
 
 
 
-            
+
                 <div class="box module">
                     <form action="{{ route('updateOrderWachtagent') }}" method="post">
                         @csrf
 
                         <?php
                         $possibleSettingList = json_decode($singleModule->settings,true);
-                        //dd($singleModule);
-                        //dump($singleModule->settings);
-                        //dd($possibleSettingList);
                         $phoneSetting = $possibleSettingList['phone'];
-
-                        //dd($phoneSetting);
                         $emailSetting= $possibleSettingList['email'];
                         $statusSetting = $possibleSettingList['status'];?>
-                        
+
                         <div class="module-row">
                             Phone setting
                             <label class="switch" >
                                 <input type="checkbox" value="phone" name='phoneSetting' {{   (empty($phoneSetting)) ? '': "checked"   }}>
                                 <span class="slider round"></span>
                             </label>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut placerat augue metus, eu tincidunt purus sagittis quis.</p>
+                            <p>Deze instelling biedt de mogelijkheid om een nummer te krijgen</p>
                         </div>
 
-                        
-                        
-                        
+
+
+
                         <div class="module-row">
                         E-mail instelling
                         <label class="switch">
                             <input type="checkbox" value="email" name='emailSetting' {{   (empty($emailSetting)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut placerat augue metus, eu tincidunt purus sagittis quis.</p>
+                        <p>Verander alle emailadressen in de bestellingen naar: bol@mintyconnect.nl</p>
                         </div>
-                        
+
                         <div class="module-row">
                         Status
                         <label class="switch">
                             <input type="checkbox" value="status" name='statusSetting' {{   (empty($statusSetting)) ? '': "checked"   }}>
                             <span class="slider round"></span>
                         </label>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut placerat augue metus, eu tincidunt purus sagittis quis.</p>
+                        <p>Maak gebruik van de standaard Bol-Order-Status voor alle afgeronde bestellingen.</p>
                         </div>
 
                         <div class="button-footer">
