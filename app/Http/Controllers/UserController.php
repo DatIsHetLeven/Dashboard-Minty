@@ -58,7 +58,7 @@ class UserController extends Controller
     }
 
     public function loginUser2Fa(){
-        $CheckUserLogin = User::Where('email', '=', $this->userName)->first();
+        $CheckUserLogin = User::Where('naam', '=', $_COOKIE['userName'])->first();
 
         if (isset($_COOKIE['adminSessie']))setcookie("adminSessie", "", time() - (86400 * 30));
 

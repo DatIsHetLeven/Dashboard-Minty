@@ -57,6 +57,19 @@ class HomeController extends Controller
         ->where('statusdetails.userId', '=', $userbytoken->userId)->first();
 
         return $getUser;
+    }
+    public function getUserByName () {
+        $naam = $_COOKIE['userName'];
+
+        $loggedUser = DB::table('user')
+            ->where('user.naam', '=', $naam)->first();
+
+        if ($naam === null)return redirect('login');
+        $getUser = DB::table('statusdetails')
+            ->join('user', 'statusdetails.userId', '=', 'user.userId')
+            ->where('statusdetails.userId', '=', $loggedUser->userId)->first();
+
+        return $getUser;
 
     }
     public function toonPersoonsgegevens(){
@@ -431,7 +444,7 @@ class HomeController extends Controller
     }
 
     public function check2FAInput(){
-        $loggedUser = $this->renderPersonalDetails();
+        $loggedUser = $this->getUserByName();
         $secret_key = $loggedUser->Auth;
         $user_provided_code = $_POST['authCodeInput'];
         $CheckUserLogin = User::Where('email', '=', $loggedUser->email)->first();
