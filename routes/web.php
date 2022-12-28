@@ -83,7 +83,7 @@ Route::get('profielfotoGravatar', [HomeController::class, 'profielfotoGravatar']
 Route::get('userName', [HomeController::class, 'userName'])->name('userName')->middleware('check.user');
 Route::get('/gravatar', 'GravatarController@gravatar');
 Route::POST('AuthRequest/{id}', [HomeController::class, 'AuthRequest'])->name('AuthRequest');
-Route::POST('check2FAInput', [HomeController::class, 'check2FAInput'])->name('check2FAInput');
+Route::POST('check2FAInput/{id}', [HomeController::class, 'check2FAInput'])->name('check2FAInput');
 Route::GET('security', [HomeController::class, 'beveiligen'])->name('beveiligen');
 
 

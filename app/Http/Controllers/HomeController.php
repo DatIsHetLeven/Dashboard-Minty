@@ -58,13 +58,12 @@ class HomeController extends Controller
 
         return $getUser;
     }
-    public function getUserByName () {
-        $naam = $_COOKIE['userName'];
+    public function getUserById ($id) {
 
         $loggedUser = DB::table('user')
-            ->where('user.naam', '=', $naam)->first();
+            ->where('user.userId', '=', $id)->first();
 
-        if ($naam === null)return redirect('login');
+        if ($loggedUser === null)return redirect('login');
         $getUser = DB::table('statusdetails')
             ->join('user', 'statusdetails.userId', '=', 'user.userId')
             ->where('statusdetails.userId', '=', $loggedUser->userId)->first();
@@ -443,8 +442,8 @@ class HomeController extends Controller
         return view('designv2/beveiligen', ['userByCookie' => $user]);
     }
 
-    public function check2FAInput(){
-        $loggedUser = $this->getUserByName();
+    public function check2FAInput($id){
+        $loggedUser = $this->getUserById($id);
         $secret_key = $loggedUser->Auth;
         $user_provided_code = $_POST['authCodeInput'];
         $CheckUserLogin = User::Where('email', '=', $loggedUser->email)->first();
@@ -452,12 +451,12 @@ class HomeController extends Controller
         $google2fa = new \PragmaRX\Google2FA\Google2FA();
         if ($google2fa->verifyKey($secret_key, $user_provided_code)) {
             $usercontroller = new UserController();
-            $usercontroller->loginUser2Fa();
+            $usercontroller->loginUser2Fa($id);
 
 
             return redirect()->route('dashboard');
         } else {
-            return view('designv2/login2FA')->with(['error' => 'Ingevoerde code onjuist']);
+            return view('designv2/login2FA')->with(['error' => 'Ingevoerde code onjuist', 'userId' => $loggedUser->userId]);
             //return back()->with(['error' => 'Ingevoerde code onjuist']);
         }
     }

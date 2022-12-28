@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=0.8">
 
 <div class="formlogin">
-    <form method="POST" action="{{ route('check2FAInput') }}">
+    <form method="POST" action="{{ route('check2FAInput', $userId) }}">
         @csrf
         @if(\Session::has('error'))
             <p class="error">

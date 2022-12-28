@@ -24,6 +24,7 @@ class UserController extends Controller
 
         if(!isset($_POST['loginButton'])) return redirect()->route('login')->with(['error'=> "login error"]);
         $username = $_POST['userName'];
+
         $this->userName = $username;
         $CheckUserLogin = User::Where('email', '=', $username)->first();
 
@@ -32,10 +33,10 @@ class UserController extends Controller
         $password = password_verify($_POST['password'], $CheckUserLogin->password);
         if($password === TRUE)
         {
-            if (!empty($CheckUserLogin->Auth))return view('designv2/login2FA');
+            if (!empty($CheckUserLogin->Auth))return view('designv2/login2FA')->with(['userId'=>$CheckUserLogin->userId]);
 
-            $this->loginUser2Fa();
-            if ($this->loginUser2Fa() == true){
+            $this->loginUser2Fa($CheckUserLogin->userId);
+            if ($this->loginUser2Fa($CheckUserLogin->userId) == true){
                 return redirect()->route('dashboard');
             }
 
@@ -57,8 +58,8 @@ class UserController extends Controller
         else return back()->with(['error'=> "Wachtwoord klopt niet!"]);
     }
 
-    public function loginUser2Fa(){
-        $CheckUserLogin = User::Where('naam', '=', $_COOKIE['userName'])->first();
+    public function loginUser2Fa($userId){
+        $CheckUserLogin = User::Where('userId', '=', $userId)->first();
 
         if (isset($_COOKIE['adminSessie']))setcookie("adminSessie", "", time() - (86400 * 30));
 
@@ -66,8 +67,8 @@ class UserController extends Controller
         $CheckUserLogin->cookie_token = $cookieToken;
         $CheckUserLogin->save();
 
-        setcookie('user', $cookieToken, time() + (86400 * 30));
-        setcookie('userName', $CheckUserLogin->naam, time() +(86400 * 30));
+        setcookie('user', $cookieToken, time() + (86400 * 30), "/");
+        setcookie('userName', $CheckUserLogin->naam, time() +(86400 * 30), "/");
 
         return true;
         return redirect()->route('dashboard');
